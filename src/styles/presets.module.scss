@@ -1,0 +1,11 @@
+.themeDark,
+%themeDark {
+  --colorPrimary: #fff;
+  --colorPrimaryBg: #000;
+}
+
+.themeLight,
+%themeLight {
+  --colorPrimary: #000;
+  --colorPrimaryBg: #fff;
+}
