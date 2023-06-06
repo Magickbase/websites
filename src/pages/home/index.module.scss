@@ -1,0 +1,34 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postMenus {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #000;
+}
+
+.postMenu {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #000;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+  }
+
+  .post {
+    display: block;
+
+    &:hover {
+      background: #eee;
+    }
+  }
+}
