@@ -10,6 +10,8 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "@algolia/autocomplete-js": "^1.9.2",
+    "@algolia/autocomplete-theme-classic": "^1.9.2",
     "@octokit/openapi-types": "^17.2.0",
     "@octokit/plugin-paginate-rest": "^6.1.2",
     "@octokit/rest": "^19.0.11",
