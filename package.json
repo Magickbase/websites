@@ -18,6 +18,8 @@
     "@trpc/next": "^10.28.2",
     "@trpc/react-query": "^10.28.2",
     "@trpc/server": "^10.28.2",
+    "algoliasearch": "^4.17.1",
+    "chunk-text": "^2.0.1",
     "clsx": "^1.2.1",
     "i18next": "^22.5.0",
     "next": "^13.4.4",
