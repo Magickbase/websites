@@ -80,12 +80,12 @@ const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
                 })
               },
               getItemUrl({ item }) {
-                return `/posts/${item.number}`
+                return `/posts/${item.source}/${item.number}`
               },
               templates: {
                 item({ item, components }) {
                   return (
-                    <a className="aa-ItemLink" href={`/posts/${item.number}`}>
+                    <a className="aa-ItemLink" href={`/posts/${item.source}/${item.number}`}>
                       <div className="aa-ItemContent">
                         <div className="aa-ItemContentBody">
                           <div className="aa-ItemContentTitle">
@@ -112,7 +112,7 @@ const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
 
             <div className={styles.posts}>
               {menu.posts?.map(post => (
-                <Link key={post.number} className={styles.post} href={`/posts/${post.number}`}>
+                <Link key={post.number} className={styles.post} href={`/posts/${post.source}/${post.number}`}>
                   {post.title}
                 </Link>
               ))}

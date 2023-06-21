@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
-import { Post, getMenuWithPosts, getPost, getPosts, getPostTopMenu, Menu } from '../../utils/posts'
+import { Post, getMenuWithPosts, getPost, getPosts, getPostTopMenu, Menu, isPostSource } from '../../utils/posts'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 
@@ -19,7 +19,7 @@ const PostPage: NextPage<PageProps> = ({ post, menuWithPosts }) => {
             <div key={menu.name}>
               <div>{menu.name}</div>
               {menu.posts?.map(post => (
-                <Link key={post.number} className={styles.post} href={`/posts/${post.number}`}>
+                <Link key={post.number} className={styles.post} href={`/posts/${post.source}/${post.number}`}>
                   - {post.title}
                 </Link>
               ))}
@@ -36,17 +36,17 @@ const PostPage: NextPage<PageProps> = ({ post, menuWithPosts }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
-  const id = params?.id?.toString()
-  if (!id) return { notFound: true }
+export const getStaticProps: GetStaticProps<PageProps, { slug?: string[] }> = async ({ locale, params }) => {
+  const [source, number] = params?.slug ?? []
+  if (!isPostSource(source) || !number) return { notFound: true }
 
-  const post = await getPost(Number(id))
+  const post = await getPost(source, Number(number))
   if (!post) return { notFound: true }
   const menu = getPostTopMenu(post)
   if (!menu) return { notFound: true }
   const menuWithPosts = await getMenuWithPosts(menu)
 
-  const lng = await serverSideTranslations(locale ?? 'en', ['common', 'knowledge-base'])
+  const lng = await serverSideTranslations(locale ?? 'en', ['common', 'posts'])
 
   const props: PageProps = {
     ...lng,
@@ -57,10 +57,10 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   return { props, revalidate: 60 * 60 }
 }
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+export const getStaticPaths: GetStaticPaths<{ slug?: string[] }> = async ({ locales }) => {
   const posts = await getPosts()
 
-  const pageParams = posts.map(post => ({ id: post.number.toString() }))
+  const pageParams = posts.map(post => ({ slug: [post.source, post.number.toString()] }))
 
   return {
     paths: (locales ?? ['en']).map(locale => pageParams.map(params => ({ params, locale }))).flat(),

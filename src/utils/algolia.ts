@@ -1,6 +1,6 @@
 import algoliasearch from 'algoliasearch'
 import chunkText from 'chunk-text'
-import { Post, getPostLabels } from './posts'
+import { Post, PostSource } from './posts'
 
 export const APPID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID
 const ADMINKEY = process.env.ALGOLIA_ADMIN_KEY
@@ -8,10 +8,9 @@ if (APPID === undefined) throw new Error('NEXT_PUBLIC_ALGOLIA_APP_ID is required
 const client = algoliasearch(APPID, ADMINKEY ?? '')
 
 export interface PostIndexRecord {
+  source: PostSource
   number: number
   title: string
-  labels: string[]
-  assignees?: string[]
   objectID: string
   content: string
 }
@@ -23,10 +22,9 @@ export async function syncPostsIndex(posts: Post[]) {
   const records: PostIndexRecord[] = posts
     .map(post => {
       const record = {
+        source: post.source,
         number: post.number,
         title: post.title,
-        labels: getPostLabels(post),
-        assignees: post.assignees?.map(author => author.name ?? author.login ?? ''),
       }
       // TODO: markdown to pure text
       const chunks: string[] = chunkText(post.body ?? '', 5000, {
@@ -35,7 +33,7 @@ export async function syncPostsIndex(posts: Post[]) {
       })
       return chunks.map((chunk, idx) => ({
         ...record,
-        objectID: `${post.number}_${idx}`,
+        objectID: `${post.source}_${post.number}_${idx}`,
         content: chunk,
       }))
     })
