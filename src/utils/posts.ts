@@ -1,48 +1,92 @@
-import { Issue, getIssue, getIssues } from './github'
+import {
+  Discussion,
+  Issue,
+  getDiscussion,
+  getDiscussionCategories,
+  getDiscussions,
+  getIssue,
+  getIssues,
+} from './github'
 
-export type Post = Issue
+const postSources = ['issues', 'discussions'] as const
+export type PostSource = (typeof postSources)[number]
+
+export type Post = Pick<Issue | Discussion, 'number' | 'title' | 'body'> &
+  (
+    | {
+        source: 'issues'
+        labels: string[]
+      }
+    | {
+        source: 'discussions'
+        category: Discussion['category']
+        labels: string[]
+      }
+  )
 
 export interface Menu {
   name: string
-  label: string
+  // label name or category name
+  sourceTarget: string
   children?: Menu[]
   posts?: Post[]
 }
 
-const PostMenu: Menu[] = [
+export interface TopLevelMenu extends Menu {
+  source: PostSource
+}
+
+const TopLevelMenus: TopLevelMenu[] = [
   {
     name: 'New User Guide',
-    label: 'guide',
+    source: 'issues',
+    sourceTarget: 'Guide',
     children: [
-      { name: 'Create wallet', label: 'create wallet' },
-      { name: 'Backup wallet', label: 'backup wallet' },
-      { name: 'Transfer and receive', label: 'transfer and receive' },
+      { name: 'Create wallet', sourceTarget: 'create wallet' },
+      { name: 'Backup wallet', sourceTarget: 'backup wallet' },
+      { name: 'Transfer and receive', sourceTarget: 'transfer and receive' },
     ],
   },
   {
     name: 'Frequently Asked Questions',
-    label: 'faq',
+    source: 'issues',
+    sourceTarget: 'FAQ',
     children: [
-      { name: 'Sync', label: 'sync' },
-      { name: 'Migration', label: 'migration' },
-      { name: 'CKBNode', label: 'ckb node' },
+      { name: 'Sync', sourceTarget: 'Synchronization' },
+      { name: 'Transaction', sourceTarget: 'Transaction' },
+      { name: 'Migration', sourceTarget: 'migration' },
+      { name: 'CKBNode', sourceTarget: 'ckb node' },
     ],
   },
   {
     name: 'Announcement',
-    label: 'announcement',
+    source: 'discussions',
+    sourceTarget: 'Announcements',
     children: [
-      { name: 'Change log', label: 'changelog' },
-      { name: 'Develop guide', label: 'develop guide' },
+      { name: 'Change log', sourceTarget: 'changelog' },
+      { name: 'Develop guide', sourceTarget: 'develop guide' },
     ],
   },
 ]
 
-function mergePostsToMenu(menu: Menu, posts: Post[]): Menu {
-  const menuPosts = [
-    ...(menu.posts ?? []),
-    ...posts.filter(post => getPostLabels(post).some(label => label === menu.label)),
-  ]
+function isPostInMenu(menu: Menu, post: Post) {
+  const topMenu = getTopMenu(menu)
+  if (topMenu == null) return menu
+
+  if (topMenu.source !== post.source) return false
+
+  switch (post.source) {
+    case 'issues':
+      return post.labels.includes(menu.sourceTarget)
+    case 'discussions':
+      // The discussions API only supports querying by a single specified category, not by label.
+      // So the data for the top-level menu will be filtered by category, while the sub-level menu will be filtered by label.
+      return topMenu === menu ? post.category.name === menu.sourceTarget : post.labels.includes(menu.sourceTarget)
+  }
+}
+
+function mergePostsToMenu<T extends Menu>(menu: T, posts: Post[]): T {
+  const menuPosts = [...(menu.posts ?? []), ...posts.filter(post => isPostInMenu(menu, post))]
 
   if (menu.children) {
     return {
@@ -58,40 +102,90 @@ function mergePostsToMenu(menu: Menu, posts: Post[]): Menu {
   }
 }
 
-export async function getMenuWithPosts(topMenu?: Menu) {
-  if (topMenu) {
-    const issues = await getIssues(topMenu.label)
-    return [mergePostsToMenu(topMenu, issues)]
+function issueToPost(issue: Issue): Post {
+  return {
+    source: 'issues',
+    number: issue.number,
+    title: issue.title,
+    body: issue.body,
+    labels: issue.labels.map(label => (typeof label === 'string' ? label : label.name ?? '')),
+  }
+}
+
+function discussionToPost(discussion: Discussion): Post {
+  return {
+    source: 'discussions',
+    number: discussion.number,
+    title: discussion.title,
+    body: discussion.body,
+    category: discussion.category,
+    labels: discussion.labels.map(label => label.name),
+  }
+}
+
+export async function getPosts(topMenu?: TopLevelMenu): Promise<Post[]> {
+  if (!topMenu) {
+    const menuPostsPromises = TopLevelMenus.map(getPosts)
+    const menuPosts: Post[][] = await Promise.all(menuPostsPromises)
+    return menuPosts.flat()
   }
 
-  const menuWithPostsPromises = PostMenu.map(async menu => {
-    const issues = await getIssues(menu.label)
-    return mergePostsToMenu(menu, issues)
-  })
-  const menus: Menu[] = await Promise.all(menuWithPostsPromises)
-  return menus
+  switch (topMenu.source) {
+    case 'issues':
+      const issues = await getIssues(topMenu.sourceTarget)
+      return issues.map(issueToPost)
+
+    case 'discussions':
+      const categories = await getDiscussionCategories()
+      const category = categories.find(({ name }) => name === topMenu.sourceTarget)
+      if (category == null) {
+        throw new Error('Not found category ' + topMenu.sourceTarget)
+      }
+      const discussions = await getDiscussions(category.id)
+      return discussions.map(discussionToPost)
+  }
 }
 
-export async function getPosts() {
-  const menuWithPostsPromises = PostMenu.map(async menu => {
-    const issues = await getIssues(menu.label)
-    return issues
-  })
-  const posts: Post[] = (await Promise.all(menuWithPostsPromises)).flat()
-  return posts
+export async function getMenuWithPosts(topMenu?: TopLevelMenu): Promise<TopLevelMenu[]> {
+  if (!topMenu) {
+    const menuWithPostsPromises = TopLevelMenus.map(getMenuWithPosts)
+    const menus: TopLevelMenu[][] = await Promise.all(menuWithPostsPromises)
+    return menus.flat()
+  }
+
+  return [mergePostsToMenu(topMenu, await getPosts(topMenu))]
 }
 
-export async function getPost(id: number) {
-  const post = await getIssue(id)
+export async function getPost(source: PostSource, number: number): Promise<Post | null> {
+  let post: Post
+  switch (source) {
+    case 'issues':
+      post = issueToPost(await getIssue(number))
+      break
+
+    case 'discussions':
+      post = discussionToPost(await getDiscussion(number))
+      break
+  }
+
   const isInMenu = getPostTopMenu(post) != null
   return isInMenu ? post : null
 }
 
-export function getPostLabels(post: Post): string[] {
-  return post.labels.map(label => (typeof label === 'string' ? label : label.name ?? ''))
+export function getPostTopMenu(post: Post): TopLevelMenu | undefined {
+  switch (post.source) {
+    case 'issues':
+      return TopLevelMenus.find(menu => post.labels.includes(menu.sourceTarget))
+
+    case 'discussions':
+      return TopLevelMenus.find(menu => menu.sourceTarget === post.category.name)
+  }
 }
 
-export function getPostTopMenu(post: Post) {
-  const labels = getPostLabels(post)
-  return PostMenu.find(menu => labels.includes(menu.label))
+export function getTopMenu(menu: Menu): TopLevelMenu | undefined {
+  return TopLevelMenus.find(topMenu => topMenu === menu || topMenu.children?.includes(menu))
+}
+
+export function isPostSource(source?: string): source is PostSource {
+  return (postSources as readonly unknown[]).includes(source)
 }

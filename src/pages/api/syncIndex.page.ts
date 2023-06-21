@@ -10,7 +10,7 @@ const handle: NextApiHandler<{ message: string }> = async (req, res) => {
   const posts = await getPosts()
   await syncPostsIndex(posts)
 
-  const postPaths = posts.map(post => `/posts/${post.number}`)
+  const postPaths = posts.map(post => `/posts/${post.source}/${post.number}`)
   await Promise.all([res.revalidate('/'), ...postPaths.map(path => res.revalidate(path))])
 
   return res.json({ message: 'OK' })
