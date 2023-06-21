@@ -1993,6 +1993,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@octokit/graphql-schema@npm:^14.12.0":
+  version: 14.12.0
+  resolution: "@octokit/graphql-schema@npm:14.12.0"
+  dependencies:
+    graphql: ^16.0.0
+    graphql-tag: ^2.10.3
+  checksum: cd7bc3fe5662fdd635d3ab4af011e286c7c816829717204a731a867afb2f5c45f2fd569a488f632c2ebc1adbbf1ea3e1f6601e27c8380bd2e5253d6670aac534
+  languageName: node
+  linkType: hard
+
 "@octokit/graphql@npm:^5.0.0":
   version: 5.0.6
   resolution: "@octokit/graphql@npm:5.0.6"
@@ -5276,6 +5286,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"graphql-tag@npm:^2.10.3":
+  version: 2.12.6
+  resolution: "graphql-tag@npm:2.12.6"
+  dependencies:
+    tslib: ^2.1.0
+  peerDependencies:
+    graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: b15162a3d62f17b9b79302445b9ee330e041582f1c7faca74b9dec5daa74272c906ec1c34e1c50592bb6215e5c3eba80a309103f6ba9e4c1cddc350c46f010df
+  languageName: node
+  linkType: hard
+
+"graphql@npm:^16.0.0":
+  version: 16.6.0
+  resolution: "graphql@npm:16.6.0"
+  checksum: bf1d9e3c1938ce3c1a81e909bd3ead1ae4707c577f91cff1ca2eca474bfbc7873d5d7b942e1e9777ff5a8304421dba57a4b76d7a29eb19de8711cb70e3c2415e
+  languageName: node
+  linkType: hard
+
 "hard-rejection@npm:^2.1.0":
   version: 2.1.0
   resolution: "hard-rejection@npm:2.1.0"
@@ -7072,6 +7100,7 @@ __metadata:
   dependencies:
     "@algolia/autocomplete-js": ^1.9.2
     "@algolia/autocomplete-theme-classic": ^1.9.2
+    "@octokit/graphql-schema": ^14.12.0
     "@octokit/openapi-types": ^17.2.0
     "@octokit/plugin-paginate-rest": ^6.1.2
     "@octokit/rest": ^19.0.11
