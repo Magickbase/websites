@@ -1,6 +1,11 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+import rehypeSanitize from 'rehype-sanitize'
+import ReactMarkdown from 'react-markdown'
+import clsx from 'clsx'
 import { Post, getMenuWithPosts, getPost, getPosts, getPostTopMenu, Menu, isPostSource } from '../../utils/posts'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
@@ -28,8 +33,19 @@ const PostPage: NextPage<PageProps> = ({ post, menuWithPosts }) => {
         </div>
 
         <div className={styles.content}>
-          <div>{post.title}</div>
-          <div>{post.body}</div>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.title}</ReactMarkdown>
+          <hr />
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw, rehypeSanitize]}
+            components={{
+              // Expectedly, all the links are external (content from GitHub), so there is no need to use next/image.
+              // eslint-disable-next-line @next/next/no-img-element
+              img: props => <img {...props} alt={props.alt ?? 'image'} className={clsx(props.className, styles.img)} />,
+            }}
+          >
+            {post.body ?? ''}
+          </ReactMarkdown>
         </div>
       </div>
     </Page>
