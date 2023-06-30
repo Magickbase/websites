@@ -1,3 +1,4 @@
+import { Webhooks } from '@octokit/webhooks'
 import { Octokit } from '@octokit/rest'
 import { paginateRest } from '@octokit/plugin-paginate-rest'
 import { components } from '@octokit/openapi-types'
@@ -18,6 +19,11 @@ const repoName = REPO.split('/')[1] ?? ''
 
 const EnhancedOctokit = Octokit.plugin(paginateRest)
 const octokit = new EnhancedOctokit({ auth: TOKEN })
+
+const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET ?? 'secret'
+export const webhooks = new Webhooks({
+  secret: GITHUB_WEBHOOK_SECRET,
+})
 
 export type Issue = components['schemas']['issue']
 export type DiscussionCategory = Omit<GQLDiscussionCategory, 'repository'>
