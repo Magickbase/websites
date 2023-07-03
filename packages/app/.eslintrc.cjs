@@ -5,13 +5,15 @@ const config = {
       extends: ['plugin:@typescript-eslint/recommended-requiring-type-checking'],
       files: ['*.ts', '*.tsx'],
       parserOptions: {
-        project: 'tsconfig.json',
+        project: './tsconfig.json',
+        tsconfigRootDir: __dirname,
       },
     },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
   },
   plugins: ['@typescript-eslint'],
   extends: ['next/core-web-vitals', 'prettier', 'plugin:@typescript-eslint/recommended'],

@@ -1,13 +1,12 @@
 {
-  "name": "neuron-troubleshooting",
+  "name": "app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start",
-    "postinstall": "husky install"
+    "start": "next start"
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.9.2",
@@ -51,11 +50,8 @@
     "eslint": "^8.41.0",
     "eslint-config-next": "^13.4.4",
     "eslint-config-prettier": "^8.8.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.2",
     "postcss": "^8.4.24",
     "postcss-scss": "^4.0.6",
-    "prettier": "^2.8.8",
     "stylelint": "^15.6.2",
     "stylelint-config-css-modules": "^4.2.0",
     "stylelint-config-prettier-scss": "^1.0.0",
@@ -66,6 +62,5 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.5.9"
-  },
-  "packageManager": "yarn@3.5.1"
+  }
 }
