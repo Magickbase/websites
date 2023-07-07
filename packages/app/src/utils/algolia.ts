@@ -3,9 +3,9 @@ import chunkText from 'chunk-text'
 import { Post, PostSource } from './posts'
 
 export const APPID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID
-const ADMINKEY = process.env.ALGOLIA_ADMIN_KEY
+const ADMINKEY = process.env.ALGOLIA_ADMIN_KEY ?? ''
 if (APPID === undefined) throw new Error('NEXT_PUBLIC_ALGOLIA_APP_ID is required')
-const client = algoliasearch(APPID, ADMINKEY ?? '')
+const client = algoliasearch(APPID, ADMINKEY)
 
 export interface PostIndexRecord {
   source: PostSource
@@ -16,6 +16,11 @@ export interface PostIndexRecord {
 }
 
 export async function syncPostsIndex(posts: Post[]) {
+  if (!ADMINKEY) {
+    console.warn('ALGOLIA_ADMIN_KEY is not set, skip syncPostsIndex')
+    return []
+  }
+
   // TODO: need to automatically remove old indexes
   const index = client.initIndex('posts')
 
