@@ -52,7 +52,7 @@
     "eslint-config-prettier": "^8.8.0",
     "postcss": "^8.4.24",
     "postcss-scss": "^4.0.6",
-    "stylelint": "^15.6.2",
+    "stylelint": "^15.10.1",
     "stylelint-config-css-modules": "^4.2.0",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-rational-order": "^0.1.2",
