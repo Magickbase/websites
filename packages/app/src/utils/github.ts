@@ -198,3 +198,40 @@ export async function getDiscussionsByLabel(label?: string): Promise<Discussion[
     labels: (discussion.labels?.nodes ?? []).filter(BooleanT()),
   }))
 }
+
+export async function createWebhook(callbackURL: string) {
+  const res = await octokit.rest.repos.createWebhook({
+    owner: repoOwner,
+    repo: repoName,
+    events: ['discussion', 'issues'],
+    config: {
+      url: callbackURL,
+      content_type: 'json',
+      secret: GITHUB_WEBHOOK_SECRET,
+    },
+  })
+  return res.data
+}
+
+export async function updateWebhook(hookId: number, callbackURL: string) {
+  const res = await octokit.rest.repos.updateWebhook({
+    owner: repoOwner,
+    repo: repoName,
+    hook_id: hookId,
+    events: ['discussion', 'issues'],
+    config: {
+      url: callbackURL,
+      content_type: 'json',
+      secret: GITHUB_WEBHOOK_SECRET,
+    },
+  })
+  return res.data
+}
+
+export async function getWebhooks() {
+  const res = await octokit.rest.repos.listWebhooks({
+    owner: repoOwner,
+    repo: repoName,
+  })
+  return res.data
+}

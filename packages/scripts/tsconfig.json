@@ -15,7 +15,10 @@
     "isolatedModules": true,
     "incremental": true,
     "noUncheckedIndexedAccess": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    // This is to allow ts-node to read types under typings folder
+    // https://github.com/TypeStrong/ts-node#missing-types
+    "typeRoots": ["../../node_modules/@types", "./src/typings"]
   },
   "include": [".eslintrc.cjs", "**/*.ts", "**/*.cjs", "**/*.mjs"],
   "exclude": ["node_modules"]
