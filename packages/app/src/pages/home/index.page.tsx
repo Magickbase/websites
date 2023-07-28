@@ -133,7 +133,7 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
     ...lng,
   }
 
-  return { props, revalidate: 60 * 60 }
+  return { props }
 }
 
 export default Home

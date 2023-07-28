@@ -1,4 +1,3 @@
-import { Webhooks } from '@octokit/webhooks'
 import { Octokit } from '@octokit/rest'
 import { paginateRest } from '@octokit/plugin-paginate-rest'
 import { components } from '@octokit/openapi-types'
@@ -19,11 +18,6 @@ const repoName = REPO.split('/')[1] ?? ''
 
 const EnhancedOctokit = Octokit.plugin(paginateRest)
 const octokit = new EnhancedOctokit({ auth: TOKEN })
-
-const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET ?? 'secret'
-export const webhooks = new Webhooks({
-  secret: GITHUB_WEBHOOK_SECRET,
-})
 
 export type Issue = components['schemas']['issue']
 export type DiscussionCategory = Omit<GQLDiscussionCategory, 'repository'>
@@ -197,41 +191,4 @@ export async function getDiscussionsByLabel(label?: string): Promise<Discussion[
     ...discussion,
     labels: (discussion.labels?.nodes ?? []).filter(BooleanT()),
   }))
-}
-
-export async function createWebhook(callbackURL: string) {
-  const res = await octokit.rest.repos.createWebhook({
-    owner: repoOwner,
-    repo: repoName,
-    events: ['discussion', 'issues'],
-    config: {
-      url: callbackURL,
-      content_type: 'json',
-      secret: GITHUB_WEBHOOK_SECRET,
-    },
-  })
-  return res.data
-}
-
-export async function updateWebhook(hookId: number, callbackURL: string) {
-  const res = await octokit.rest.repos.updateWebhook({
-    owner: repoOwner,
-    repo: repoName,
-    hook_id: hookId,
-    events: ['discussion', 'issues'],
-    config: {
-      url: callbackURL,
-      content_type: 'json',
-      secret: GITHUB_WEBHOOK_SECRET,
-    },
-  })
-  return res.data
-}
-
-export async function getWebhooks() {
-  const res = await octokit.rest.repos.listWebhooks({
-    owner: repoOwner,
-    repo: repoName,
-  })
-  return res.data
 }

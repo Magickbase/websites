@@ -70,7 +70,7 @@ export const getStaticProps: GetStaticProps<PageProps, { slug?: string[] }> = as
     menuWithPosts,
   }
 
-  return { props, revalidate: 60 * 60 }
+  return { props }
 }
 
 export const getStaticPaths: GetStaticPaths<{ slug?: string[] }> = async ({ locales }) => {
@@ -80,8 +80,7 @@ export const getStaticPaths: GetStaticPaths<{ slug?: string[] }> = async ({ loca
 
   return {
     paths: (locales ?? ['en']).map(locale => pageParams.map(params => ({ params, locale }))).flat(),
-    // This will allow access to the newest post
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 
