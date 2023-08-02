@@ -1,0 +1,33 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0 var(--contentWrapperPadding);
+
+  // TODO: The design has not been fully implemented here, and there are some bugs in Chrome/Firefox.
+  background: rgb(255 255 255 / 1%) linear-gradient(180deg, rgb(0 0 0 / 40%) 0%, rgb(0 0 0 / 20%) 100%);
+  backdrop-filter: blur(30px);
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    max-width: var(--contentAreaWidth);
+    height: 88px;
+    margin: 0 auto;
+
+    .left {
+      display: flex;
+      gap: 64px;
+      align-items: center;
+      height: 100%;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .right {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+  }
+}

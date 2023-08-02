@@ -1,11 +1,13 @@
 .layout {
   display: flex;
+  gap: var(--contentWrapperPadding);
+  max-width: calc(var(--contentAreaWidth) + var(--contentWrapperPadding));
+  margin: 0 auto;
+  padding: var(--contentWrapperPadding);
 }
 
 .sidebar {
   flex: 0 0 200px;
-  padding: 20px;
-  background: #f0f0f0;
 
   .post {
     display: block;
@@ -14,8 +16,6 @@
 
 .content {
   flex: 1;
-  padding: 20px;
-  background: #fff;
 
   .img {
     max-width: 100%;

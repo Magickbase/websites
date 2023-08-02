@@ -10,7 +10,12 @@ body {
 }
 
 body {
-  @extend %themeLight;
+  @extend %themeDark;
+}
+
+:root {
+  --contentAreaWidth: 1280px;
+  --contentWrapperPadding: 32px;
 }
 
 main {
