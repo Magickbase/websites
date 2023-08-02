@@ -10,6 +10,7 @@ const fontProximaNova = localFont({
   src: [
     { path: '../styles/fonts/ProximaNova-Regular.otf', weight: '400' },
     { path: '../styles/fonts/ProximaNova-Semibold.otf', weight: '600' },
+    { path: '../styles/fonts/ProximaNova-Bold.otf', weight: '700' },
   ],
   preload: true,
 })

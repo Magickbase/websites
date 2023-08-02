@@ -38,7 +38,7 @@ export interface TopLevelMenu extends Menu {
 
 const TopLevelMenus: TopLevelMenu[] = [
   {
-    name: 'New User Guide',
+    name: "Beginner's Guide",
     source: 'issues',
     sourceTarget: 'Guide',
     children: [

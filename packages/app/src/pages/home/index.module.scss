@@ -1,3 +1,41 @@
+@use 'sass:math';
+
+.page {
+  .top {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.neuron {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 26px;
+
+  .name {
+    margin-top: 6px;
+  }
+}
+
+.text1 {
+  font-weight: 700;
+  font-size: 40px;
+}
+
 .search {
   display: flex;
   flex-direction: column;
@@ -6,29 +44,79 @@
 
 .postMenus {
   display: flex;
-  gap: 40px;
+  gap: 32px;
   justify-content: center;
   margin-top: 32px;
+  margin-bottom: 264px;
   padding-top: 24px;
   border-top: 1px solid #000;
 }
 
 .postMenu {
-  width: 300px;
+  flex: 1;
+  min-width: 0;
   height: 300px;
-  border: 1px solid #000;
+  background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 24px;
 
   .title {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #000;
+    height: 72px;
+    padding: 0 24px;
+    font-weight: 400;
+    font-size: 20px;
+    border-bottom: 1px solid #333;
+
+    .more {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
   }
 
   .post {
-    display: block;
+    $lineHeight: 200%;
+    $fontSize: 16px;
+    $dotSize: 8px;
+
+    position: relative;
+    padding-left: $dotSize + 8px;
+    overflow: hidden;
+    font-size: $fontSize;
+    line-height: $lineHeight;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &::before {
+      position: absolute;
+      top: #{$fontSize * math.div($lineHeight, 200%) - $dotSize / 2};
+      left: 0;
+      display: block;
+      width: $dotSize;
+      height: $dotSize;
+      background: var(--colorPrimary);
+      border-radius: 50%;
+      content: '';
+    }
 
     &:hover {
-      background: #eee;
+      color: #00cc9b;
+
+      &::before {
+        background: #00cc9b;
+      }
     }
   }
 }

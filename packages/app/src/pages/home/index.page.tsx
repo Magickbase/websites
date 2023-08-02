@@ -7,9 +7,13 @@ import { BaseItem } from '@algolia/autocomplete-core'
 import { autocomplete, getAlgoliaResults, AutocompleteOptions } from '@algolia/autocomplete-js'
 import { useRef, useEffect, createElement, Fragment } from 'react'
 import { createRoot, Root } from 'react-dom/client'
+import Image from 'next/image'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import { Menu, PostIndexRecord, getMenuWithPosts } from '../../utils'
+import ImgNeuronLogo from './neuron-logo.png'
+import ImgHelp from './help.png'
+import IconMore from './more.svg'
 import '@algolia/autocomplete-theme-classic'
 
 const APPID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID
@@ -59,47 +63,61 @@ const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
   const { t } = useTranslation('home')
 
   return (
-    <Page>
-      <div className={styles.search}>
-        <div>Neuron online help</div>
-        <Autocomplete
-          openOnFocus={true}
-          defaultActiveItemId={0}
-          getSources={({ query }) => [
-            {
-              sourceId: 'products',
-              getItems() {
-                return getAlgoliaResults({
-                  searchClient,
-                  queries: [
-                    {
-                      indexName: 'posts',
-                      query,
-                    },
-                  ],
-                })
-              },
-              getItemUrl({ item }) {
-                return `/posts/${item.source}/${item.number}`
-              },
-              templates: {
-                item({ item, components }) {
-                  return (
-                    <a className="aa-ItemLink" href={`/posts/${item.source}/${item.number}`}>
-                      <div className="aa-ItemContent">
-                        <div className="aa-ItemContentBody">
-                          <div className="aa-ItemContentTitle">
-                            <components.Highlight hit={item} attribute={'content'} />
+    <Page className={styles.page}>
+      <div className={styles.top}>
+        <div className={styles.left}>
+          <div className={styles.neuron}>
+            <Image src={ImgNeuronLogo} alt="Neuron Logo" width={44} height={44} />
+            <span className={styles.name}>Neuron</span>
+          </div>
+
+          <div className={styles.text1}>Help Center</div>
+
+          <div className={styles.search}>
+            <Autocomplete
+              openOnFocus={true}
+              defaultActiveItemId={0}
+              getSources={({ query }) => [
+                {
+                  sourceId: 'products',
+                  getItems() {
+                    return getAlgoliaResults({
+                      searchClient,
+                      queries: [
+                        {
+                          indexName: 'posts',
+                          query,
+                        },
+                      ],
+                    })
+                  },
+                  getItemUrl({ item }) {
+                    return `/posts/${item.source}/${item.number}`
+                  },
+                  templates: {
+                    item({ item, components }) {
+                      return (
+                        <a className="aa-ItemLink" href={`/posts/${item.source}/${item.number}`}>
+                          <div className="aa-ItemContent">
+                            <div className="aa-ItemContentBody">
+                              <div className="aa-ItemContentTitle">
+                                <components.Highlight hit={item} attribute={'content'} />
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </a>
-                  )
+                        </a>
+                      )
+                    },
+                  },
                 },
-              },
-            },
-          ]}
-        />
+              ]}
+            />
+          </div>
+        </div>
+
+        <div className={styles.right}>
+          <Image src={ImgHelp} alt="Help" width={200} height={168} />
+        </div>
       </div>
 
       <div className={styles.postMenus}>
@@ -107,7 +125,9 @@ const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
           <div key={menu.name} className={styles.postMenu}>
             <div className={styles.title}>
               <div className={styles.name}>{menu.name}</div>
-              <div>More</div>
+              <div className={styles.more}>
+                More <IconMore />
+              </div>
             </div>
 
             <div className={styles.posts}>
@@ -129,7 +149,10 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   const lng = await serverSideTranslations(locale, ['common', 'home'])
 
   const props: PageProps = {
-    menuWithPosts,
+    menuWithPosts: menuWithPosts.map(menu => ({
+      ...menu,
+      posts: menu.posts?.slice(0, 4),
+    })),
     ...lng,
   }
 
