@@ -24,6 +24,12 @@
         "message": "Expected custom property name to be lowerCamelCase"
       }
     ],
+    "keyframes-name-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Expected class selector to be lowerCamelCase"
+      }
+    ],
     "scss/dollar-variable-pattern": [
       "^[a-z][a-zA-Z0-9]*$",
       {

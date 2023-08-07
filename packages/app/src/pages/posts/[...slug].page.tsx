@@ -1,54 +1,82 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Link from 'next/link'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import ReactMarkdown from 'react-markdown'
 import clsx from 'clsx'
-import { Post, getMenuWithPosts, getPost, getPosts, getPostTopMenu, Menu, isPostSource } from '../../utils/posts'
-import { Page } from '../../components/Page'
+import Link from 'next/link'
+import {
+  Post,
+  getMenuWithPosts,
+  getPost,
+  getPosts,
+  getPostTopMenu,
+  isPostSource,
+  TopLevelMenu,
+} from '../../utils/posts'
+import { HelpDocHeader } from '../../components/HelpDocHeader'
 import styles from './index.module.scss'
+import { Sidebar } from './Sidebar'
 
 interface PageProps {
   post: Post
-  menuWithPosts: Menu[]
+  menuWithPosts: TopLevelMenu
 }
 
 const PostPage: NextPage<PageProps> = ({ post, menuWithPosts }) => {
   return (
-    <Page>
-      <div className={styles.layout}>
-        <div className={styles.sidebar}>
-          {menuWithPosts[0]?.children?.map(menu => (
-            <div key={menu.name}>
-              <div>{menu.name}</div>
-              {menu.posts?.map(post => (
-                <Link key={post.number} className={styles.post} href={`/posts/${post.source}/${post.number}`}>
-                  - {post.title}
-                </Link>
-              ))}
-            </div>
-          ))}
+    <div className={styles.page}>
+      <HelpDocHeader className={styles.header} />
+
+      <Sidebar className={styles.sidebar} menuWithPosts={menuWithPosts} viewingPost={post} />
+
+      <div className={styles.main}>
+        <div className={styles.navbar}>
+          {/* TODO: feature needs to be implemented */}
+          <Link href="/">Home</Link>
+          <Link href="/">{`Beginner's Guide`}</Link>
+          <Link href="/">FAQ</Link>
+          <Link href="/">Announcement</Link>
         </div>
 
         <div className={styles.content}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.title}</ReactMarkdown>
-          <hr />
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw, rehypeSanitize]}
-            components={{
-              // Expectedly, all the links are external (content from GitHub), so there is no need to use next/image.
-              // eslint-disable-next-line @next/next/no-img-element
-              img: props => <img {...props} alt={props.alt ?? 'image'} className={clsx(props.className, styles.img)} />,
-            }}
-          >
-            {post.body ?? ''}
-          </ReactMarkdown>
+          <div className={styles.breadcrumbs}>
+            {/* TODO: feature needs to be implemented */}
+            <div className={styles.item}>{menuWithPosts.name}</div>
+            <div className={styles.item}>
+              {
+                menuWithPosts.children?.find(menu =>
+                  menu.posts?.find(_post => post.source === _post.source && post.number === _post.number),
+                )?.name
+              }
+            </div>
+            <div className={styles.item}>{post.title}</div>
+          </div>
+
+          <div className={styles.postContent}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.title}</ReactMarkdown>
+            <hr />
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw, rehypeSanitize]}
+              components={{
+                // Expectedly, all the links are external (content from GitHub), so there is no need to use next/image.
+                // eslint-disable-next-line @next/next/no-img-element
+                img: props => (
+                  <img {...props} alt={props.alt ?? 'image'} className={clsx(props.className, styles.img)} />
+                ),
+              }}
+            >
+              {post.body ?? ''}
+            </ReactMarkdown>
+          </div>
+
+          {/* TODO: feature needs to be implemented */}
+          <div className={styles.toc}>TOC</div>
         </div>
       </div>
-    </Page>
+    </div>
   )
 }
 
@@ -61,13 +89,14 @@ export const getStaticProps: GetStaticProps<PageProps, { slug?: string[] }> = as
   const menu = getPostTopMenu(post)
   if (!menu) return { notFound: true }
   const menuWithPosts = await getMenuWithPosts(menu)
+  if (!menuWithPosts[0]) return { notFound: true }
 
   const lng = await serverSideTranslations(locale ?? 'en', ['common', 'posts'])
 
   const props: PageProps = {
     ...lng,
     post,
-    menuWithPosts,
+    menuWithPosts: menuWithPosts[0],
   }
 
   return { props }
