@@ -1,0 +1,39 @@
+@use 'sass:math';
+
+.toc {
+  margin: 8px 0 24px 20px;
+  border-left: 1px solid #e5e5e5;
+}
+
+.tocItem {
+  $lineHeight: 100%;
+  $fontSize: 14px;
+
+  position: relative;
+  margin-top: 28px;
+  padding: 0 16px;
+  color: #999;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+
+  &::after {
+    position: absolute;
+    top: #{$fontSize * math.div($lineHeight, 200%)};
+    left: 0;
+    display: none;
+    width: 8px;
+    height: 8px;
+    background-color: #00c891;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    content: ' ';
+  }
+
+  &.active {
+    color: #00c891;
+
+    &::after {
+      display: block;
+    }
+  }
+}
