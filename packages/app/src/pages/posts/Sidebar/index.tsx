@@ -2,7 +2,7 @@ import { ComponentProps, FC, forwardRef } from 'react'
 import * as Accordion from '@radix-ui/react-accordion'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { Post, TopLevelMenu } from '../../../utils'
+import { Post, TopLevelMenu, getPostURL } from '../../../utils'
 import IconArrow from './arrow.svg'
 import styles from './index.module.scss'
 
@@ -28,7 +28,7 @@ export const Sidebar: FC<ComponentProps<'div'> & { menuWithPosts: TopLevelMenu; 
                   className={clsx(styles.post, {
                     [styles.selected ?? '']: post.source === viewingPost.source && post.number === viewingPost.number,
                   })}
-                  href={`/posts/${post.source}/${post.number}`}
+                  href={getPostURL(post)}
                 >
                   - {post.title}
                 </Link>
