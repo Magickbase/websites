@@ -59,8 +59,8 @@ interface PageProps {
   menuWithPosts: Menu[]
 }
 
-const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
-  const { t } = useTranslation('home')
+const HelpCenter: NextPage<PageProps> = ({ menuWithPosts }) => {
+  const { t } = useTranslation('help_center')
 
   return (
     <Page className={styles.page}>
@@ -71,7 +71,7 @@ const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
             <span className={styles.name}>Neuron</span>
           </div>
 
-          <div className={styles.text1}>Help Center</div>
+          <div className={styles.text1}>{t('help_center')}</div>
 
           <div className={styles.search}>
             <Autocomplete
@@ -148,7 +148,7 @@ const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   const menuWithPosts = await getMenuWithPosts()
-  const lng = await serverSideTranslations(locale, ['common', 'home'])
+  const lng = await serverSideTranslations(locale, ['common', 'help_center'])
 
   const props: PageProps = {
     menuWithPosts: menuWithPosts.map(menu => ({
@@ -161,4 +161,4 @@ export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   return { props }
 }
 
-export default Home
+export default HelpCenter
