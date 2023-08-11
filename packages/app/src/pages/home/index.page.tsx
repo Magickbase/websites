@@ -10,7 +10,7 @@ import { createRoot, Root } from 'react-dom/client'
 import Image from 'next/image'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
-import { Menu, PostIndexRecord, getMenuWithPosts } from '../../utils'
+import { Menu, PostIndexRecord, getMenuWithPosts, getPostURL } from '../../utils'
 import ImgNeuronLogo from './neuron-logo.png'
 import ImgHelp from './help.png'
 import IconMore from './more.svg'
@@ -91,13 +91,11 @@ const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
                       ],
                     })
                   },
-                  getItemUrl({ item }) {
-                    return `/posts/${item.source}/${item.number}`
-                  },
+                  getItemUrl: ({ item }) => getPostURL(item),
                   templates: {
                     item({ item, components }) {
                       return (
-                        <a className="aa-ItemLink" href={`/posts/${item.source}/${item.number}`}>
+                        <a className="aa-ItemLink" href={getPostURL(item)}>
                           <div className="aa-ItemContent">
                             <div className="aa-ItemContentBody">
                               <div className="aa-ItemContentTitle">
@@ -132,7 +130,7 @@ const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
 
             <div className={styles.posts}>
               {menu.posts?.map(post => (
-                <Link key={post.number} className={styles.post} href={`/posts/${post.source}/${post.number}`}>
+                <Link key={post.number} className={styles.post} href={getPostURL(post)}>
                   {post.title}
                 </Link>
               ))}
