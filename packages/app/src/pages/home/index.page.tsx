@@ -123,9 +123,13 @@ const Home: NextPage<PageProps> = ({ menuWithPosts }) => {
           <div key={menu.name} className={styles.postMenu}>
             <div className={styles.title}>
               <div className={styles.name}>{menu.name}</div>
-              <div className={styles.more}>
-                More <IconMore />
-              </div>
+              {menu.posts?.[0] && (
+                <Link href={getPostURL(menu.posts[0])}>
+                  <div className={styles.more}>
+                    More <IconMore />
+                  </div>
+                </Link>
+              )}
             </div>
 
             <div className={styles.posts}>
