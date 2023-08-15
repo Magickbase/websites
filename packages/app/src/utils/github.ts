@@ -25,6 +25,7 @@ export type Discussion = Pick<GQLDiscussion, 'id' | 'number' | 'title' | 'body' 
   category: DiscussionCategory
   labels: Pick<GQLLabel, 'id' | 'name' | 'description'>[]
 }
+export type Release = components['schemas']['release']
 
 const GQL_CATEGORY_FIELDS = () => `
   createdAt
@@ -191,4 +192,30 @@ export async function getDiscussionsByLabel(label?: string): Promise<Discussion[
     ...discussion,
     labels: (discussion.labels?.nodes ?? []).filter(BooleanT()),
   }))
+}
+
+export async function getReleases(limit = Infinity): Promise<Release[]> {
+  let sum = 0
+  const releases = await octokit.paginate(
+    octokit.rest.repos.listReleases,
+    {
+      owner: repoOwner,
+      repo: repoName,
+      per_page: Math.min(limit, 100),
+    },
+    (response, done) => {
+      sum += response.data.length
+      if (sum >= limit) done()
+      return response.data
+    },
+  )
+  return releases.slice(0, limit)
+}
+
+export async function getLatestRelease(): Promise<Release> {
+  const res = await octokit.rest.repos.getLatestRelease({
+    owner: repoOwner,
+    repo: repoName,
+  })
+  return res.data
 }

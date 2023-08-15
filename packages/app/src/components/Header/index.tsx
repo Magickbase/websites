@@ -19,7 +19,7 @@ export const Header: FC<HeaderProps> = props => {
           {/* TODO: need real links */}
           <Link href="/">Changelog</Link>
           <Link href="/">Help Center</Link>
-          <Link href="/">Download Neuron</Link>
+          <Link href="/download">Download Neuron</Link>
         </div>
 
         <div className={styles.right}>
