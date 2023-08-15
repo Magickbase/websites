@@ -5,6 +5,7 @@ import { appWithTranslation } from 'next-i18next'
 import localFont from 'next/font/local'
 import { api } from '../utils/api'
 import '../styles/globals.scss'
+import { TooltipProvider } from '../components/Tooltip'
 
 const fontProximaNova = localFont({
   src: [
@@ -22,7 +23,7 @@ const App: AppType = ({ Component, pageProps }) => {
   }, [])
 
   return (
-    <>
+    <TooltipProvider>
       <Head>
         <title>Neuron Troubleshooting</title>
         <link rel="icon" type="image/svg" href="/favicon.svg" />
@@ -34,7 +35,7 @@ const App: AppType = ({ Component, pageProps }) => {
       >
         <Component {...pageProps} />
       </main>
-    </>
+    </TooltipProvider>
   )
 }
 

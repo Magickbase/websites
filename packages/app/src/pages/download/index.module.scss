@@ -1,0 +1,96 @@
+.page {
+  .top {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.neuron {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 26px;
+
+  .name {
+    margin-top: 6px;
+  }
+}
+
+.text1 {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.version {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid #f5f5f5;
+  border-radius: 40px;
+}
+
+.assets {
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 158px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 24px;
+  border-spacing: 0;
+  backdrop-filter: blur(40px);
+
+  .row {
+    height: 64px;
+    font-size: 16px;
+
+    & > td {
+      padding: 0 40px;
+      border-top: 1px solid #333;
+    }
+
+    &.head {
+      font-size: 20px;
+
+      & > th {
+        font-weight: 400;
+      }
+    }
+  }
+
+  .os {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .checksum {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .operation {
+    & > a {
+      color: #00c891;
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+}
