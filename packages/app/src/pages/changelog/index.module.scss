@@ -1,0 +1,64 @@
+.page {
+  .top {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.neuron {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 26px;
+
+  .name {
+    margin-top: 6px;
+  }
+}
+
+.text1 {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.text2 {
+  font-size: 20px;
+
+  & > a {
+    color: #00c891;
+  }
+}
+
+.release {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+  padding-top: 48px;
+  border-top: 1px solid #333;
+
+  &:first-child {
+    margin-top: 56px;
+  }
+
+  .left {
+    flex-shrink: 0;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .right {
+    & > :first-child {
+      margin-top: 0;
+    }
+
+    a {
+      color: #00c891;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
