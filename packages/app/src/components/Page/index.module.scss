@@ -6,6 +6,7 @@
 }
 
 .contentWrapper {
+  box-sizing: content-box;
   max-width: calc(var(--contentAreaWidth) + var(--contentWrapperPadding));
   margin: 0 auto;
   padding: var(--contentWrapperPadding);

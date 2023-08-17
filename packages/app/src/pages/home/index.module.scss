@@ -6,6 +6,7 @@
   position: absolute;
   top: 0;
   left: 50%;
+  max-width: 100%;
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -21,6 +22,7 @@
   .emphasis {
     position: relative;
     color: #00c891;
+    white-space: nowrap;
 
     & > svg {
       position: absolute;
@@ -41,20 +43,16 @@
 }
 
 .neuronOverview {
-  // Some of the code here is written to exceed the width of the parent element and participate in the normal layout flow.
-  // If the situation becomes more complex in the future, the width restriction of the parent element should be removed.
-  position: relative;
-  left: 50%;
-  width: fit-content;
   margin-top: 32px;
   padding: 24px;
   background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
-  border: 1.031px solid rgb(255 255 255 / 20%);
+  border: 1px solid rgb(255 255 255 / 20%);
   border-radius: 33px;
-  transform: translateX(-50%);
   backdrop-filter: blur(39.5px);
 
   & > img {
+    width: 100%;
+    height: auto;
     border-radius: 32px;
     backdrop-filter: blur(39.5px);
   }
@@ -148,6 +146,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    max-width: 100%;
     transform: translateX(-50%) translateY(-50%);
     pointer-events: none;
   }
