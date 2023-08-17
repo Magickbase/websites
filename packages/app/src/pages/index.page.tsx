@@ -1,1 +1,1 @@
-export { default, getStaticProps } from './help-center/index.page'
+export { default, getStaticProps } from './home/index.page'

@@ -17,8 +17,7 @@ export const Header: FC<HeaderProps> = props => {
             <IconLogo />
           </Link>
           <Link href="/changelog">Changelog</Link>
-          {/* TODO: need real links */}
-          <Link href="/">Help Center</Link>
+          <Link href="/help-center">Help Center</Link>
           <Link href="/download">Download Neuron</Link>
         </div>
 
