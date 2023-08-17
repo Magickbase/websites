@@ -1,0 +1,169 @@
+.contentWrapper {
+  position: relative;
+}
+
+.topShadow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.text1 {
+  margin-top: 146px;
+  font-weight: 700;
+  font-size: 40px;
+  font-style: normal;
+  line-height: 72px;
+  text-align: center;
+
+  .emphasis {
+    position: relative;
+    color: #00c891;
+
+    & > svg {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  }
+}
+
+.text2 {
+  max-width: 1058px;
+  margin: 20px auto 0;
+  font-size: 20px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.neuronOverview {
+  // Some of the code here is written to exceed the width of the parent element and participate in the normal layout flow.
+  // If the situation becomes more complex in the future, the width restriction of the parent element should be removed.
+  position: relative;
+  left: 50%;
+  width: fit-content;
+  margin-top: 32px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
+  border: 1.031px solid rgb(255 255 255 / 20%);
+  border-radius: 33px;
+  transform: translateX(-50%);
+  backdrop-filter: blur(39.5px);
+
+  & > img {
+    border-radius: 32px;
+    backdrop-filter: blur(39.5px);
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  margin-top: 56px;
+}
+
+.btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 232px;
+  min-height: 72px;
+  font-weight: 600;
+  font-size: 16px;
+  background: #000;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btnDownload {
+  flex-direction: column;
+  gap: 6px;
+  color: #000;
+  background: #00c891;
+
+  .secondary {
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+.btnGithub {
+  gap: 8px;
+  box-sizing: border-box;
+  border: 1px solid #f5f5f5;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 308px;
+  margin-top: 384px;
+
+  .feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:nth-child(even) {
+      img {
+        order: 2;
+      }
+    }
+
+    .textWrapper {
+      display: flex;
+      flex: 0.663;
+      flex-direction: column;
+      gap: 32px;
+
+      .title {
+        font-weight: 600;
+        font-size: 24px;
+      }
+
+      .description {
+        color: #999;
+        font-size: 16px;
+        line-height: 32px;
+      }
+    }
+  }
+}
+
+.getNeuron {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 438px;
+  margin-bottom: 326px;
+
+  .bottomShadow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    pointer-events: none;
+  }
+
+  .text3 {
+    margin-top: 24px;
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  .text4 {
+    margin-top: 24px;
+    line-height: 32px;
+  }
+
+  .download {
+    margin-top: 60px;
+  }
+}

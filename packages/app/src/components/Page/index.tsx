@@ -11,11 +11,12 @@ type PageProps = Omit<ComponentProps<'div'>, 'children'> & {
         renderHeader: (props?: HeaderProps) => ReactNode
         renderFooter: (props?: FooterProps) => ReactNode
       }) => JSX.Element | undefined)
-  contentWrapper?: boolean
+  contentWrapper?: boolean | ComponentProps<'div'>
 }
 
 export const Page = forwardRef<HTMLDivElement, PageProps>(function Page(props, ref) {
   const { children, contentWrapper = true, className, ...divProps } = props
+  const contentWrapperProps = typeof contentWrapper === 'object' ? contentWrapper : {}
 
   const finalChildren =
     typeof children === 'function' ? (
@@ -26,7 +27,13 @@ export const Page = forwardRef<HTMLDivElement, PageProps>(function Page(props, r
     ) : (
       <>
         <Header />
-        {contentWrapper ? <div className={styles.contentWrapper}>{children}</div> : children}
+        {contentWrapper ? (
+          <div {...contentWrapperProps} className={clsx(styles.contentWrapper, contentWrapperProps.className)}>
+            {children}
+          </div>
+        ) : (
+          children
+        )}
         <Footer />
       </>
     )

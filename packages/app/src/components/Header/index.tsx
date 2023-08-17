@@ -23,7 +23,9 @@ export const Header: FC<HeaderProps> = props => {
         </div>
 
         <div className={styles.right}>
-          <IconGithub />
+          <Link href="https://github.com/nervosnetwork/neuron" target="_blank" rel="noopener noreferrer">
+            <IconGithub />
+          </Link>
           <IconMenu />
         </div>
       </div>
