@@ -2,9 +2,10 @@ import { GetStaticProps, type NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image, { StaticImageData } from 'next/image'
-import { ComponentProps, FC } from 'react'
+import { ComponentProps, FC, useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { UAParser } from 'ua-parser-js'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import TopShadow from './top-shadow.svg'
@@ -17,12 +18,14 @@ import ImgEasy from './easy.png'
 import ImgPrivate from './private.png'
 import ImgReliable from './reliable.png'
 import ImgNeuronLogo from './neuron-logo.png'
+import { Release, getAssetsFromNeuronRelease, getLatestRelease } from '../../utils'
 
 interface PageProps {
   locale: string
+  release: Release
 }
 
-const Home: NextPage<PageProps> = ({ locale }) => {
+const Home: NextPage<PageProps> = ({ locale, release }) => {
   const { t } = useTranslation('home')
 
   const ImgNeuronOverview = getNeuronOverviewImg(locale)
@@ -50,7 +53,7 @@ const Home: NextPage<PageProps> = ({ locale }) => {
       </div>
 
       <div className={styles.actions}>
-        <DownloadButton />
+        <DownloadButton release={release} />
 
         <Link href="https://github.com/nervosnetwork/neuron" target="_blank" rel="noopener noreferrer">
           <button className={clsx(styles.btn, styles.btnGithub)}>
@@ -100,21 +103,51 @@ const Home: NextPage<PageProps> = ({ locale }) => {
         <Image src={ImgNeuronLogo} alt="Neuron Logo" width={88} height={88} />
         <div className={styles.text3}>Get Neuron Now</div>
         <div className={styles.text4}>Secure and reliable, you can navigate the world of Nervos CKB</div>
-        <DownloadButton className={styles.download} />
+        <DownloadButton className={styles.download} release={release} />
       </div>
     </Page>
   )
 }
 
-const DownloadButton: FC<Partial<ComponentProps<typeof Link>>> = props => {
-  // TODO: auto detect system and auto provide download link
+const DownloadButton: FC<Partial<ComponentProps<typeof Link>> & { release: Release }> = ({ release, ...linkProps }) => {
+  const assets = useMemo(() => getAssetsFromNeuronRelease(release), [release])
+  const [asset, setAsset] = useState(
+    assets.find(
+      asset =>
+        asset.os.toLowerCase() === 'windows' &&
+        asset.arch.toLowerCase() === 'x64' &&
+        asset.packageType.toLowerCase() === 'exe',
+    ) ?? assets[0],
+  )
+
+  useEffect(() => {
+    const ua = UAParser(navigator.userAgent)
+    if (ua.cpu.architecture === 'amd64') ua.cpu.architecture = 'x64'
+
+    let matchedAssets = assets.filter(asset => ua.os.name?.toLowerCase().replaceAll(' ', '') === asset.os.toLowerCase())
+    if (matchedAssets.length === 0) return
+    setAsset(matchedAssets[0])
+
+    matchedAssets = matchedAssets.filter(asset => ['exe', 'dmg', 'appimage'].includes(asset.packageType.toLowerCase()))
+    if (matchedAssets.length === 0) return
+    setAsset(matchedAssets[0])
+
+    matchedAssets = matchedAssets.filter(asset => ua.cpu.architecture?.toLowerCase() === asset.arch.toLowerCase())
+    if (matchedAssets.length === 0) return
+    setAsset(matchedAssets[0])
+  }, [assets])
+
   return (
-    <Link href="/download" target="_blank" rel="noopener noreferrer" {...props}>
-      <button className={clsx(styles.btn, styles.btnDownload)}>
-        <span>Download Neuron</span>
-        <span className={styles.secondary}>(Windows x64-EXE)</span>
-      </button>
-    </Link>
+    asset && (
+      <Link href={asset.packageLink} {...linkProps}>
+        <button className={clsx(styles.btn, styles.btnDownload)}>
+          <span>Download Neuron</span>
+          <span className={styles.secondary}>
+            ({asset.os} {asset.arch}-{asset.packageType})
+          </span>
+        </button>
+      </Link>
+    )
   )
 }
 
@@ -128,9 +161,16 @@ function getNeuronOverviewImg(locale: PageProps['locale']): StaticImageData {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
+  const release = await getLatestRelease()
   const lng = await serverSideTranslations(locale, ['common', 'home'])
 
-  return { props: { ...lng } }
+  const props: PageProps = {
+    locale,
+    release,
+    ...lng,
+  }
+
+  return { props }
 }
 
 export default Home

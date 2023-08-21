@@ -219,3 +219,28 @@ export async function getLatestRelease(): Promise<Release> {
   })
   return res.data
 }
+
+export function getAssetsFromNeuronRelease(neuronRelease: Release) {
+  const tableLines = neuronRelease.body?.match(/^(.*?\|)+.*?$/gm)
+  if (!tableLines) return []
+
+  return tableLines
+    .map(line => {
+      const [os, arch, packageInfo, checksum] = line.split('|')
+      if (!os || !arch || !packageInfo || !checksum) return null
+
+      const packageItems = packageInfo.match(/\[(.*?)\]\((.*?)\)/)
+      if (!packageItems) return null
+      const [, packageType, packageLink] = packageItems
+      if (!packageType || !packageLink) return null
+
+      return {
+        os: os?.trim(),
+        arch: arch?.trim(),
+        packageType,
+        checksum: checksum?.replace(/<.*?>(.*?)<\/.*?>/, '$1').trim(),
+        packageLink,
+      }
+    })
+    .filter(BooleanT())
+}

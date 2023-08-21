@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useMemo } from 'react'
 import clsx from 'clsx'
-import { BooleanT, Release, getLatestRelease } from '../../utils'
+import { BooleanT, Release, getAssetsFromNeuronRelease, getLatestRelease } from '../../utils'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import ImgNeuronLogo from './neuron-logo.png'
@@ -23,30 +23,7 @@ interface PageProps {
 const HelpCenter: NextPage<PageProps> = ({ release }) => {
   const { t } = useTranslation('download')
 
-  const assets = useMemo(() => {
-    const tableLines = release.body?.match(/^(.*?\|)+.*?$/gm)
-    if (!tableLines) return []
-
-    return tableLines
-      .map(line => {
-        const [os, arch, packageInfo, checksum] = line.split('|')
-        if (!os || !arch || !packageInfo || !checksum) return null
-
-        const packageItems = packageInfo.match(/\[(.*?)\]\((.*?)\)/)
-        if (!packageItems) return null
-        const [, packageType, packageLink] = packageItems
-        if (!packageType || !packageLink) return null
-
-        return {
-          os: os?.trim(),
-          arch: arch?.trim(),
-          packageType,
-          checksum: checksum?.replace(/<.*?>(.*?)<\/.*?>/, '$1').trim(),
-          packageLink,
-        }
-      })
-      .filter(BooleanT())
-  }, [release])
+  const assets = useMemo(() => getAssetsFromNeuronRelease(release), [release])
 
   return (
     <Page className={styles.page}>

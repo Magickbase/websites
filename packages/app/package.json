@@ -40,6 +40,7 @@
     "rxjs": "^7.8.1",
     "sass": "^1.62.1",
     "superjson": "^1.12.3",
+    "ua-parser-js": "^1.0.35",
     "zod": "^3.21.4"
   },
   "devDependencies": {
@@ -48,6 +49,7 @@
     "@types/node": "^20.2.5",
     "@types/react": "^18.2.8",
     "@types/react-dom": "^18.2.4",
+    "@types/ua-parser-js": "^0.7.36",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
     "eslint": "^8.41.0",
