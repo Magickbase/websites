@@ -9,9 +9,8 @@ import {
   SearchResultItemConnection,
 } from '@octokit/graphql-schema'
 import { BooleanT } from './array'
+import { REPO, TOKEN } from './env'
 
-export const REPO = process.env.NEXT_PUBLIC_REPO
-const TOKEN = process.env.GITHUB_TOKEN
 if (REPO === undefined) throw new Error('NEXT_PUBLIC_REPO is required')
 const repoOwner = REPO.split('/')[0] ?? ''
 const repoName = REPO.split('/')[1] ?? ''

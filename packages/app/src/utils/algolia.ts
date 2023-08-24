@@ -1,11 +1,10 @@
 import algoliasearch from 'algoliasearch'
 import chunkText from 'chunk-text'
 import { Post, PostSource } from './posts'
+import { ADMINKEY, APPID } from './env'
 
-export const APPID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID
-const ADMINKEY = process.env.ALGOLIA_ADMIN_KEY ?? ''
 if (APPID === undefined) throw new Error('NEXT_PUBLIC_ALGOLIA_APP_ID is required')
-const client = algoliasearch(APPID, ADMINKEY)
+const client = algoliasearch(APPID, ADMINKEY ?? '')
 
 export interface PostIndexRecord {
   source: PostSource

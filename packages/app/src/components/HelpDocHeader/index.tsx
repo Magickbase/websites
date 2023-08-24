@@ -10,9 +10,7 @@ import IconDaylight from './daylight.svg'
 import IconNight from './night.svg'
 import IconArrow from './arrow.svg'
 import styles from './index.module.scss'
-
-const APPID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID
-const SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY
+import { APPID, SEARCH_KEY } from '../../utils'
 
 export type HelpDocHeaderProps = ComponentProps<'div'>
 

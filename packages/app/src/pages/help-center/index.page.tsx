@@ -7,13 +7,10 @@ import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
-import { Menu, getMenuWithPosts, getPostURL } from '../../utils'
+import { APPID, Menu, SEARCH_KEY, getMenuWithPosts, getPostURL } from '../../utils'
 import ImgNeuronLogo from './neuron-logo.png'
 import ImgHelp from './help.png'
 import IconMore from './more.svg'
-
-const APPID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID
-const SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY
 
 interface PageProps {
   menuWithPosts: Menu[]
