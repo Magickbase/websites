@@ -24,6 +24,21 @@
 
 .search {
   margin-right: 52px;
+
+  /* stylelint-disable selector-class-pattern */
+  :global {
+    .DocSearch-Button {
+      width: 328px;
+      height: 44px;
+      margin: 0;
+      padding: 0 12px;
+    }
+
+    .DocSearch-Button-Placeholder {
+      padding: 0 8px;
+    }
+  }
+  /* stylelint-enable selector-class-pattern */
 }
 
 .colorSchema {

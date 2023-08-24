@@ -2,12 +2,17 @@ import clsx from 'clsx'
 import { ComponentProps, FC } from 'react'
 import Image from 'next/image'
 import { useObservableState } from 'observable-hooks'
+import { DocSearch } from '@docsearch/react'
+import '@docsearch/css'
 import { appSettings } from '../../services/AppSettings'
 import ImgNeuronLogo from './neuron-logo.png'
 import IconDaylight from './daylight.svg'
 import IconNight from './night.svg'
 import IconArrow from './arrow.svg'
 import styles from './index.module.scss'
+
+const APPID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID
+const SEARCH_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY
 
 export type HelpDocHeaderProps = ComponentProps<'div'>
 
@@ -22,7 +27,9 @@ export const HelpDocHeader: FC<HelpDocHeaderProps> = props => {
       </div>
 
       <div className={styles.right}>
-        <div className={styles.search}>Search</div>
+        <div className={styles.search}>
+          <DocSearch appId={APPID ?? ''} indexName="posts" apiKey={SEARCH_KEY ?? ''} />
+        </div>
 
         {darkMode ? (
           <IconNight className={styles.colorSchema} onClick={() => appSettings.setDarkMode(false)} />
