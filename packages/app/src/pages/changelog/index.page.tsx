@@ -23,9 +23,12 @@ const Changelog: NextPage<PageProps> = ({ releases }) => {
 
   const components: ComponentProps<typeof ReactMarkdown>['components'] = useMemo(
     () => ({
+      a: ({ node, ...tagProps }) => <a {...tagProps} target="_blank" rel="noopener noreferrer" />,
       // Expectedly, all the links are external (content from GitHub), so there is no need to use next/image.
       // eslint-disable-next-line @next/next/no-img-element
-      img: props => <img {...props} alt={props.alt ?? 'image'} className={clsx(props.className, styles.img)} />,
+      img: ({ node, ...tagProps }) => (
+        <img {...tagProps} alt={tagProps.alt ?? 'image'} className={clsx(tagProps.className, styles.img)} />
+      ),
     }),
     [],
   )

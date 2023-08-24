@@ -25,7 +25,9 @@ export const Header: FC<HeaderProps> = props => {
           <Link href="https://github.com/nervosnetwork/neuron" target="_blank" rel="noopener noreferrer">
             <IconGithub />
           </Link>
-          <IconMenu />
+
+          {/* TODO: This button will be implemented when magickbase.com is online. */}
+          {false && <IconMenu />}
         </div>
       </div>
     </div>
