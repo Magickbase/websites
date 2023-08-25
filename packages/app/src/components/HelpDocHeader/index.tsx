@@ -4,6 +4,9 @@ import Image from 'next/image'
 import { useObservableState } from 'observable-hooks'
 import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { appSettings } from '../../services/AppSettings'
 import ImgNeuronLogo from './neuron-logo.png'
 import IconDaylight from './daylight.svg'
@@ -35,11 +38,41 @@ export const HelpDocHeader: FC<HelpDocHeaderProps> = props => {
           <IconDaylight className={styles.colorSchema} onClick={() => appSettings.setDarkMode(true)} />
         )}
 
-        <div className={styles.languageMenu}>
-          English
-          <IconArrow />
-        </div>
+        <LanguageMenu />
       </div>
     </div>
+  )
+}
+
+const languages = [
+  { name: 'English', localeName: 'en' },
+  { name: '简体中文', localeName: 'zh' },
+]
+
+const LanguageMenu: FC = () => {
+  const router = useRouter()
+  const { pathname, query } = router
+
+  const currentLanguage = languages.find(language => language.localeName === router.locale)
+
+  return (
+    <DropdownMenu.Root modal={false}>
+      <DropdownMenu.Trigger asChild>
+        <button className={styles.languageTrigger} aria-label="Language menu">
+          {currentLanguage?.name}
+          <IconArrow />
+        </button>
+      </DropdownMenu.Trigger>
+
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content className={styles.languageContent} sideOffset={16} align="end" alignOffset={-16}>
+          {languages.map(language => (
+            <Link key={language.name} href={{ pathname, query }} locale={language.localeName}>
+              <DropdownMenu.Item className={styles.languageItem}>{language.name}</DropdownMenu.Item>
+            </Link>
+          ))}
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   )
 }

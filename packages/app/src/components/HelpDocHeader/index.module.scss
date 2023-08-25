@@ -46,8 +46,35 @@
   cursor: pointer;
 }
 
-.languageMenu {
+.languageTrigger {
+  all: unset;
   display: flex;
   gap: 4px;
   align-items: center;
+  cursor: pointer;
+}
+
+.languageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+  padding: 8px 6px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px 0 #e5e5e5;
+}
+
+.languageItem {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  color: #333;
+  border-radius: 4px;
+  outline: none;
+
+  &:hover {
+    background: #eefbf1;
+  }
 }
