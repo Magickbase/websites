@@ -17,7 +17,8 @@ import {
   getPostTopMenu,
   isPostSource,
   TopLevelMenu,
-} from '../../utils/posts'
+  getPostURL,
+} from '../../utils'
 import { HelpDocHeader } from '../../components/HelpDocHeader'
 import styles from './index.module.scss'
 import { Sidebar } from './Sidebar'
@@ -25,10 +26,11 @@ import { TOC } from './TOC'
 
 interface PageProps {
   post: Post
+  menusWithPosts: TopLevelMenu[]
   menuWithPosts: TopLevelMenu
 }
 
-const PostPage: NextPage<PageProps> = ({ post, menuWithPosts }) => {
+const PostPage: NextPage<PageProps> = ({ post, menusWithPosts, menuWithPosts }) => {
   const components: ComponentProps<typeof ReactMarkdown>['components'] = useMemo(
     () => ({
       h1: wrapHeadingWithTOCItem('h1'),
@@ -44,6 +46,10 @@ const PostPage: NextPage<PageProps> = ({ post, menuWithPosts }) => {
     [],
   )
 
+  const submenuName = menuWithPosts.children?.find(menu =>
+    menu.posts?.find(_post => post.source === _post.source && post.number === _post.number),
+  )?.name
+
   return (
     <div className={styles.page}>
       <HelpDocHeader className={styles.header} />
@@ -54,9 +60,14 @@ const PostPage: NextPage<PageProps> = ({ post, menuWithPosts }) => {
         <div className={styles.navbar}>
           {/* TODO: feature needs to be implemented */}
           <Link href="/">Home</Link>
-          <Link href="/">{`Beginner's Guide`}</Link>
-          <Link href="/">FAQ</Link>
-          <Link href="/">Announcement</Link>
+          {menusWithPosts.map(
+            menu =>
+              menu.posts?.[0] && (
+                <Link key={menu.name} href={getPostURL(menu.posts[0])}>
+                  {menu.name}
+                </Link>
+              ),
+          )}
         </div>
 
         <TOCContextProvider>
@@ -65,13 +76,7 @@ const PostPage: NextPage<PageProps> = ({ post, menuWithPosts }) => {
               <div className={styles.breadcrumbs}>
                 {/* TODO: feature needs to be implemented */}
                 <div className={styles.item}>{menuWithPosts.name}</div>
-                <div className={styles.item}>
-                  {
-                    menuWithPosts.children?.find(menu =>
-                      menu.posts?.find(_post => post.source === _post.source && post.number === _post.number),
-                    )?.name
-                  }
-                </div>
+                {submenuName && <div className={styles.item}>{submenuName}</div>}
                 <div className={styles.item}>{post.title}</div>
               </div>
 
@@ -117,15 +122,17 @@ export const getStaticProps: GetStaticProps<PageProps, { slug?: string[] }> = as
   if (!post) return { notFound: true }
   const menu = getPostTopMenu(post)
   if (!menu) return { notFound: true }
-  const menusWithPosts = await getMenusWithPosts(menu)
-  if (!menusWithPosts[0]) return { notFound: true }
+  const menusWithPosts = await getMenusWithPosts()
+  const menuWithPosts = menusWithPosts.find(({ name }) => name === menu.name)
+  if (!menuWithPosts) return { notFound: true }
 
   const lng = await serverSideTranslations(locale ?? 'en', ['common', 'posts'])
 
   const props: PageProps = {
     ...lng,
     post,
-    menuWithPosts: menusWithPosts[0],
+    menusWithPosts,
+    menuWithPosts,
   }
 
   return { props }
