@@ -35,10 +35,33 @@
   padding: 0 24px;
   background: var(--colorPrimaryBg);
 
-  a {
+  > a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
     color: #666;
     font-weight: 600;
     font-size: 16px;
+
+    &:hover {
+      color: #00c891;
+    }
+
+    &.selected {
+      color: #00c891;
+
+      &::after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 40px;
+        height: 2px;
+        background: #00c891;
+        transform: translateX(-50%);
+        content: '';
+      }
+    }
   }
 }
 
@@ -86,6 +109,11 @@
     grid-area: postContent;
     padding: 0 24px;
     overflow: auto;
+
+    .title {
+      margin: 8px 0 24px;
+      font-size: 1.25em;
+    }
   }
 
   .toc {

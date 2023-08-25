@@ -66,12 +66,15 @@ const PostPage: NextPage<PageProps> = ({ post, menusWithPosts, menuWithPosts }) 
 
       <div className={styles.main}>
         <div className={styles.navbar}>
-          {/* TODO: feature needs to be implemented */}
           <Link href="/">Home</Link>
           {menusWithPosts.map(
             menu =>
               menu.posts?.[0] && (
-                <Link key={menu.name} href={getPostURL(menu.posts[0])}>
+                <Link
+                  key={menu.name}
+                  className={clsx({ [styles.selected ?? '']: menu.name === menuWithPosts.name })}
+                  href={getPostURL(menu.posts[0])}
+                >
                   {menu.name}
                 </Link>
               ),
@@ -89,8 +92,10 @@ const PostPage: NextPage<PageProps> = ({ post, menusWithPosts, menuWithPosts }) 
               </div>
 
               <div ref={scrollContainerRef} className={styles.postContent}>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.title}</ReactMarkdown>
-                <hr />
+                <TOCItem id={post.title} titleInTOC={post.title}>
+                  <h1 className={styles.title}>{post.title}</h1>
+                </TOCItem>
+
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw, rehypeSanitize]}
