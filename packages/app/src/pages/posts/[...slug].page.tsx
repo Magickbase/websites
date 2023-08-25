@@ -11,7 +11,7 @@ import { ComponentProps, useMemo } from 'react'
 import { TOCContextProvider, TOCItem } from '../../components/TableOfContents'
 import {
   Post,
-  getMenuWithPosts,
+  getMenusWithPosts,
   getPost,
   getPosts,
   getPostTopMenu,
@@ -117,15 +117,15 @@ export const getStaticProps: GetStaticProps<PageProps, { slug?: string[] }> = as
   if (!post) return { notFound: true }
   const menu = getPostTopMenu(post)
   if (!menu) return { notFound: true }
-  const menuWithPosts = await getMenuWithPosts(menu)
-  if (!menuWithPosts[0]) return { notFound: true }
+  const menusWithPosts = await getMenusWithPosts(menu)
+  if (!menusWithPosts[0]) return { notFound: true }
 
   const lng = await serverSideTranslations(locale ?? 'en', ['common', 'posts'])
 
   const props: PageProps = {
     ...lng,
     post,
-    menuWithPosts: menuWithPosts[0],
+    menuWithPosts: menusWithPosts[0],
   }
 
   return { props }

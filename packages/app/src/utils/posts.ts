@@ -146,9 +146,9 @@ export async function getPosts(topMenu?: TopLevelMenu): Promise<Post[]> {
   }
 }
 
-export async function getMenuWithPosts(topMenu?: TopLevelMenu): Promise<TopLevelMenu[]> {
+export async function getMenusWithPosts(topMenu?: TopLevelMenu): Promise<TopLevelMenu[]> {
   if (!topMenu) {
-    const menuWithPostsPromises = TopLevelMenus.map(getMenuWithPosts)
+    const menuWithPostsPromises = TopLevelMenus.map(getMenusWithPosts)
     const menus: TopLevelMenu[][] = await Promise.all(menuWithPostsPromises)
     return menus.flat()
   }

@@ -7,16 +7,16 @@ import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
-import { APPID, Menu, SEARCH_KEY, getMenuWithPosts, getPostURL } from '../../utils'
+import { APPID, Menu, SEARCH_KEY, getMenusWithPosts, getPostURL } from '../../utils'
 import ImgNeuronLogo from './neuron-logo.png'
 import ImgHelp from './help.png'
 import IconMore from './more.svg'
 
 interface PageProps {
-  menuWithPosts: Menu[]
+  menusWithPosts: Menu[]
 }
 
-const HelpCenter: NextPage<PageProps> = ({ menuWithPosts }) => {
+const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
   const { t } = useTranslation('help_center')
 
   return (
@@ -41,7 +41,7 @@ const HelpCenter: NextPage<PageProps> = ({ menuWithPosts }) => {
       </div>
 
       <div className={styles.postMenus}>
-        {menuWithPosts.map(menu => (
+        {menusWithPosts.map(menu => (
           <div key={menu.name} className={styles.postMenu}>
             <div className={styles.title}>
               <div className={styles.name}>{menu.name}</div>
@@ -69,11 +69,11 @@ const HelpCenter: NextPage<PageProps> = ({ menuWithPosts }) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
-  const menuWithPosts = await getMenuWithPosts()
+  const menuWithPosts = await getMenusWithPosts()
   const lng = await serverSideTranslations(locale, ['common', 'help_center'])
 
   const props: PageProps = {
-    menuWithPosts: menuWithPosts.map(menu => ({
+    menusWithPosts: menuWithPosts.map(menu => ({
       ...menu,
       posts: menu.posts?.slice(0, 4),
     })),
