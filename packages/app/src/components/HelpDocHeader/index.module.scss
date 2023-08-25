@@ -5,7 +5,7 @@
   height: 64px;
   padding: 0 24px 0 16px;
   background: var(--colorPrimaryBg);
-  box-shadow: 0 1px 1px 0 rgb(0 0 0 / 8%);
+  box-shadow: 0 1px 1px 0 var(--colorShadow1);
 
   .left {
     display: flex;
@@ -60,9 +60,10 @@
   gap: 8px;
   min-width: 120px;
   padding: 8px 6px;
-  background: #fff;
+  background: var(--colorBg1);
+  border: 1px solid var(--menuBorder1);
   border-radius: 8px;
-  box-shadow: 0 8px 40px 0 #e5e5e5;
+  box-shadow: var(--menuShadow1);
 }
 
 .languageItem {
@@ -70,11 +71,11 @@
   align-items: center;
   height: 40px;
   padding: 0 10px;
-  color: #333;
+  color: var(--colorPrimary);
   border-radius: 4px;
   outline: none;
 
   &:hover {
-    background: #eefbf1;
+    background: var(--colorItemBg);
   }
 }

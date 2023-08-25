@@ -10,12 +10,9 @@ body {
 }
 
 body {
-  @extend %themeDark;
-}
-
-:root {
   --contentAreaWidth: 1320px;
   --contentWrapperPadding: 32px;
+  @include themeDark;
 }
 
 main {

@@ -8,6 +8,7 @@ import { HeadingProps } from 'react-markdown/lib/ast-to-react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { ComponentProps, useMemo } from 'react'
+import { useObservableState } from 'observable-hooks'
 import { TOCContextProvider, TOCItem } from '../../components/TableOfContents'
 import {
   Post,
@@ -21,8 +22,11 @@ import {
 } from '../../utils'
 import { HelpDocHeader } from '../../components/HelpDocHeader'
 import styles from './index.module.scss'
+import presets from '../../styles/presets.module.scss'
 import { Sidebar } from './Sidebar'
 import { TOC } from './TOC'
+import { appSettings } from '../../services/AppSettings'
+import { useBodyClass } from '../../hooks'
 
 interface PageProps {
   post: Post
@@ -31,6 +35,10 @@ interface PageProps {
 }
 
 const PostPage: NextPage<PageProps> = ({ post, menusWithPosts, menuWithPosts }) => {
+  const darkMode = useObservableState(appSettings.darkMode$)
+  const bodyClass = useMemo(() => (darkMode ? [presets.themeDark ?? ''] : [presets.themeLight ?? '']), [darkMode])
+  useBodyClass(bodyClass)
+
   const components: ComponentProps<typeof ReactMarkdown>['components'] = useMemo(
     () => ({
       h1: wrapHeadingWithTOCItem('h1'),

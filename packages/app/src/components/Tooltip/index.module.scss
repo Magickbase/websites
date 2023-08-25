@@ -8,17 +8,17 @@
   max-width: 596px;
   margin-bottom: 7px;
   padding: 12px 16px;
-  color: #f5f5f5;
+  color: var(--colorPrimary);
   font-size: 16px;
   line-height: 200%;
-  background: #111;
+  background: var(--colorBg1);
   border: 1px solid #414141;
   border-radius: 8px;
   backdrop-filter: blur(38px);
 }
 
 .arrow {
-  fill: #111;
+  fill: var(--colorBg1);
   stroke: #414141;
   stroke-width: 0.4px;
 }

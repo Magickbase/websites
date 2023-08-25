@@ -41,6 +41,12 @@
       {
         "message": "Expected placeholder to be lowerCamelCase"
       }
+    ],
+    "scss/at-mixin-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Expected mixin name to be lowerCamelCase"
+      }
     ]
   }
 }

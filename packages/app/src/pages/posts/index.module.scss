@@ -1,7 +1,4 @@
 .page {
-  --colorPrimary: #333;
-  --colorPrimaryBg: #fff;
-
   display: grid;
   grid-template: auto / 208px 1fr;
   grid-template-areas:
@@ -10,7 +7,7 @@
   width: 100%;
   height: 100vh;
   color: var(--colorPrimary);
-  background-color: #eaf5f0;
+  background-color: var(--colorSecondBg);
 
   .header {
     grid-area: header;
@@ -66,7 +63,7 @@
     align-items: center;
     height: 64px;
     padding: 0 24px;
-    color: #999;
+    color: var(--color1);
     font-size: 16px;
 
     .item {
@@ -76,7 +73,7 @@
       }
 
       &:last-child {
-        color: #333;
+        color: var(--colorPrimary);
 
         &::after {
           display: none;

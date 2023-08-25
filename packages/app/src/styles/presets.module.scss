@@ -1,11 +1,33 @@
-.themeDark,
-%themeDark {
-  --colorPrimary: #f5f5f5;
-  --colorPrimaryBg: #000;
+@mixin themeLight {
+  --colorPrimary: #333;
+  --colorPrimaryBg: #fff;
+  --colorSecondBg: #eaf5f0;
+  --colorItemBg: #eefbf1;
+  --color1: #999;
+  --colorBg1: #fff;
+  --colorShadow1: rgb(0 0 0 / 8%);
+  --menuShadow1: 0 8px 40px 0 #e5e5e5;
+  --menuBorder1: #e5e5e5;
+  --tocBorder: #e5e5e5;
 }
 
-.themeLight,
-%themeLight {
-  --colorPrimary: #000;
-  --colorPrimaryBg: #fff;
+.themeLight {
+  @include themeLight;
+}
+
+@mixin themeDark {
+  --colorPrimary: #f5f5f5;
+  --colorPrimaryBg: #000;
+  --colorSecondBg: #111;
+  --colorItemBg: #222;
+  --color1: #777;
+  --colorBg1: #111;
+  --colorShadow1: rgb(255 255 255 / 8%);
+  --menuShadow1: unset;
+  --menuBorder1: rgb(255 255 255 / 20%);
+  --tocBorder: #343e3c;
+}
+
+.themeDark {
+  @include themeDark;
 }
