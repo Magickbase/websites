@@ -31,7 +31,7 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
           <div className={styles.text1}>{t('help_center')}</div>
 
           <div className={styles.search}>
-            <DocSearch appId={APPID ?? ''} indexName="posts" apiKey={SEARCH_KEY ?? ''} />
+            <DocSearch appId={APPID ?? ''} indexName="neuron-magickbase" apiKey={SEARCH_KEY ?? ''} />
           </div>
         </div>
 

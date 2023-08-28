@@ -29,7 +29,7 @@ export const HelpDocHeader: FC<HelpDocHeaderProps> = props => {
 
       <div className={styles.right}>
         <div className={styles.search}>
-          <DocSearch appId={APPID ?? ''} indexName="posts" apiKey={SEARCH_KEY ?? ''} />
+          <DocSearch appId={APPID ?? ''} indexName="neuron-magickbase" apiKey={SEARCH_KEY ?? ''} />
         </div>
 
         {darkMode ? (
