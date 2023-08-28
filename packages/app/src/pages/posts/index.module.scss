@@ -1,6 +1,6 @@
 .page {
   display: grid;
-  grid-template: auto / 208px 1fr;
+  grid-template: max-content / 208px 1fr;
   grid-template-areas:
     'header header'
     'sidebar main';

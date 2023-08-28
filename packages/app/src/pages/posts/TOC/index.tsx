@@ -10,7 +10,9 @@ export const TOC: FC<ComponentProps<'nav'>> = props => {
     <nav aria-label="Table of contents" {...props} className={clsx(styles.toc, props.className)}>
       {tocItems.map(tocItem => (
         <div key={tocItem.id} className={clsx(styles.tocItem, { [styles.active ?? '']: tocItem.isActive })}>
-          <a href={`#${tocItem.id}`}>{tocItem.title}</a>
+          <a className={styles.tocAnchor} href={`#${tocItem.id}`}>
+            {tocItem.title}
+          </a>
         </div>
       ))}
     </nav>
