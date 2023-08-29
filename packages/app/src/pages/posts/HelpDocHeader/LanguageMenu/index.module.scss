@@ -1,0 +1,34 @@
+.languageTrigger {
+  all: unset;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.languageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+  padding: 8px 6px;
+  background: var(--colorBg1);
+  border: 1px solid var(--menuBorder1);
+  border-radius: 8px;
+  box-shadow: var(--menuShadow1);
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .languageItem {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+    color: var(--colorPrimary);
+    border-radius: 4px;
+    outline: none;
+
+    &:hover {
+      background: var(--colorItemBg);
+    }
+  }
+}

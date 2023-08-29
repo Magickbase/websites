@@ -1,27 +1,40 @@
 import clsx from 'clsx'
-import { ComponentProps, FC } from 'react'
+import { ComponentProps, FC, useState } from 'react'
 import Image from 'next/image'
 import { useObservableState } from 'observable-hooks'
 import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { appSettings } from '../../../services/AppSettings'
 import ImgNeuronLogo from './neuron-logo.png'
 import IconDaylight from './daylight.svg'
 import IconNight from './night.svg'
-import IconArrow from './arrow.svg'
+import IconMenu from './menu.svg'
+import IconClose from './close.svg'
 import styles from './index.module.scss'
-import { APPID, SEARCH_KEY, removeURLOrigin } from '../../../utils'
+import { APPID, Post, SEARCH_KEY, TopLevelMenu, removeURLOrigin } from '../../../utils'
+import { useIsMobile } from '../../../hooks'
+import { ClassifiedPosts } from '../ClassifiedPosts'
+import { LanguageMenu } from './LanguageMenu'
+import { LanguageList } from './LanguageList'
 
-export type HelpDocHeaderProps = ComponentProps<'div'>
+const languages = [
+  { name: 'English', localeName: 'en' },
+  { name: '简体中文', localeName: 'zh' },
+]
+
+export type HelpDocHeaderProps = ComponentProps<'div'> & { menuWithPosts: TopLevelMenu; viewingPost: Post }
 
 export const HelpDocHeader: FC<HelpDocHeaderProps> = props => {
+  const isMobile = useIsMobile()
+  return isMobile ? <HelpDocHeader$Mobile {...props} /> : <HelpDocHeader$Desktop {...props} />
+}
+
+export const HelpDocHeader$Desktop: FC<HelpDocHeaderProps> = props => {
+  const { menuWithPosts, viewingPost, ...divProps } = props
   const darkMode = useObservableState(appSettings.darkMode$)
 
   return (
-    <div {...props} className={clsx(styles.header, props.className)}>
+    <div {...divProps} className={clsx(styles.header, divProps.className)}>
       <div className={styles.left}>
         <Image src={ImgNeuronLogo} alt="Neuron Logo" width={24} height={24} />
         Neuron Help Documents
@@ -45,41 +58,72 @@ export const HelpDocHeader: FC<HelpDocHeaderProps> = props => {
           <IconDaylight className={styles.colorSchema} onClick={() => appSettings.setDarkMode(true)} />
         )}
 
-        <LanguageMenu />
+        <LanguageMenu languages={languages} />
       </div>
     </div>
   )
 }
 
-const languages = [
-  { name: 'English', localeName: 'en' },
-  { name: '简体中文', localeName: 'zh' },
-]
-
-const LanguageMenu: FC = () => {
-  const router = useRouter()
-  const { pathname, query } = router
-
-  const currentLanguage = languages.find(language => language.localeName === router.locale)
+export const HelpDocHeader$Mobile: FC<HelpDocHeaderProps> = props => {
+  const { menuWithPosts, viewingPost, ...divProps } = props
+  const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <DropdownMenu.Root modal={false}>
-      <DropdownMenu.Trigger asChild>
-        <button className={styles.languageTrigger} aria-label="Language menu">
-          {currentLanguage?.name}
-          <IconArrow />
-        </button>
-      </DropdownMenu.Trigger>
+    <div
+      {...divProps}
+      className={clsx(styles.headerMobile, divProps.className, {
+        [styles.isExpanded ?? '']: isExpanded,
+      })}
+    >
+      <div className={styles.top}>
+        <div className={styles.left}>
+          <Image src={ImgNeuronLogo} alt="Neuron Logo" width={32} height={32} />
+          Neuron Help Documents
+        </div>
 
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content className={styles.languageContent} sideOffset={16} align="end" alignOffset={-16}>
-          {languages.map(language => (
-            <Link key={language.name} href={{ pathname, query }} locale={language.localeName}>
-              <DropdownMenu.Item className={styles.languageItem}>{language.name}</DropdownMenu.Item>
-            </Link>
-          ))}
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
+        <div className={styles.right}>
+          {isExpanded ? (
+            <IconClose onClick={() => setIsExpanded(false)} />
+          ) : (
+            <IconMenu onClick={() => setIsExpanded(true)} />
+          )}
+        </div>
+      </div>
+
+      <div className={styles.search}>
+        <DocSearch
+          appId={APPID ?? ''}
+          indexName="neuron-magickbase"
+          apiKey={SEARCH_KEY ?? ''}
+          translations={{ button: { buttonText: 'Please enter keywords' } }}
+          // This is experience optimization in a development environment
+          hitComponent={({ hit, children }) => <a href={removeURLOrigin(hit.url)}>{children}</a>}
+        />
+      </div>
+
+      {isExpanded && (
+        <div className={styles.otherThenTop}>
+          <ClassifiedPostsInHeader menuWithPosts={menuWithPosts} viewingPost={viewingPost} />
+
+          <LanguageList languages={languages} />
+
+          <div className={styles.colorSchema}>
+            <IconDaylight onClick={() => appSettings.setDarkMode(false)} />
+            <IconNight onClick={() => appSettings.setDarkMode(true)} />
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+const ClassifiedPostsInHeader: FC<ComponentProps<typeof ClassifiedPosts>> = props => {
+  return (
+    <ClassifiedPosts
+      className={styles.classifiedPostsInHeader}
+      categoryClass={styles.category}
+      postClass={styles.post}
+      {...props}
+    />
   )
 }

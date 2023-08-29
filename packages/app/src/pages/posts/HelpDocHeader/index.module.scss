@@ -20,62 +20,125 @@
     display: flex;
     align-items: center;
   }
+
+  .search {
+    margin-right: 52px;
+
+    /* stylelint-disable selector-class-pattern */
+    :global {
+      .DocSearch-Button {
+        width: 328px;
+        height: 44px;
+        margin: 0;
+        padding: 0 12px;
+      }
+
+      .DocSearch-Button-Placeholder {
+        padding: 0 8px;
+      }
+    }
+    /* stylelint-enable selector-class-pattern */
+  }
+
+  .colorSchema {
+    margin-right: 24px;
+    cursor: pointer;
+  }
 }
 
-.search {
-  margin-right: 52px;
+.classifiedPostsInHeader {
+  color: var(--colorPrimary);
 
-  /* stylelint-disable selector-class-pattern */
-  :global {
-    .DocSearch-Button {
-      width: 328px;
-      height: 44px;
-      margin: 0;
-      padding: 0 12px;
-    }
+  .category {
+    margin-top: 40px;
 
-    .DocSearch-Button-Placeholder {
-      padding: 0 8px;
+    &:first-child {
+      margin-top: 0;
     }
   }
-  /* stylelint-enable selector-class-pattern */
+
+  .post {
+    margin-top: 32px;
+    color: var(--color2);
+  }
 }
 
-.colorSchema {
-  margin-right: 24px;
-  cursor: pointer;
-}
-
-.languageTrigger {
-  all: unset;
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  cursor: pointer;
-}
-
-.languageContent {
+.headerMobile {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  min-width: 120px;
-  padding: 8px 6px;
-  background: var(--colorBg1);
-  border: 1px solid var(--menuBorder1);
-  border-radius: 8px;
-  box-shadow: var(--menuShadow1);
-}
+  padding: 24px;
+  background: var(--colorPrimaryBg);
+  box-shadow: var(--headerShadow1);
 
-.languageItem {
-  display: flex;
-  align-items: center;
-  height: 40px;
-  padding: 0 10px;
-  color: var(--colorPrimary);
-  border-radius: 4px;
-  outline: none;
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  &:hover {
-    background: var(--colorItemBg);
+    .left {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      height: 24px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .right {
+      display: flex;
+    }
+  }
+
+  .search {
+    margin-top: 20px;
+
+    /* stylelint-disable selector-class-pattern */
+    :global {
+      .DocSearch-Button {
+        width: 100%;
+        height: 40px;
+        margin: 0;
+        padding: 0 12px;
+      }
+
+      .DocSearch-Button-Placeholder {
+        display: flex;
+        padding: 0 8px;
+
+        @media (width <= 324px) {
+          display: none;
+        }
+      }
+    }
+    /* stylelint-enable selector-class-pattern */
+  }
+
+  .otherThenTop {
+    margin-top: 24px;
+    padding-bottom: 24px;
+    overflow: auto;
+
+    .colorSchema {
+      display: flex;
+      gap: 32px;
+      margin-top: 64px;
+
+      > svg {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .classifiedPostsInHeader {
+    margin-top: 28px;
+  }
+
+  &.isExpanded {
+    height: 100%;
+    background: var(--colorBg1);
+
+    .search {
+      display: none;
+    }
   }
 }

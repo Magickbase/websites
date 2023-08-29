@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, DependencyList, RefObject } from 'react'
+import { useState, useEffect, useCallback, DependencyList, RefObject, CSSProperties } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 import cssVars from '../styles/variables.module.scss'
 import { useMemoizedFn } from './useMemoizedFn'
@@ -163,4 +163,23 @@ export function useBodyClass(tokens: string[]) {
     document.body.classList.add(...tokens)
     return () => document.body.classList.remove(...tokens)
   }, [tokens])
+}
+
+export function useInnerHeight(): number {
+  const [height, setHeight] = useState(typeof window !== 'undefined' ? window.innerHeight : 0)
+
+  useEffect(() => {
+    const onResize = () => setHeight(window.innerHeight)
+
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  return height
+}
+
+export function useFullHeightCSSValue(): CSSProperties['height'] {
+  // Using `100vh` will cause a scrollbar to appear on mobile Safari / Chrome, so we need to use `innerHeight` instead.
+  const innerHeight = useInnerHeight()
+  return innerHeight > 0 ? innerHeight : '100vh'
 }

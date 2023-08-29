@@ -3,7 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import ReactMarkdown from 'react-markdown'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useMemo } from 'react'
+import { FC, useMemo } from 'react'
 import { useObservableState } from 'observable-hooks'
 import { TOCContextProvider, TOCItem } from '../../components/TableOfContents'
 import {
@@ -22,7 +22,8 @@ import presets from '../../styles/presets.module.scss'
 import { Sidebar } from './Sidebar'
 import { TOC } from './TOC'
 import { appSettings } from '../../services/AppSettings'
-import { useBodyClass, useMarkdownProps } from '../../hooks'
+import { useBodyClass, useFullHeightCSSValue, useIsMobile, useMarkdownProps } from '../../hooks'
+import { Contacts } from '../../components/Contacts'
 
 interface PageProps {
   post: Post
@@ -30,20 +31,25 @@ interface PageProps {
   menuWithPosts: TopLevelMenu
 }
 
-const PostPage: NextPage<PageProps> = ({ post, menusWithPosts, menuWithPosts }) => {
+const PostPage: NextPage<PageProps> = props => {
+  const isMobile = useIsMobile()
   const darkMode = useObservableState(appSettings.darkMode$)
   const bodyClass = useMemo(() => (darkMode ? [presets.themeDark ?? ''] : [presets.themeLight ?? '']), [darkMode])
   useBodyClass(bodyClass)
 
-  const mdProps = useMarkdownProps({ imgClass: styles.img })
+  return isMobile ? <PostPage$Mobile {...props} /> : <PostPage$Desktop {...props} />
+}
 
+export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWithPosts }) => {
+  const height = useFullHeightCSSValue()
+  const mdProps = useMarkdownProps({ imgClass: styles.img })
   const submenuName = menuWithPosts.children?.find(menu =>
     menu.posts?.find(_post => post.source === _post.source && post.number === _post.number),
   )?.name
 
   return (
-    <div className={styles.page}>
-      <HelpDocHeader className={styles.header} />
+    <div className={styles.page} style={{ height }}>
+      <HelpDocHeader className={styles.header} menuWithPosts={menuWithPosts} viewingPost={post} />
 
       <Sidebar className={styles.sidebar} menuWithPosts={menuWithPosts} viewingPost={post} />
 
@@ -86,6 +92,44 @@ const PostPage: NextPage<PageProps> = ({ post, menusWithPosts, menuWithPosts }) 
             </div>
           )}
         </TOCContextProvider>
+      </div>
+    </div>
+  )
+}
+
+export const PostPage$Mobile: FC<PageProps> = ({ post, menuWithPosts }) => {
+  const height = useFullHeightCSSValue()
+  const mdProps = useMarkdownProps({ imgClass: styles.img })
+  const submenuName = menuWithPosts.children?.find(menu =>
+    menu.posts?.find(_post => post.source === _post.source && post.number === _post.number),
+  )?.name
+
+  return (
+    <div className={styles.pageMobile} style={{ height }}>
+      <HelpDocHeader className={styles.header} menuWithPosts={menuWithPosts} viewingPost={post} />
+
+      <div className={styles.otherThenHeader}>
+        <div className={styles.breadcrumbs}>
+          {/* TODO: feature needs to be implemented */}
+          <div className={styles.item}>{menuWithPosts.name}</div>
+          {submenuName && <div className={styles.item}>{submenuName}</div>}
+          <div className={styles.item}>{post.title}</div>
+        </div>
+
+        <TOCContextProvider>
+          <div className={styles.postContent}>
+            <TOCItem id={post.title} titleInTOC={post.title}>
+              <h1 className={styles.title}>{post.title}</h1>
+            </TOCItem>
+
+            <ReactMarkdown {...mdProps}>{post.body ?? ''}</ReactMarkdown>
+          </div>
+        </TOCContextProvider>
+
+        <div className={styles.footer}>
+          <Contacts className={styles.contacts} />
+          <div className={styles.copyright}>© 2023 by Magickbase.</div>
+        </div>
       </div>
     </div>
   )
