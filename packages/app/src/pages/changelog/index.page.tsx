@@ -1,18 +1,14 @@
 import { GetStaticProps, type NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
-import rehypeSanitize from 'rehype-sanitize'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ComponentProps, useMemo } from 'react'
-import clsx from 'clsx'
 import { Release, getReleases } from '../../utils'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import ImgNeuronLogo from './neuron-logo.png'
+import { useMarkdownProps } from '../../hooks'
 
 interface PageProps {
   releases: Release[]
@@ -21,17 +17,7 @@ interface PageProps {
 const Changelog: NextPage<PageProps> = ({ releases }) => {
   const { t } = useTranslation('changelog')
 
-  const components: ComponentProps<typeof ReactMarkdown>['components'] = useMemo(
-    () => ({
-      a: ({ node, ...tagProps }) => <a {...tagProps} target="_blank" rel="noopener noreferrer" />,
-      // Expectedly, all the links are external (content from GitHub), so there is no need to use next/image.
-      // eslint-disable-next-line @next/next/no-img-element
-      img: ({ node, ...tagProps }) => (
-        <img {...tagProps} alt={tagProps.alt ?? 'image'} className={clsx(tagProps.className, styles.img)} />
-      ),
-    }),
-    [],
-  )
+  const mdProps = useMarkdownProps({ supportToc: false, imgClass: styles.img })
 
   return (
     <Page className={styles.page}>
@@ -61,13 +47,7 @@ const Changelog: NextPage<PageProps> = ({ releases }) => {
               {`${release.tag_name.replace('v', '')} (${release.published_at?.split('T')[0] ?? ''})`}
             </div>
             <div className={styles.right}>
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeRaw, rehypeSanitize]}
-                components={components}
-              >
-                {release.body?.replace(/^#[^#]*?\(.*?\)\s+/, '') ?? ''}
-              </ReactMarkdown>
+              <ReactMarkdown {...mdProps}>{release.body?.replace(/^#[^#]*?\(.*?\)\s+/, '') ?? ''}</ReactMarkdown>
             </div>
           </div>
         ))}
