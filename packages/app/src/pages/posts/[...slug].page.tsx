@@ -20,7 +20,7 @@ import {
   TopLevelMenu,
   getPostURL,
 } from '../../utils'
-import { HelpDocHeader } from '../../components/HelpDocHeader'
+import { HelpDocHeader } from './HelpDocHeader'
 import styles from './index.module.scss'
 import presets from '../../styles/presets.module.scss'
 import { Sidebar } from './Sidebar'

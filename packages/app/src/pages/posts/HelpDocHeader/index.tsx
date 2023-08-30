@@ -7,13 +7,13 @@ import '@docsearch/css'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { appSettings } from '../../services/AppSettings'
+import { appSettings } from '../../../services/AppSettings'
 import ImgNeuronLogo from './neuron-logo.png'
 import IconDaylight from './daylight.svg'
 import IconNight from './night.svg'
 import IconArrow from './arrow.svg'
 import styles from './index.module.scss'
-import { APPID, SEARCH_KEY } from '../../utils'
+import { APPID, SEARCH_KEY } from '../../../utils'
 
 export type HelpDocHeaderProps = ComponentProps<'div'>
 
