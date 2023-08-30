@@ -13,7 +13,7 @@ import IconDaylight from './daylight.svg'
 import IconNight from './night.svg'
 import IconArrow from './arrow.svg'
 import styles from './index.module.scss'
-import { APPID, SEARCH_KEY } from '../../../utils'
+import { APPID, SEARCH_KEY, removeURLOrigin } from '../../../utils'
 
 export type HelpDocHeaderProps = ComponentProps<'div'>
 
@@ -29,7 +29,14 @@ export const HelpDocHeader: FC<HelpDocHeaderProps> = props => {
 
       <div className={styles.right}>
         <div className={styles.search}>
-          <DocSearch appId={APPID ?? ''} indexName="neuron-magickbase" apiKey={SEARCH_KEY ?? ''} />
+          <DocSearch
+            appId={APPID ?? ''}
+            indexName="neuron-magickbase"
+            apiKey={SEARCH_KEY ?? ''}
+            translations={{ button: { buttonText: 'Please enter keywords' } }}
+            // This is experience optimization in a development environment
+            hitComponent={({ hit, children }) => <a href={removeURLOrigin(hit.url)}>{children}</a>}
+          />
         </div>
 
         {darkMode ? (

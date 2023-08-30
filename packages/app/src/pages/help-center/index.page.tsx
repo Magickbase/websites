@@ -7,7 +7,7 @@ import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
-import { APPID, Menu, SEARCH_KEY, getMenusWithPosts, getPostURL } from '../../utils'
+import { APPID, Menu, SEARCH_KEY, getMenusWithPosts, getPostURL, removeURLOrigin } from '../../utils'
 import ImgNeuronLogo from './neuron-logo.png'
 import ImgHelp from './help.png'
 import IconMore from './more.svg'
@@ -31,7 +31,14 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
           <div className={styles.text1}>{t('help_center')}</div>
 
           <div className={styles.search}>
-            <DocSearch appId={APPID ?? ''} indexName="neuron-magickbase" apiKey={SEARCH_KEY ?? ''} />
+            <DocSearch
+              appId={APPID ?? ''}
+              indexName="neuron-magickbase"
+              apiKey={SEARCH_KEY ?? ''}
+              translations={{ button: { buttonText: 'Please enter keywords' } }}
+              // This is experience optimization in a development environment
+              hitComponent={({ hit, children }) => <a href={removeURLOrigin(hit.url)}>{children}</a>}
+            />
           </div>
         </div>
 
