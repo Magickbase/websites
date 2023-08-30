@@ -3,9 +3,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import styles from './index.module.scss'
 import IconFullLogo from './full-logo.svg'
-import IconTwitter from './twitter.svg'
-import IconDiscord from './discord.svg'
-import IconGithub from './github.svg'
+import { Contacts } from '../Contacts'
 
 export type FooterProps = ComponentProps<'div'>
 
@@ -22,17 +20,7 @@ export const Footer: FC<FooterProps> = props => {
             All services are online
           </div>
 
-          <div className={styles.contacts}>
-            <Link href="https://twitter.com/magickbase">
-              <IconTwitter />
-            </Link>
-            <Link href="https://discord.gg/GBYYgBA9s7">
-              <IconDiscord />
-            </Link>
-            <Link href="https://github.com/Magickbase">
-              <IconGithub />
-            </Link>
-          </div>
+          <Contacts className={styles.contacts} />
 
           <div className={styles.copyright}>Copyright © 2023 Magickbase All Rights Reserved.</div>
         </div>
