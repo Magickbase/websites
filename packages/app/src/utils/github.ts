@@ -25,6 +25,13 @@ export type Discussion = Pick<GQLDiscussion, 'id' | 'number' | 'title' | 'body' 
   labels: Pick<GQLLabel, 'id' | 'name' | 'description'>[]
 }
 export type Release = components['schemas']['release']
+export interface ParsedAsset {
+  os: string
+  arch: string
+  packageType: string
+  checksum: string
+  packageLink: string
+}
 
 const GQL_CATEGORY_FIELDS = () => `
   createdAt
@@ -219,7 +226,7 @@ export async function getLatestRelease(): Promise<Release> {
   return res.data
 }
 
-export function getAssetsFromNeuronRelease(neuronRelease: Release) {
+export function getAssetsFromNeuronRelease(neuronRelease: Release): ParsedAsset[] {
   const tableLines = neuronRelease.body?.match(/^(.*?\|)+.*?$/gm)
   if (!tableLines) return []
 

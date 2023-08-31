@@ -1,3 +1,5 @@
+@import '../../styles/variables.module';
+
 .contentWrapper {
   position: relative;
 }
@@ -15,7 +17,6 @@
   margin-top: 146px;
   font-weight: 700;
   font-size: 40px;
-  font-style: normal;
   line-height: 72px;
   text-align: center;
 
@@ -32,6 +33,17 @@
       pointer-events: none;
     }
   }
+
+  @media (max-width: $mobileBreakPoint) {
+    margin: 48px auto 0;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  // This particular breakpoint value is set manually. This is to allow the `emphasis` to have a good presentation effect.
+  @media (width <= 548px) {
+    max-width: 320px;
+  }
 }
 
 .text2 {
@@ -40,6 +52,12 @@
   font-size: 20px;
   line-height: 40px;
   text-align: center;
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 32px;
+  }
 }
 
 .neuronOverview {
@@ -56,13 +74,10 @@
     border-radius: 32px;
     backdrop-filter: blur(39.5px);
   }
-}
 
-.actions {
-  display: flex;
-  gap: 48px;
-  justify-content: center;
-  margin-top: 56px;
+  @media (max-width: $mobileBreakPoint) {
+    padding: 6px;
+  }
 }
 
 .btn {
@@ -77,6 +92,11 @@
   background: #000;
   border-radius: 12px;
   cursor: pointer;
+
+  @media (max-width: $mobileBreakPoint) {
+    min-width: 224px;
+    min-height: 56px;
+  }
 }
 
 .btnDownload {
@@ -97,11 +117,31 @@
   border: 1px solid #f5f5f5;
 }
 
+.actions {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  margin-top: 56px;
+
+  @media (max-width: $mobileBreakPoint) {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-self: end;
+    margin-top: 42px;
+  }
+}
+
 .features {
   display: flex;
   flex-direction: column;
   gap: 308px;
   margin-top: 384px;
+
+  @media (max-width: $mobileBreakPoint) {
+    gap: 120px;
+    margin-top: 120px;
+  }
 
   .feature {
     display: flex;
@@ -109,7 +149,7 @@
     justify-content: space-between;
 
     &:nth-child(even) {
-      img {
+      > img {
         order: 2;
       }
     }
@@ -129,6 +169,26 @@
         color: #999;
         font-size: 16px;
         line-height: 32px;
+      }
+    }
+
+    @media (max-width: $mobileBreakPoint) {
+      flex-direction: column;
+      gap: 24px;
+
+      > img {
+        order: 2;
+        max-width: 300px;
+        height: auto;
+      }
+
+      .textWrapper {
+        gap: 16px;
+        text-align: center;
+
+        .title {
+          font-size: 22px;
+        }
       }
     }
   }
@@ -164,5 +224,22 @@
 
   .download {
     margin-top: 60px;
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 152px;
+    margin-bottom: 192px;
+
+    .text3 {
+      font-size: 22px;
+    }
+
+    .text4 {
+      margin-top: 8px;
+    }
+
+    .download {
+      margin-top: 24px;
+    }
   }
 }

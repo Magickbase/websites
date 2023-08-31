@@ -18,7 +18,7 @@ import ImgEasy from './easy.png'
 import ImgPrivate from './private.png'
 import ImgReliable from './reliable.png'
 import ImgNeuronLogo from './neuron-logo.png'
-import { Release, getAssetsFromNeuronRelease, getLatestRelease } from '../../utils'
+import { ParsedAsset, Release, getAssetsFromNeuronRelease, getLatestRelease } from '../../utils'
 
 interface PageProps {
   locale: string
@@ -111,14 +111,7 @@ const Home: NextPage<PageProps> = ({ locale, release }) => {
 
 const DownloadButton: FC<Partial<ComponentProps<typeof Link>> & { release: Release }> = ({ release, ...linkProps }) => {
   const assets = useMemo(() => getAssetsFromNeuronRelease(release), [release])
-  const [asset, setAsset] = useState(
-    assets.find(
-      asset =>
-        asset.os.toLowerCase() === 'windows' &&
-        asset.arch.toLowerCase() === 'x64' &&
-        asset.packageType.toLowerCase() === 'exe',
-    ) ?? assets[0],
-  )
+  const [asset, setAsset] = useState<ParsedAsset>()
 
   useEffect(() => {
     const ua = UAParser(navigator.userAgent)
@@ -138,16 +131,16 @@ const DownloadButton: FC<Partial<ComponentProps<typeof Link>> & { release: Relea
   }, [assets])
 
   return (
-    asset && (
-      <Link href={asset.packageLink} {...linkProps}>
-        <button className={clsx(styles.btn, styles.btnDownload)}>
-          <span>Download Neuron</span>
+    <Link href={asset?.packageLink ?? '/download'} {...linkProps}>
+      <button className={clsx(styles.btn, styles.btnDownload)}>
+        <span>Download Neuron</span>
+        {asset && (
           <span className={styles.secondary}>
             ({asset.os} {asset.arch}-{asset.packageType})
           </span>
-        </button>
-      </Link>
-    )
+        )}
+      </button>
+    </Link>
   )
 }
 

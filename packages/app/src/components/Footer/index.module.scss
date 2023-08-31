@@ -1,6 +1,12 @@
+@import '../../styles/variables.module';
+
 .footer {
   padding: 120px var(--contentWrapperPadding);
   border-top: 1px solid #2e2e2e;
+
+  @media (max-width: $mobileBreakPoint) {
+    padding: 50px var(--contentWrapperPadding) 70px var(--contentWrapperPadding);
+  }
 
   .content {
     display: flex;
@@ -16,6 +22,16 @@
     .right {
       display: flex;
       gap: 104px;
+    }
+
+    @media (max-width: $mobileBreakPoint) {
+      flex-direction: column;
+      gap: 40px;
+
+      .right {
+        flex-direction: column;
+        gap: 40px;
+      }
     }
   }
 }
@@ -40,6 +56,10 @@
 .contacts {
   gap: 40px;
   margin-top: auto;
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 40px;
+  }
 }
 
 .copyright {
@@ -47,6 +67,10 @@
   color: #666;
   font-size: 12px;
   line-height: 16px;
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 0;
+  }
 }
 
 .linkList {
@@ -58,17 +82,30 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 16px;
+
+    @media (max-width: $mobileBreakPoint) {
+      font-size: 16px;
+    }
   }
 
   .linksContainer {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 24px 0;
 
     a {
       color: #999;
       font-size: 14px;
       line-height: 16px;
+    }
+
+    @media (max-width: $mobileBreakPoint) {
+      flex-flow: row wrap;
+      column-gap: 20%;
+
+      a {
+        flex: 1 1 40%;
+      }
     }
   }
 }

@@ -1,4 +1,7 @@
-.header {
+/* stylelint-disable no-descending-specificity */
+
+.header,
+.headerMobile {
   position: sticky;
   top: 0;
   z-index: 1;
@@ -7,7 +10,9 @@
   // TODO: The design has not been fully implemented here, and there are some bugs in Chrome/Firefox.
   background: rgb(255 255 255 / 1%) linear-gradient(180deg, rgb(0 0 0 / 40%) 0%, rgb(0 0 0 / 20%) 100%);
   backdrop-filter: blur(30px);
+}
 
+.header {
   .content {
     display: flex;
     justify-content: space-between;
@@ -25,6 +30,35 @@
 
       > a:hover {
         color: #00cc9b;
+      }
+    }
+
+    .right {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+  }
+}
+
+.headerMobile {
+  .top {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+
+    .left {
+      display: flex;
+      gap: 64px;
+      align-items: center;
+      height: 100%;
+
+      > a {
+        display: flex;
+
+        &:hover {
+          color: #00cc9b;
+        }
       }
     }
 

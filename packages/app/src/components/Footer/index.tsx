@@ -4,10 +4,13 @@ import Link from 'next/link'
 import styles from './index.module.scss'
 import IconFullLogo from './full-logo.svg'
 import { Contacts } from '../Contacts'
+import { useIsMobile } from '../../hooks'
 
 export type FooterProps = ComponentProps<'div'>
 
 export const Footer: FC<FooterProps> = props => {
+  const isMobile = useIsMobile()
+
   return (
     <div {...props} className={clsx(styles.footer, props.className)}>
       <div className={styles.content}>
@@ -22,7 +25,7 @@ export const Footer: FC<FooterProps> = props => {
 
           <Contacts className={styles.contacts} />
 
-          <div className={styles.copyright}>Copyright © 2023 Magickbase All Rights Reserved.</div>
+          {!isMobile && <div className={styles.copyright}>Copyright © 2023 Magickbase All Rights Reserved.</div>}
         </div>
 
         <div className={styles.right}>
@@ -44,6 +47,8 @@ export const Footer: FC<FooterProps> = props => {
               <Link href="https://www.nervos.org/">Nervos</Link>
             </div>
           </div>
+
+          {isMobile && <div className={styles.copyright}>Copyright © 2023 Magickbase All Rights Reserved.</div>}
         </div>
       </div>
     </div>

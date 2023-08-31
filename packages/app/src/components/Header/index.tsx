@@ -5,10 +5,16 @@ import styles from './index.module.scss'
 import IconLogo from './logo.svg'
 import IconGithub from './github.svg'
 import IconMenu from './menu.svg'
+import { useIsMobile } from '../../hooks'
 
 export type HeaderProps = ComponentProps<'div'>
 
 export const Header: FC<HeaderProps> = props => {
+  const isMobile = useIsMobile()
+  return isMobile ? <Header$Mobile {...props} /> : <Header$Desktop {...props} />
+}
+
+export const Header$Desktop: FC<HeaderProps> = props => {
   return (
     <div {...props} className={clsx(styles.header, props.className)}>
       <div className={styles.content}>
@@ -26,6 +32,25 @@ export const Header: FC<HeaderProps> = props => {
             <IconGithub />
           </Link>
 
+          {/* TODO: This button will be implemented when magickbase.com is online. */}
+          {false && <IconMenu />}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export const Header$Mobile: FC<HeaderProps> = props => {
+  return (
+    <div {...props} className={clsx(styles.headerMobile, props.className)}>
+      <div className={styles.top}>
+        <div className={styles.left}>
+          <Link href="/">
+            <IconLogo width={32} height={32} />
+          </Link>
+        </div>
+
+        <div className={styles.right}>
           {/* TODO: This button will be implemented when magickbase.com is online. */}
           {false && <IconMenu />}
         </div>
