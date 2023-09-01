@@ -33,6 +33,12 @@ export function useMarkdownProps({
         // eslint-disable-next-line @next/next/no-img-element
         <img {...tagProps} alt={tagProps.alt ?? 'image'} className={clsx(tagProps.className, imgClass)} />
       ),
+      table: ({ node, ...tagProps }) => (
+        // The table is too wide, so we need to wrap it in a container with `overflow: auto`.
+        <div style={{ width: 'min-content', maxWidth: '100%', overflow: 'auto' }}>
+          <table {...tagProps} />
+        </div>
+      ),
     }),
     [imgClass, supportToc],
   )

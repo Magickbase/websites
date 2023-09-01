@@ -1,9 +1,7 @@
+@import '../../styles/variables.module';
+
 .page {
-  .top {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
+  width: 100%;
 }
 
 .neuron {
@@ -16,18 +14,52 @@
   .name {
     margin-top: 6px;
   }
+
+  @media (max-width: $mobileBreakPoint) {
+    font-size: 18px;
+
+    > img {
+      max-width: 32px;
+      height: auto;
+    }
+
+    .name {
+      margin-top: 4px;
+    }
+  }
 }
 
 .text1 {
+  margin-top: 24px;
   font-weight: 700;
   font-size: 40px;
+
+  @media (max-width: $mobileBreakPoint) {
+    font-weight: 600;
+    font-size: 22px;
+  }
 }
 
 .text2 {
+  margin-top: 24px;
   font-size: 20px;
 
   & > a {
     color: #00c891;
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 32px;
+  }
+}
+
+.releases {
+  margin-bottom: 88px;
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-bottom: 160px;
   }
 }
 
@@ -49,8 +81,15 @@
   }
 
   .right {
+    min-width: 0;
+    word-break: break-word;
+
     & > :first-child {
       margin-top: 0;
+    }
+
+    table {
+      word-break: initial;
     }
 
     a {
@@ -59,6 +98,23 @@
 
     img {
       max-width: 100%;
+    }
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 24px;
+    padding-top: 32px;
+
+    &:first-child {
+      margin-top: 24px;
+    }
+
+    .left {
+      color: #999;
+      font-weight: 400;
+      font-size: 16px;
     }
   }
 }
