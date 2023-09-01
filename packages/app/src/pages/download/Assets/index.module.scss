@@ -1,0 +1,115 @@
+.assets {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 24px;
+  border-spacing: 0;
+  backdrop-filter: blur(40px);
+
+  .row {
+    height: 64px;
+    font-size: 16px;
+
+    &.head {
+      font-size: 20px;
+    }
+
+    th {
+      font-weight: 400;
+      word-break: break-word;
+
+      .checksum {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    td {
+      padding: 0 40px;
+      border-top: 1px solid #333;
+
+      .os {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+
+      &.checksum {
+        padding: 8px 40px;
+        word-break: break-all;
+      }
+
+      &.operation {
+        & > a {
+          color: #00c891;
+          font-weight: 600;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.assetsMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .asset {
+    all: unset;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    padding: 0 12px;
+    background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
+    border: 0.5px solid rgb(255 255 255 / 20%);
+    border-radius: 12px;
+    backdrop-filter: blur(38px);
+
+    & > div {
+      padding: 16px 0;
+
+      &:nth-child(n + 2) {
+        border-top: 1px solid #333;
+      }
+
+      &:nth-child(odd) {
+        color: #999;
+      }
+
+      &:nth-child(even) {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        padding-left: 8px;
+        word-break: break-word;
+      }
+
+      .checksumTitle {
+        gap: 4px;
+        align-items: center;
+      }
+
+      &.os {
+        gap: 8px;
+      }
+
+      &.checksum {
+        font-size: 14px;
+      }
+
+      &.operation {
+        & > a {
+          color: #00c891;
+          font-weight: 600;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

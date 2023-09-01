@@ -1,4 +1,8 @@
+@import '../../styles/variables.module';
+
 .page {
+  width: 100%;
+
   .top {
     display: flex;
     justify-content: space-between;
@@ -13,6 +17,23 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+
+      .imgDownload {
+        @media (max-width: $mobileBreakPoint) {
+          max-width: 104px;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  .assets {
+    margin-top: 32px;
+    margin-bottom: 158px;
+
+    @media (max-width: $mobileBreakPoint) {
+      margin-top: 24px;
+      margin-bottom: 160px;
     }
   }
 }
@@ -27,11 +48,29 @@
   .name {
     margin-top: 6px;
   }
+
+  @media (max-width: $mobileBreakPoint) {
+    font-size: 18px;
+
+    > img {
+      max-width: 32px;
+      height: auto;
+    }
+
+    .name {
+      margin-top: 4px;
+    }
+  }
 }
 
 .text1 {
   font-weight: 700;
   font-size: 40px;
+
+  @media (max-width: $mobileBreakPoint) {
+    font-weight: 600;
+    font-size: 22px;
+  }
 }
 
 .version {
@@ -40,57 +79,12 @@
   width: fit-content;
   height: 40px;
   padding: 0 16px;
-  border: 1px solid #f5f5f5;
+  border: 1px solid #7a7a7a;
   border-radius: 40px;
-}
 
-.assets {
-  width: 100%;
-  margin-top: 32px;
-  margin-bottom: 158px;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
-  border: 1px solid rgb(255 255 255 / 20%);
-  border-radius: 24px;
-  border-spacing: 0;
-  backdrop-filter: blur(40px);
-
-  .row {
-    height: 64px;
-    font-size: 16px;
-
-    & > td {
-      padding: 0 40px;
-      border-top: 1px solid #333;
-    }
-
-    &.head {
-      font-size: 20px;
-
-      & > th {
-        font-weight: 400;
-      }
-    }
-  }
-
-  .os {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-  }
-
-  .checksum {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .operation {
-    & > a {
-      color: #00c891;
-      font-weight: 600;
-      font-size: 16px;
-    }
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 4px;
+    font-size: 14px;
+    border-width: 0.5px;
   }
 }

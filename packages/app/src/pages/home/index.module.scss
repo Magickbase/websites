@@ -2,6 +2,10 @@
 
 .contentWrapper {
   position: relative;
+
+  @media (max-width: $mobileBreakPoint) {
+    padding: 0 16px;
+  }
 }
 
 .topShadow {

@@ -1,11 +1,12 @@
 import { FC, PropsWithChildren, ReactNode } from 'react'
 import { Root, Trigger, Content, Provider, Portal, Arrow } from '@radix-ui/react-tooltip'
+import clsx from 'clsx'
 import styles from './index.module.scss'
 
-export const Tooltip: FC<PropsWithChildren<{ content?: ReactNode }>> = props => {
+export const Tooltip: FC<PropsWithChildren<{ content?: ReactNode; className?: string }>> = props => {
   return (
     <Root>
-      <Trigger className={styles.trigger}>{props.children}</Trigger>
+      <Trigger className={clsx(styles.trigger, props.className)}>{props.children}</Trigger>
       <Portal>
         <Content className={styles.content}>
           {props.content}

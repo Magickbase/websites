@@ -1,3 +1,5 @@
+@import '../../styles/variables.module';
+
 .trigger {
   all: unset;
   display: flex;
@@ -15,6 +17,10 @@
   border: 1px solid #414141;
   border-radius: 8px;
   backdrop-filter: blur(38px);
+
+  @media (max-width: $mobileBreakPoint) {
+    max-width: 256px;
+  }
 }
 
 .arrow {
