@@ -11,16 +11,11 @@ import IconNight from './night.svg'
 import IconMenu from './menu.svg'
 import IconClose from './close.svg'
 import styles from './index.module.scss'
-import { APPID, Post, SEARCH_KEY, TopLevelMenu, removeURLOrigin } from '../../../utils'
+import { APPID, Post, SEARCH_KEY, TopLevelMenu, languages, removeURLOrigin } from '../../../utils'
 import { useIsMobile } from '../../../hooks'
 import { ClassifiedPosts } from '../ClassifiedPosts'
 import { LanguageMenu } from './LanguageMenu'
 import { LanguageList } from './LanguageList'
-
-const languages = [
-  { name: 'English', localeName: 'en' },
-  { name: '简体中文', localeName: 'zh' },
-]
 
 export type HelpDocHeaderProps = ComponentProps<'div'> & { menuWithPosts: TopLevelMenu; viewingPost: Post }
 
