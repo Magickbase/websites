@@ -93,37 +93,39 @@ const MenuDialog: FC = () => {
             </Dialog.Close>
           </div>
 
-          <Link className={styles.title} href="/">
-            Home
-          </Link>
+          <div className={styles.content}>
+            <Link className={styles.title} href="/">
+              Home
+            </Link>
 
-          <div className={styles.title}>Services</div>
-          <div className={styles.links}>
-            <Link href="https://neuron.magickbase.com/">Neuron Wallet</Link>
-            <Link href="https://ckb.magickbase.com/">CKB Explorer</Link>
-            <Link href="https://godwoke.magickbase.com/">Godwoke Explorer</Link>
-            <Link href="https://axon.magickbase.com/">Axon Explorer</Link>
-            <Link href="https:/kuai.magickbase.com/">Kuai</Link>
-          </div>
+            <div className={styles.title}>Services</div>
+            <div className={styles.links}>
+              <Link href="https://neuron.magickbase.com/">Neuron Wallet</Link>
+              <Link href="https://ckb.magickbase.com/">CKB Explorer</Link>
+              <Link href="https://godwoke.magickbase.com/">Godwoke Explorer</Link>
+              <Link href="https://axon.magickbase.com/">Axon Explorer</Link>
+              <Link href="https:/kuai.magickbase.com/">Kuai</Link>
+            </div>
 
-          <Link className={styles.title} href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes">
-            Public Node
-          </Link>
+            <Link className={styles.title} href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes">
+              Public Node
+            </Link>
 
-          <div className={styles.title}>Language</div>
-          <div className={clsx(styles.links, styles.languages)}>
-            {languages.map(language => (
-              <Link
-                key={language.name}
-                className={clsx(styles.languageItem, {
-                  [styles.selected ?? '']: language.localeName === router.locale,
-                })}
-                href={{ pathname, query }}
-                locale={language.localeName}
-              >
-                {language.name}
-              </Link>
-            ))}
+            <div className={styles.title}>Language</div>
+            <div className={clsx(styles.links, styles.languages)}>
+              {languages.map(language => (
+                <Link
+                  key={language.name}
+                  className={clsx(styles.languageItem, {
+                    [styles.selected ?? '']: language.localeName === router.locale,
+                  })}
+                  href={{ pathname, query }}
+                  locale={language.localeName}
+                >
+                  {language.name}
+                </Link>
+              ))}
+            </div>
           </div>
 
           <Contacts className={styles.contacts} />

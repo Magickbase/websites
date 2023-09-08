@@ -1,3 +1,4 @@
+/* stylelint-disable custom-property-pattern */
 /* stylelint-disable no-descending-specificity */
 @import '../../styles/variables.module';
 
@@ -100,7 +101,11 @@ $desktopHeaderContentHeight: 88px;
   &Content {
     // This approach may not be conducive to understanding and maintenance, but development is quite convenient for now.
     // If maintenance becomes difficult later, it can be changed to control based on JS + CSS variables.
-    --menuIconRightOffset: max(calc((100vw - var(--contentAreaWidth)) / 2), var(--contentWrapperPadding));
+    // `removed-body-scroll-bar-size` is provided by the `react-remove-scroll` component referenced by `radix-ui`.
+    --menuIconRightOffset: calc(
+      max(calc((100vw - var(--contentAreaWidth)) / 2), var(--contentWrapperPadding)) +
+        var(--removed-body-scroll-bar-size, 0px)
+    );
 
     position: fixed;
     top: 0;
@@ -130,6 +135,11 @@ $desktopHeaderContentHeight: 88px;
       }
     }
 
+    .content {
+      margin: 64px 0;
+      overflow: auto;
+    }
+
     .close {
       cursor: pointer;
     }
@@ -139,6 +149,10 @@ $desktopHeaderContentHeight: 88px;
       margin-top: 64px;
       font-weight: 600;
       font-size: 32px;
+
+      &:first-child {
+        margin-top: 0;
+      }
     }
 
     .links {
@@ -180,11 +194,15 @@ $desktopHeaderContentHeight: 88px;
         height: auto;
       }
 
+      .content {
+        margin: 0;
+      }
+
       .title {
         margin-top: 40px;
         font-size: 16px;
 
-        &:first-of-type {
+        &:first-child {
           margin-top: 32px;
         }
       }
