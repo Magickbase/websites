@@ -1,23 +1,39 @@
 import { FC, PropsWithChildren, ReactNode } from 'react'
-import { Root, Trigger, Content, Provider, Portal, Arrow } from '@radix-ui/react-tooltip'
+import * as RadixTooltip from '@radix-ui/react-tooltip'
+import * as RadixPopover from '@radix-ui/react-popover'
 import clsx from 'clsx'
 import styles from './index.module.scss'
+import { useIsMobile } from '../../hooks'
 
 export const Tooltip: FC<PropsWithChildren<{ content?: ReactNode; className?: string }>> = props => {
-  return (
-    <Root>
-      <Trigger className={clsx(styles.trigger, props.className)}>{props.children}</Trigger>
-      <Portal>
-        <Content className={styles.content}>
+  const isMobile = useIsMobile()
+
+  return isMobile ? (
+    // RadixTooltip does not support mobile, so use RadixPopover instead.
+    <RadixPopover.Root>
+      <RadixPopover.Trigger className={clsx(styles.trigger, props.className)}>{props.children}</RadixPopover.Trigger>
+      <RadixPopover.Portal>
+        <RadixPopover.Content className={styles.content}>
           {props.content}
           {/* TODO: The inside border line needs to be hidden */}
-          <Arrow className={styles.arrow} width={32} height={16} />
-        </Content>
-      </Portal>
-    </Root>
+          <RadixPopover.Arrow className={styles.arrow} width={32} height={16} />
+        </RadixPopover.Content>
+      </RadixPopover.Portal>
+    </RadixPopover.Root>
+  ) : (
+    <RadixTooltip.Root>
+      <RadixTooltip.Trigger className={clsx(styles.trigger, props.className)}>{props.children}</RadixTooltip.Trigger>
+      <RadixTooltip.Portal>
+        <RadixTooltip.Content side="top" className={styles.content}>
+          {props.content}
+          {/* TODO: The inside border line needs to be hidden */}
+          <RadixTooltip.Arrow className={styles.arrow} width={32} height={16} />
+        </RadixTooltip.Content>
+      </RadixTooltip.Portal>
+    </RadixTooltip.Root>
   )
 }
 
 export const TooltipProvider: FC<PropsWithChildren> = props => {
-  return <Provider delayDuration={0}>{props.children}</Provider>
+  return <RadixTooltip.Provider delayDuration={0}>{props.children}</RadixTooltip.Provider>
 }
