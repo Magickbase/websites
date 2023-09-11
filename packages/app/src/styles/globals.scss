@@ -8,12 +8,12 @@ body {
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--colorPrimaryBg);
 }
 
 body {
   --contentAreaWidth: 1320px;
   --contentWrapperPadding: 32px;
-  @include themeDark;
 
   @media (max-width: $mobileBreakPoint) {
     --contentWrapperPadding: 24px;
@@ -31,4 +31,14 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+// This is provided to `prepareColorSchemaClasses` in `_document.page.tsx`.
+.themeLight {
+  @include themeLight;
+}
+
+// This is provided to `prepareColorSchemaClasses` in `_document.page.tsx`.
+.themeDark {
+  @include themeDark;
 }

@@ -1,19 +1,21 @@
 import { BehaviorSubject, tap } from 'rxjs'
 import { PersistenceService, persistenceService } from '../PersistenceService'
 
+export const KEY_DARK_MODE = 'darkMode'
+
 export class AppSettings {
   constructor(private persistenceService: PersistenceService) {
     this.darkMode$
       .pipe(
         tap(value => {
-          this.persistenceService.set<boolean>('darkMode', value)
+          this.persistenceService.set<boolean>(KEY_DARK_MODE, value)
           return value
         }),
       )
       .subscribe()
   }
 
-  darkMode$ = new BehaviorSubject(this.persistenceService.get<boolean>('darkMode', getBrowserDarkMode()))
+  darkMode$ = new BehaviorSubject(this.persistenceService.get<boolean>(KEY_DARK_MODE, getBrowserDarkMode()))
   setDarkMode(value: boolean) {
     this.darkMode$.next(value)
   }

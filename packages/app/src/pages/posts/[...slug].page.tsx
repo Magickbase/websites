@@ -144,6 +144,7 @@ export const getStaticProps: GetStaticProps<PageProps, { slug?: string[] }> = as
   const menu = getPostTopMenu(post)
   if (!menu) return { notFound: true }
   const menusWithPosts = await getMenusWithPosts()
+  // TODO: clean menusWithPosts post content
   const menuWithPosts = menusWithPosts.find(({ name }) => name === menu.name)
   if (!menuWithPosts) return { notFound: true }
 
