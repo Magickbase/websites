@@ -2,6 +2,7 @@ import { FC } from 'react'
 import * as Accordion from '@radix-ui/react-accordion'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
 import { Post, TopLevelMenu, getPostURL } from '../../../utils'
 import IconArrow from './arrow.svg'
 import styles from './index.module.scss'
@@ -17,6 +18,7 @@ export const ClassifiedPosts: FC<
     postClass?: string
   }
 > = props => {
+  const { t } = useTranslation('posts')
   const {
     menuWithPosts,
     viewingPost,
@@ -40,7 +42,7 @@ export const ClassifiedPosts: FC<
         <Accordion.Item key={menu.name} className={clsx(styles.accordionItem, categoryClass)} value={menu.name}>
           <Accordion.Header className={styles.accordionHeader}>
             <Accordion.Trigger className={clsx(styles.accordionTrigger, triggerClass)}>
-              {menu.name}
+              {t(menu.name)}
               <IconArrow className={clsx(styles.arrow, triggerArrowClass)} aria-hidden />
             </Accordion.Trigger>
           </Accordion.Header>

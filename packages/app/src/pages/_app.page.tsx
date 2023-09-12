@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { type AppType } from 'next/app'
 import Head from 'next/head'
-import { appWithTranslation } from 'next-i18next'
+import { appWithTranslation, useTranslation } from 'next-i18next'
 import localFont from 'next/font/local'
 import { api } from '../utils/api'
 import '../styles/globals.scss'
@@ -17,6 +17,8 @@ const fontProximaNova = localFont({
 })
 
 const App: AppType = ({ Component, pageProps }) => {
+  const { t } = useTranslation('app')
+
   useEffect(() => {
     document.body.classList.add(fontProximaNova.className)
     return () => document.body.classList.remove(fontProximaNova.className)
@@ -25,7 +27,8 @@ const App: AppType = ({ Component, pageProps }) => {
   return (
     <TooltipProvider>
       <Head>
-        <title>Neuron Troubleshooting</title>
+        {/* TODO: i18n not working, needs fixing. */}
+        <title>{t('Neuron Troubleshooting')}</title>
         <link rel="icon" type="image/svg" href="/favicon.svg" />
         <meta property="og:type" content="website" />
       </Head>

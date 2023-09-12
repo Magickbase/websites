@@ -7,6 +7,7 @@ import {
   getIssue,
   getIssues,
 } from './github'
+import { createI18nKeyAdder } from './i18n'
 
 const postSources = ['issues', 'discussions'] as const
 export type PostSource = (typeof postSources)[number]
@@ -36,35 +37,36 @@ export interface TopLevelMenu extends Menu {
   source: PostSource
 }
 
+const addI18nKey = createI18nKeyAdder('common')
 const TopLevelMenus: TopLevelMenu[] = [
   {
-    name: "Beginner's Guide",
+    name: addI18nKey("Beginner's Guide"),
     source: 'issues',
     sourceTarget: 'Guide',
     children: [
-      { name: 'Create wallet', sourceTarget: 'create wallet' },
-      { name: 'Backup wallet', sourceTarget: 'backup wallet' },
-      { name: 'Transfer and receive', sourceTarget: 'transfer and receive' },
+      { name: addI18nKey('Create wallet'), sourceTarget: 'create wallet' },
+      { name: addI18nKey('Backup wallet'), sourceTarget: 'backup wallet' },
+      { name: addI18nKey('Transfer and receive'), sourceTarget: 'transfer and receive' },
     ],
   },
   {
-    name: 'Frequently Asked Questions',
+    name: addI18nKey('Frequently Asked Questions'),
     source: 'issues',
     sourceTarget: 'FAQ',
     children: [
-      { name: 'Sync', sourceTarget: 'Synchronization' },
-      { name: 'Transaction', sourceTarget: 'Transaction' },
-      { name: 'Migration', sourceTarget: 'migration' },
-      { name: 'CKBNode', sourceTarget: 'ckb node' },
+      { name: addI18nKey('Sync'), sourceTarget: 'Synchronization' },
+      { name: addI18nKey('Transaction'), sourceTarget: 'Transaction' },
+      { name: addI18nKey('Migration'), sourceTarget: 'migration' },
+      { name: addI18nKey('CKBNode'), sourceTarget: 'ckb node' },
     ],
   },
   {
-    name: 'Announcement',
+    name: addI18nKey('Announcement'),
     source: 'discussions',
     sourceTarget: 'Announcements',
     children: [
-      { name: 'Change log', sourceTarget: 'changelog' },
-      { name: 'Develop guide', sourceTarget: 'develop guide' },
+      { name: addI18nKey('Change log'), sourceTarget: 'changelog' },
+      { name: addI18nKey('Develop guide'), sourceTarget: 'develop guide' },
     ],
   },
 ]

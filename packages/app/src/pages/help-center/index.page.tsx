@@ -28,14 +28,14 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
             <span className={styles.name}>Neuron</span>
           </div>
 
-          <div className={styles.text1}>{t('help_center')}</div>
+          <div className={styles.text1}>{t('Help Center')}</div>
 
           <div className={styles.search}>
             <DocSearch
               appId={APPID ?? ''}
               indexName="neuron-magickbase"
               apiKey={SEARCH_KEY ?? ''}
-              translations={{ button: { buttonText: 'Please enter keywords' } }}
+              translations={{ button: { buttonText: t('Please enter keywords') ?? '' } }}
               // This is experience optimization in a development environment
               hitComponent={({ hit, children }) => <a href={removeURLOrigin(hit.url)}>{children}</a>}
             />
@@ -51,11 +51,11 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
         {menusWithPosts.map(menu => (
           <div key={menu.name} className={styles.postMenu}>
             <div className={styles.title}>
-              <div className={styles.name}>{menu.name}</div>
+              <div className={styles.name}>{t(menu.name)}</div>
               {menu.posts?.[0] && (
                 <Link href={getPostURL(menu.posts[0])}>
                   <div className={styles.more}>
-                    More <IconMore />
+                    {t('More')} <IconMore />
                   </div>
                 </Link>
               )}

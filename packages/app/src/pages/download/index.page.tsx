@@ -30,9 +30,13 @@ const Download: NextPage<PageProps> = ({ release }) => {
             <span className={styles.name}>Neuron</span>
           </div>
 
-          <div className={styles.text1}>{t('download_neuron')}</div>
+          <div className={styles.text1}>{t('Download Neuron')}</div>
 
-          {!isMobile && <div className={styles.version}>Current Version {release.tag_name}</div>}
+          {!isMobile && (
+            <div className={styles.version}>
+              {t('Current Version')} {release.tag_name}
+            </div>
+          )}
         </div>
 
         <div className={styles.right}>
@@ -40,7 +44,11 @@ const Download: NextPage<PageProps> = ({ release }) => {
         </div>
       </div>
 
-      {isMobile && <div className={styles.version}>Current Version {release.tag_name}</div>}
+      {isMobile && (
+        <div className={styles.version}>
+          {t('Current Version')} {release.tag_name}
+        </div>
+      )}
 
       <Assets className={styles.assets} assets={assets} />
     </Page>

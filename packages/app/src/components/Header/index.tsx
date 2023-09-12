@@ -3,6 +3,7 @@ import { ComponentProps, FC } from 'react'
 import Link from 'next/link'
 import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'react-i18next'
 import styles from './index.module.scss'
 import IconLogo from './logo.svg'
 import IconGithub from './github.svg'
@@ -20,6 +21,8 @@ export const Header: FC<HeaderProps> = props => {
 }
 
 export const Header$Desktop: FC<HeaderProps> = props => {
+  const { t } = useTranslation('common')
+
   return (
     <div {...props} className={clsx(styles.header, props.className)}>
       <div className={styles.content}>
@@ -27,9 +30,9 @@ export const Header$Desktop: FC<HeaderProps> = props => {
           <Link href="/">
             <IconLogo />
           </Link>
-          <Link href="/changelog">Changelog</Link>
-          <Link href="/help-center">Help Center</Link>
-          <Link href="/download">Download Neuron</Link>
+          <Link href="/changelog">{t('Changelog')}</Link>
+          <Link href="/help-center">{t('Help Center')}</Link>
+          <Link href="/download">{t('Download Neuron')}</Link>
         </div>
 
         <div className={styles.right}>
@@ -63,6 +66,7 @@ export const Header$Mobile: FC<HeaderProps> = props => {
 }
 
 const MenuDialog: FC = () => {
+  const { t } = useTranslation('common')
   const isMobile = useIsMobile()
   const router = useRouter()
   const { pathname, query } = router
@@ -95,23 +99,23 @@ const MenuDialog: FC = () => {
 
           <div className={styles.content}>
             <Link className={styles.title} href="/">
-              Home
+              {t('Home')}
             </Link>
 
-            <div className={styles.title}>Services</div>
+            <div className={styles.title}>{t('Services')}</div>
             <div className={styles.links}>
-              <Link href="https://neuron.magickbase.com/">Neuron Wallet</Link>
-              <Link href="https://ckb.magickbase.com/">CKB Explorer</Link>
-              <Link href="https://godwoke.magickbase.com/">Godwoke Explorer</Link>
-              <Link href="https://axon.magickbase.com/">Axon Explorer</Link>
-              <Link href="https:/kuai.magickbase.com/">Kuai</Link>
+              <Link href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</Link>
+              <Link href="https://ckb.magickbase.com/">{t('CKB Explorer')}</Link>
+              <Link href="https://godwoke.magickbase.com/">{t('Godwoke Explorer')}</Link>
+              <Link href="https://axon.magickbase.com/">{t('Axon Explorer')}</Link>
+              <Link href="https:/kuai.magickbase.com/">{t('Kuai')}</Link>
             </div>
 
             <Link className={styles.title} href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes">
-              Public Node
+              {t('Public Node')}
             </Link>
 
-            <div className={styles.title}>Language</div>
+            <div className={styles.title}>{t('Language')}</div>
             <div className={clsx(styles.links, styles.languages)}>
               {languages.map(language => (
                 <Link

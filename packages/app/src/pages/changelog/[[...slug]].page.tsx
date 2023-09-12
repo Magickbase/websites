@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, type NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
@@ -37,14 +37,16 @@ const Changelog: NextPage<PageProps> = ({ releases, page, maxPage }) => {
           <span className={styles.name}>Neuron</span>
         </div>
 
-        <div className={styles.text1}>{t('changelog')}</div>
+        <div className={styles.text1}>{t('Changelog')}</div>
 
         <div className={styles.text2}>
-          Neuron wallet new features and updates summary, join{' '}
-          <Link href="https://github.com/nervosnetwork/neuron" target="_blank" rel="noopener noreferrer">
-            Github
-          </Link>{' '}
-          to learn more about the project progress.
+          <Trans
+            ns="changelog"
+            i18nKey="Neuron wallet new features and updates summary, join <link1>Github</link1> to learn more about the project progress."
+            components={{
+              link1: <Link href="https://github.com/nervosnetwork/neuron" target="_blank" rel="noopener noreferrer" />,
+            }}
+          />
         </div>
       </div>
 

@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { FC, useMemo } from 'react'
 import { useObservableState } from 'observable-hooks'
+import { useTranslation } from 'react-i18next'
 import { TOCContextProvider, TOCItem } from '../../components/TableOfContents'
 import {
   Post,
@@ -41,6 +42,7 @@ const PostPage: NextPage<PageProps> = props => {
 }
 
 export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWithPosts }) => {
+  const { t } = useTranslation('posts')
   const height = useFullHeightCSSValue()
   const mdProps = useMarkdownProps({ imgClass: styles.img })
   const submenuName = menuWithPosts.children?.find(menu =>
@@ -55,7 +57,7 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
 
       <div className={styles.main}>
         <div className={styles.navbar}>
-          <Link href="/">Home</Link>
+          <Link href="/">{t('Home')}</Link>
           {menusWithPosts.map(
             menu =>
               menu.posts?.[0] && (
@@ -64,7 +66,7 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
                   className={clsx({ [styles.selected ?? '']: menu.name === menuWithPosts.name })}
                   href={getPostURL(menu.posts[0])}
                 >
-                  {menu.name}
+                  {t(menu.name)}
                 </Link>
               ),
           )}
@@ -75,8 +77,8 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
             <div className={styles.content}>
               <div className={styles.breadcrumbs}>
                 {/* TODO: feature needs to be implemented */}
-                <div className={styles.item}>{menuWithPosts.name}</div>
-                {submenuName && <div className={styles.item}>{submenuName}</div>}
+                <div className={styles.item}>{t(menuWithPosts.name)}</div>
+                {submenuName && <div className={styles.item}>{t(submenuName)}</div>}
                 <div className={styles.item}>{post.title}</div>
               </div>
 
@@ -98,6 +100,7 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
 }
 
 export const PostPage$Mobile: FC<PageProps> = ({ post, menuWithPosts }) => {
+  const { t } = useTranslation('posts')
   const height = useFullHeightCSSValue()
   const mdProps = useMarkdownProps({ imgClass: styles.img })
   const submenuName = menuWithPosts.children?.find(menu =>
@@ -111,8 +114,8 @@ export const PostPage$Mobile: FC<PageProps> = ({ post, menuWithPosts }) => {
       <div className={styles.otherThenHeader}>
         <div className={styles.breadcrumbs}>
           {/* TODO: feature needs to be implemented */}
-          <div className={styles.item}>{menuWithPosts.name}</div>
-          {submenuName && <div className={styles.item}>{submenuName}</div>}
+          <div className={styles.item}>{t(menuWithPosts.name)}</div>
+          {submenuName && <div className={styles.item}>{t(submenuName)}</div>}
           <div className={styles.item}>{post.title}</div>
         </div>
 
@@ -128,7 +131,7 @@ export const PostPage$Mobile: FC<PageProps> = ({ post, menuWithPosts }) => {
 
         <div className={styles.footer}>
           <Contacts className={styles.contacts} />
-          <div className={styles.copyright}>© 2023 by Magickbase.</div>
+          <div className={styles.copyright}>{t('© 2023 by Magickbase.')}</div>
         </div>
       </div>
     </div>

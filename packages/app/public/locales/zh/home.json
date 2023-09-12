@@ -1,3 +1,13 @@
 {
-  "hello_world": "你好世界"
+  "A friendly and clean user interface, complete with features designed to help you easily participate in Nervos network activities using your wallet.": "友好、简洁的用户界面，具备旨在帮助您使用钱包轻松参与 Nervos 网络活动的功能。",
+  "Designed specifically for the Nervos CKB blockchain, allowing users to securely store and manage their CKB assets, participate in Nervos Network governance, and create and manage CKB standard or lock scripts.": "专为 Nervos CKB 区块链设计，允许用户安全地存储和管理其 CKB 资产，参与 Nervos 网络治理，并创建和管理 CKB 标准或锁定脚本。",
+  "Download Neuron": "下载 Neuron",
+  "Easy to use": "易于使用",
+  "Get Neuron Now": "立即获取 Neuron",
+  "Powered by the Nervos Foundation, it works closely with the Nervos CKB blockchain and is deeply involved in building the community and getting a head start on supporting new features.": "由 Nervos 基金会提供支持，与 Nervos CKB 区块链密切合作，深度参与社区建设，积极支持新功能。",
+  "Private and Secure": "私密且安全",
+  "Reliable Support": "可靠的支持",
+  "Secure and reliable, you can navigate the world of Nervos CKB": "安全可靠，您可以畅游 Nervos CKB 的世界",
+  "Securely Manage Your <tag1>CKB Assets</tag1> with Ease": "轻松安全地管理您的 <tag1>CKB 资产</tag1>",
+  "The code is completely open source, no registration and login is required, only you can access your wallet, we do not collect any personal data.": "代码完全开源，无需注册和登录，只有您可以访问您的钱包，我们不收集任何个人数据。"
 }

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useObservableState } from 'observable-hooks'
 import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
+import { useTranslation } from 'react-i18next'
 import { appSettings } from '../../../services/AppSettings'
 import ImgNeuronLogo from './neuron-logo.png'
 import IconDaylight from './daylight.svg'
@@ -25,6 +26,7 @@ export const HelpDocHeader: FC<HelpDocHeaderProps> = props => {
 }
 
 export const HelpDocHeader$Desktop: FC<HelpDocHeaderProps> = props => {
+  const { t } = useTranslation('posts')
   const { menuWithPosts, viewingPost, ...divProps } = props
   const darkMode = useObservableState(appSettings.darkMode$)
 
@@ -32,7 +34,7 @@ export const HelpDocHeader$Desktop: FC<HelpDocHeaderProps> = props => {
     <div {...divProps} className={clsx(styles.header, divProps.className)}>
       <div className={styles.left}>
         <Image src={ImgNeuronLogo} alt="Neuron Logo" width={24} height={24} />
-        Neuron Help Documents
+        {t('Neuron Help Documents')}
       </div>
 
       <div className={styles.right}>
@@ -41,7 +43,7 @@ export const HelpDocHeader$Desktop: FC<HelpDocHeaderProps> = props => {
             appId={APPID ?? ''}
             indexName="neuron-magickbase"
             apiKey={SEARCH_KEY ?? ''}
-            translations={{ button: { buttonText: 'Please enter keywords' } }}
+            translations={{ button: { buttonText: t('Please enter keywords') ?? '' } }}
             // This is experience optimization in a development environment
             hitComponent={({ hit, children }) => <a href={removeURLOrigin(hit.url)}>{children}</a>}
           />
@@ -60,6 +62,7 @@ export const HelpDocHeader$Desktop: FC<HelpDocHeaderProps> = props => {
 }
 
 export const HelpDocHeader$Mobile: FC<HelpDocHeaderProps> = props => {
+  const { t } = useTranslation('posts')
   const { menuWithPosts, viewingPost, ...divProps } = props
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -73,7 +76,7 @@ export const HelpDocHeader$Mobile: FC<HelpDocHeaderProps> = props => {
       <div className={styles.top}>
         <div className={styles.left}>
           <Image src={ImgNeuronLogo} alt="Neuron Logo" width={32} height={32} />
-          Neuron Help Documents
+          {t('Neuron Help Documents')}
         </div>
 
         <div className={styles.right}>
@@ -90,7 +93,7 @@ export const HelpDocHeader$Mobile: FC<HelpDocHeaderProps> = props => {
           appId={APPID ?? ''}
           indexName="neuron-magickbase"
           apiKey={SEARCH_KEY ?? ''}
-          translations={{ button: { buttonText: 'Please enter keywords' } }}
+          translations={{ button: { buttonText: t('Please enter keywords') ?? '' } }}
           // This is experience optimization in a development environment
           hitComponent={({ hit, children }) => <a href={removeURLOrigin(hit.url)}>{children}</a>}
         />
