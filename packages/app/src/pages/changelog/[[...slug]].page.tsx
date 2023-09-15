@@ -13,6 +13,7 @@ import ImgNeuronLogo from './neuron-logo.png'
 import { useMarkdownProps } from '../../hooks'
 import IconTop from './top.svg'
 import IconMore from './more.svg'
+import { LinkWithEffect } from '../../components/UpsideDownEffect'
 
 const RELEASES_PER_PAGE = 2
 
@@ -44,7 +45,13 @@ const Changelog: NextPage<PageProps> = ({ releases, page, maxPage }) => {
             ns="changelog"
             i18nKey="Neuron wallet new features and updates summary, join <link1>Github</link1> to learn more about the project progress."
             components={{
-              link1: <Link href="https://github.com/nervosnetwork/neuron" target="_blank" rel="noopener noreferrer" />,
+              link1: (
+                <LinkWithEffect
+                  href="https://github.com/nervosnetwork/neuron"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              ),
             }}
           />
         </div>

@@ -11,6 +11,7 @@ import { APPID, Menu, SEARCH_KEY, getMenusWithPosts, getPostURL, removeURLOrigin
 import ImgNeuronLogo from './neuron-logo.png'
 import ImgHelp from './help.png'
 import IconMore from './more.svg'
+import { LinkWithEffect, UpsideDownEffect } from '../../components/UpsideDownEffect'
 
 interface PageProps {
   menusWithPosts: Menu[]
@@ -48,28 +49,35 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
       </div>
 
       <div className={styles.postMenus}>
-        {menusWithPosts.map(menu => (
-          <div key={menu.name} className={styles.postMenu}>
-            <div className={styles.title}>
-              <div className={styles.name}>{t(menu.name)}</div>
-              {menu.posts?.[0] && (
-                <Link href={getPostURL(menu.posts[0])}>
-                  <div className={styles.more}>
-                    {t('More')} <IconMore />
-                  </div>
-                </Link>
-              )}
-            </div>
+        {menusWithPosts.map(menu => {
+          const firstPostInMenu = menu.posts?.[0]
+          return (
+            <div key={menu.name} className={styles.postMenu}>
+              <div className={styles.title}>
+                <div className={styles.name}>{t(menu.name)}</div>
+                {firstPostInMenu && (
+                  <UpsideDownEffect content={t('More')}>
+                    {(hoverableContainerClass, contentWithEffect) => (
+                      <Link className={hoverableContainerClass} href={getPostURL(firstPostInMenu)}>
+                        <div className={styles.more}>
+                          {contentWithEffect} <IconMore />
+                        </div>
+                      </Link>
+                    )}
+                  </UpsideDownEffect>
+                )}
+              </div>
 
-            <div className={styles.posts}>
-              {menu.posts?.map(post => (
-                <Link key={post.number} className={styles.post} href={getPostURL(post)}>
-                  {post.title}
-                </Link>
-              ))}
+              <div className={styles.posts}>
+                {menu.posts?.map(post => (
+                  <LinkWithEffect key={post.number} className={styles.post} href={getPostURL(post)} fullWidth>
+                    {post.title}
+                  </LinkWithEffect>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </Page>
   )

@@ -2,7 +2,6 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import ReactMarkdown from 'react-markdown'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { FC, useMemo } from 'react'
 import { useObservableState } from 'observable-hooks'
 import { useTranslation } from 'react-i18next'
@@ -25,6 +24,7 @@ import { TOC } from './TOC'
 import { appSettings } from '../../services/AppSettings'
 import { useBodyClass, useFullHeightCSSValue, useIsMobile, useMarkdownProps } from '../../hooks'
 import { Contacts } from '../../components/Contacts'
+import { LinkWithEffect } from '../../components/UpsideDownEffect'
 
 interface PageProps {
   post: Post
@@ -57,19 +57,22 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
 
       <div className={styles.main}>
         <div className={styles.navbar}>
-          <Link href="/">{t('Home')}</Link>
-          {menusWithPosts.map(
-            menu =>
-              menu.posts?.[0] && (
-                <Link
-                  key={menu.name}
-                  className={clsx({ [styles.selected ?? '']: menu.name === menuWithPosts.name })}
-                  href={getPostURL(menu.posts[0])}
-                >
-                  {t(menu.name)}
-                </Link>
-              ),
-          )}
+          <LinkWithEffect href="/">{t('Home')}</LinkWithEffect>
+          {menusWithPosts.map(menu => {
+            const firstPostInMenu = menu.posts?.[0]
+            if (!firstPostInMenu) return null
+            return (
+              <LinkWithEffect
+                key={menu.name}
+                className={clsx({
+                  [styles.selected ?? '']: menu.name === menuWithPosts.name,
+                })}
+                href={getPostURL(firstPostInMenu)}
+              >
+                {t(menu.name)}
+              </LinkWithEffect>
+            )
+          })}
         </div>
 
         <TOCContextProvider>

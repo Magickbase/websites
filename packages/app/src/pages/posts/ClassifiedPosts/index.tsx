@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import * as Accordion from '@radix-ui/react-accordion'
-import Link from 'next/link'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { Post, TopLevelMenu, getPostURL } from '../../../utils'
 import IconArrow from './arrow.svg'
 import styles from './index.module.scss'
+import { LinkWithEffect } from '../../../components/UpsideDownEffect'
 
 export const ClassifiedPosts: FC<
   Omit<Accordion.AccordionSingleProps, 'type'> & {
@@ -49,14 +49,15 @@ export const ClassifiedPosts: FC<
 
           <Accordion.Content className={clsx(styles.accordionContent, postsClass)}>
             {menu.posts?.map(post => (
-              <Link
+              <LinkWithEffect
                 key={post.number}
                 data-selected={post.source === viewingPost.source && post.number === viewingPost.number}
                 className={clsx(styles.post, postClass)}
                 href={getPostURL(post)}
+                fullWidth
               >
                 {post.title}
-              </Link>
+              </LinkWithEffect>
             ))}
           </Accordion.Content>
         </Accordion.Item>

@@ -9,6 +9,7 @@ import IconTips from './tips.svg'
 import styles from './index.module.scss'
 import { ParsedAsset } from '../../../utils'
 import { useIsMobile } from '../../../hooks'
+import { LinkWithEffect } from '../../../components/UpsideDownEffect'
 
 type AssetsProps = Pick<ComponentProps<'table'> | ComponentProps<'ul'>, 'className'> & { assets: ParsedAsset[] }
 
@@ -52,9 +53,9 @@ export const Assets$Desktop: FC<AssetsProps> = ({ assets, ...tableProps }) => {
             <td>{asset.packageType}</td>
             <td className={styles.checksum}>{asset.checksum}</td>
             <td className={styles.operation}>
-              <Link href={asset.packageLink} target="_blank" rel="noopener noreferrer">
+              <LinkWithEffect href={asset.packageLink} target="_blank" rel="noopener noreferrer">
                 Download
-              </Link>
+              </LinkWithEffect>
             </td>
           </tr>
         ))}

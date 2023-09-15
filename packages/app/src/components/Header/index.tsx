@@ -12,6 +12,7 @@ import IconClose from './close.svg'
 import { useIsMobile } from '../../hooks'
 import { languages } from '../../utils'
 import { Contacts } from '../Contacts'
+import { LinkWithEffect } from '../UpsideDownEffect'
 
 export type HeaderProps = ComponentProps<'div'>
 
@@ -30,9 +31,9 @@ export const Header$Desktop: FC<HeaderProps> = props => {
           <Link href="/">
             <IconLogo />
           </Link>
-          <Link href="/changelog">{t('Changelog')}</Link>
-          <Link href="/help-center">{t('Help Center')}</Link>
-          <Link href="/download">{t('Download Neuron')}</Link>
+          <LinkWithEffect href="/changelog">{t('Changelog')}</LinkWithEffect>
+          <LinkWithEffect href="/help-center">{t('Help Center')}</LinkWithEffect>
+          <LinkWithEffect href="/download">{t('Download Neuron')}</LinkWithEffect>
         </div>
 
         <div className={styles.right}>
@@ -98,27 +99,30 @@ const MenuDialog: FC = () => {
           </div>
 
           <div className={styles.content}>
-            <Link className={styles.title} href="/">
+            <LinkWithEffect className={styles.title} href="/">
               {t('Home')}
-            </Link>
+            </LinkWithEffect>
 
             <div className={styles.title}>{t('Services')}</div>
             <div className={styles.links}>
-              <Link href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</Link>
-              <Link href="https://ckb.magickbase.com/">{t('CKB Explorer')}</Link>
-              <Link href="https://godwoke.magickbase.com/">{t('Godwoke Explorer')}</Link>
-              <Link href="https://axon.magickbase.com/">{t('Axon Explorer')}</Link>
-              <Link href="https:/kuai.magickbase.com/">{t('Kuai')}</Link>
+              <LinkWithEffect href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</LinkWithEffect>
+              <LinkWithEffect href="https://ckb.magickbase.com/">{t('CKB Explorer')}</LinkWithEffect>
+              <LinkWithEffect href="https://godwoke.magickbase.com/">{t('Godwoke Explorer')}</LinkWithEffect>
+              <LinkWithEffect href="https://axon.magickbase.com/">{t('Axon Explorer')}</LinkWithEffect>
+              <LinkWithEffect href="https:/kuai.magickbase.com/">{t('Kuai')}</LinkWithEffect>
             </div>
 
-            <Link className={styles.title} href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes">
+            <LinkWithEffect
+              className={styles.title}
+              href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes"
+            >
               {t('Public Node')}
-            </Link>
+            </LinkWithEffect>
 
             <div className={styles.title}>{t('Language')}</div>
             <div className={clsx(styles.links, styles.languages)}>
               {languages.map(language => (
-                <Link
+                <LinkWithEffect
                   key={language.name}
                   className={clsx(styles.languageItem, {
                     [styles.selected ?? '']: language.localeName === router.locale,
@@ -127,7 +131,7 @@ const MenuDialog: FC = () => {
                   locale={language.localeName}
                 >
                   {language.name}
-                </Link>
+                </LinkWithEffect>
               ))}
             </div>
           </div>

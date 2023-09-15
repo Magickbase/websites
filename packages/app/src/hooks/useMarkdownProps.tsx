@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentProps, useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { HeadingProps } from 'react-markdown/lib/ast-to-react'
@@ -6,6 +7,7 @@ import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import clsx from 'clsx'
 import { TOCItem } from '../components/TableOfContents'
+import { UpsideDownEffect } from '../components/UpsideDownEffect'
 
 type MarkdownProps = Omit<ComponentProps<typeof ReactMarkdown>, 'children'>
 
@@ -27,7 +29,11 @@ export function useMarkdownProps({
         h6: wrapHeadingWithTOCItem('h6'),
       }),
 
-      a: ({ node, ...tagProps }) => <a {...tagProps} target="_blank" rel="noopener noreferrer" />,
+      a: ({ node, children, ...tagProps }) => (
+        <a {...tagProps} target="_blank" rel="noopener noreferrer">
+          <UpsideDownEffect>{children}</UpsideDownEffect>
+        </a>
+      ),
       img: ({ node, ...tagProps }) => (
         // Expectedly, all the links are external (content from GitHub), so there is no need to use next/image.
         // eslint-disable-next-line @next/next/no-img-element
