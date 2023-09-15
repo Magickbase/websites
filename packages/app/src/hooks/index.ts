@@ -5,6 +5,7 @@ import { useMemoizedFn } from './useMemoizedFn'
 
 export * from './useMemoizedFn'
 export * from './useMarkdownProps'
+export * from './useHighPrecisionScrollbarWidth'
 
 /**
  * copied from https://usehooks-ts.com/react-hook/use-media-query
