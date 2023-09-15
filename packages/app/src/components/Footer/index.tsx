@@ -6,6 +6,7 @@ import IconFullLogo from './full-logo.svg'
 import { Contacts } from '../Contacts'
 import { useIsMobile } from '../../hooks'
 import { LinkWithEffect } from '../UpsideDownEffect'
+import { api } from '../../utils'
 
 export type FooterProps = ComponentProps<'div'>
 
@@ -13,16 +14,28 @@ export const Footer: FC<FooterProps> = props => {
   const { t } = useTranslation('common')
   const isMobile = useIsMobile()
 
+  const aggregateStateQuery = api.uptime.aggregateState.useQuery()
+  const serviceStateText =
+    aggregateStateQuery.data === 'operational'
+      ? t('All services are online')
+      : aggregateStateQuery.data === 'downtime' || aggregateStateQuery.data === 'degraded'
+      ? t('Some services are offline')
+      : t('Services status loading...')
+
   return (
     <div {...props} className={clsx(styles.footer, props.className)}>
       <div className={styles.content}>
         <div className={styles.left}>
           <IconFullLogo />
 
-          <div className={styles.serversState}>
-            {/* TODO: There is a need for API integration */}
+          <div
+            className={clsx(styles.serversState, {
+              [styles.warnning ?? '']:
+                aggregateStateQuery.data === 'downtime' || aggregateStateQuery.data === 'degraded',
+            })}
+          >
             <div className={styles.dot} />
-            {t('All services are online')}
+            {serviceStateText}
           </div>
 
           <Contacts className={styles.contacts} />

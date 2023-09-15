@@ -51,6 +51,15 @@
     background: #00cc9b;
     border-radius: 50%;
   }
+
+  &.warnning {
+    // TODO: need design
+    color: chocolate;
+
+    .dot {
+      background: chocolate;
+    }
+  }
 }
 
 .contacts {
