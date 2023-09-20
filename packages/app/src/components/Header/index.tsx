@@ -106,10 +106,10 @@ const MenuDialog: FC = () => {
             <div className={styles.title}>{t('Services')}</div>
             <div className={styles.links}>
               <LinkWithEffect href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</LinkWithEffect>
-              <LinkWithEffect href="https://ckb.magickbase.com/">{t('CKB Explorer')}</LinkWithEffect>
-              <LinkWithEffect href="https://godwoke.magickbase.com/">{t('Godwoke Explorer')}</LinkWithEffect>
-              <LinkWithEffect href="https://axon.magickbase.com/">{t('Axon Explorer')}</LinkWithEffect>
-              <LinkWithEffect href="https:/kuai.magickbase.com/">{t('Kuai')}</LinkWithEffect>
+              <span title="Coming soon">{t('CKB Explorer')}</span>
+              <span title="Coming soon">{t('Godwoke Explorer')}</span>
+              <span title="Coming soon">{t('Axon Explorer')}</span>
+              <span title="Coming soon">{t('Kuai')}</span>
             </div>
 
             <LinkWithEffect
