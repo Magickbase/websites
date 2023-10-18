@@ -1,6 +1,7 @@
 import { ComponentProps, FC } from 'react'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
+import Link from 'next/link'
 import styles from './index.module.scss'
 import IconFullLogo from './full-logo.svg'
 import { Contacts } from '../Contacts'
@@ -35,7 +36,9 @@ export const Footer: FC<FooterProps> = props => {
             })}
           >
             <div className={styles.dot} />
-            {serviceStateText}
+            <Link href="https://status.magickbase.com/" target="_blank">
+              {serviceStateText}
+            </Link>
           </div>
 
           <Contacts className={styles.contacts} />
@@ -50,11 +53,19 @@ export const Footer: FC<FooterProps> = props => {
               <LinkWithEffect href="https://docs.nervos.org/docs/basics/guides/crypto%20wallets/neuron">
                 {t('Neuron Wallet')}
               </LinkWithEffect>
-              <LinkWithEffect href="https://explorer.nervos.org/">{t('CKB Explorer')}</LinkWithEffect>
-              <LinkWithEffect href="https://v1.gwscan.com/">{t('Godwoke Explorer')}</LinkWithEffect>
-              <LinkWithEffect href="https://github.com/Magickbase/blockscan">{t('Axon Explorer')}</LinkWithEffect>
-              <LinkWithEffect href="https://github.com/ckb-js/kuai">{t('Kuai')}</LinkWithEffect>
-              <LinkWithEffect href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes">
+              <LinkWithEffect href="https://explorer.nervos.org/" target="_blank">
+                {t('CKB Explorer')}
+              </LinkWithEffect>
+              <LinkWithEffect href="https://v1.gwscan.com/" target="_blank">
+                {t('Godwoke Explorer')}
+              </LinkWithEffect>
+              <LinkWithEffect href="https://github.com/Magickbase/blockscan" target="_blank">
+                {t('Axon Explorer')}
+              </LinkWithEffect>
+              <LinkWithEffect href="https://github.com/ckb-js/kuai" target="_blank">
+                {t('Kuai')}
+              </LinkWithEffect>
+              <LinkWithEffect href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes" target="_blank">
                 {t('Public Node')}
               </LinkWithEffect>
             </div>
