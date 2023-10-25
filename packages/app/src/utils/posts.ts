@@ -56,8 +56,9 @@ const TopLevelMenus: TopLevelMenu[] = [
     children: [
       { name: addI18nKey('Sync'), sourceTarget: 'Synchronization' },
       { name: addI18nKey('Transaction'), sourceTarget: 'Transaction' },
-      { name: addI18nKey('Migration'), sourceTarget: 'migration' },
-      { name: addI18nKey('CKBNode'), sourceTarget: 'ckb node' },
+      { name: addI18nKey('Assets'), sourceTarget: 'Assets' },
+      { name: addI18nKey('Safety'), sourceTarget: 'Safety' },
+      { name: addI18nKey('Report'), sourceTarget: 'Report' },
     ],
   },
   {
