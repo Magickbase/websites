@@ -22,7 +22,7 @@ import { ParsedAsset, Release, getAssetsFromNeuronRelease, getLatestRelease } fr
 
 interface PageProps {
   locale: string
-  release: Release
+  release: Release | null
 }
 
 const Home: NextPage<PageProps> = ({ locale, release }) => {
@@ -121,9 +121,12 @@ const Emphasis: FC<PropsWithChildren> = ({ children }) => (
   </span>
 )
 
-const DownloadButton: FC<Partial<ComponentProps<typeof Link>> & { release: Release }> = ({ release, ...linkProps }) => {
+const DownloadButton: FC<Partial<ComponentProps<typeof Link>> & { release: Release | null }> = ({
+  release,
+  ...linkProps
+}) => {
   const { t } = useTranslation('home')
-  const assets = useMemo(() => getAssetsFromNeuronRelease(release), [release])
+  const assets = useMemo(() => (release ? getAssetsFromNeuronRelease(release) : []), [release])
   const [asset, setAsset] = useState<ParsedAsset>()
 
   useEffect(() => {

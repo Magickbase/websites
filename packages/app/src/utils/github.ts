@@ -8,6 +8,7 @@ import {
   Repository,
   SearchResultItemConnection,
 } from '@octokit/graphql-schema'
+import { RequestError } from '@octokit/request-error'
 import { BooleanT } from './array'
 import { REPO, TOKEN } from './env'
 
@@ -218,12 +219,19 @@ export async function getReleases(limit = Infinity): Promise<Release[]> {
   return releases.slice(0, limit)
 }
 
-export async function getLatestRelease(): Promise<Release> {
-  const res = await octokit.rest.repos.getLatestRelease({
-    owner: repoOwner,
-    repo: repoName,
-  })
-  return res.data
+export async function getLatestRelease(): Promise<Release | null> {
+  try {
+    const res = await octokit.rest.repos.getLatestRelease({
+      owner: repoOwner,
+      repo: repoName,
+    })
+    return res.data
+  } catch (err) {
+    if (err instanceof RequestError && err.status === 404) {
+      return null
+    }
+    throw err
+  }
 }
 
 export function getAssetsFromNeuronRelease(neuronRelease: Release): ParsedAsset[] {

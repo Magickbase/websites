@@ -12,14 +12,14 @@ import { Assets } from './Assets'
 import { useIsMobile } from '../../hooks'
 
 interface PageProps {
-  release: Release
+  release: Release | null
 }
 
 const Download: NextPage<PageProps> = ({ release }) => {
   const { t } = useTranslation('download')
   const isMobile = useIsMobile()
 
-  const assets = useMemo(() => getAssetsFromNeuronRelease(release), [release])
+  const assets = useMemo(() => (release ? getAssetsFromNeuronRelease(release) : []), [release])
 
   return (
     <Page className={styles.page}>
@@ -34,7 +34,7 @@ const Download: NextPage<PageProps> = ({ release }) => {
 
           {!isMobile && (
             <div className={styles.version}>
-              {t('Current Version')} {release.tag_name}
+              {t('Current Version')} {release?.tag_name}
             </div>
           )}
         </div>
@@ -46,7 +46,7 @@ const Download: NextPage<PageProps> = ({ release }) => {
 
       {isMobile && (
         <div className={styles.version}>
-          {t('Current Version')} {release.tag_name}
+          {t('Current Version')} {release?.tag_name}
         </div>
       )}
 
