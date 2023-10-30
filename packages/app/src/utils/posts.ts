@@ -45,9 +45,9 @@ const TopLevelMenus: TopLevelMenu[] = [
     source: 'issues',
     sourceTarget: 'Guide',
     children: [
-      { name: addI18nKey('Create wallet'), sourceTarget: 'create wallet' },
-      { name: addI18nKey('Backup wallet'), sourceTarget: 'backup wallet' },
-      { name: addI18nKey('Transfer and receive'), sourceTarget: 'transfer and receive' },
+      { name: addI18nKey('About Neuron'), sourceTarget: 'About Neuron' },
+      { name: addI18nKey('Usage Tutorial'), sourceTarget: 'Usage Tutorial' },
+      { name: addI18nKey('Advanced Features'), sourceTarget: 'Advanced Features' },
     ],
   },
   {
