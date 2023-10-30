@@ -67,8 +67,8 @@ const TopLevelMenus: TopLevelMenu[] = [
     source: 'discussions',
     sourceTarget: 'Announcements',
     children: [
-      { name: addI18nKey('Change log'), sourceTarget: 'changelog' },
-      { name: addI18nKey('Develop guide'), sourceTarget: 'develop guide' },
+      { name: addI18nKey('Change log'), sourceTarget: 'Changelog' },
+      { name: addI18nKey('Develop guide'), sourceTarget: 'Develop Guide' },
     ],
   },
 ]
