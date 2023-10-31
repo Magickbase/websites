@@ -3,6 +3,7 @@
  */
 import { createTRPCRouter } from './trpc'
 import { uptimeRouter } from './routers/uptime'
+import { postsRouter } from './routers/posts'
 
 /**
  * This is the primary router for your server.
@@ -11,6 +12,7 @@ import { uptimeRouter } from './routers/uptime'
  */
 export const appRouter = createTRPCRouter({
   uptime: uptimeRouter,
+  posts: postsRouter,
 })
 
 // export type definition of API

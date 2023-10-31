@@ -9,6 +9,7 @@ import {
 } from './github'
 import { createI18nKeyAdder } from './i18n'
 import { unique } from './array'
+import { getPostsViewCount, isKVConfigured } from './kv'
 
 const postSources = ['issues', 'discussions'] as const
 export type PostSource = (typeof postSources)[number]
@@ -130,16 +131,22 @@ function discussionToPost(discussion: Discussion): Post {
   }
 }
 
-function sortPosts(posts: Post[], topMenu: TopLevelMenu) {
+async function sortPosts(posts: Post[], topMenu: TopLevelMenu) {
   switch (topMenu.sourceTarget) {
     case 'Guide':
       // Sort by creation time from old to new.
       return posts.sort((a, b) => a.number - b.number)
 
     case 'FAQ':
-      // Sort by creation time from old to new.
-      // TODO: Sort by view count.
-      return posts.sort((a, b) => a.number - b.number)
+      if (!isKVConfigured()) {
+        // Sort by creation time from old to new.
+        return posts.sort((a, b) => a.number - b.number)
+      }
+
+      // Sort by view count from high to low.
+      const counts = await getPostsViewCount(posts.map(post => post.key))
+      const countMap = Object.fromEntries(posts.map((post, idx) => [post.key, counts[idx]]))
+      return posts.sort((a, b) => (countMap[b.key] ?? 0) - (countMap[a.key] ?? 0))
 
     case 'Announcements':
       // Sort by creation time from new to old.

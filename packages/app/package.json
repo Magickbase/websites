@@ -26,6 +26,7 @@
     "@trpc/next": "^10.28.2",
     "@trpc/react-query": "^10.28.2",
     "@trpc/server": "^10.28.2",
+    "@vercel/kv": "^0.2.3",
     "algoliasearch": "^4.17.1",
     "chunk-text": "^2.0.1",
     "clsx": "^1.2.1",

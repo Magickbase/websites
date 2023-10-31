@@ -15,6 +15,7 @@ import {
   isPostSource,
   TopLevelMenu,
   getPostURL,
+  api,
 } from '../../utils'
 import { HelpDocHeader } from './HelpDocHeader'
 import styles from './index.module.scss'
@@ -37,6 +38,8 @@ const PostPage: NextPage<PageProps> = props => {
   const darkMode = useObservableState(appSettings.darkMode$)
   const bodyClass = useMemo(() => (darkMode ? [presets.themeDark ?? ''] : [presets.themeLight ?? '']), [darkMode])
   useBodyClass(bodyClass)
+
+  api.posts.visit.useQuery({ postKey: props.post.key }, { refetchOnWindowFocus: false })
 
   return isMobile ? <PostPage$Mobile {...props} /> : <PostPage$Desktop {...props} />
 }

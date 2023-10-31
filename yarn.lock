@@ -3754,6 +3754,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@upstash/redis@npm:1.22.0":
+  version: 1.22.0
+  resolution: "@upstash/redis@npm:1.22.0"
+  dependencies:
+    isomorphic-fetch: ^3.0.0
+  checksum: 894b7d4e318c55fdcbf0f322efd9ace94a37f1b8f9d7cb2cdf8b8b4859814379665c7e00feef3565578455d98492710d14ed4a2b043ec412b5d640a4d5a2dd55
+  languageName: node
+  linkType: hard
+
+"@vercel/kv@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@vercel/kv@npm:0.2.3"
+  dependencies:
+    "@upstash/redis": 1.22.0
+  checksum: 3a2b1e3a0ebf605b69341b449bd81edde94f9d00393cc6971759b950c90cff782e1e4fa5daf672f4769aa8301e00f7b7fdec07cdd98d40530652d83c043125ed
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^1.0.0":
   version: 1.1.1
   resolution: "abbrev@npm:1.1.1"
@@ -3986,6 +4004,7 @@ __metadata:
     "@types/ua-parser-js": ^0.7.36
     "@typescript-eslint/eslint-plugin": ^5.59.8
     "@typescript-eslint/parser": ^5.59.8
+    "@vercel/kv": ^0.2.3
     algoliasearch: ^4.17.1
     chunk-text: ^2.0.1
     clsx: ^1.2.1
@@ -8179,6 +8198,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"isomorphic-fetch@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "isomorphic-fetch@npm:3.0.0"
+  dependencies:
+    node-fetch: ^2.6.1
+    whatwg-fetch: ^3.4.1
+  checksum: e5ab79a56ce5af6ddd21265f59312ad9a4bc5a72cebc98b54797b42cb30441d5c5f8d17c5cd84a99e18101c8af6f90c081ecb8d12fd79e332be1778d58486d75
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -9692,6 +9721,20 @@ __metadata:
     lower-case: ^2.0.2
     tslib: ^2.0.3
   checksum: 0b2ebc113dfcf737d48dde49cfebf3ad2d82a8c3188e7100c6f375e30eafbef9e9124aadc3becef237b042fd5eb0aad2fd78669c20972d045bbe7fea8ba0be5c
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^2.6.1":
+  version: 2.7.0
+  resolution: "node-fetch@npm:2.7.0"
+  dependencies:
+    whatwg-url: ^5.0.0
+  peerDependencies:
+    encoding: ^0.1.0
+  peerDependenciesMeta:
+    encoding:
+      optional: true
+  checksum: d76d2f5edb451a3f05b15115ec89fc6be39de37c6089f1b6368df03b91e1633fd379a7e01b7ab05089a25034b2023d959b47e59759cb38d88341b2459e89d6e5
   languageName: node
   linkType: hard
 
@@ -13440,6 +13483,13 @@ __metadata:
   version: 3.0.1
   resolution: "webidl-conversions@npm:3.0.1"
   checksum: c92a0a6ab95314bde9c32e1d0a6dfac83b578f8fa5f21e675bc2706ed6981bc26b7eb7e6a1fab158e5ce4adf9caa4a0aee49a52505d4d13c7be545f15021b17c
+  languageName: node
+  linkType: hard
+
+"whatwg-fetch@npm:^3.4.1":
+  version: 3.6.19
+  resolution: "whatwg-fetch@npm:3.6.19"
+  checksum: 2896bc9ca867ea514392c73e2a272f65d5c4916248fe0837a9df5b1b92f247047bc76cf7c29c28a01ac6c5fb4314021d2718958c8a08292a96d56f72b2f56806
   languageName: node
   linkType: hard
 
