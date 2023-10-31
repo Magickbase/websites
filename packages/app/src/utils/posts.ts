@@ -127,6 +127,26 @@ function discussionToPost(discussion: Discussion): Post {
   }
 }
 
+function sortPosts(posts: Post[], topMenu: TopLevelMenu) {
+  switch (topMenu.sourceTarget) {
+    case 'Guide':
+      // Sort by creation time from old to new.
+      return posts.sort((a, b) => a.number - b.number)
+
+    case 'FAQ':
+      // Sort by creation time from old to new.
+      // TODO: Sort by view count.
+      return posts.sort((a, b) => a.number - b.number)
+
+    case 'Announcements':
+      // Sort by creation time from new to old.
+      return posts.sort((a, b) => b.number - a.number)
+
+    default:
+      return posts
+  }
+}
+
 export async function getPosts(topMenu?: TopLevelMenu): Promise<Post[]> {
   if (!topMenu) {
     const menuPostsPromises = TopLevelMenus.map(getPosts)
@@ -137,7 +157,7 @@ export async function getPosts(topMenu?: TopLevelMenu): Promise<Post[]> {
   switch (topMenu.source) {
     case 'issues':
       const issues = await getIssues(topMenu.sourceTarget)
-      return issues.map(issueToPost)
+      return sortPosts(issues.map(issueToPost), topMenu)
 
     case 'discussions':
       const categories = await getDiscussionCategories()
@@ -146,7 +166,7 @@ export async function getPosts(topMenu?: TopLevelMenu): Promise<Post[]> {
         throw new Error('Not found category ' + topMenu.sourceTarget)
       }
       const discussions = await getDiscussions(category.id)
-      return discussions.map(discussionToPost)
+      return sortPosts(discussions.map(discussionToPost), topMenu)
   }
 }
 
