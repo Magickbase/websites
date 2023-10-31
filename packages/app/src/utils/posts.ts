@@ -17,14 +17,15 @@ export type Post = Pick<Issue | Discussion, 'number' | 'title' | 'body'> &
   (
     | {
         source: 'issues'
-        labels: string[]
       }
     | {
         source: 'discussions'
         category: Discussion['category']
-        labels: string[]
       }
-  )
+  ) & {
+    key: string
+    labels: string[]
+  }
 
 export interface Menu {
   name: string
@@ -108,6 +109,7 @@ function mergePostsToMenu<T extends Menu>(menu: T, posts: Post[]): T {
 
 function issueToPost(issue: Issue): Post {
   return {
+    key: `issues_${issue.number}`,
     source: 'issues',
     number: issue.number,
     title: issue.title,
@@ -118,6 +120,7 @@ function issueToPost(issue: Issue): Post {
 
 function discussionToPost(discussion: Discussion): Post {
   return {
+    key: `discussions_${discussion.number}`,
     source: 'discussions',
     number: discussion.number,
     title: discussion.title,

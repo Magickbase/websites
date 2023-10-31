@@ -45,9 +45,7 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
   const { t } = useTranslation('posts')
   const height = useFullHeightCSSValue()
   const mdProps = useMarkdownProps({ imgClass: styles.img })
-  const submenuName = menuWithPosts.children?.find(menu =>
-    menu.posts?.find(_post => post.source === _post.source && post.number === _post.number),
-  )?.name
+  const submenuName = menuWithPosts.children?.find(menu => menu.posts?.find(_post => post.key === _post.key))?.name
 
   return (
     <div className={styles.page} style={{ height }}>
@@ -106,9 +104,7 @@ export const PostPage$Mobile: FC<PageProps> = ({ post, menuWithPosts }) => {
   const { t } = useTranslation('posts')
   const height = useFullHeightCSSValue()
   const mdProps = useMarkdownProps({ imgClass: styles.img })
-  const submenuName = menuWithPosts.children?.find(menu =>
-    menu.posts?.find(_post => post.source === _post.source && post.number === _post.number),
-  )?.name
+  const submenuName = menuWithPosts.children?.find(menu => menu.posts?.find(_post => post.key === _post.key))?.name
 
   return (
     <div className={styles.pageMobile} style={{ height }}>

@@ -70,7 +70,7 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
 
               <div className={styles.posts}>
                 {menu.posts?.map(post => (
-                  <LinkWithEffect key={post.number} className={styles.post} href={getPostURL(post)} fullWidth>
+                  <LinkWithEffect key={post.key} className={styles.post} href={getPostURL(post)} fullWidth>
                     {post.title}
                   </LinkWithEffect>
                 ))}

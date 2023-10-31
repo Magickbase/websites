@@ -50,8 +50,8 @@ export const ClassifiedPosts: FC<
           <Accordion.Content className={clsx(styles.accordionContent, postsClass)}>
             {menu.posts?.map(post => (
               <LinkWithEffect
-                key={post.number}
-                data-selected={post.source === viewingPost.source && post.number === viewingPost.number}
+                key={post.key}
+                data-selected={post.key === viewingPost.key}
                 className={clsx(styles.post, postClass)}
                 href={getPostURL(post)}
                 fullWidth
