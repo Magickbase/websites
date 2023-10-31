@@ -146,7 +146,10 @@ async function sortPosts(posts: Post[], topMenu: TopLevelMenu) {
       // Sort by view count from high to low.
       const counts = await getPostsViewCount(posts.map(post => post.key))
       const countMap = Object.fromEntries(posts.map((post, idx) => [post.key, counts[idx]]))
-      return posts.sort((a, b) => (countMap[b.key] ?? 0) - (countMap[a.key] ?? 0))
+      return posts.sort((a, b) => {
+        if (countMap[a.key] === countMap[b.key]) return a.number - b.number
+        return (countMap[b.key] ?? 0) - (countMap[a.key] ?? 0)
+      })
 
     case 'Announcements':
       // Sort by creation time from new to old.
