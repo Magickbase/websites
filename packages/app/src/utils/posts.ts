@@ -157,7 +157,7 @@ export async function getPosts(topMenu?: TopLevelMenu): Promise<Post[]> {
   switch (topMenu.source) {
     case 'issues':
       const issues = await getIssues(topMenu.sourceTarget)
-      return sortPosts(issues.map(issueToPost), topMenu)
+      return sortPosts(issues.map(issueToPost).filter(isInMenu), topMenu)
 
     case 'discussions':
       const categories = await getDiscussionCategories()
@@ -166,7 +166,7 @@ export async function getPosts(topMenu?: TopLevelMenu): Promise<Post[]> {
         throw new Error('Not found category ' + topMenu.sourceTarget)
       }
       const discussions = await getDiscussions(category.id)
-      return sortPosts(discussions.map(discussionToPost), topMenu)
+      return sortPosts(discussions.map(discussionToPost).filter(isInMenu), topMenu)
   }
 }
 
@@ -235,8 +235,7 @@ export async function getPost(source: PostSource, number: number): Promise<Post 
       break
   }
 
-  const isInMenu = getPostTopMenu(post) != null
-  return isInMenu ? post : null
+  return isInMenu(post) ? post : null
 }
 
 export function getPostTopMenu(post: Post): TopLevelMenu | undefined {
@@ -249,8 +248,17 @@ export function getPostTopMenu(post: Post): TopLevelMenu | undefined {
   }
 }
 
+export function getPostMenu(post: Post): Menu | undefined {
+  const topMenu = getPostTopMenu(post)
+  return topMenu?.children?.find(subMenu => post.labels.includes(subMenu.sourceTarget))
+}
+
 export function getTopMenu(menu: Menu): TopLevelMenu | undefined {
   return TopLevelMenus.find(topMenu => topMenu === menu || topMenu.children?.includes(menu))
+}
+
+export function isInMenu(post: Post): boolean {
+  return getPostMenu(post) != null
 }
 
 export function isPostSource(source?: string): source is PostSource {
