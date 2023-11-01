@@ -14,9 +14,8 @@ export default function Home() {
       <div className={styles.separate}/>
       <AboutUs />
       <div className={styles.separate}/>
-      <ContactUs />
-      <div className={styles.separate}/>
       <Services />
+      <ContactUs />
       <Footer />
     </div>
   )
