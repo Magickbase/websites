@@ -1,5 +1,5 @@
 {
-  "name": "neuron-troubleshooting",
+  "name": "magickbase-website",
   "packageManager": "yarn@3.5.1",
   "private": true,
   "workspaces": [
@@ -9,8 +9,8 @@
     "postinstall": "husky install"
   },
   "devDependencies": {
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
-    "prettier": "^2.8.8"
+    "husky": "8.0.3",
+    "lint-staged": "13.2.3",
+    "prettier": "2.8.8"
   }
 }
