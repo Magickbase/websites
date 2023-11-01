@@ -1,0 +1,48 @@
+.timeline {
+  position: relative;
+  &::after {
+    content: " ";
+    position: absolute;
+    width: 1px;
+    left: 0;
+    top: 8px;
+    bottom: 0;
+    background-color: #fff;
+  }
+
+  .item {
+    padding-left: 24px;
+    padding-bottom: 64px;
+    position: relative;
+    &::after {
+      content: " ";
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      top: 5px;
+      left: -6px;
+      border-radius: 999px;
+      background-color: #fff;
+    }
+    .index {
+      font-size: 20px;
+      line-height: 20px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    p {
+      font-size: 16px;
+      line-height: 32px;
+      margin-bottom: 32px;
+    }
+  }
+
+}
+
+.splineWrapper {
+  pointer-events: none;
+}
