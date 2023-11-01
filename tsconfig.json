@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "declaration": true,
+    "types": ["node"],
+    "lib": ["es2020"],
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "stripInternal": true,
+    "declarationMap": true
+  },
+  "exclude": ["**/node_modules", "**/tests", "**/lib"]
+}
