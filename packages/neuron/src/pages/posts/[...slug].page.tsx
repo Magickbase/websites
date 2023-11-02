@@ -16,6 +16,7 @@ import {
   TopLevelMenu,
   getPostURL,
   api,
+  CrawlableContentClassname,
 } from '../../utils'
 import { HelpDocHeader } from './HelpDocHeader'
 import styles from './index.module.scss'
@@ -86,7 +87,7 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
                 <div className={styles.item}>{post.title}</div>
               </div>
 
-              <div ref={scrollContainerRef} className={styles.postContent}>
+              <div ref={scrollContainerRef} className={clsx(CrawlableContentClassname, styles.postContent)}>
                 <TOCItem id={post.title} titleInTOC={post.title}>
                   <h1 className={styles.title}>{post.title}</h1>
                 </TOCItem>
@@ -122,7 +123,7 @@ export const PostPage$Mobile: FC<PageProps> = ({ post, menuWithPosts }) => {
         </div>
 
         <TOCContextProvider>
-          <div className={styles.postContent}>
+          <div className={clsx(CrawlableContentClassname, styles.postContent)}>
             <TOCItem id={post.title} titleInTOC={post.title}>
               <h1 className={styles.title}>{post.title}</h1>
             </TOCItem>

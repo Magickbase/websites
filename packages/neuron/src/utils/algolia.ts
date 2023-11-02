@@ -6,6 +6,10 @@ import { ADMINKEY, APPID } from './env'
 if (APPID === undefined) throw new Error('NEXT_PUBLIC_ALGOLIA_APP_ID is required')
 const client = algoliasearch(APPID, ADMINKEY ?? '')
 
+// The element and its children to which this class name belongs will be exposed to the crawler.
+// This is configured in crawler.algolia.com.
+export const CrawlableContentClassname = 'CrawlableContent'
+
 export interface PostIndexRecord {
   source: PostSource
   number: number
