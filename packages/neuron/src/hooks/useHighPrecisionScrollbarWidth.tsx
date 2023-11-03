@@ -14,7 +14,7 @@ export function useHighPrecisionScrollbarWidth(): {
   const refTesterContent = useRef<HTMLDivElement>(null)
 
   const tester = (
-    <div ref={refTesterContainer} style={{ width: 100, height: 100 }}>
+    <div ref={refTesterContainer} style={{ position: 'fixed', left: -100, top: -100, width: 100, height: 100 }}>
       <div ref={refTesterContent} style={{ width: '100%' }}></div>
     </div>
   )
