@@ -1,5 +1,5 @@
-import { Footer, FooterProps } from '../components/Footer'
-import { Header, HeaderProps } from '../components/Header'
+import { Footer } from '../components/Footer'
+import { Header } from '../components/Header'
 import { Branding } from '../components/Branding'
 import { AboutUs } from '../components/About'
 import { ContactUs } from '../components/ContactUs'
