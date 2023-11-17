@@ -99,7 +99,20 @@ export const Assets$Mobile: FC<AssetsProps> = ({ assets, ...ulProps }) => {
             {/* TODO: needs to be replaced by popover, https://github.com/radix-ui/primitives/issues/955#issuecomment-961813799 */}
             <Tooltip
               className={styles.checksumTitle}
-              content="After the download is complete, you can check the Checksum to ensure that the installation package has not been tampered with during the download process."
+              content={
+                <>
+                  After the download is complete, you can{' '}
+                  <LinkWithEffect
+                    className={styles.checksumLink}
+                    href="/posts/issues/2827#how_to_verify_with_checksum_%3F"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    check the Checksum
+                  </LinkWithEffect>{' '}
+                  to ensure that the installation package has not been tampered with during the download process.
+                </>
+              }
             >
               Checksum
               <IconTips />
