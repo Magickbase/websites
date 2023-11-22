@@ -3,6 +3,14 @@
 .page {
   width: 100%;
 
+  .contentWrapper {
+    padding-bottom: 144px;
+
+    @media (max-width: $mobileBreakPoint) {
+      padding-bottom: 160px;
+    }
+  }
+
   .top {
     display: flex;
     justify-content: space-between;
@@ -29,11 +37,25 @@
 
   .assets {
     margin-top: 32px;
-    margin-bottom: 158px;
 
     @media (max-width: $mobileBreakPoint) {
       margin-top: 24px;
-      margin-bottom: 160px;
+    }
+  }
+
+  .ckbNodeCompatible {
+    margin-top: 88px;
+
+    @media (max-width: $mobileBreakPoint) {
+      margin-top: 56px;
+    }
+  }
+
+  .compatibleTable {
+    margin-top: 40px;
+
+    @media (max-width: $mobileBreakPoint) {
+      margin-top: 24px;
     }
   }
 }

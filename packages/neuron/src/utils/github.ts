@@ -26,12 +26,26 @@ export type Discussion = Pick<GQLDiscussion, 'id' | 'number' | 'title' | 'body' 
   labels: Pick<GQLLabel, 'id' | 'name' | 'description'>[]
 }
 export type Release = components['schemas']['release']
+
 export interface ParsedAsset {
   os: string
   arch: string
   packageType: string
   checksum: string
   packageLink: string
+}
+
+export interface CompatibleData {
+  neuronVersions: string[]
+  fullVersions: string[]
+  lightVersions: string[]
+  compatible: Record<
+    string,
+    {
+      full: string[]
+      light: string[]
+    }
+  >
 }
 
 const GQL_CATEGORY_FIELDS = () => `
@@ -257,4 +271,37 @@ export function getAssetsFromNeuronRelease(neuronRelease: Release): ParsedAsset[
       }
     })
     .filter(BooleanT())
+}
+
+export async function getRepoFileInfo(path: string) {
+  try {
+    const res = await octokit.rest.repos.getContent({
+      owner: repoOwner,
+      repo: repoName,
+      path,
+    })
+    if (!('type' in res.data) || res.data.type !== 'file') return null
+    return res.data
+  } catch (err) {
+    if (err instanceof RequestError && err.status === 404) {
+      return null
+    }
+    throw err
+  }
+}
+
+export async function getRepoFileWithTextFormat(path: string): Promise<string | null> {
+  const info = await getRepoFileInfo(path)
+  if (!info) return null
+  return Buffer.from(info.content, 'base64').toString('utf-8')
+}
+
+export async function getNeuronCompatibleData(): Promise<CompatibleData | null> {
+  const compatibleFile = await getRepoFileWithTextFormat('compatible.json')
+  if (compatibleFile == null) return null
+
+  const data = JSON.parse(compatibleFile) as Omit<CompatibleData, 'neuronVersions'>
+  const neuronVersions = Object.keys(data.compatible)
+
+  return { ...data, neuronVersions }
 }

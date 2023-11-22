@@ -3,26 +3,34 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { useMemo } from 'react'
-import { Release, getAssetsFromNeuronRelease, getLatestRelease } from '../../utils'
+import {
+  CompatibleData,
+  Release,
+  getAssetsFromNeuronRelease,
+  getLatestRelease,
+  getNeuronCompatibleData,
+} from '../../utils'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import ImgNeuronLogo from './neuron-logo.png'
 import ImgDownloadWallet from './download-wallet.png'
 import { Assets } from './Assets'
+import { CompatibleTable } from './CompatibleTable'
 import { useIsMobile } from '../../hooks'
 
 interface PageProps {
   release: Release | null
+  compatibleData: CompatibleData | null
 }
 
-const Download: NextPage<PageProps> = ({ release }) => {
+const Download: NextPage<PageProps> = ({ release, compatibleData }) => {
   const { t } = useTranslation('download')
   const isMobile = useIsMobile()
 
   const assets = useMemo(() => (release ? getAssetsFromNeuronRelease(release) : []), [release])
 
   return (
-    <Page className={styles.page}>
+    <Page className={styles.page} contentWrapper={{ className: styles.contentWrapper }}>
       <div className={styles.top}>
         <div className={styles.left}>
           <div className={styles.neuron}>
@@ -51,16 +59,25 @@ const Download: NextPage<PageProps> = ({ release }) => {
       )}
 
       <Assets className={styles.assets} assets={assets} />
+
+      {compatibleData && (
+        <>
+          <div className={styles.ckbNodeCompatible}>CKB Node Compatibility</div>
+          <CompatibleTable wrapperClass={styles.compatibleTable} compatibleData={compatibleData} />
+        </>
+      )}
     </Page>
   )
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   const release = await getLatestRelease()
+  const compatibleData = await getNeuronCompatibleData()
   const lng = await serverSideTranslations(locale, ['common', 'download'])
 
   const props: PageProps = {
     release,
+    compatibleData,
     ...lng,
   }
 
