@@ -45,7 +45,7 @@
     "rxjs": "^7.8.1",
     "sass": "^1.62.1",
     "superjson": "^1.12.3",
-    "ua-parser-js": "^1.0.35",
+    "ua-parser-js": "^2.0.0-beta.1",
     "zod": "^3.21.4"
   },
   "devDependencies": {
