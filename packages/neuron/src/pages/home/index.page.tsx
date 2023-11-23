@@ -51,7 +51,7 @@ const Home: NextPage<PageProps> = ({ locale, release }) => {
       </div>
 
       <div className={styles.neuronOverview}>
-        <Image src={ImgNeuronOverview} alt="Neuron Overview" width={1276} height={630} />
+        <Image src={ImgNeuronOverview} alt="Neuron Overview" />
       </div>
 
       <div className={styles.actions}>
