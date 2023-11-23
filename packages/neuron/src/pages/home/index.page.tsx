@@ -130,20 +130,28 @@ const DownloadButton: FC<Partial<ComponentProps<typeof Link>> & { release: Relea
   const [asset, setAsset] = useState<ParsedAsset>()
 
   useEffect(() => {
-    const ua = UAParser(navigator.userAgent)
-    if (ua.cpu.architecture === 'amd64') ua.cpu.architecture = 'x64'
+    void (async () => {
+      const ua = await UAParser(navigator.userAgent).withClientHints()
 
-    let matchedAssets = assets.filter(asset => ua.os.name?.toLowerCase().replaceAll(' ', '') === asset.os.toLowerCase())
-    if (matchedAssets.length === 0) return
-    setAsset(matchedAssets[0])
+      let matchedAssets = assets.filter(
+        asset => ua.os.name?.toLowerCase().replaceAll(' ', '') === asset.os.toLowerCase(),
+      )
+      if (matchedAssets.length === 0) return
+      setAsset(matchedAssets[0])
 
-    matchedAssets = matchedAssets.filter(asset => ['exe', 'dmg', 'appimage'].includes(asset.packageType.toLowerCase()))
-    if (matchedAssets.length === 0) return
-    setAsset(matchedAssets[0])
+      matchedAssets = matchedAssets.filter(asset =>
+        ['exe', 'dmg', 'appimage'].includes(asset.packageType.toLowerCase()),
+      )
+      if (matchedAssets.length === 0) return
+      setAsset(matchedAssets[0])
 
-    matchedAssets = matchedAssets.filter(asset => ua.cpu.architecture?.toLowerCase() === asset.arch.toLowerCase())
-    if (matchedAssets.length === 0) return
-    setAsset(matchedAssets[0])
+      matchedAssets = matchedAssets.filter(asset => {
+        const arch = asset.arch === 'x64' ? 'amd64' : asset.arch
+        return ua.cpu.architecture?.toLowerCase() === arch.toLowerCase()
+      })
+      if (matchedAssets.length === 0) return
+      setAsset(matchedAssets[0])
+    })()
   }, [assets])
 
   return (

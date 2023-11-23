@@ -2337,7 +2337,7 @@ __metadata:
     stylelint-order: ^6.0.3
     superjson: ^1.12.3
     typescript: ^5.1.3
-    ua-parser-js: ^1.0.35
+    ua-parser-js: ^2.0.0-beta.1
     zod: ^3.21.4
   peerDependencies:
     "@octokit/request-error": "*"
@@ -14515,10 +14515,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ua-parser-js@npm:^1.0.35":
-  version: 1.0.35
-  resolution: "ua-parser-js@npm:1.0.35"
-  checksum: 02370d38a0c8b586f2503d1c3bbba5cbc0b97d407282f9023201a99e4c03eae4357a2800fdf50cf80d73ec25c0b0cc5bfbaa03975b0add4043d6e4c86712c9c1
+"ua-parser-js@npm:^2.0.0-beta.1":
+  version: 2.0.0-beta.1
+  resolution: "ua-parser-js@npm:2.0.0-beta.1"
+  checksum: 44f1b3d165d3d555e7aa160e5fb5102922c24595dc453a87186e6954657e3c24b6491156298e87d3a2f3d7d1687ccab9fb3f2df6195863ae3485bc4e42a69023
   languageName: node
   linkType: hard
 
