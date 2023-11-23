@@ -8,7 +8,6 @@ import {
   getIssues,
 } from './github'
 import { createI18nKeyAdder } from './i18n'
-import { unique } from './array'
 import { getPostsViewCount, isKVConfigured } from './kv'
 
 const postSources = ['issues', 'discussions'] as const
@@ -193,58 +192,15 @@ export async function getMenusWithPosts(topMenu?: TopLevelMenu): Promise<TopLeve
   return [mergePostsToMenu(topMenu, await getPosts(topMenu))]
 }
 
-// Currently, the `<!-- PARSE_CSV_TO_MARKDOWN: ${url} -->` syntax is supported here, which replaces it with a markdown table.
-async function handleRawPostBody<T extends Issue | Discussion>(raw: T): Promise<T> {
-  if (raw.body == null) return raw
-  let newBody = raw.body
-
-  const linesNeedParse = Array.from(raw.body?.match(/<!-- PARSE_CSV_TO_MARKDOWN: https:\/\/.*?\.csv -->/g) ?? [])
-  const csvURLs = unique(
-    linesNeedParse.map(wrapperd => wrapperd.replace(/<!-- PARSE_CSV_TO_MARKDOWN: (https:\/\/.*?\.csv) -->/, '$1')),
-  )
-  const csvContents = await Promise.all(csvURLs.map(url => fetch(url).then(res => res.text())))
-  const markdownContents = csvContents.map(content => {
-    content = content.trim()
-
-    // calc columnsDefineStatement
-    let lines = content.split('\n')
-    const columns = (lines[0] ?? '').split(/(?<!\\),/)
-    const columnsDefineStatement = columns.map(() => '--').join(' | ')
-
-    // replace `,` to `|`
-    // The implementation here is not rigorous, for example, it does not consider the case of escaping escape characters,
-    // but most of the time it will not cause problems.
-    content = content
-      .trim()
-      .replaceAll('|', '\\|')
-      .replace(/(?<!\\),/g, '|')
-
-    // insert columnsDefineStatement
-    lines = content.split('\n')
-    lines.splice(1, 0, columnsDefineStatement)
-    content = lines.join('\n')
-
-    return content
-  })
-
-  csvURLs.map((url, idx) => {
-    newBody = newBody.replaceAll(`<!-- PARSE_CSV_TO_MARKDOWN: ${url} -->`, markdownContents[idx] ?? '')
-  })
-
-  return { ...raw, body: newBody }
-}
-
 export async function getPost(source: PostSource, number: number): Promise<Post | null> {
   let post: Post
   switch (source) {
     case 'issues':
-      const issue = await handleRawPostBody(await getIssue(number))
-      post = issueToPost(issue)
+      post = issueToPost(await getIssue(number))
       break
 
     case 'discussions':
-      const discussion = await handleRawPostBody(await getDiscussion(number))
-      post = discussionToPost(discussion)
+      post = discussionToPost(await getDiscussion(number))
       break
   }
 

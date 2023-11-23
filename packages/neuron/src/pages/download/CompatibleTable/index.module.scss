@@ -1,0 +1,81 @@
+/* stylelint-disable no-descending-specificity */
+@import '../../../styles/variables.module';
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+
+  &.head {
+    font-size: 20px;
+  }
+}
+
+.compatibleTable {
+  display: flex;
+  width: 100%;
+  font-size: 16px;
+  background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 24px;
+  border-spacing: 0;
+  backdrop-filter: blur(40px);
+
+  .neuronVersions {
+    display: flex;
+    flex-direction: column;
+
+    .cell {
+      padding: 0 54px;
+
+      &:not(:first-child) {
+        border-top: 1px solid #333;
+      }
+    }
+  }
+
+  .nodeVerions {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.compatibleTableMobile {
+  & + & {
+    margin-top: 40px;
+
+    @media (max-width: $mobileBreakPoint) {
+      margin-top: 24px;
+    }
+  }
+}
+
+.nodeCompatibleTable {
+  display: flex;
+  overflow-x: auto;
+  border-left: 1px solid #333;
+
+  .col {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    .cell {
+      padding: 0 28px;
+      border-top: 1px solid #333;
+    }
+
+    &:first-child {
+      .cell {
+        padding-left: 48px;
+      }
+    }
+
+    &:last-child {
+      .cell {
+        padding-right: 48px;
+      }
+    }
+  }
+}
