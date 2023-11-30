@@ -61,7 +61,16 @@ export const Assets$Desktop: FC<AssetsProps> = ({ assets, ...tableProps }) => {
                 {asset.os.toLowerCase() === 'windows' && <IconWindows />}
                 {asset.os.toLowerCase() === 'macos' && <IconMacOS />}
                 {asset.os.toLowerCase() === 'linux' && <IconLinux />}
-                {asset.os}
+                {asset.os.toLowerCase() === 'windows' ? (
+                  <>
+                    Windows 10+
+                    <Tooltip content="System versions that are no longer officially supported are not recommended and may have compatibility or security issues.">
+                      <IconTips />
+                    </Tooltip>
+                  </>
+                ) : (
+                  asset.os
+                )}
               </div>
             </td>
             <td>{asset.arch}</td>
