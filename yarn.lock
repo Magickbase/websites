@@ -1731,7 +1731,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.1.2":
+"@babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.23.2":
   version: 7.23.2
   resolution: "@babel/runtime@npm:7.23.2"
   dependencies:
@@ -2260,6 +2260,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@magickbase-website/magickbase@workspace:packages/magickbase"
   dependencies:
+    "@radix-ui/react-dialog": 1.0.4
     "@splinetool/react-spline": 2.2.6
     "@splinetool/runtime": 0.9.490
     "@types/node": 20.8.6
@@ -2269,6 +2270,7 @@ __metadata:
     eslint: 8.51.0
     eslint-config-next: 13.5.4
     next: 13.5.4
+    next-i18next: 15.0.0
     react: 18.2.0
     react-dom: 18.2.0
     react-use: 17.4.0
@@ -2891,7 +2893,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-dialog@npm:^1.0.4":
+"@radix-ui/react-dialog@npm:1.0.4, @radix-ui/react-dialog@npm:^1.0.4":
   version: 1.0.4
   resolution: "@radix-ui/react-dialog@npm:1.0.4"
   dependencies:
@@ -3779,6 +3781,16 @@ __metadata:
     "@types/react": "*"
     hoist-non-react-statics: ^3.3.0
   checksum: 2c0778570d9a01d05afabc781b32163f28409bb98f7245c38d5eaf082416fdb73034003f5825eb5e21313044e8d2d9e1f3fe2831e345d3d1b1d20bcd12270719
+  languageName: node
+  linkType: hard
+
+"@types/hoist-non-react-statics@npm:^3.3.4":
+  version: 3.3.5
+  resolution: "@types/hoist-non-react-statics@npm:3.3.5"
+  dependencies:
+    "@types/react": "*"
+    hoist-non-react-statics: ^3.3.0
+  checksum: b645b062a20cce6ab1245ada8274051d8e2e0b2ee5c6bd58215281d0ec6dae2f26631af4e2e7c8abe238cdcee73fcaededc429eef569e70908f82d0cc0ea31d7
   languageName: node
   linkType: hard
 
@@ -8270,6 +8282,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"i18next-fs-backend@npm:^2.2.0":
+  version: 2.3.0
+  resolution: "i18next-fs-backend@npm:2.3.0"
+  checksum: ca7f1679a31ca1404e8e924d1857cbe58d36f945b3e1dc6fda615708da112d92352fc380e4d48533796e4a189a7007aca28cce6c6c5e64911845b8d8c0818516
+  languageName: node
+  linkType: hard
+
 "i18next-parser@npm:^8.7.0":
   version: 8.7.0
   resolution: "i18next-parser@npm:8.7.0"
@@ -10643,6 +10662,24 @@ __metadata:
   version: 0.6.3
   resolution: "negotiator@npm:0.6.3"
   checksum: b8ffeb1e262eff7968fc90a2b6767b04cfd9842582a9d0ece0af7049537266e7b2506dfb1d107a32f06dd849ab2aea834d5830f7f4d0e5cb7d36e1ae55d021d9
+  languageName: node
+  linkType: hard
+
+"next-i18next@npm:15.0.0":
+  version: 15.0.0
+  resolution: "next-i18next@npm:15.0.0"
+  dependencies:
+    "@babel/runtime": ^7.23.2
+    "@types/hoist-non-react-statics": ^3.3.4
+    core-js: ^3
+    hoist-non-react-statics: ^3.3.2
+    i18next-fs-backend: ^2.2.0
+  peerDependencies:
+    i18next: ^23.6.0
+    next: ">= 12.0.0"
+    react: ">= 17.0.2"
+    react-i18next: ^13.3.1
+  checksum: d5a5b29db033e4eaf9147f9fc6abb4997e041b8bf515722202038d682faadccb4255616530e586f528f9707398cadf26efdfddda5f70ef19ea5f14dfe485102e
   languageName: node
   linkType: hard
 

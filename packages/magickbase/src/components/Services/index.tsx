@@ -1,5 +1,4 @@
 import type { FC } from 'react'
-import classnames from 'classnames'
 import neuronBg from './neuron_bg.png';
 import MoreIcon from './more.svg';
 
