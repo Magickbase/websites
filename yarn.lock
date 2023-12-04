@@ -2262,7 +2262,7 @@ __metadata:
   dependencies:
     "@radix-ui/react-dialog": 1.0.4
     "@splinetool/react-spline": 2.2.6
-    "@splinetool/runtime": 0.9.490
+    "@splinetool/runtime": 0.9.516
     "@types/node": 20.8.6
     "@types/react": 18.2.28
     "@types/react-dom": 18.2.13
@@ -2294,6 +2294,8 @@ __metadata:
     "@radix-ui/react-dropdown-menu": ^2.0.5
     "@radix-ui/react-popover": ^1.0.6
     "@radix-ui/react-tooltip": ^1.0.6
+    "@splinetool/react-spline": ^2.2.6
+    "@splinetool/runtime": ^0.9.516
     "@svgr/webpack": ^8.0.1
     "@tanstack/react-query": ^4.29.12
     "@trpc/client": ^10.28.2
@@ -3416,7 +3418,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@splinetool/react-spline@npm:2.2.6":
+"@splinetool/react-spline@npm:2.2.6, @splinetool/react-spline@npm:^2.2.6":
   version: 2.2.6
   resolution: "@splinetool/react-spline@npm:2.2.6"
   dependencies:
@@ -3430,13 +3432,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@splinetool/runtime@npm:0.9.490":
-  version: 0.9.490
-  resolution: "@splinetool/runtime@npm:0.9.490"
+"@splinetool/runtime@npm:0.9.516, @splinetool/runtime@npm:^0.9.516":
+  version: 0.9.516
+  resolution: "@splinetool/runtime@npm:0.9.516"
   dependencies:
     on-change: ^4.0.0
     semver-compare: ^1.0.0
-  checksum: 66fdc1689e05fcf081c3f1562e92e9f8d2f0dda8f842be6ae0486e82b399d4d629ee92a847b23aea5179addf2334d123754472cef1b997c97746bb38fce93ce4
+  checksum: 88dff989b44aeda4faac59b3b69a2406e2ce96dd5608d21d9d3cdc67305ded33140e7d13847ef9ba7493c66e9363a3e87eafd004802cf287ca92ee5ac1b6543a
   languageName: node
   linkType: hard
 

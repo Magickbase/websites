@@ -2,10 +2,12 @@ import { GetStaticProps, type NextPage } from 'next'
 import { Trans, useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image, { StaticImageData } from 'next/image'
-import { ComponentProps, FC, PropsWithChildren, useEffect, useMemo, useState } from 'react'
+import { ComponentProps, FC, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { UAParser } from 'ua-parser-js'
+import Spline from '@splinetool/react-spline'
+import { Application } from '@splinetool/runtime'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import TopShadow from './top-shadow.svg'
@@ -14,9 +16,6 @@ import IconOval from './oval.svg'
 import IconGithub from './github.svg'
 import ImgNeuronOverviewEN from './neuron-overview-en.png'
 import ImgNeuronOverviewZH from './neuron-overview-zh.png'
-import ImgEasy from './easy.png'
-import ImgPrivate from './private.png'
-import ImgReliable from './reliable.png'
 import ImgNeuronLogo from './neuron-logo.png'
 import { ParsedAsset, Release, getAssetsFromNeuronRelease, getLatestRelease } from '../../utils'
 
@@ -29,6 +28,11 @@ const Home: NextPage<PageProps> = ({ locale, release }) => {
   const { t } = useTranslation('home')
 
   const ImgNeuronOverview = getNeuronOverviewImg(locale)
+
+  const initFeatureSpline = useCallback((spline: Application) => {
+    spline.canvas.style.width = ''
+    spline.canvas.style.height = ''
+  }, [])
 
   return (
     <Page className={styles.page} contentWrapper={{ className: styles.contentWrapper }}>
@@ -67,7 +71,12 @@ const Home: NextPage<PageProps> = ({ locale, release }) => {
 
       <div className={styles.features}>
         <div className={styles.feature}>
-          <Image src={ImgEasy} width={400} height={400} alt="Easy CKB wallet concept map" />
+          <Spline
+            className={styles.spline}
+            style={{ width: '', height: '' }}
+            scene="https://prod.spline.design/WulXRsTwZxwaILcy/scene.splinecode"
+            onLoad={initFeatureSpline}
+          />
           <div className={styles.textWrapper}>
             <div className={styles.title}>{t('Easy to use')}</div>
             <div className={styles.description}>
@@ -79,7 +88,12 @@ const Home: NextPage<PageProps> = ({ locale, release }) => {
         </div>
 
         <div className={styles.feature}>
-          <Image src={ImgPrivate} width={400} height={400} alt="Shields with a sci-fi feel" />
+          <Spline
+            className={styles.spline}
+            style={{ width: '', height: '' }}
+            scene="https://prod.spline.design/dODJjWBI8TGyDe3f/scene.splinecode"
+            onLoad={initFeatureSpline}
+          />
           <div className={styles.textWrapper}>
             <div className={styles.title}>{t('Private and Secure')}</div>
             <div className={styles.description}>
@@ -91,7 +105,12 @@ const Home: NextPage<PageProps> = ({ locale, release }) => {
         </div>
 
         <div className={styles.feature}>
-          <Image src={ImgReliable} width={400} height={400} alt="Frosted Glass Textured Statistical Statements" />
+          <Spline
+            className={styles.spline}
+            style={{ width: '', height: '' }}
+            scene="https://prod.spline.design/T6POKwH2p9nWnNm9/scene.splinecode"
+            onLoad={initFeatureSpline}
+          />
           <div className={styles.textWrapper}>
             <div className={styles.title}>{t('Reliable Support')}</div>
             <div className={styles.description}>

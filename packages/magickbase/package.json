@@ -11,7 +11,7 @@
   "dependencies": {
     "@radix-ui/react-dialog": "1.0.4",
     "@splinetool/react-spline": "2.2.6",
-    "@splinetool/runtime": "0.9.490",
+    "@splinetool/runtime": "0.9.516",
     "@types/node": "20.8.6",
     "@types/react": "18.2.28",
     "@types/react-dom": "18.2.13",
