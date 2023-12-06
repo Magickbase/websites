@@ -107,11 +107,7 @@ $desktopHeaderContentHeight: 88px;
   &Content {
     // This approach may not be conducive to understanding and maintenance, but development is quite convenient for now.
     // If maintenance becomes difficult later, it can be changed to control based on JS + CSS variables.
-    // `--scrollbarWidth` is provided by `_app.page.tsx`.
-    --menuIconRightOffset: calc(
-      max(calc((100vw - var(--contentAreaWidth) - var(--scrollbarWidth, 0px)) / 2), var(--contentWrapperPadding)) +
-        var(--scrollbarWidth, 0px)
-    );
+    --menuIconRightOffset: calc(max(calc((100vw - var(--contentAreaWidth)) / 2), var(--contentWrapperPadding)));
 
     position: fixed;
     top: 0;

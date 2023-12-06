@@ -54,7 +54,6 @@ const App: AppType = ({ Component, pageProps }) => {
         <title>{t('Neuron Troubleshooting')}</title>
         <link rel="icon" type="image/svg" href="/favicon.svg" />
         <meta property="og:type" content="website" />
-        <style>{`:root { --scrollbarWidth: ${scrollbarWidth}px }`}</style>
       </Head>
       <main
         // Here as redundancy in server-side rendering.
