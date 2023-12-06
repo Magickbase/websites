@@ -51,10 +51,12 @@
   }
 }
 
+.nodeCompatibleTableWrapper {
+  border-left: 1px solid #333;
+}
+
 .nodeCompatibleTable {
   display: flex;
-  overflow-x: auto;
-  border-left: 1px solid #333;
 
   .col {
     display: flex;

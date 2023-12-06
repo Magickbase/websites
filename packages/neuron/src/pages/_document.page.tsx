@@ -5,9 +5,9 @@ import { KEY_DARK_MODE } from '../services/AppSettings'
 export default class CustomDocument<P> extends Document<P> {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" data-overlayscrollbars-initialize>
         <Head />
-        <body>
+        <body data-overlayscrollbars-initialize>
           <Main />
           <NextScript />
           <Script
