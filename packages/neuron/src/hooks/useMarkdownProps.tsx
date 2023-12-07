@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import clsx from 'clsx'
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { TOCItem } from '../components/TableOfContents'
 import { UpsideDownEffect } from '../components/UpsideDownEffect'
 
@@ -40,10 +41,10 @@ export function useMarkdownProps({
         <img {...tagProps} alt={tagProps.alt ?? 'image'} className={clsx(tagProps.className, imgClass)} />
       ),
       table: ({ node, ...tagProps }) => (
-        // The table is too wide, so we need to wrap it in a container with `overflow: auto`.
-        <div style={{ width: 'min-content', maxWidth: '100%', overflow: 'auto' }}>
+        // The table is too wide, so we need to wrap it in the OverlayScrollbarsComponent.
+        <OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'never' } }}>
           <table {...tagProps} />
-        </div>
+        </OverlayScrollbarsComponent>
       ),
     }),
     [imgClass, supportToc],

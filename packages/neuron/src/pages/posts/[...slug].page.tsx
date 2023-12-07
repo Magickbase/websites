@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import { FC, useMemo } from 'react'
 import { useObservableState } from 'observable-hooks'
 import { useTranslation } from 'react-i18next'
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { TOCContextProvider, TOCItem } from '../../components/TableOfContents'
 import {
   Post,
@@ -87,13 +88,19 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
                 <div className={styles.item}>{post.title}</div>
               </div>
 
-              <div ref={scrollContainerRef} className={clsx(CrawlableContentClassname, styles.postContent)}>
+              <OverlayScrollbarsComponent
+                ref={obj => {
+                  const scrollContainer = obj?.osInstance()?.elements().viewport
+                  scrollContainer && scrollContainerRef(scrollContainer)
+                }}
+                className={clsx(CrawlableContentClassname, styles.postContent)}
+              >
                 <TOCItem id={post.title} titleInTOC={post.title}>
                   <h1 className={styles.title}>{post.title}</h1>
                 </TOCItem>
 
                 <ReactMarkdown {...mdProps}>{post.body ?? ''}</ReactMarkdown>
-              </div>
+              </OverlayScrollbarsComponent>
 
               <TOC className={styles.toc} />
             </div>

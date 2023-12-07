@@ -2,6 +2,7 @@ import { FC } from 'react'
 import * as Accordion from '@radix-ui/react-accordion'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { Post, TopLevelMenu, getPostURL } from '../../../utils'
 import IconArrow from './arrow.svg'
 import styles from './index.module.scss'
@@ -48,17 +49,19 @@ export const ClassifiedPosts: FC<
           </Accordion.Header>
 
           <Accordion.Content className={clsx(styles.accordionContent, postsClass)}>
-            {menu.posts?.map(post => (
-              <LinkWithEffect
-                key={post.key}
-                data-selected={post.key === viewingPost.key}
-                className={clsx(styles.post, postClass)}
-                href={getPostURL(post)}
-                fullWidth
-              >
-                {post.title}
-              </LinkWithEffect>
-            ))}
+            <OverlayScrollbarsComponent style={{ maxHeight: '100%' }}>
+              {menu.posts?.map(post => (
+                <LinkWithEffect
+                  key={post.key}
+                  data-selected={post.key === viewingPost.key}
+                  className={clsx(styles.post, postClass)}
+                  href={getPostURL(post)}
+                  fullWidth
+                >
+                  {post.title}
+                </LinkWithEffect>
+              ))}
+            </OverlayScrollbarsComponent>
           </Accordion.Content>
         </Accordion.Item>
       ))}
