@@ -152,8 +152,19 @@
     align-items: center;
     justify-content: space-between;
 
+    .spline {
+      // Because the canvas is hidden until it finishes loading, we need a placeholder width and height to prevent page jitter.
+      width: 400px;
+      height: 400px;
+
+      canvas {
+        width: 400px;
+        height: 400px;
+      }
+    }
+
     &:nth-child(even) {
-      > img {
+      .spline {
         order: 2;
       }
     }
@@ -180,10 +191,15 @@
       flex-direction: column;
       gap: 24px;
 
-      > img {
+      .spline {
         order: 2;
-        max-width: 300px;
-        height: auto;
+        width: 300px;
+        height: 300px;
+
+        canvas {
+          width: 300px;
+          height: 300px;
+        }
       }
 
       .textWrapper {
