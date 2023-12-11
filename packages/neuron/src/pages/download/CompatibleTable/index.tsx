@@ -1,5 +1,6 @@
 import { ComponentProps, FC } from 'react'
 import clsx from 'clsx'
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import styles from './index.module.scss'
 import { CompatibleData } from '../../../utils'
 import { useIsMobile } from '../../../hooks'
@@ -95,17 +96,22 @@ const NodeCompatibleTable: FC<{
   isCompatible: (neuronVersion: string, nodeVersion: string) => boolean
 }> = ({ neuronVersions, nodeVersions, isCompatible }) => {
   return (
-    <div className={styles.nodeCompatibleTable}>
-      {nodeVersions.map(nodeVer => (
-        <div key={nodeVer} className={styles.col}>
-          <div className={styles.cell}>{nodeVer}</div>
-          {neuronVersions.map(neuronVer => (
-            <div key={neuronVer} className={styles.cell}>
-              {isCompatible(neuronVer, nodeVer) ? <IconRight /> : <IconWrong />}
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
+    <OverlayScrollbarsComponent
+      className={styles.nodeCompatibleTableWrapper}
+      options={{ scrollbars: { autoHide: 'never' } }}
+    >
+      <div className={styles.nodeCompatibleTable}>
+        {nodeVersions.map(nodeVer => (
+          <div key={nodeVer} className={styles.col}>
+            <div className={styles.cell}>{nodeVer}</div>
+            {neuronVersions.map(neuronVer => (
+              <div key={neuronVer} className={styles.cell}>
+                {isCompatible(neuronVer, nodeVer) ? <IconRight /> : <IconWrong />}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </OverlayScrollbarsComponent>
   )
 }

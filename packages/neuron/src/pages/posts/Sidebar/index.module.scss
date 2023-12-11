@@ -48,10 +48,6 @@ $accordionTriggerHeight: 48px;
   }
 
   .posts {
-    &[data-state='open'] {
-      overflow: auto;
-    }
-
     .post {
       display: flex;
       align-items: center;

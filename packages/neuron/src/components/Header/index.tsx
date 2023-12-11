@@ -4,6 +4,7 @@ import Link from 'next/link'
 import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import styles from './index.module.scss'
 import IconLogo from './logo.svg'
 import IconGithub from './github.svg'
@@ -98,43 +99,45 @@ const MenuDialog: FC = () => {
             </Dialog.Close>
           </div>
 
-          <div className={styles.content}>
-            <LinkWithEffect className={styles.title} href="/">
-              {t('Home')}
-            </LinkWithEffect>
+          <OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'never' } }}>
+            <div className={styles.content}>
+              <LinkWithEffect className={styles.title} href="/">
+                {t('Home')}
+              </LinkWithEffect>
 
-            <div className={styles.title}>{t('Services')}</div>
-            <div className={styles.links}>
-              <LinkWithEffect href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</LinkWithEffect>
-              <span title="Coming soon">{t('CKB Explorer')}</span>
-              <span title="Coming soon">{t('Godwoke Explorer')}</span>
-              <span title="Coming soon">{t('Axon Explorer')}</span>
-              <span title="Coming soon">{t('Kuai')}</span>
+              <div className={styles.title}>{t('Services')}</div>
+              <div className={styles.links}>
+                <LinkWithEffect href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</LinkWithEffect>
+                <span title="Coming soon">{t('CKB Explorer')}</span>
+                <span title="Coming soon">{t('Godwoke Explorer')}</span>
+                <span title="Coming soon">{t('Axon Explorer')}</span>
+                <span title="Coming soon">{t('Kuai')}</span>
+              </div>
+
+              <LinkWithEffect
+                className={styles.title}
+                href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes"
+              >
+                {t('Public Node')}
+              </LinkWithEffect>
+
+              <div className={styles.title}>{t('Language')}</div>
+              <div className={clsx(styles.links, styles.languages)}>
+                {languages.map(language => (
+                  <LinkWithEffect
+                    key={language.name}
+                    className={clsx(styles.languageItem, {
+                      [styles.selected ?? '']: language.localeName === router.locale,
+                    })}
+                    href={{ pathname, query }}
+                    locale={language.localeName}
+                  >
+                    {language.name}
+                  </LinkWithEffect>
+                ))}
+              </div>
             </div>
-
-            <LinkWithEffect
-              className={styles.title}
-              href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes"
-            >
-              {t('Public Node')}
-            </LinkWithEffect>
-
-            <div className={styles.title}>{t('Language')}</div>
-            <div className={clsx(styles.links, styles.languages)}>
-              {languages.map(language => (
-                <LinkWithEffect
-                  key={language.name}
-                  className={clsx(styles.languageItem, {
-                    [styles.selected ?? '']: language.localeName === router.locale,
-                  })}
-                  href={{ pathname, query }}
-                  locale={language.localeName}
-                >
-                  {language.name}
-                </LinkWithEffect>
-              ))}
-            </div>
-          </div>
+          </OverlayScrollbarsComponent>
 
           <Contacts className={styles.contacts} />
         </Dialog.Content>
