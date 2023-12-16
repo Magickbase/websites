@@ -1,19 +1,35 @@
 .timeline {
   position: relative;
-  &::after {
-    content: " ";
-    position: absolute;
-    width: 1px;
-    left: 0;
-    top: 8px;
-    bottom: 0;
-    background-color: #fff;
-  }
 
   .item {
     padding-left: 24px;
     padding-bottom: 64px;
     position: relative;
+    transition: all .3s;
+    color: #646464;
+  
+    &.active {
+      color: #fff;
+
+      &::before {
+        background: linear-gradient(180deg, #fff, #000);
+      }
+      &::after {
+        background: #fff;
+      }
+    }
+
+
+    &::before {
+      content: " ";
+      position: absolute;
+      width: 1px;
+      left: 0;
+      top: 8px;
+      bottom: -8px;
+      transition: all .3s;
+      background: #646464;
+    }
     &::after {
       content: " ";
       width: 12px;
@@ -22,7 +38,8 @@
       top: 5px;
       left: -6px;
       border-radius: 999px;
-      background-color: #fff;
+      transition: all .3s;
+      background-color: #646464;
     }
     .index {
       font-size: 20px;
@@ -44,5 +61,8 @@
 }
 
 .splineWrapper {
-  pointer-events: none;
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }

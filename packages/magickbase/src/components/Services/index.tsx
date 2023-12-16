@@ -1,26 +1,75 @@
-import type { FC } from 'react'
-import neuronBg from './neuron_bg.png';
-import MoreIcon from './more.svg';
+import type { FC, ComponentProps } from 'react'
+import classnames from 'classnames'
+import Link from 'next/link'
+import CkbExplorerLogo from './ckbExplorerLogo.svg'
+import GodwokenLogo from './godwokenLogo.svg'
+import KuaiLogo from './kuaiLogo.svg'
+import NeuronLogo from './neuronLogo.svg'
+import UnknownLogo from './unknownLogo.svg'
 
-export const Services: FC = () => (
-  <div className='container mx-auto'>
-    <div className='flex items-start aspect-video bg-contain bg-no-repeat bg-center' style={{ backgroundImage: `url(${neuronBg.src})` }}>
+interface ServiceItemProps extends ComponentProps<'div'> {
+  title: string
+  description: string
+}
 
-      <div className='backdrop-blur-xl border-[1px] border-[#ffffff66] rounded-3xl mt-32 mr-32 ml-auto w-[520px] px-10 py-12'>
-        <h1 className='text-3xl font-bold'>Neuron</h1>
-        <div className='flex items-center'>
-          <div className='text-xl'>CKB desktop wallet</div>
-          <button className='flex items-center ml-auto border-[1px] border-solid border-white rounded-xl py-4 px-6'>More <MoreIcon className='ml-2' /></button>
-        </div>
-      </div>
+const ServiceItem: FC<ServiceItemProps> = ({ title, description, className, ...props }) => {
+  return (
+    <div
+      className={classnames(
+        'hover:scale-110 transition-all duration-200 select-none cursor-pointer',
+        'text-center flex flex-col items-center gap-4 p-8 rounded-lg',
+        'bg-gradient-to-b from-[#36363665] to-[#1d1d1d66]',
+        'h-full border border-solid border-[#ffffff14]',
+        className,
+      )}
+      {...props}
+    >
+      {props.children}
+      <div className="text-[#f5f5f5] text-2xl mt-auto">{title}</div>
+      <div className="text-[#f5f5f5]">{description}</div>
     </div>
+  )
+}
 
-    <div className='bg-gradient-to-b from-[#36363699] to-[#1D1D1D99] rounded-full flex justify-between px-4 py-6'>
-      <div className='px-16'>Neuron</div>
-      <div className='px-16'>CKB Explorer</div>
-      <div className='px-16'>Godwoken Explorer</div>
-      <div className='px-16'>Axon Explorer</div>
-      <div className='px-16'>Kuai</div>
+export const Services: FC<ComponentProps<'div'>> = ({ className, ...props }) => (
+  <div className={classnames('relative container mx-auto pt-16', className)} {...props}>
+    <div className="text-center text-3xl mb-16">Services</div>
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12">
+      <Link href="https://docs.nervos.org/docs/basics/guides/crypto%20wallets/neuron">
+        <ServiceItem title="Neuron" description="CKB desktop wallet">
+          <NeuronLogo />
+        </ServiceItem>
+      </Link>
+
+      <Link href="https://explorer.nervos.org">
+        <ServiceItem title="CKB Explorer" description="CKB on-chain data query">
+          <CkbExplorerLogo />
+        </ServiceItem>
+      </Link>
+
+      <Link href="https://v1.gwscan.com/">
+        <ServiceItem title="Godwoken Explorer" description="Godwoken on-chain data query">
+          <GodwokenLogo />
+        </ServiceItem>
+      </Link>
+
+      <Link href="https://github.com/Magickbase/blockscan">
+        <ServiceItem title="Axon Explorer" description="Axon on-chain data query">
+          <UnknownLogo />
+        </ServiceItem>
+      </Link>
+
+      <Link href="https://lumos-website.vercel.app/">
+        <ServiceItem title="Lumos" description="Developer tools to help build Nervos DAPPs">
+          <UnknownLogo />
+        </ServiceItem>
+      </Link>
+
+      <Link href="https://github.com/ckb-js/kuai">
+        <ServiceItem title="Kuai" description="Developer tools to help build Nervos DAPPs">
+          <KuaiLogo />
+        </ServiceItem>
+      </Link>
     </div>
   </div>
 )
