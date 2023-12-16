@@ -1,7 +1,20 @@
-import type { FC } from 'react'
+import {
+  type PropsWithChildren,
+  type ComponentProps,
+  type FC,
+  useRef,
+  Suspense,
+  lazy,
+  useState,
+  useEffect,
+} from 'react'
 import classnames from 'classnames'
+import type { SPEObject } from '@splinetool/runtime'
 import Spline from '@splinetool/react-spline'
+import useSpring from 'react-use/lib/useSpring'
+import { useInView, IntersectionOptions } from 'react-intersection-observer'
 import styles from './styles.module.scss'
+import placeHolder from './placeholder.png'
 
 const timelineItms = [
   {
@@ -41,37 +54,108 @@ const timelineItms = [
         </p>
         <p>
           At Magickbase, we believe in the power of community, collaboration, and inclusivity. We&apos;re a team of
-          passionate developers who are committed to making a difference in the world, and we&apos;re always looking for ways
-          to learn from each other and grow together.
+          passionate developers who are committed to making a difference in the world, and we&apos;re always looking for
+          ways to learn from each other and grow together.
         </p>
       </>
     ),
   },
 ]
 
-export const AboutUs: FC = () => (
-  <div className={classnames(`container mx-auto`)}>
-    <h1 className="text-3xl pl-6 mb-16">About us</h1>
-    <div className="flex">
-      <div className={classnames(styles.timeline, 'flex-1')}>
-        {timelineItms.map((item, index) => (
-          <div key={index} className={styles.item}>
-            <div className={styles.index}>{(index + 1).toString().padStart(2, "0")}</div>
-            <h1>{item.title}</h1>
-            {item.description}
-          </div>
-        ))}
-      </div>
+interface TimelineItemProps extends ComponentProps<'div'> {
+  intersectionOptions?: IntersectionOptions
+}
 
-      <div className="min-h-[400px] min-w-[400px]">
+export const TimelineItem: FC<PropsWithChildren<TimelineItemProps>> = ({
+  children,
+  className,
+  intersectionOptions,
+  ...props
+}) => {
+  const { ref, inView } = useInView({ threshold: 0.2, initialInView: true, ...intersectionOptions })
+
+  return (
+    <div
+      ref={ref}
+      className={classnames(styles.item, className, 'snap-always', {
+        [styles.active]: inView,
+      })}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
+
+interface AnimationProps {
+  rotationX: number
+}
+
+const AboutUsAnimation: FC<AnimationProps> = ({ rotationX }) => {
+  const rotationXValue = useSpring(rotationX, 0, 5)
+  const [loaded, setLoaded] = useState(false)
+  const splineObj = useRef<SPEObject>()
+
+  useEffect(() => {
+    if (!splineObj || !splineObj.current) return
+    splineObj.current.rotation.x = rotationXValue
+  }, [rotationXValue, splineObj])
+
+  return (
+    <>
+      {!loaded && (
+        <div
+          className="h-full w-full z-[-2] absolute bg-no-repeat bg-center"
+          style={{ backgroundImage: `url(${placeHolder.src})` }}
+        />
+      )}
+      <Suspense fallback={<></>}>
         <Spline
-          className={styles.splineWrapper}
-          scene="https://prod.spline.design/5GlLJjUAkA5U3kVP/scene.splinecode"
+          className={classnames('pointer-events-none', styles.splineWrapper)}
+          scene="https://prod.spline.design/F0-DxpS2rOYrCSe2/scene.splinecode"
           onLoad={app => {
-            console.log(app)
+            splineObj.current = app.findObjectByName('旋转')
+            console.log(splineObj.current?.rotation)
+            setLoaded(true)
           }}
         />
+      </Suspense>
+    </>
+  )
+}
+
+export const AboutUs: FC<ComponentProps<'div'>> = () => {
+  const [rotationX, setRotationValue] = useState(-Math.PI)
+
+  return (
+    <div className={classnames(`container mx-auto`)}>
+      <h1 className="text-3xl pl-6 mt-16 mb-16 snap-always snap-start scroll-mt-16">About us</h1>
+      <div className="flex">
+        <div className={classnames(styles.timeline, 'flex-1 ml-3')}>
+          {timelineItms.map((item, index) => (
+            <TimelineItem
+              className={classnames('h-[calc(100vh-4em)]', { ['snap-start scroll-mt-16']: index !== 0 })}
+              key={index}
+              intersectionOptions={{
+                onChange: inView => {
+                  if (!inView) {
+                    return
+                  }
+
+                  setRotationValue(-Math.PI + index * Math.PI)
+                },
+              }}
+            >
+              <div className={styles.index}>{(index + 1).toString().padStart(2, '0')}</div>
+              <h1>{item.title}</h1>
+              {item.description}
+            </TimelineItem>
+          ))}
+        </div>
+        <div className={classnames('h-[440px] w-[440px] right-0 sticky top-[calc(50vh-220px)]')}>
+          <AboutUsAnimation rotationX={rotationX}/>
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
