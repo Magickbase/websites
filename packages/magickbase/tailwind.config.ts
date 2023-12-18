@@ -8,6 +8,9 @@ const config: Config = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      padding: '16px',
+    },
   },
   plugins: [],
 }

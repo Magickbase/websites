@@ -12,7 +12,7 @@ export default function Home() {
       <Branding className='snap-always snap-center'/>
       <AboutUs />
       <Services className='min-h-screen snap-always snap-center'/>
-      <ContactUs className="h-screen snap-always snap-center"/>
+      <ContactUs className="min-h-screen snap-always snap-center"/>
       <Footer className="snap-always snap-center"/>
     </>
   )
