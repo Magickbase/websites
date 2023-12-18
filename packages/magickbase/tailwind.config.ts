@@ -9,7 +9,7 @@ const config: Config = {
   ],
   theme: {
     container: {
-      padding: '16px',
+      padding: '24px',
     },
   },
   plugins: [],

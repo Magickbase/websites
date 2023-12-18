@@ -129,12 +129,12 @@ export const AboutUs: FC<ComponentProps<'div'>> = () => {
 
   return (
     <div className={classnames(`container mx-auto`)}>
-      <h1 className="text-3xl pl-6 mt-16 mb-8 md:mb-16 snap-always snap-start scroll-mt-16">About us</h1>
+      <h1 className="text-3xl pl-6 mt-16 mb-8 md:mb-16 snap-always snap-start scroll-mt-24">About us</h1>
       <div className="flex flex-col md:flex-row">
         <div className={classnames(styles.timeline, 'flex-1 ml-3')}>
           {timelineItms.map((item, index) => (
             <TimelineItem
-              className={classnames('h-[calc(100vh-4em)] [&>p]:mb-4 md:[&>p]:mb-8', { ['snap-start scroll-mt-16']: index !== 0 })}
+              className={classnames('h-[calc(100vh-4em)] [&>p]:mb-4 md:[&>p]:mb-8', { ['snap-start scroll-mt-24']: index !== 0 })}
               key={index}
               intersectionOptions={{
                 onChange: inView => {
@@ -152,7 +152,7 @@ export const AboutUs: FC<ComponentProps<'div'>> = () => {
             </TimelineItem>
           ))}
         </div>
-        <div className={classnames('self-center h-40 w-40 right-0 sticky bottom-4 md:h-[440px] md:w-[440px] md:right-0 md:bottom-[calc(50vh-220px)]')}>
+        <div className={classnames('self-center h-40 w-40 right-0 sticky bottom-4 md:h-[440px] md:w-[440px] md:top-[calc(50vh-220px)]')}>
           <AboutUsAnimation rotationX={rotationX}/>
         </div>
       </div>

@@ -7,7 +7,7 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
   <div className={classnames(`relative overflow-hidden`, className)} {...props}>
     <div className="container mx-auto py-16 md:py-32">
       <div className="flex flex-col md:flex-row items-center justify-center">
-        <div className="h-60 w-60 md:h-80 md:w-80 md:mr-16">
+        <div className="h-48 w-48 mb-12 md:mb-0 md:h-80 md:w-80 md:mr-16">
           <Spline
             className={classnames("flex items-start justify-center", styles.splineWrapper)}
             scene="https://prod.spline.design/zLWBh10boGPlA9k1/scene.splinecode"
@@ -15,8 +15,8 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
         </div>
 
         <div className="flex flex-col flex-1 z-10 items-center md:items-start md:max-w-[50%]">
-          <h1 className="text-3xl mb-8">Contact us</h1>
-          <p className="text-xl mb-8 text-center md:text-start">
+          <h1 className="text-3xl mb-6 md:mb-8">Contact us</h1>
+          <p className="text-xl mb-8 text-[#999999] leading-8 text-center md:text-start">
             Magickbase consistently adheres to the spirit of open source mutual benefit, and welcomes users to
             participate in the construction of the product and learn from each other to grow together.
           </p>
