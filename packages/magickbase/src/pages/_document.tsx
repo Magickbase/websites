@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="color-scheme" content="light only" />
         </Head>
-        <body>
+        <body className='h-screen relative snap-y snap-mandatory overflow-x-hidden overflow-y-scroll'>
           <Main />
           <NextScript />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js" async></script>

@@ -1,4 +1,3 @@
-'use client'
 import { ComponentProps, FC } from 'react'
 import classnames from 'classnames'
 import { useTranslation } from 'react-i18next'
@@ -7,7 +6,6 @@ import IconFullLogo from './full-logo.svg'
 import { Contacts } from '../Contacts'
 import { useIsMobile } from '../../hooks'
 import { LinkWithEffect } from '../UpsideDownEffect'
-// import { api } from '../../utils'
 
 export type FooterProps = ComponentProps<'div'>
 
@@ -15,13 +13,6 @@ export const Footer: FC<FooterProps> = props => {
   const { t } = useTranslation('common')
   const isMobile = useIsMobile()
 
-  // const aggregateStateQuery = api.uptime.aggregateState.useQuery()
-  // const serviceStateText =
-  //   aggregateStateQuery.data === 'operational'
-  //     ? t('All services are online')
-  //     : aggregateStateQuery.data === 'downtime' || aggregateStateQuery.data === 'degraded'
-  //     ? t('Some services are offline')
-  //     : t('Services status loading...')
   return (
     <div {...props} className={classnames(styles.footer, props.className)}>
       <div className={classnames("container", styles.content)}>
@@ -39,11 +30,19 @@ export const Footer: FC<FooterProps> = props => {
               <LinkWithEffect href="https://docs.nervos.org/docs/basics/guides/crypto%20wallets/neuron">
                 {t('Neuron Wallet')}
               </LinkWithEffect>
-              <LinkWithEffect href="https://explorer.nervos.org/">{t('CKB Explorer')}</LinkWithEffect>
-              <LinkWithEffect href="https://v1.gwscan.com/">{t('Godwoke Explorer')}</LinkWithEffect>
-              <LinkWithEffect href="https://github.com/Magickbase/blockscan">{t('Axon Explorer')}</LinkWithEffect>
-              <LinkWithEffect href="https://github.com/ckb-js/kuai">{t('Kuai')}</LinkWithEffect>
-              <LinkWithEffect href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes">
+              <LinkWithEffect href="https://explorer.nervos.org/" target="_blank">
+                {t('CKB Explorer')}
+              </LinkWithEffect>
+              <LinkWithEffect href="https://v1.gwscan.com/" target="_blank">
+                {t('Godwoke Explorer')}
+              </LinkWithEffect>
+              <LinkWithEffect href="https://github.com/Magickbase/blockscan" target="_blank">
+                {t('Axon Explorer')}
+              </LinkWithEffect>
+              <LinkWithEffect href="https://github.com/ckb-js/kuai" target="_blank">
+                {t('Kuai')}
+              </LinkWithEffect>
+              <LinkWithEffect href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes" target="_blank">
                 {t('Public Node')}
               </LinkWithEffect>
             </div>
