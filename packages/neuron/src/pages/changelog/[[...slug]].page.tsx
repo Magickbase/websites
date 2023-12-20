@@ -10,7 +10,7 @@ import { Release, getReleases, range } from '../../utils'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import ImgNeuronLogo from './neuron-logo.png'
-import { useMarkdownProps } from '../../hooks'
+import { LinkComponentProps, useMarkdownProps } from '../../hooks'
 import IconTop from './top.svg'
 import IconMore from './more.svg'
 import { LinkWithEffect } from '../../components/UpsideDownEffect'
@@ -26,7 +26,17 @@ interface PageProps {
 const Changelog: NextPage<PageProps> = ({ releases, page, maxPage }) => {
   const { t } = useTranslation('changelog')
 
-  const mdProps = useMarkdownProps({ supportToc: false, imgClass: styles.img, linkClass: styles.link })
+  const disableLinkEffect = useCallback(
+    // Apply the effect only to text-based links to avoid affecting elements like images.
+    ({ children }: LinkComponentProps) => children.some(child => typeof child !== 'string'),
+    [],
+  )
+  const mdProps = useMarkdownProps({
+    supportToc: false,
+    disableLinkEffect,
+    imgClass: styles.img,
+    linkClass: styles.link,
+  })
 
   const gotoTop = useCallback(() => scrollTo({ top: 0, behavior: 'smooth' }), [])
 

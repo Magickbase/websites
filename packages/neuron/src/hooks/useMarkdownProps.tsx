@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentProps, useMemo } from 'react'
+import { ComponentProps, ComponentPropsWithoutRef, ComponentType, useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { HeadingProps } from 'react-markdown/lib/ast-to-react'
+import { HeadingProps, ReactMarkdownProps } from 'react-markdown/lib/ast-to-react'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
@@ -11,6 +11,7 @@ import { TOCItem } from '../components/TableOfContents'
 import { UpsideDownEffect } from '../components/UpsideDownEffect'
 
 type MarkdownProps = Omit<ComponentProps<typeof ReactMarkdown>, 'children'>
+export type LinkComponentProps = ComponentPropsWithoutRef<'a'> & ReactMarkdownProps
 
 export function useMarkdownProps({
   supportToc = true,
@@ -21,7 +22,7 @@ export function useMarkdownProps({
   supportToc?: boolean
   imgClass?: string
   linkClass?: string
-  disableLinkEffect?: boolean
+  disableLinkEffect?: boolean | ((props: LinkComponentProps) => boolean)
 }): MarkdownProps {
   const components: MarkdownProps['components'] = useMemo(
     () => ({
@@ -34,11 +35,17 @@ export function useMarkdownProps({
         h6: wrapHeadingWithTOCItem('h6'),
       }),
 
-      a: ({ node, children, ...tagProps }) => (
-        <a {...tagProps} className={clsx(tagProps.className, linkClass)} target="_blank" rel="noopener noreferrer">
-          {disableLinkEffect ? children : <UpsideDownEffect>{children}</UpsideDownEffect>}
-        </a>
-      ),
+      a: (props: LinkComponentProps) => {
+        const { node, children, ...tagProps } = props
+        const finalDisableLinkEffect =
+          typeof disableLinkEffect === 'function' ? disableLinkEffect(props) : disableLinkEffect
+
+        return (
+          <a {...tagProps} className={clsx(tagProps.className, linkClass)} target="_blank" rel="noopener noreferrer">
+            {finalDisableLinkEffect ? children : <UpsideDownEffect>{children}</UpsideDownEffect>}
+          </a>
+        )
+      },
       img: ({ node, ...tagProps }) => (
         // Expectedly, all the links are external (content from GitHub), so there is no need to use next/image.
         // eslint-disable-next-line @next/next/no-img-element
