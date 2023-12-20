@@ -32,40 +32,41 @@ const Changelog: NextPage<PageProps> = ({ releases, page, maxPage }) => {
 
   return (
     <Page className={styles.page} contentWrapper={{ className: styles.contentWrapper }}>
-      <div className={styles.top}>
-        <div className={styles.neuron}>
-          <Image src={ImgNeuronLogo} alt="Neuron Logo" width={44} height={44} />
-          <span className={styles.name}>Neuron</span>
+      <div className={styles.layout}>
+        <div className={styles.top}>
+          <div className={styles.neuron}>
+            <Image src={ImgNeuronLogo} alt="Neuron Logo" width={44} height={44} />
+            <span className={styles.name}>Neuron</span>
+          </div>
+
+          <div className={styles.text1}>{t('Changelog')}</div>
+
+          <div className={styles.text2}>
+            <Trans
+              ns="changelog"
+              i18nKey="Neuron wallet new features and updates summary, join <link1>Github</link1> to learn more about the project progress."
+              components={{
+                link1: (
+                  <LinkWithEffect
+                    href="https://github.com/nervosnetwork/neuron"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  />
+                ),
+              }}
+            />
+          </div>
         </div>
 
-        <div className={styles.text1}>{t('Changelog')}</div>
-
-        <div className={styles.text2}>
-          <Trans
-            ns="changelog"
-            i18nKey="Neuron wallet new features and updates summary, join <link1>Github</link1> to learn more about the project progress."
-            components={{
-              link1: (
-                <LinkWithEffect
-                  href="https://github.com/nervosnetwork/neuron"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                />
-              ),
-            }}
-          />
-        </div>
-      </div>
-
-      <div className={styles.releases}>
         {/* TODO: If we were to manually parse the required content from the release here, it would be too complex and not robust,
         so let's implement a simple solution for now and have the neuron team provide a file specifically for reading later. */}
         {releases.map((release, idx) => (
           <Fragment key={release.id}>
-            <div className={styles.left}>
+            <div className={styles.releaseVersion}>
               {`${release.tag_name.replace('v', '')} (${release.published_at?.split('T')[0] ?? ''})`}
             </div>
-            <div className={styles.right}>
+
+            <div className={styles.releaseDescription}>
               <ReactMarkdown {...mdProps}>{release.body?.replace(/^#[^#]*?\(.*?\)\s+/, '') ?? ''}</ReactMarkdown>
 
               {idx === releases.length - 1 && (

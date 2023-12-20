@@ -63,14 +63,18 @@
   }
 }
 
-.releases {
+.layout {
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 32px 0;
-  margin-top: 56px;
+  margin-top: 64px;
 
-  .left {
-    flex-shrink: 0;
+  .top {
+    grid-column: 2;
+    padding-bottom: 24px;
+  }
+
+  .releaseVersion {
     padding-top: 48px;
     padding-right: 40px;
     font-weight: 600;
@@ -78,7 +82,7 @@
     border-top: 1px solid #333;
   }
 
-  .right {
+  .releaseDescription {
     min-width: 0;
     padding-top: 48px;
     word-break: break-word;
@@ -104,9 +108,14 @@
   @media (max-width: $mobileBreakPoint) {
     grid-template-columns: 1fr;
     gap: 24px;
-    margin-top: 24px;
+    margin-top: 16px;
 
-    .left {
+    .top {
+      grid-column: 1;
+      padding-bottom: 0;
+    }
+
+    .releaseVersion {
       padding-top: 32px;
       padding-right: 0;
       color: #999;
@@ -114,7 +123,7 @@
       font-size: 16px;
     }
 
-    .right {
+    .releaseDescription {
       padding-top: 0;
       border-top: 0;
     }
