@@ -69,6 +69,8 @@
   gap: 32px 0;
   margin-top: 64px;
 
+  --lineHeight: 38px;
+
   .top {
     grid-column: 2;
     padding-bottom: 24px;
@@ -79,6 +81,7 @@
     padding-right: 40px;
     font-weight: 600;
     font-size: 18px;
+    line-height: var(--lineHeight);
     border-top: 1px solid #333;
   }
 
@@ -92,8 +95,75 @@
       margin-top: 0;
     }
 
+    p,
+    li,
+    h2,
+    h3,
+    h4 {
+      line-height: var(--lineHeight);
+    }
+
+    p,
+    ul {
+      margin: 0;
+    }
+
+    ul {
+      padding: 0;
+      list-style-type: none;
+    }
+
+    h2,
+    h3,
+    h4 {
+      margin: 24px 0 8px;
+      font-weight: 400;
+      font-size: 24px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    hr {
+      margin: 24px 0;
+      border: 0;
+      border-bottom: 1px solid #333;
+    }
+
+    hr + * {
+      margin-top: 0;
+    }
+
     table {
       word-break: initial;
+
+      th,
+      td {
+        padding: 4px 16px 4px 0;
+      }
+
+      th {
+        padding-bottom: 12px;
+      }
+
+      th:not(:last-child) {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: $mobileBreakPoint) {
+      h2,
+      h3,
+      h4 {
+        margin: 32px 0 16px;
+        font-size: 22px;
+      }
+
+      // Writing it again here is to address the issue of insufficient specificity caused by the media selector.
+      hr + * {
+        margin-top: 0;
+      }
     }
   }
 
@@ -109,6 +179,8 @@
     grid-template-columns: 1fr;
     gap: 24px;
     margin-top: 16px;
+
+    --lineHeight: 32px;
 
     .top {
       grid-column: 1;
