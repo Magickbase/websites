@@ -58,7 +58,12 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
                 {firstPostInMenu && (
                   <UpsideDownEffect content={t('More')}>
                     {(hoverableContainerClass, contentWithEffect) => (
-                      <Link className={hoverableContainerClass} href={getPostURL(firstPostInMenu)}>
+                      <Link
+                        className={hoverableContainerClass}
+                        href={getPostURL(firstPostInMenu)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <div className={styles.more}>
                           {contentWithEffect} <IconMore />
                         </div>
@@ -70,7 +75,14 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
 
               <div className={styles.posts}>
                 {menu.posts?.map(post => (
-                  <LinkWithEffect key={post.key} className={styles.post} href={getPostURL(post)} fullWidth>
+                  <LinkWithEffect
+                    key={post.key}
+                    className={styles.post}
+                    href={getPostURL(post)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    fullWidth
+                  >
                     {post.title}
                   </LinkWithEffect>
                 ))}
