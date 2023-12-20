@@ -91,14 +91,14 @@
     table {
       word-break: initial;
     }
+  }
 
-    a {
-      color: #00c891;
-    }
+  .img {
+    max-width: 100%;
+  }
 
-    img {
-      max-width: 100%;
-    }
+  .link {
+    color: #00c891;
   }
 
   @media (max-width: $mobileBreakPoint) {

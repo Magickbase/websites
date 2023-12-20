@@ -26,7 +26,7 @@ interface PageProps {
 const Changelog: NextPage<PageProps> = ({ releases, page, maxPage }) => {
   const { t } = useTranslation('changelog')
 
-  const mdProps = useMarkdownProps({ supportToc: false, imgClass: styles.img })
+  const mdProps = useMarkdownProps({ supportToc: false, imgClass: styles.img, linkClass: styles.link })
 
   const gotoTop = useCallback(() => scrollTo({ top: 0, behavior: 'smooth' }), [])
 

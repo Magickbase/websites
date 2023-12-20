@@ -15,9 +15,13 @@ type MarkdownProps = Omit<ComponentProps<typeof ReactMarkdown>, 'children'>
 export function useMarkdownProps({
   supportToc = true,
   imgClass,
+  linkClass,
+  disableLinkEffect,
 }: {
   supportToc?: boolean
   imgClass?: string
+  linkClass?: string
+  disableLinkEffect?: boolean
 }): MarkdownProps {
   const components: MarkdownProps['components'] = useMemo(
     () => ({
@@ -31,14 +35,14 @@ export function useMarkdownProps({
       }),
 
       a: ({ node, children, ...tagProps }) => (
-        <a {...tagProps} target="_blank" rel="noopener noreferrer">
-          <UpsideDownEffect>{children}</UpsideDownEffect>
+        <a {...tagProps} className={clsx(tagProps.className, linkClass)} target="_blank" rel="noopener noreferrer">
+          {disableLinkEffect ? children : <UpsideDownEffect>{children}</UpsideDownEffect>}
         </a>
       ),
       img: ({ node, ...tagProps }) => (
         // Expectedly, all the links are external (content from GitHub), so there is no need to use next/image.
         // eslint-disable-next-line @next/next/no-img-element
-        <img {...tagProps} alt={tagProps.alt ?? 'image'} className={clsx(tagProps.className, imgClass)} />
+        <img {...tagProps} className={clsx(tagProps.className, imgClass)} alt={tagProps.alt ?? 'image'} />
       ),
       table: ({ node, ...tagProps }) => (
         // The table is too wide, so we need to wrap it in the OverlayScrollbarsComponent.
@@ -47,7 +51,7 @@ export function useMarkdownProps({
         </OverlayScrollbarsComponent>
       ),
     }),
-    [imgClass, supportToc],
+    [disableLinkEffect, imgClass, linkClass, supportToc],
   )
 
   const remarkPlugins = useMemo(() => [remarkGfm], [])
