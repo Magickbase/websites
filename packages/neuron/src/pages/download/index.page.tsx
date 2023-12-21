@@ -29,6 +29,12 @@ const Download: NextPage<PageProps> = ({ release, compatibleData }) => {
 
   const assets = useMemo(() => (release ? getAssetsFromNeuronRelease(release) : []), [release])
 
+  const versionComp = (
+    <div className={styles.version}>
+      {t('Current Version')} {release?.tag_name}
+    </div>
+  )
+
   return (
     <Page className={styles.page} contentWrapper={{ className: styles.contentWrapper }}>
       <div className={styles.top}>
@@ -40,11 +46,7 @@ const Download: NextPage<PageProps> = ({ release, compatibleData }) => {
 
           <div className={styles.text1}>{t('Download Neuron')}</div>
 
-          {!isMobile && (
-            <div className={styles.version}>
-              {t('Current Version')} {release?.tag_name}
-            </div>
-          )}
+          {!isMobile && versionComp}
         </div>
 
         <div className={styles.right}>
@@ -52,11 +54,7 @@ const Download: NextPage<PageProps> = ({ release, compatibleData }) => {
         </div>
       </div>
 
-      {isMobile && (
-        <div className={styles.version}>
-          {t('Current Version')} {release?.tag_name}
-        </div>
-      )}
+      {isMobile && versionComp}
 
       <Assets className={styles.assets} assets={assets} />
 
