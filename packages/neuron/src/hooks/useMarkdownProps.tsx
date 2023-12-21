@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentProps, ComponentPropsWithoutRef, ComponentType, useMemo } from 'react'
+import { ComponentProps, ComponentPropsWithoutRef, useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { HeadingProps, ReactMarkdownProps } from 'react-markdown/lib/ast-to-react'
 import remarkGfm from 'remark-gfm'
@@ -67,14 +67,14 @@ export function useMarkdownProps({
   return { remarkPlugins, rehypePlugins, components }
 }
 
-function wrapHeadingWithTOCItem(HeadingTag: string) {
-  return function tagWithTOCItem({ node, ...tagProps }: HeadingProps) {
+function wrapHeadingWithTOCItem(HeadingTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6') {
+  return function tagWithTOCItem({ node, sourcePosition, index, siblingCount, ...tagProps }: HeadingProps) {
     const content = tagProps.children[0]
     if (typeof content !== 'string') return <HeadingTag {...tagProps} />
 
     return (
       <TOCItem id={content} titleInTOC={content}>
-        <HeadingTag {...tagProps} />
+        {({ ref, id }) => <HeadingTag ref={ref} id={id} {...tagProps} />}
       </TOCItem>
     )
   }

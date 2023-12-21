@@ -6,8 +6,9 @@
 }
 
 .tocItem {
-  $lineHeight: 100%;
   $fontSize: 14px;
+  $lineHeightPX: 24px;
+  $lineHeight: 100% * math.div($lineHeightPX, $fontSize);
 
   position: relative;
   margin-top: 28px;
@@ -27,6 +28,10 @@
     border-radius: 50%;
     transform: translate(-50%, -50%);
     content: ' ';
+  }
+
+  &:hover {
+    color: #00c891;
   }
 
   &.active {
