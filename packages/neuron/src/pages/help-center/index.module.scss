@@ -1,9 +1,11 @@
 @use 'sass:math';
+@import '../../styles/variables.module';
 
 .page {
   .top {
     display: flex;
     justify-content: space-between;
+    margin-top: 64px;
 
     .left {
       display: flex;
@@ -18,6 +20,10 @@
       flex-direction: column;
       align-items: flex-end;
       justify-content: flex-end;
+    }
+
+    @media (max-width: $mobileBreakPoint) {
+      margin-top: 16px;
     }
   }
 }
