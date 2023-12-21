@@ -1,8 +1,24 @@
 @use 'sass:math';
 
+$dotSize: 8px;
+
 .toc {
+  position: relative;
   margin: 8px 0 24px 20px;
-  border-left: 1px solid var(--tocBorder);
+  padding-left: $dotSize / 2;
+  overflow-y: auto;
+
+  &::before {
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: block;
+    float: left;
+    width: 1px;
+    height: 100%;
+    background: var(--tocBorder);
+    content: ' ';
+  }
 }
 
 .tocItem {
@@ -22,8 +38,8 @@
     top: #{$fontSize * math.div($lineHeight, 200%)};
     left: 0;
     display: none;
-    width: 8px;
-    height: 8px;
+    width: $dotSize;
+    height: $dotSize;
     background-color: #00c891;
     border-radius: 50%;
     transform: translate(-50%, -50%);
