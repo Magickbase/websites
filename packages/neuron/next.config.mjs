@@ -29,6 +29,17 @@ const config = {
     ],
   },
 
+  sassOptions: {
+    logger: {
+      warn: function (message) {
+        console.warn(message)
+      },
+      debug: function (message) {
+        console.log(message)
+      },
+    },
+  },
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
