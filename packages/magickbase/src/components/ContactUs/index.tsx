@@ -3,14 +3,14 @@ import classnames from 'classnames'
 import Spline from '@splinetool/react-spline'
 import { useCopyToClipboard } from '@uidotdev/usehooks'
 import { Modal, ModalProps } from '@/components/Modal'
+import toast from 'react-hot-toast'
+import { useIsMobile } from '@/hooks'
 import styles from './styles.module.scss'
 import leftElement from './leftElement.png'
 import rightElement from './rightElement.png'
 import CopySvg from './copy.svg'
 import MoreSvg from './more.svg'
 import bgImage from './bg.png'
-import toast from 'react-hot-toast'
-import { useIsMobile } from '@/hooks'
 
 export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) => {
   const [copiedText, copyToClipboard] = useCopyToClipboard()
@@ -29,11 +29,11 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
         style={{ backgroundImage: `url(${bgImage.src})` }}
       >
         <div
-          className={classnames('absolute left-0 bottom-16', `w-[100px] h-[169px]`)}
+          className={classnames(styles.motion, 'absolute left-0 bottom-16', `w-[100px] h-[169px]`)}
           style={{ backgroundImage: `url(${leftElement.src})` }}
         />
         <div
-          className={classnames('absolute right-0 top-20', `w-[62px] h-[157px]`)}
+          className={classnames(styles.motion, styles.reverse, 'absolute right-0 top-20', `w-[62px] h-[157px]`)}
           style={{ backgroundImage: `url(${rightElement.src})` }}
         />
       </div>
