@@ -15,6 +15,10 @@ import useSpring from 'react-use/lib/useSpring'
 import { useInView, IntersectionOptions } from 'react-intersection-observer'
 import styles from './styles.module.scss'
 import placeHolder from './placeholder.png'
+import vision from './vision.png'
+import mission from './mission.png'
+import future from './future.png'
+
 
 const timelineItms = [
   {
@@ -26,6 +30,7 @@ const timelineItms = [
         everyone, and we set out to build the tools and infrastructure needed to make this a reality.
       </p>
     ),
+    img: vision,
   },
   {
     title: 'Mission',
@@ -34,14 +39,14 @@ const timelineItms = [
         <p>
           Build a robust set of products that make it easier than ever for developers to build on the Nervos network.
         </p>
+        <p>Our desktop wallet, Neuron, has become the solution of choice for experienced investors and developers.</p>
         <p>
-          Our desktop wallet, Neuron, has become the solution of choice for experienced investors and developers. Our
-          development frameworks, including CKB Explorer, Godwoken Explorer, Axon Explorer, Lumos and Nexus, provide
-          developers with the tools they need to build high-performance decentralized applications. accessible to
-          everyone, and we set out to build the tools and infrastructure needed to make this a reality.
+          Our development frameworks, including CKB Explorer, Godwoken Explorer, Axon Explorer, Lumos and Nexus, provide
+          developers with the tools they need to build high-performance decentralized applications.
         </p>
       </>
     ),
+    img: mission,
   },
   {
     title: 'Future',
@@ -59,6 +64,7 @@ const timelineItms = [
         </p>
       </>
     ),
+    img: future,
   },
 ]
 
@@ -134,7 +140,9 @@ export const AboutUs: FC<ComponentProps<'div'>> = () => {
         <div className={classnames(styles.timeline, 'flex-1 ml-3')}>
           {timelineItms.map((item, index) => (
             <TimelineItem
-              className={classnames('h-[calc(100vh-4em)] [&>p]:mb-4 md:[&>p]:mb-8', { ['snap-start scroll-mt-24']: index !== 0 })}
+              className={classnames('min-h-[calc(100vh-4em)] [&>p]:mb-4 md:[&>p]:mb-8 mb-24', {
+                ['snap-start scroll-mt-24']: index !== 0,
+              })}
               key={index}
               intersectionOptions={{
                 onChange: inView => {
@@ -149,11 +157,19 @@ export const AboutUs: FC<ComponentProps<'div'>> = () => {
               <div className={styles.index}>{(index + 1).toString().padStart(2, '0')}</div>
               <h1>{item.title}</h1>
               {item.description}
+              <div
+                className="md:hidden w-full h-[280px] bg-no-repeat bg-center bg-contain"
+                style={{ backgroundImage: `url(${item.img.src})` }}
+              />
             </TimelineItem>
           ))}
         </div>
-        <div className={classnames('self-center h-40 w-40 right-0 sticky bottom-4 md:h-[440px] md:w-[440px] md:top-[calc(50vh-220px)]')}>
-          <AboutUsAnimation rotationX={rotationX}/>
+        <div
+          className={classnames(
+            'self-center h-40 w-40 right-0 sticky hidden bottom-4 md:block md:h-[440px] md:w-[440px] md:top-[calc(50vh-220px)]',
+          )}
+        >
+          <AboutUsAnimation rotationX={rotationX} />
         </div>
       </div>
     </div>

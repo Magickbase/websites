@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Branding className='snap-always snap-center'/>
+      <Branding id="branding" className='snap-always snap-center'/>
       <AboutUs />
       <Services className='min-h-screen snap-always snap-center'/>
       <ContactUs className="min-h-screen snap-always snap-center"/>

@@ -1,7 +1,8 @@
 import type { FC, ComponentProps } from 'react'
 import classnames from 'classnames'
 import Link from 'next/link'
-import CkbExplorerLogo from './ckbExplorerLogo.svg'
+import Image from 'next/image'
+import CkbExplorerLogo from './ckbExplorerLogo.png'
 import GodwokenLogo from './godwokenLogo.svg'
 import KuaiLogo from './kuaiLogo.svg'
 import NeuronLogo from './neuronLogo.svg'
@@ -43,7 +44,7 @@ export const Services: FC<ComponentProps<'div'>> = ({ className, ...props }) => 
 
       <Link href="https://explorer.nervos.org">
         <ServiceItem title="CKB Explorer" description="CKB on-chain data query">
-          <CkbExplorerLogo />
+          <Image src={CkbExplorerLogo} alt="CKB Explorer" width={132} height={44} />
         </ServiceItem>
       </Link>
 

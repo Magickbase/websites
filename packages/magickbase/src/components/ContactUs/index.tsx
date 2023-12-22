@@ -1,15 +1,31 @@
 import type { ComponentProps, FC } from 'react'
 import classnames from 'classnames'
 import Spline from '@splinetool/react-spline'
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
+import leftElement from './leftElement.png'
+import rightElement from './rightElement.png'
+import bgImage from './bg.png'
 
 export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) => (
   <div className={classnames(`relative overflow-hidden`, className)} {...props}>
+    <div
+      className={classnames(styles.background, 'bg-center bg-cover')}
+      style={{ backgroundImage: `url(${bgImage.src})` }}
+    >
+      <div
+        className={classnames('absolute left-0 bottom-16', `w-[100px] h-[169px]`)}
+        style={{ backgroundImage: `url(${leftElement.src})` }}
+      />
+      <div
+        className={classnames('absolute right-0 top-20', `w-[62px] h-[157px]`)}
+        style={{ backgroundImage: `url(${rightElement.src})` }}
+      />
+    </div>
     <div className="container mx-auto py-16 md:py-32">
       <div className="flex flex-col md:flex-row items-center justify-center">
         <div className="h-48 w-48 mb-12 md:mb-0 md:h-80 md:w-80 md:mr-16">
           <Spline
-            className={classnames("flex items-start justify-center", styles.splineWrapper)}
+            className={classnames('flex items-start justify-center', styles.splineWrapper)}
             scene="https://prod.spline.design/zLWBh10boGPlA9k1/scene.splinecode"
           />
         </div>
