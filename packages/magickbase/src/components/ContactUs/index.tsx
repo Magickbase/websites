@@ -18,8 +18,11 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
   const isMobile = useIsMobile()
 
   const copy = () => {
-    copyToClipboard('neuron@magickbase.com')
-    toast.success('copied!')
+    copyToClipboard('neuron@magickbase.com').then(() => {
+      toast.success('copied!')
+    }).catch(() => {
+      toast.error('copy failed, please try to paste manually.')
+    })
   }
 
   return (

@@ -1,3 +1,4 @@
+import { TailwindToaster } from '../components/Toaster'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { Branding } from '../components/Branding'
@@ -5,7 +6,6 @@ import { AboutUs } from '../components/About'
 import { ContactUs } from '../components/ContactUs'
 import { Services } from '../components/Services'
 import styles from './page.module.css'
-import { TailwindToaster } from '@/components/Toaster'
 
 export default function Home() {
   return (

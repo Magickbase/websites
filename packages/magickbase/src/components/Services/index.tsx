@@ -2,13 +2,13 @@ import type { FC, ComponentProps } from 'react'
 import classnames from 'classnames'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import CkbExplorerLogo from './ckbExplorerLogo.png'
 import GodwokenLogo from './godwokenLogo.svg'
 import KuaiLogo from './kuaiLogo.svg'
 import NeuronLogo from './neuronLogo.svg'
 import UnknownLogo from './unknownLogo.svg'
 import LumosLogo from './lumosLogo.svg'
-import { useRouter } from 'next/router'
 
 interface ServiceItemProps extends ComponentProps<'div'> {
   title: string
@@ -35,11 +35,11 @@ const ServiceItem: FC<ServiceItemProps> = ({ title, description, className, ...p
 }
 
 export const Services: FC<ComponentProps<'div'>> = ({ className, ...props }) => {
-  const { locale } = useRouter()
+  const { locale = 'en' } = useRouter()
   return (
     <div className={classnames('relative container mx-auto pt-24 pb-40', className)} {...props}>
       <div className="text-center text-3xl mb-16">Services</div>
-      <div className="grid md:grid-cols-3 md:grid-cols-2 gap-12">
+      <div className="grid md:grid-cols-3 gap-12">
         <Link href={`https://neuron.magickbase.com/${locale}`}>
           <ServiceItem title="Neuron" description="CKB desktop wallet">
             <NeuronLogo />
