@@ -12,6 +12,17 @@ const config: Config = {
       padding: '24px',
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        magickbase: {
+          "base-100": "#111",
+          "base-200": "#222",
+          "neutral": '#111',
+        },
+      }
+    ]
+  }
 }
 export default config

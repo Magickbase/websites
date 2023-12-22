@@ -29,7 +29,7 @@ export const Branding: FC<ComponentProps<'div'>> = ({ className, ...props }) => 
         className={classnames(`relative flex flex-col justify-center items-center text-center h-screen overflow-hidden`, className)}
         {...props}
       >
-        <div className="container md:px-12">
+        <div className="container md:px-12 z-[1]">
           <h1 className="text-3xl font-bold leading-10 md:text-7xl mb-2">Building a future</h1>
           <h1 className="text-3xl font-bold leading-10 mb-6 md:text-7xl md:mb-9">without permission</h1>
           <p className="text-base leading-8 md:text-3xl">
@@ -37,7 +37,7 @@ export const Branding: FC<ComponentProps<'div'>> = ({ className, ...props }) => 
             we&apos;ve made on the world, leading the charge in the decentralized revolution.
           </p>
         </div>
-        <div className="absolute w-screen h-screen z-[-2]">
+        <div className="absolute w-screen h-screen">
           <div ref={ref} className="w-full h-full" id="perlin-container" />
           <div
             className="absolute top-0 bottom-0 left-0 right-0 z-[-1] bg-cover bg-no-repeat bg-center"

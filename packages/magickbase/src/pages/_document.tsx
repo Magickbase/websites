@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en" data-theme="light" style={{ colorScheme: 'light' }}>
+      <Html lang="en" data-theme="magickbase" style={{ colorScheme: 'light' }}>
         <Head>
           <meta name="color-scheme" content="light only" />
           <link rel="icon" href="/favicon.svg" sizes="any" />
