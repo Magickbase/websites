@@ -25,9 +25,11 @@
   "Public Node": "公共节点",
   "Report": "报告",
   "Safety": "安全",
+  "Service Monitor": "服务监控",
   "Services": "服务",
   "Services status loading...": "服务状态加载中...",
   "Some services are offline": "部分服务不可用",
+  "Status": "状态",
   "Sync": "同步",
   "Transaction": "交易",
   "Usage Tutorial": "使用教程"
