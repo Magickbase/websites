@@ -302,7 +302,6 @@ function onWindowResize() {
   renderer.setSize(_width, _height)
   camera.aspect = _width / _height
   camera.updateProjectionMatrix()
-  console.log('- resize -')
 }
 
 //--------------------------------------------------------------------
@@ -391,7 +390,6 @@ function animation() {
   }
 
   var performance = Date.now() * 0.003
-  // console.log(options)
 
   _primitive.mesh.rotation.y += options.perlin.vel
   _primitive.mesh.rotation.x = (Math.sin(performance * options.spin.sinVel) * options.spin.ampVel * Math.PI) / 180

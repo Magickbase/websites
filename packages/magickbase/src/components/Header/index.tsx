@@ -25,8 +25,8 @@ export const Header$Desktop: FC<HeaderProps> = props => {
   const { t } = useTranslation('common')
 
   return (
-    <div {...props} className={classnames(styles.header, props.className, styles.blur )}>
-      <div className={classnames("container", styles.content)}>
+    <div {...props} className={classnames(styles.header, props.className, styles.blur)}>
+      <div className={classnames('container', styles.content)}>
         <div className={styles.left}>
           <Link href="/">
             <IconLogo />
@@ -43,7 +43,7 @@ export const Header$Desktop: FC<HeaderProps> = props => {
 
 export const Header$Mobile: FC<HeaderProps> = props => {
   return (
-    <div {...props} className={classnames("container", styles.headerMobile, props.className)}>
+    <div {...props} className={classnames('container', styles.headerMobile, props.className)}>
       <div className={styles.top}>
         <div className={styles.left}>
           <Link href="/">

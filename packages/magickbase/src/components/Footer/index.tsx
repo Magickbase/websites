@@ -39,6 +39,9 @@ export const Footer: FC<FooterProps> = props => {
               <LinkWithEffect href="https://github.com/Magickbase/blockscan" target="_blank">
                 {t('Axon Explorer')}
               </LinkWithEffect>
+              <LinkWithEffect href="https://github.com/ckb-js/lumos" target="_blank">
+                {t('lumos')}
+              </LinkWithEffect>
               <LinkWithEffect href="https://github.com/ckb-js/kuai" target="_blank">
                 {t('Kuai')}
               </LinkWithEffect>

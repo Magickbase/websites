@@ -1,5 +1,5 @@
 'use client'
-import { useState, type ComponentProps, type FC, useEffect } from 'react'
+import { useState, type ComponentProps, type FC, useEffect, useTransition } from 'react'
 import classnames from 'classnames'
 import Script from 'next/script'
 import { useInView } from 'react-intersection-observer'
@@ -7,6 +7,7 @@ import placeHolder from './placeholder.png'
 
 export const Branding: FC<ComponentProps<'div'>> = ({ className, ...props }) => {
   const { ref, inView } = useInView({ threshold: 0.5 })
+  // const { t } = useTransition('common')
 
   useEffect(() => {
     if (inView) {

@@ -271,9 +271,8 @@
 }
 
 .separate {    
-  clip-path: polygon(0 70%, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0 50%, 100% 0, 100% 100%, 0% 100%);
   background: linear-gradient(180deg, #131313, #000000);
-  height: 248px;
-  margin-top: -176px;
-
+  height: 240px;
+  margin-top: -120px;
 }

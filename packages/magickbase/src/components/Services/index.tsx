@@ -33,7 +33,7 @@ const ServiceItem: FC<ServiceItemProps> = ({ title, description, className, ...p
 }
 
 export const Services: FC<ComponentProps<'div'>> = ({ className, ...props }) => (
-  <div className={classnames('relative container mx-auto pt-16', className)} {...props}>
+  <div className={classnames('relative container mx-auto pt-24 pb-40', className)} {...props}>
     <div className="text-center text-3xl mb-16">Services</div>
     <div className="grid md:grid-cols-3 md:grid-cols-2 gap-12">
       <Link href="https://docs.nervos.org/docs/basics/guides/crypto%20wallets/neuron">

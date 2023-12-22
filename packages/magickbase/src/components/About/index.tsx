@@ -19,7 +19,6 @@ import vision from './vision.png'
 import mission from './mission.png'
 import future from './future.png'
 
-
 const timelineItms = [
   {
     title: 'Vision',
@@ -41,7 +40,7 @@ const timelineItms = [
         </p>
         <p>Our desktop wallet, Neuron, has become the solution of choice for experienced investors and developers.</p>
         <p>
-          Our development frameworks, including CKB Explorer, Godwoken Explorer, Axon Explorer, Lumos and Nexus, provide
+          Our development frameworks, including CKB Explorer, Godwoken Explorer, Axon Explorer, Lumos and Kuai, provide
           developers with the tools they need to build high-performance decentralized applications.
         </p>
       </>
@@ -121,7 +120,6 @@ const AboutUsAnimation: FC<AnimationProps> = ({ rotationX }) => {
           scene="https://prod.spline.design/F0-DxpS2rOYrCSe2/scene.splinecode"
           onLoad={app => {
             splineObj.current = app.findObjectByName('旋转')
-            console.log(splineObj.current?.rotation)
             setLoaded(true)
           }}
         />
