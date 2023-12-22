@@ -63,7 +63,8 @@ const MenuDialog: FC = () => {
   const { t } = useTranslation('common')
   const isMobile = useIsMobile()
   const router = useRouter()
-  const { pathname, query } = router
+  const { pathname, query, locale = 'en' } = router
+  
 
   return (
     <Dialog.Root>
@@ -99,11 +100,12 @@ const MenuDialog: FC = () => {
 
               <div className={styles.title}>{t('Services')}</div>
               <div className={styles.links}>
-                <LinkWithEffect href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</LinkWithEffect>
-                <span title="Coming soon">{t('CKB Explorer')}</span>
-                <span title="Coming soon">{t('Godwoke Explorer')}</span>
-                <span title="Coming soon">{t('Axon Explorer')}</span>
-                <span title="Coming soon">{t('Kuai')}</span>
+                <LinkWithEffect href={`https://neuron.magickbase.com/${locale}`}>{t('Neuron Wallet')}</LinkWithEffect>
+                <LinkWithEffect href={`https://explorer.nervos.org`}>{t('CKB Explorer')}</LinkWithEffect>
+                <LinkWithEffect href={`https://v1.gwscan.com`}>{t('Godwoke Explorer')}</LinkWithEffect>
+                <LinkWithEffect href={`https://github.com/Magickbase/blockscan`}>{t('Axon Explorer')}</LinkWithEffect>
+                <LinkWithEffect href={`https://github.com/ckb-js/kuai`}>{t('Kuai')}</LinkWithEffect>
+                <LinkWithEffect href={`https://lumos-website.vercel.app`}>{t('Lumos')}</LinkWithEffect>
               </div>
 
               <LinkWithEffect

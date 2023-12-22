@@ -1,6 +1,5 @@
 import { ComponentProps, FC } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import IconX from './x.svg'
 import IconDiscord from './discord.svg'
@@ -12,10 +11,9 @@ export const Contacts: FC<ComponentProps<'div'> & { linkClass?: string; iconClas
   iconClass,
   ...divProps
 }) => {
-  const { locale = 'en' } = useRouter()
   return (
     <div {...divProps} className={clsx(styles.contacts, divProps.className)}>
-      <Link className={linkClass} href={`https://x.com/magickbase/${locale}`}>
+      <Link className={linkClass} href="https://x.com/magickbase">
         <IconX className={iconClass} />
       </Link>
       <Link className={linkClass} href="https://discord.gg/GBYYgBA9s7">
