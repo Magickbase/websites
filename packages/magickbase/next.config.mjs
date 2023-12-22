@@ -1,5 +1,8 @@
+const i18nConfig = (await import('./next-i18next.config.js')).default
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  i18n: i18nConfig.i18n,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -62,5 +65,4 @@ function regexEqual(x, y) {
   )
 }
 
-
-module.exports = nextConfig
+export default nextConfig

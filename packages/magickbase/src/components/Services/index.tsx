@@ -1,11 +1,14 @@
 import type { FC, ComponentProps } from 'react'
 import classnames from 'classnames'
 import Link from 'next/link'
-import CkbExplorerLogo from './ckbExplorerLogo.svg'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import CkbExplorerLogo from './ckbExplorerLogo.png'
 import GodwokenLogo from './godwokenLogo.svg'
 import KuaiLogo from './kuaiLogo.svg'
 import NeuronLogo from './neuronLogo.svg'
 import UnknownLogo from './unknownLogo.svg'
+import LumosLogo from './lumosLogo.svg'
 
 interface ServiceItemProps extends ComponentProps<'div'> {
   title: string
@@ -31,45 +34,48 @@ const ServiceItem: FC<ServiceItemProps> = ({ title, description, className, ...p
   )
 }
 
-export const Services: FC<ComponentProps<'div'>> = ({ className, ...props }) => (
-  <div className={classnames('relative container mx-auto pt-16', className)} {...props}>
-    <div className="text-center text-3xl mb-16">Services</div>
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12">
-      <Link href="https://docs.nervos.org/docs/basics/guides/crypto%20wallets/neuron">
-        <ServiceItem title="Neuron" description="CKB desktop wallet">
-          <NeuronLogo />
-        </ServiceItem>
-      </Link>
+export const Services: FC<ComponentProps<'div'>> = ({ className, ...props }) => {
+  const { locale = 'en' } = useRouter()
+  return (
+    <div className={classnames('relative container mx-auto pt-24 pb-40', className)} {...props}>
+      <div className="text-center text-3xl mb-16">Services</div>
+      <div className="grid md:grid-cols-3 gap-12">
+        <Link href={`https://neuron.magickbase.com/${locale}`}>
+          <ServiceItem title="Neuron" description="CKB desktop wallet">
+            <NeuronLogo />
+          </ServiceItem>
+        </Link>
 
-      <Link href="https://explorer.nervos.org">
-        <ServiceItem title="CKB Explorer" description="CKB on-chain data query">
-          <CkbExplorerLogo />
-        </ServiceItem>
-      </Link>
+        <Link href="https://explorer.nervos.org">
+          <ServiceItem title="CKB Explorer" description="CKB on-chain data query">
+            <Image src={CkbExplorerLogo} alt="CKB Explorer" width={132} height={44} />
+          </ServiceItem>
+        </Link>
 
-      <Link href="https://v1.gwscan.com/">
-        <ServiceItem title="Godwoken Explorer" description="Godwoken on-chain data query">
-          <GodwokenLogo />
-        </ServiceItem>
-      </Link>
+        <Link href="https://v1.gwscan.com/">
+          <ServiceItem title="Godwoken Explorer" description="Godwoken on-chain data query">
+            <GodwokenLogo />
+          </ServiceItem>
+        </Link>
 
-      <Link href="https://github.com/Magickbase/blockscan">
-        <ServiceItem title="Axon Explorer" description="Axon on-chain data query">
-          <UnknownLogo />
-        </ServiceItem>
-      </Link>
+        <Link href="https://github.com/Magickbase/blockscan">
+          <ServiceItem title="Axon Explorer" description="Axon on-chain data query">
+            <UnknownLogo />
+          </ServiceItem>
+        </Link>
 
-      <Link href="https://lumos-website.vercel.app/">
-        <ServiceItem title="Lumos" description="Developer tools to help build Nervos DAPPs">
-          <UnknownLogo />
-        </ServiceItem>
-      </Link>
+        <Link href="https://lumos-website.vercel.app/">
+          <ServiceItem title="Lumos" description="Developer tools to help build Nervos DAPPs">
+            <LumosLogo className="mt-4"/>
+          </ServiceItem>
+        </Link>
 
-      <Link href="https://github.com/ckb-js/kuai">
-        <ServiceItem title="Kuai" description="Developer tools to help build Nervos DAPPs">
-          <KuaiLogo />
-        </ServiceItem>
-      </Link>
+        <Link href="https://github.com/ckb-js/kuai">
+          <ServiceItem title="Kuai" description="Developer tools to help build Nervos DAPPs">
+            <KuaiLogo />
+          </ServiceItem>
+        </Link>
+      </div>
     </div>
-  </div>
-)
+  )
+}
