@@ -84,41 +84,34 @@
   }
 }
 
-.btn {
-  all: unset;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn:not([_='The :not selector to increase specificity']) {
+  box-sizing: border-box;
   min-width: 232px;
   min-height: 72px;
   font-weight: 600;
   font-size: 16px;
-  background: #000;
   border-radius: 12px;
-  cursor: pointer;
+
+  &.btnDownload {
+    flex-direction: column;
+    gap: 6px;
+    color: #000;
+
+    .secondary {
+      font-weight: 400;
+      font-size: 14px;
+    }
+  }
+
+  &.btnGithub {
+    gap: 8px;
+    border-width: 1px;
+  }
 
   @media (max-width: $mobileBreakPoint) {
     min-width: 224px;
     min-height: 56px;
   }
-}
-
-.btnDownload {
-  flex-direction: column;
-  gap: 6px;
-  color: #000;
-  background: #00c891;
-
-  .secondary {
-    font-weight: 400;
-    font-size: 14px;
-  }
-}
-
-.btnGithub {
-  gap: 8px;
-  box-sizing: border-box;
-  border: 1px solid #f5f5f5;
 }
 
 .actions {

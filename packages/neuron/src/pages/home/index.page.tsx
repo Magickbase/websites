@@ -19,6 +19,7 @@ import ImgPrivate from './private.png'
 import ImgReliable from './reliable.png'
 import ImgNeuronLogo from './neuron-logo.png'
 import { ParsedAsset, Release, getAssetsFromNeuronRelease, getLatestRelease } from '../../utils'
+import { Button } from '../../components/Button'
 
 interface PageProps {
   locale: string
@@ -58,10 +59,10 @@ const Home: NextPage<PageProps> = ({ locale, release }) => {
         <DownloadButton release={release} />
 
         <Link href="https://github.com/nervosnetwork/neuron" target="_blank" rel="noopener noreferrer">
-          <button className={clsx(styles.btn, styles.btnGithub)}>
+          <Button variant="outlined" theme="blackwhite" className={clsx(styles.btn, styles.btnGithub)}>
             <IconGithub />
             GitHub
-          </button>
+          </Button>
         </Link>
       </div>
 
@@ -156,14 +157,14 @@ const DownloadButton: FC<Partial<ComponentProps<typeof Link>> & { release: Relea
 
   return (
     <Link href={asset?.packageLink ?? '/download'} {...linkProps}>
-      <button className={clsx(styles.btn, styles.btnDownload)}>
+      <Button className={clsx(styles.btn, styles.btnDownload)}>
         <span>{t('Download Neuron')}</span>
         {asset && (
           <span className={styles.secondary}>
             ({asset.os} {asset.arch}-{asset.packageType})
           </span>
         )}
-      </button>
+      </Button>
     </Link>
   )
 }
