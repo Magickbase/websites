@@ -14,6 +14,7 @@
   .top {
     display: flex;
     justify-content: space-between;
+    margin-top: 64px;
 
     .left {
       display: flex;
@@ -32,6 +33,10 @@
           height: auto;
         }
       }
+    }
+
+    @media (max-width: $mobileBreakPoint) {
+      margin-top: 16px;
     }
   }
 

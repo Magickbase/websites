@@ -101,6 +101,13 @@ const MenuDialog: FC = () => {
 
           <OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'never' } }}>
             <div className={styles.content}>
+              <div className={styles.title}>{t('Neuron')}</div>
+              <div className={styles.links}>
+                <LinkWithEffect href="/changelog">{t('Changelog')}</LinkWithEffect>
+                <LinkWithEffect href="/help-center">{t('Help Center')}</LinkWithEffect>
+                <LinkWithEffect href="/download">{t('Download Neuron')}</LinkWithEffect>
+              </div>
+
               <LinkWithEffect className={styles.title} href="/">
                 {t('Home')}
               </LinkWithEffect>

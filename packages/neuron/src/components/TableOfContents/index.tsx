@@ -3,6 +3,7 @@ import React, {
   createContext,
   FC,
   ReactNode,
+  RefAttributes,
   RefCallback,
   useCallback,
   useContext,
@@ -138,7 +139,15 @@ export const TOCContextProvider: FC<{ children?: ReactNode | ((value: TOCContext
   )
 }
 
-export const TOCItem: FC<ComponentProps<'div'> & { id: string; titleInTOC: string }> = props => {
+type TOCElementProps = { id: string }
+
+export const TOCItem: FC<
+  Omit<ComponentProps<'div'>, 'children'> &
+    TOCElementProps & {
+      titleInTOC: string
+      children?: ReactNode | ((props: TOCElementProps & { ref: RefAttributes<HTMLHeadingElement>['ref'] }) => ReactNode)
+    }
+> = props => {
   const { children, id, titleInTOC, ...divProps } = props
   const ref = useRef<HTMLDivElement>(null)
 
@@ -152,8 +161,12 @@ export const TOCItem: FC<ComponentProps<'div'> & { id: string; titleInTOC: strin
     return () => removeTOCItem(el)
   }, [addTOCItem, removeTOCItem, titleInTOC])
 
-  return (
-    <div ref={ref} id={encodeURIComponent(id.toLowerCase().replaceAll(' ', '_'))} {...divProps}>
+  const finalId = encodeURIComponent(id.toLowerCase().replaceAll(' ', '_'))
+
+  return typeof children === 'function' ? (
+    children({ ref, id: finalId })
+  ) : (
+    <div ref={ref} id={finalId} {...divProps}>
       {children}
     </div>
   )

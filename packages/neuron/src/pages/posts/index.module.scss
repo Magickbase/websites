@@ -28,17 +28,99 @@
 
 .postContent {
   padding: 0 24px 16px;
+  font-size: 14px;
 
   .img {
     max-width: 100%;
+    margin: 32px 0;
+
+    @media (max-width: $mobileBreakPoint) {
+      margin: 8px 0;
+    }
+  }
+
+  .link {
+    color: #00c891;
   }
 
   .title {
     margin: 8px 0 24px;
-    font-size: 1.25em;
+    font-size: 20px;
 
     @media (max-width: $mobileBreakPoint) {
       margin: 24px 0;
+    }
+  }
+
+  p,
+  li {
+    line-height: 24px;
+  }
+
+  p,
+  ul,
+  ol {
+    margin: 0;
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin: 24px 0 16px;
+    font-weight: 600;
+    font-size: 16px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  hr {
+    margin: 24px 0;
+    border: 0;
+    border-bottom: 1px solid #333;
+  }
+
+  hr + * {
+    margin-top: 0;
+  }
+
+  table {
+    word-break: initial;
+
+    th,
+    td {
+      padding: 4px 16px 4px 0;
+    }
+
+    th {
+      padding-bottom: 12px;
+    }
+
+    th:not(:last-child) {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    p,
+    li,
+    h2,
+    h3,
+    h4 {
+      line-height: 32px;
+    }
+
+    h2,
+    h3,
+    h4 {
+      margin: 32px 0 16px;
+      font-size: 22px;
+    }
+
+    // Writing it again here is to address the issue of insufficient specificity caused by the media selector.
+    hr + * {
+      margin-top: 0;
     }
   }
 }

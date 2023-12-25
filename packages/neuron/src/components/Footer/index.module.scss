@@ -5,7 +5,7 @@
   border-top: 1px solid #2e2e2e;
 
   @media (max-width: $mobileBreakPoint) {
-    padding: 50px var(--contentWrapperPadding) 70px var(--contentWrapperPadding);
+    padding: 48px var(--contentWrapperPadding) 104px var(--contentWrapperPadding);
   }
 
   .content {
@@ -38,16 +38,22 @@
 
 .serversState {
   display: flex;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
   margin-top: 24px;
   color: #00cc9b;
   font-size: 14px;
   line-height: 16px;
 
+  .title {
+    color: #f5f5f5;
+    font-weight: 600;
+  }
+
   .dot {
     width: 6px;
     height: 6px;
+    margin-left: 4px;
     background: #00cc9b;
     border-radius: 50%;
   }
@@ -59,6 +65,26 @@
     .dot {
       background: chocolate;
     }
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 40px;
+
+    .title {
+      font-size: 16px;
+    }
+  }
+}
+
+.serviceMonitor {
+  margin-top: 24px;
+  color: #f5f5f5;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+
+  @media (max-width: $mobileBreakPoint) {
+    font-size: 16px;
   }
 }
 

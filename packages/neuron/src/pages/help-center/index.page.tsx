@@ -12,6 +12,7 @@ import ImgNeuronLogo from './neuron-logo.png'
 import ImgHelp from './help.png'
 import IconMore from './more.svg'
 import { LinkWithEffect, UpsideDownEffect } from '../../components/UpsideDownEffect'
+import { useIsMobile } from '../../hooks'
 
 interface PageProps {
   menusWithPosts: Menu[]
@@ -19,6 +20,20 @@ interface PageProps {
 
 const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
   const { t } = useTranslation('help_center')
+  const isMobile = useIsMobile()
+
+  const searchComp = (
+    <div className={styles.search}>
+      <DocSearch
+        appId={APPID ?? ''}
+        indexName="neuron-magickbase"
+        apiKey={SEARCH_KEY ?? ''}
+        translations={{ button: { buttonText: t('Please enter keywords') ?? '' } }}
+        // This is experience optimization in a development environment
+        hitComponent={({ hit, children }) => <a href={removeURLOrigin(hit.url)}>{children}</a>}
+      />
+    </div>
+  )
 
   return (
     <Page className={styles.page}>
@@ -31,22 +46,15 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
 
           <div className={styles.text1}>{t('Help Center')}</div>
 
-          <div className={styles.search}>
-            <DocSearch
-              appId={APPID ?? ''}
-              indexName="neuron-magickbase"
-              apiKey={SEARCH_KEY ?? ''}
-              translations={{ button: { buttonText: t('Please enter keywords') ?? '' } }}
-              // This is experience optimization in a development environment
-              hitComponent={({ hit, children }) => <a href={removeURLOrigin(hit.url)}>{children}</a>}
-            />
-          </div>
+          {!isMobile && searchComp}
         </div>
 
         <div className={styles.right}>
-          <Image src={ImgHelp} alt="Help" width={200} height={168} />
+          <Image src={ImgHelp} alt="Help" width={isMobile ? 104 : 200} />
         </div>
       </div>
+
+      {isMobile && searchComp}
 
       <div className={styles.postMenus}>
         {menusWithPosts.map(menu => {
@@ -58,7 +66,12 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
                 {firstPostInMenu && (
                   <UpsideDownEffect content={t('More')}>
                     {(hoverableContainerClass, contentWithEffect) => (
-                      <Link className={hoverableContainerClass} href={getPostURL(firstPostInMenu)}>
+                      <Link
+                        className={hoverableContainerClass}
+                        href={getPostURL(firstPostInMenu)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <div className={styles.more}>
                           {contentWithEffect} <IconMore />
                         </div>
@@ -70,7 +83,14 @@ const HelpCenter: NextPage<PageProps> = ({ menusWithPosts }) => {
 
               <div className={styles.posts}>
                 {menu.posts?.map(post => (
-                  <LinkWithEffect key={post.key} className={styles.post} href={getPostURL(post)} fullWidth>
+                  <LinkWithEffect
+                    key={post.key}
+                    className={styles.post}
+                    href={getPostURL(post)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    fullWidth
+                  >
                     {post.title}
                   </LinkWithEffect>
                 ))}

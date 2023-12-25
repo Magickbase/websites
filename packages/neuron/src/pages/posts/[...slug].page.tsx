@@ -6,6 +6,7 @@ import { FC, useMemo } from 'react'
 import { useObservableState } from 'observable-hooks'
 import { useTranslation } from 'react-i18next'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
+import Link from 'next/link'
 import { TOCContextProvider, TOCItem } from '../../components/TableOfContents'
 import {
   Post,
@@ -27,7 +28,6 @@ import { TOC } from './TOC'
 import { appSettings } from '../../services/AppSettings'
 import { useBodyClass, useFullHeightCSSValue, useIsMobile, useMarkdownProps } from '../../hooks'
 import { Contacts } from '../../components/Contacts'
-import { LinkWithEffect } from '../../components/UpsideDownEffect'
 
 interface PageProps {
   post: Post
@@ -49,7 +49,7 @@ const PostPage: NextPage<PageProps> = props => {
 export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWithPosts }) => {
   const { t } = useTranslation('posts')
   const height = useFullHeightCSSValue()
-  const mdProps = useMarkdownProps({ imgClass: styles.img })
+  const mdProps = useMarkdownProps({ disableLinkEffect: true, imgClass: styles.img, linkClass: styles.link })
   const submenuName = menuWithPosts.children?.find(menu => menu.posts?.find(_post => post.key === _post.key))?.name
 
   return (
@@ -60,12 +60,12 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
 
       <div className={styles.main}>
         <div className={styles.navbar}>
-          <LinkWithEffect href="/">{t('Home')}</LinkWithEffect>
+          <Link href="/">{t('Home')}</Link>
           {menusWithPosts.map(menu => {
             const firstPostInMenu = menu.posts?.[0]
             if (!firstPostInMenu) return null
             return (
-              <LinkWithEffect
+              <Link
                 key={menu.name}
                 className={clsx({
                   [styles.selected ?? '']: menu.name === menuWithPosts.name,
@@ -73,7 +73,7 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
                 href={getPostURL(firstPostInMenu)}
               >
                 {t(menu.name)}
-              </LinkWithEffect>
+              </Link>
             )
           })}
         </div>
@@ -114,7 +114,7 @@ export const PostPage$Desktop: FC<PageProps> = ({ post, menusWithPosts, menuWith
 export const PostPage$Mobile: FC<PageProps> = ({ post, menuWithPosts }) => {
   const { t } = useTranslation('posts')
   const height = useFullHeightCSSValue()
-  const mdProps = useMarkdownProps({ imgClass: styles.img })
+  const mdProps = useMarkdownProps({ disableLinkEffect: true, imgClass: styles.img, linkClass: styles.link })
   const submenuName = menuWithPosts.children?.find(menu => menu.posts?.find(_post => post.key === _post.key))?.name
 
   return (

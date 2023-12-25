@@ -35,11 +35,14 @@ export const Footer: FC<FooterProps> = props => {
                 aggregateStateQuery.data === 'downtime' || aggregateStateQuery.data === 'degraded',
             })}
           >
+            <span className={styles.title}>{t('Status')}</span>
             <div className={styles.dot} />
             <Link href="https://status.magickbase.com/" target="_blank">
               {serviceStateText}
             </Link>
           </div>
+
+          <div className={styles.serviceMonitor}>{t('Service Monitor')}</div>
 
           <Contacts className={styles.contacts} />
 

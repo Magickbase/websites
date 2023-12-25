@@ -13,7 +13,7 @@ import IconMenu from './menu.svg'
 import IconClose from './close.svg'
 import styles from './index.module.scss'
 import { APPID, Post, SEARCH_KEY, TopLevelMenu, languages, removeURLOrigin } from '../../../utils'
-import { useIsMobile } from '../../../hooks'
+import { useIsHydrated, useIsMobile } from '../../../hooks'
 import { ClassifiedPosts } from '../ClassifiedPosts'
 import { LanguageMenu } from './LanguageMenu'
 import { LanguageList } from './LanguageList'
@@ -29,6 +29,7 @@ export const HelpDocHeader$Desktop: FC<HelpDocHeaderProps> = props => {
   const { t } = useTranslation('posts')
   const { menuWithPosts, viewingPost, ...divProps } = props
   const darkMode = useObservableState(appSettings.darkMode$)
+  const isHydrated = useIsHydrated()
 
   return (
     <div {...divProps} className={clsx(styles.header, divProps.className)}>
@@ -49,7 +50,14 @@ export const HelpDocHeader$Desktop: FC<HelpDocHeaderProps> = props => {
           />
         </div>
 
-        {darkMode ? (
+        {/**
+         * The DOM structure of these two icon components is the same, so during the hydration phase,
+         * they will not be re-rendered with the correct latest icons.
+         * Here, useIsHydrated is used to ensure that the client will always re-render, while the server only renders a fixed placeholder.
+         */}
+        {!isHydrated ? (
+          <IconNight className={clsx(styles.colorSchema, styles.placeholder)} />
+        ) : darkMode ? (
           <IconNight className={styles.colorSchema} onClick={() => appSettings.setDarkMode(false)} />
         ) : (
           <IconDaylight className={styles.colorSchema} onClick={() => appSettings.setDarkMode(true)} />

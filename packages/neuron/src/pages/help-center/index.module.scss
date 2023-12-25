@@ -1,9 +1,13 @@
 @use 'sass:math';
+@import '../../styles/variables.module';
 
 .page {
+  width: 100%;
+
   .top {
     display: flex;
     justify-content: space-between;
+    margin-top: 64px;
 
     .left {
       display: flex;
@@ -19,6 +23,10 @@
       align-items: flex-end;
       justify-content: flex-end;
     }
+
+    @media (max-width: $mobileBreakPoint) {
+      margin-top: 16px;
+    }
   }
 }
 
@@ -32,11 +40,29 @@
   .name {
     margin-top: 6px;
   }
+
+  @media (max-width: $mobileBreakPoint) {
+    font-size: 18px;
+
+    > img {
+      max-width: 32px;
+      height: auto;
+    }
+
+    .name {
+      margin-top: 4px;
+    }
+  }
 }
 
 .text1 {
   font-weight: 700;
   font-size: 40px;
+
+  @media (max-width: $mobileBreakPoint) {
+    font-weight: 600;
+    font-size: 22px;
+  }
 }
 
 .search {
@@ -68,19 +94,32 @@
 
     .DocSearch-Button-Placeholder {
       padding: 0 12px;
+
+      @media (max-width: $mobileBreakPoint) {
+        display: block;
+      }
     }
   }
   /* stylelint-enable selector-class-pattern */
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 16px;
+  }
 }
 
 .postMenus {
   display: flex;
   gap: 32px;
   justify-content: center;
-  margin-top: 32px;
-  margin-bottom: 264px;
-  padding-top: 24px;
+  margin: 80px 0 264px;
   border-top: 1px solid #000;
+
+  @media (max-width: $mobileBreakPoint) {
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    margin: 24px 0 160px;
+  }
 }
 
 .postMenu {
@@ -111,6 +150,11 @@
         color: #00cc9b;
       }
     }
+
+    @media (max-width: $mobileBreakPoint) {
+      height: 48px;
+      font-size: 16px;
+    }
   }
 
   .posts {
@@ -118,24 +162,29 @@
     flex-direction: column;
     gap: 16px;
     padding: 24px;
+
+    @media (max-width: $mobileBreakPoint) {
+      padding: 16px;
+    }
   }
 
   .post {
     $lineHeight: 200%;
-    $fontSize: 16px;
     $dotSize: 8px;
+
+    --fontSize: 16px;
 
     position: relative;
     padding-left: $dotSize + 8px;
     overflow: hidden;
-    font-size: $fontSize;
+    font-size: var(--fontSize);
     line-height: $lineHeight;
     white-space: nowrap;
     text-overflow: ellipsis;
 
     &::before {
       position: absolute;
-      top: #{$fontSize * math.div($lineHeight, 200%) - $dotSize / 2};
+      top: calc(var(--fontSize) * #{math.div($lineHeight, 200%)} - #{$dotSize / 2});
       left: 0;
       display: block;
       width: $dotSize;
@@ -151,6 +200,10 @@
       &::before {
         background: #00cc9b;
       }
+    }
+
+    @media (max-width: $mobileBreakPoint) {
+      --fontSize: 14px;
     }
   }
 }

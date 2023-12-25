@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 @mixin themeLight {
   --colorPrimary: #333;
   --colorPrimaryBg: #fff;
@@ -13,6 +15,12 @@
   --menuShadow1: 0 8px 40px 0 #e5e5e5;
   --menuBorder1: #e5e5e5;
   --tocBorder: #e5e5e5;
+  --btnForeground: #fff;
+  --btnForegroundDisabled: #{rgba(#fff, 0.5)};
+  --btnBackground: #00c891;
+  --btnBackgroundDisabled: #{color.mix(#fff, #00c891, $weight: 50%)};
+  --btnBackgroundHover: #{color.mix(#000, #00c891, $weight: 20%)};
+  --btnBackgroundActive: #{color.mix(#000, #00c891, $weight: 40%)};
 }
 
 .themeLight {
@@ -34,6 +42,12 @@
   --menuShadow1: unset;
   --menuBorder1: rgb(255 255 255 / 20%);
   --tocBorder: #343e3c;
+  --btnForeground: #333;
+  --btnForegroundDisabled: #{rgba(#333, 0.5)};
+  --btnBackground: #00c891;
+  --btnBackgroundDisabled: #{color.mix(#000, #00c891, $weight: 50%)};
+  --btnBackgroundHover: #{color.mix(#000, #00c891, $weight: 20%)};
+  --btnBackgroundActive: #{color.mix(#000, #00c891, $weight: 40%)};
 }
 
 .themeDark {
