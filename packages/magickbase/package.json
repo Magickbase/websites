@@ -34,6 +34,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@magickbase-website/config": "workspace:^",
     "daisyui": "latest"
   }
 }

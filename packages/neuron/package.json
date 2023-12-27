@@ -51,6 +51,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@magickbase-website/config": "workspace:^",
     "@svgr/webpack": "^8.0.1",
     "@types/eslint": "^8.40.0",
     "@types/node": "^20.2.5",

@@ -2228,10 +2228,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@magickbase-website/config@workspace:^, @magickbase-website/config@workspace:packages/config":
+  version: 0.0.0-use.local
+  resolution: "@magickbase-website/config@workspace:packages/config"
+  languageName: unknown
+  linkType: soft
+
 "@magickbase-website/magickbase@workspace:packages/magickbase":
   version: 0.0.0-use.local
   resolution: "@magickbase-website/magickbase@workspace:packages/magickbase"
   dependencies:
+    "@magickbase-website/config": "workspace:^"
     "@radix-ui/react-dialog": 1.0.4
     "@radix-ui/react-tooltip": 1.0.6
     "@splinetool/react-spline": 2.2.6
@@ -2265,6 +2272,7 @@ __metadata:
   dependencies:
     "@docsearch/css": 3
     "@docsearch/react": 3
+    "@magickbase-website/config": "workspace:^"
     "@octokit/graphql-schema": ^14.12.0
     "@octokit/openapi-types": ^17.2.0
     "@octokit/plugin-paginate-rest": ^6.1.2

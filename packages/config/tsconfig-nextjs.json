@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Next.js",
+  "extends": "./tsconfig-base.json",
+  "compilerOptions": {
+    "plugins": [{ "name": "next" }],
+    "module": "ESNext",
+    // The reason for not using a `Bundler` is due to historical reasons in the project.
+    // `Node` was used previously, and it is temporarily being continued.
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "checkJs": true,
+    "incremental": true,
+    "jsx": "preserve",
+    "noEmit": true,
+    // This is also due to historical reasons, as the default value of this option in the old versions of tsc used to be false.
+    "useDefineForClassFields": false
+  }
+}
