@@ -8,6 +8,9 @@ const config = {
       parserOptions: {
         project: true,
       },
+      rules: {
+        '@typescript-eslint/no-unused-vars': 'warn',
+      },
     },
   ],
   plugins: ['@typescript-eslint'],

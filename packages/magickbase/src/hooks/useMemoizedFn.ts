@@ -4,9 +4,8 @@
  */
 import { useMemo, useRef } from 'react'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type noop = (this: any, ...args: any[]) => any
-
-type PickFunction<T extends noop> = (this: ThisParameterType<T>, ...args: Parameters<T>) => ReturnType<T>
 
 export function useMemoizedFn<T extends noop>(fn: T): T
 export function useMemoizedFn<T extends noop>(fn?: T): T | (() => void)
@@ -17,13 +16,13 @@ export function useMemoizedFn<T extends noop>(fn?: T): T | (() => void) {
   // https://github.com/alibaba/hooks/issues/728
   fnRef.current = useMemo(() => fn, [fn])
 
-  const memoizedFn = useRef<PickFunction<T>>()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const memoizedFn = useRef<T | ((...args: any[]) => void)>()
   if (!memoizedFn.current) {
     memoizedFn.current = function (this, ...args) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return fnRef.current?.apply(this, args)
+      return fnRef.current?.apply(this, args) as ReturnType<T> | void
     }
   }
 
-  return memoizedFn.current as T
+  return memoizedFn.current as T | (() => void)
 }
