@@ -30,8 +30,10 @@ export const Branding: FC<ComponentProps<'div'>> = ({ className, ...props }) => 
         {...props}
       >
         <div className="container md:px-12 z-[1]">
-          <h1 className="text-3xl font-bold leading-10 md:text-7xl mb-2">Building a future</h1>
-          <h1 className="text-3xl font-bold leading-10 mb-6 md:text-7xl md:mb-9">without permission</h1>
+          <h1 className="text-3xl font-bold leading-10 md:text-7xl mb-2">Building a</h1>
+          <h1 className="text-3xl font-bold whitespace-nowrap leading-10 mb-6 md:text-7xl md:mb-9">
+            Permissionless Future
+          </h1>
           <p className="text-base leading-8 md:text-3xl">
             We&apos;re proud of the products we&apos;ve built, the communities we&apos;ve supported, and the impact
             we&apos;ve made on the world, leading the charge in the decentralized revolution.
