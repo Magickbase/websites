@@ -4,5 +4,7 @@
   },
   "stylelint.validate": ["css", "scss"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.rulers": [120]
+  "editor.rulers": [120],
+  // https://stackoverflow.com/questions/56988147/eslint-doesnt-work-in-vscode-but-work-from-terminal#comment133243541_56988531
+  "eslint.workingDirectories": [{ "mode": "auto" }]
 }
