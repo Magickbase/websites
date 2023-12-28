@@ -9,7 +9,7 @@ import {
   SearchResultItemConnection,
 } from '@octokit/graphql-schema'
 import { RequestError } from '@octokit/request-error'
-import { BooleanT } from './array'
+import { BooleanT } from '@magickbase-website/shared'
 import { REPO, TOKEN } from './env'
 
 if (REPO === undefined) throw new Error('NEXT_PUBLIC_REPO is required')
