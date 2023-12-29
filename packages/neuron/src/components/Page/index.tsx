@@ -1,9 +1,9 @@
 import { ComponentProps, forwardRef, ReactNode } from 'react'
 import { clsx } from 'clsx'
+import { useBodyClass } from '@magickbase-website/shared'
 import { Footer, FooterProps } from '../Footer'
 import { Header, HeaderProps } from '../Header'
 import styles from './index.module.scss'
-import { useBodyClass } from '../../hooks'
 import presets from '../../styles/presets.module.scss'
 
 type PageProps = Omit<ComponentProps<'div'>, 'children'> & {

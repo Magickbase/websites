@@ -4,8 +4,15 @@ import cssVars from '../styles/variables.module.scss'
 import { useMemoizedFn } from './useMemoizedFn'
 
 export * from './useMemoizedFn'
-// export * from './useMarkdownProps'
 export * from './useHighPrecisionScrollbarWidth'
+
+// This logic is used to prevent some errors when Next.js hydration.
+// https://nextjs.org/docs/messages/react-hydration-error#possible-ways-to-fix-it
+export function useIsHydrated() {
+  const [isHydrated, setIsHydrated] = useState(false)
+  useEffect(() => setIsHydrated(true), [])
+  return isHydrated
+}
 
 /**
  * copied from https://usehooks-ts.com/react-hook/use-media-query
@@ -52,12 +59,8 @@ export const useIsMobile = (ignoreHydrated?: boolean) => {
   if (mobileBreakPoint == null) throw new Error('Incorrect css variable')
 
   const isMobile = useMediaQuery(`(max-width: ${mobileBreakPoint})`)
-
-  // This logic is used to prevent some errors when Next.js hydration.
-  // https://nextjs.org/docs/messages/react-hydration-error#possible-ways-to-fix-it
-  const [hydrated, setHydrated] = useState(ignoreHydrated ? true : false)
-  useEffect(() => setHydrated(true), [])
-  return isMobile && hydrated
+  const isHydrated = useIsHydrated()
+  return isMobile && (ignoreHydrated || isHydrated)
 }
 
 export function useDevicePixelRatio() {

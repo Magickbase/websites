@@ -2,8 +2,8 @@ import { FC, PropsWithChildren, ReactNode } from 'react'
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 import * as RadixPopover from '@radix-ui/react-popover'
 import clsx from 'clsx'
+import { useIsMobile } from '@magickbase-website/shared'
 import styles from './index.module.scss'
-import { useIsMobile } from '../../hooks'
 
 export const Tooltip: FC<PropsWithChildren<{ content?: ReactNode; className?: string }>> = props => {
   const isMobile = useIsMobile()

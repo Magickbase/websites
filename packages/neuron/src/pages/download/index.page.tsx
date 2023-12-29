@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { useMemo } from 'react'
+import { useIsMobile } from '@magickbase-website/shared'
 import {
   CompatibleData,
   Release,
@@ -16,7 +17,6 @@ import ImgNeuronLogo from './neuron-logo.png'
 import ImgDownloadWallet from './download-wallet.png'
 import { Assets } from './Assets'
 import { CompatibleTable } from './CompatibleTable'
-import { useIsMobile } from '../../hooks'
 
 interface PageProps {
   release: Release | null

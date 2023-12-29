@@ -1,10 +1,10 @@
 import { ComponentProps, FC } from 'react'
 import classnames from 'classnames'
 import { useTranslation } from 'react-i18next'
+import { useIsMobile } from '@magickbase-website/shared'
 import styles from './index.module.scss'
 import IconFullLogo from './full-logo.svg'
 import { Contacts } from '../Contacts'
-import { useIsMobile } from '../../hooks'
 import { LinkWithEffect } from '../UpsideDownEffect'
 
 export type FooterProps = ComponentProps<'div'>
@@ -15,7 +15,7 @@ export const Footer: FC<FooterProps> = props => {
 
   return (
     <div {...props} className={classnames(styles.footer, props.className)}>
-      <div className={classnames("container", styles.content)}>
+      <div className={classnames('container', styles.content)}>
         <div className={styles.left}>
           <IconFullLogo />
 

@@ -1,9 +1,9 @@
 import { ComponentProps, FC } from 'react'
 import clsx from 'clsx'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
+import { useIsMobile } from '@magickbase-website/shared'
 import styles from './index.module.scss'
 import { CompatibleData } from '../../../utils'
-import { useIsMobile } from '../../../hooks'
 import IconRight from './right.svg'
 import IconWrong from './wrong.svg'
 

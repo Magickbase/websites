@@ -5,11 +5,11 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
+import { useIsMobile } from '@magickbase-website/shared'
 import styles from './index.module.scss'
 import IconLogo from './logo.svg'
 import IconMenu from './menu.svg'
 import IconClose from './close.svg'
-import { useIsMobile } from '../../hooks'
 import { languages } from '../../utils'
 import { Contacts } from '../Contacts'
 import { LinkWithEffect } from '../UpsideDownEffect'
@@ -64,7 +64,6 @@ const MenuDialog: FC = () => {
   const isMobile = useIsMobile()
   const router = useRouter()
   const { pathname, query, locale = 'en' } = router
-  
 
   return (
     <Dialog.Root>

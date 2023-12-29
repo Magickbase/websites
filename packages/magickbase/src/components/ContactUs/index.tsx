@@ -4,7 +4,7 @@ import Spline from '@splinetool/react-spline'
 import { useCopyToClipboard } from '@uidotdev/usehooks'
 import { Modal, ModalProps } from '@/components/Modal'
 import toast from 'react-hot-toast'
-import { useIsMobile } from '@/hooks'
+import { useIsMobile } from '@magickbase-website/shared'
 import styles from './styles.module.scss'
 import leftElement from './leftElement.png'
 import rightElement from './rightElement.png'
@@ -18,11 +18,13 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
   const isMobile = useIsMobile()
 
   const copy = () => {
-    copyToClipboard('neuron@magickbase.com').then(() => {
-      toast.success('copied!')
-    }).catch(() => {
-      toast.error('copy failed, please try to paste manually.')
-    })
+    copyToClipboard('neuron@magickbase.com')
+      .then(() => {
+        toast.success('copied!')
+      })
+      .catch(() => {
+        toast.error('copy failed, please try to paste manually.')
+      })
   }
 
   return (

@@ -7,6 +7,7 @@ import { useObservableState } from 'observable-hooks'
 import { useTranslation } from 'react-i18next'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import Link from 'next/link'
+import { useBodyClass, useFullHeightCSSValue, useIsMobile } from '@magickbase-website/shared'
 import { TOCContextProvider, TOCItem } from '../../components/TableOfContents'
 import {
   Post,
@@ -26,8 +27,8 @@ import presets from '../../styles/presets.module.scss'
 import { Sidebar } from './Sidebar'
 import { TOC } from './TOC'
 import { appSettings } from '../../services/AppSettings'
-import { useBodyClass, useFullHeightCSSValue, useIsMobile, useMarkdownProps } from '../../hooks'
 import { Contacts } from '../../components/Contacts'
+import { useMarkdownProps } from '../../hooks'
 
 interface PageProps {
   post: Post
