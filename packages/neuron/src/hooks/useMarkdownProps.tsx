@@ -7,8 +7,8 @@ import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import clsx from 'clsx'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
+import { UpsideDownEffect } from '@magickbase-website/shared'
 import { TOCItem } from '../components/TableOfContents'
-import { UpsideDownEffect } from '../components/UpsideDownEffect'
 
 type MarkdownProps = Omit<ComponentProps<typeof ReactMarkdown>, 'children'>
 export type LinkComponentProps = ComponentPropsWithoutRef<'a'> & ReactMarkdownProps

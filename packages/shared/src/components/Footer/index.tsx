@@ -7,32 +7,31 @@ import styles from './index.module.scss'
 import IconFullLogo from './full-logo.svg'
 import { Contacts } from '../Contacts'
 import { LinkWithEffect } from '../UpsideDownEffect'
-import { api } from '../../utils'
 
-export type FooterProps = ComponentProps<'div'>
+export type FooterProps = ComponentProps<'div'> & {
+  serviceState?: 'operational' | 'downtime' | 'degraded' | 'unknown'
+}
 
-export const Footer: FC<FooterProps> = props => {
+export const Footer: FC<FooterProps> = ({ serviceState, ...elProps }) => {
   const { t } = useTranslation('common')
   const isMobile = useIsMobile()
 
-  const aggregateStateQuery = api.uptime.aggregateState.useQuery()
   const serviceStateText =
-    aggregateStateQuery.data === 'operational'
+    serviceState === 'operational'
       ? t('All services are online')
-      : aggregateStateQuery.data === 'downtime' || aggregateStateQuery.data === 'degraded'
+      : serviceState === 'downtime' || serviceState === 'degraded'
       ? t('Some services are offline')
       : t('Services status loading...')
 
   return (
-    <div {...props} className={clsx(styles.footer, props.className)}>
+    <div {...elProps} className={clsx(styles.footer, elProps.className)}>
       <div className={styles.content}>
         <div className={styles.left}>
           <IconFullLogo />
 
           <div
             className={clsx(styles.serversState, {
-              [styles.warnning ?? '']:
-                aggregateStateQuery.data === 'downtime' || aggregateStateQuery.data === 'degraded',
+              [styles.warnning ?? '']: serviceState === 'downtime' || serviceState === 'degraded',
             })}
           >
             <span className={styles.title}>{t('Status')}</span>

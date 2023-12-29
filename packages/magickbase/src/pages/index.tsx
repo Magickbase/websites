@@ -1,6 +1,5 @@
+import { Footer, Header } from '@magickbase-website/shared'
 import { TailwindToaster } from '../components/Toaster'
-import { Footer } from '../components/Footer'
-import { Header } from '../components/Header'
 import { Branding } from '../components/Branding'
 import { AboutUs } from '../components/About'
 import { ContactUs } from '../components/ContactUs'
@@ -18,6 +17,7 @@ export default function Home() {
       <Services className="min-h-screen snap-always snap-center" />
       <div className={styles.separate} />
       <ContactUs className="min-h-screen snap-always snap-center" />
+      {/* TODO: Need to pass the serviceState. */}
       <Footer className="snap-always snap-center" />
       <TailwindToaster />
     </>

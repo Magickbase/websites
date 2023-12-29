@@ -3,4 +3,3 @@ export function isClient() {
 }
 
 export * from './env'
-export * from './const'

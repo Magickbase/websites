@@ -1,4 +1,4 @@
-import classnames from 'classnames'
+import clsx from 'clsx'
 import { ComponentProps, FC } from 'react'
 import Link from 'next/link'
 import * as Dialog from '@radix-ui/react-dialog'
@@ -8,42 +8,56 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
 import { useIsMobile } from '@magickbase-website/shared'
 import styles from './index.module.scss'
 import IconLogo from './logo.svg'
+import IconGithub from './github.svg'
 import IconMenu from './menu.svg'
 import IconClose from './close.svg'
 import { languages } from '../../utils'
 import { Contacts } from '../Contacts'
 import { LinkWithEffect } from '../UpsideDownEffect'
 
-export type HeaderProps = ComponentProps<'div'>
+export type HeaderProps = ComponentProps<'div'> & {
+  navMenuGroupName?: string | null
+  navMenus?: { name: string; link: string }[]
+  githubLink?: string
+}
 
 export const Header: FC<HeaderProps> = props => {
   const isMobile = useIsMobile()
   return isMobile ? <Header$Mobile {...props} /> : <Header$Desktop {...props} />
 }
 
-export const Header$Desktop: FC<HeaderProps> = props => {
-  const { t } = useTranslation('common')
-
+export const Header$Desktop: FC<HeaderProps> = ({ navMenuGroupName, navMenus, githubLink, ...elProps }) => {
   return (
-    <div {...props} className={classnames(styles.header, props.className, styles.blur)}>
-      <div className={classnames('container', styles.content)}>
+    <div {...elProps} className={clsx(styles.header, elProps.className)}>
+      <div className={styles.content}>
         <div className={styles.left}>
           <Link href="/">
             <IconLogo />
           </Link>
+          {navMenus?.map(({ name, link }) => (
+            <LinkWithEffect key={name} href={link}>
+              {name}
+            </LinkWithEffect>
+          ))}
         </div>
 
         <div className={styles.right}>
-          <MenuDialog />
+          {githubLink && (
+            <Link href={githubLink} target="_blank" rel="noopener noreferrer">
+              <IconGithub />
+            </Link>
+          )}
+
+          <MenuDialog navMenuGroupName={navMenuGroupName} navMenus={navMenus} />
         </div>
       </div>
     </div>
   )
 }
 
-export const Header$Mobile: FC<HeaderProps> = props => {
+export const Header$Mobile: FC<HeaderProps> = ({ navMenuGroupName, navMenus, ...elProps }) => {
   return (
-    <div {...props} className={classnames('container', styles.headerMobile, props.className)}>
+    <div {...elProps} className={clsx(styles.headerMobile, elProps.className)}>
       <div className={styles.top}>
         <div className={styles.left}>
           <Link href="/">
@@ -52,18 +66,18 @@ export const Header$Mobile: FC<HeaderProps> = props => {
         </div>
 
         <div className={styles.right}>
-          <MenuDialog />
+          <MenuDialog navMenuGroupName={navMenuGroupName} navMenus={navMenus} />
         </div>
       </div>
     </div>
   )
 }
 
-const MenuDialog: FC = () => {
+const MenuDialog: FC<Pick<HeaderProps, 'navMenuGroupName' | 'navMenus'>> = ({ navMenuGroupName, navMenus }) => {
   const { t } = useTranslation('common')
   const isMobile = useIsMobile()
   const router = useRouter()
-  const { pathname, query, locale = 'en' } = router
+  const { pathname, query } = router
 
   return (
     <Dialog.Root>
@@ -93,18 +107,30 @@ const MenuDialog: FC = () => {
 
           <OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'never' } }}>
             <div className={styles.content}>
-              <LinkWithEffect className={styles.title} href="/#branding">
+              {navMenuGroupName != null && navMenus != null && (
+                <>
+                  <div className={styles.title}>{navMenuGroupName}</div>
+                  <div className={styles.links}>
+                    {navMenus.map(({ name, link }) => (
+                      <LinkWithEffect key={name} href={link}>
+                        {name}
+                      </LinkWithEffect>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              <LinkWithEffect className={styles.title} href="/">
                 {t('Home')}
               </LinkWithEffect>
 
               <div className={styles.title}>{t('Services')}</div>
               <div className={styles.links}>
-                <LinkWithEffect href={`https://neuron.magickbase.com/${locale}`}>{t('Neuron Wallet')}</LinkWithEffect>
-                <LinkWithEffect href={`https://explorer.nervos.org`}>{t('CKB Explorer')}</LinkWithEffect>
-                <LinkWithEffect href={`https://v1.gwscan.com`}>{t('Godwoke Explorer')}</LinkWithEffect>
-                <LinkWithEffect href={`https://github.com/Magickbase/blockscan`}>{t('Axon Explorer')}</LinkWithEffect>
-                <LinkWithEffect href={`https://github.com/ckb-js/kuai`}>{t('Kuai')}</LinkWithEffect>
-                <LinkWithEffect href={`https://lumos-website.vercel.app`}>{t('Lumos')}</LinkWithEffect>
+                <LinkWithEffect href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</LinkWithEffect>
+                <span title="Coming soon">{t('CKB Explorer')}</span>
+                <span title="Coming soon">{t('Godwoke Explorer')}</span>
+                <span title="Coming soon">{t('Axon Explorer')}</span>
+                <span title="Coming soon">{t('Kuai')}</span>
               </div>
 
               <LinkWithEffect
@@ -115,11 +141,11 @@ const MenuDialog: FC = () => {
               </LinkWithEffect>
 
               <div className={styles.title}>{t('Language')}</div>
-              <div className={classnames(styles.links, styles.languages)}>
+              <div className={clsx(styles.links, styles.languages)}>
                 {languages.map(language => (
                   <LinkWithEffect
                     key={language.name}
-                    className={classnames(styles.languageItem, {
+                    className={clsx(styles.languageItem, {
                       [styles.selected ?? '']: language.localeName === router.locale,
                     })}
                     href={{ pathname, query }}

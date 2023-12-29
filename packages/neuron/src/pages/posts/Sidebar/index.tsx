@@ -1,9 +1,9 @@
 import { ComponentProps, FC } from 'react'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
+import { Contacts } from '@magickbase-website/shared'
 import { Post, TopLevelMenu } from '../../../utils'
 import styles from './index.module.scss'
-import { Contacts } from '../../../components/Contacts'
 import { ClassifiedPosts } from '../ClassifiedPosts'
 
 export const Sidebar: FC<ComponentProps<'div'> & { menuWithPosts: TopLevelMenu; viewingPost: Post }> = props => {

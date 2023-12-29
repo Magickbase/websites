@@ -1,7 +1,7 @@
 import { ComponentProps, FC } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { useIsMobile } from '@magickbase-website/shared'
+import { LinkWithEffect, useIsMobile } from '@magickbase-website/shared'
 import { Tooltip } from '../../../components/Tooltip'
 import IconWindows from './windows.svg'
 import IconMacOS from './macos.svg'
@@ -9,7 +9,6 @@ import IconLinux from './linux.svg'
 import IconTips from './tips.svg'
 import styles from './index.module.scss'
 import { ParsedAsset } from '../../../utils'
-import { LinkWithEffect } from '../../../components/UpsideDownEffect'
 
 type AssetsProps = Pick<ComponentProps<'table'> | ComponentProps<'ul'>, 'className'> & { assets: ParsedAsset[] }
 
