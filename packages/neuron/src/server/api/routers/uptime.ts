@@ -1,3 +1,4 @@
+import { UPTIME_KEY } from '../../../utils'
 import { createTRPCRouter, publicProcedure } from '../trpc'
 
 export const uptimeRouter = createTRPCRouter({
@@ -5,7 +6,7 @@ export const uptimeRouter = createTRPCRouter({
   aggregateState: publicProcedure.query(async () => {
     const resp = await fetch('https://betteruptime.com/api/v2/status-pages', {
       headers: {
-        Authorization: `Bearer ${'1HkYYawwoVXDsVJNwpFZaKkE'}`,
+        Authorization: `Bearer ${UPTIME_KEY}`,
       },
     })
     // response type by https://betterstack.com/docs/uptime/api/status-pages-api-response-params/
