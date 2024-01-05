@@ -2259,7 +2259,7 @@ __metadata:
     observable-hooks: ^4.2.2
     overlayscrollbars: ^2.4.5
     overlayscrollbars-react: ^0.5.3
-    postcss: ^8.4.24
+    postcss: ^8.4.31
     postcss-scss: ^4.0.6
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -11430,6 +11430,17 @@ __metadata:
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
   checksum: 814e2126dacfea313588eda09cc99a9b4c26ec55c059188aa7a916d20d26d483483106dc5ff9e560731b59f45c5bb91b945dfadc670aed875cc90ddbbf4e787d
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.4.31":
+  version: 8.4.33
+  resolution: "postcss@npm:8.4.33"
+  dependencies:
+    nanoid: ^3.3.7
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: 6f98b2af4b76632a3de20c4f47bf0e984a1ce1a531cf11adcb0b1d63a6cbda0aae4165e578b66c32ca4879038e3eaad386a6be725a8fb4429c78e3c1ab858fe9
   languageName: node
   linkType: hard
 
