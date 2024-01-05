@@ -1690,7 +1690,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.23.2":
+"@babel/runtime@npm:^7.1.2":
   version: 7.23.2
   resolution: "@babel/runtime@npm:7.23.2"
   dependencies:
@@ -1714,15 +1714,6 @@ __metadata:
   dependencies:
     regenerator-runtime: ^0.13.11
   checksum: 8fc50785ca4cba749fed90bffca7e6fd52d4709755654e95b8d2a945fc034b56fb8c2e8a0183fea7c4abb86bf5fa77678c0ea35163b6920649833d180c34c234
-  languageName: node
-  linkType: hard
-
-"@babel/runtime@npm:^7.22.5":
-  version: 7.23.6
-  resolution: "@babel/runtime@npm:7.23.6"
-  dependencies:
-    regenerator-runtime: ^0.14.0
-  checksum: 1a8eaf3d3a103ef5227b60ca7ab5c589118c36ca65ef2d64e65380b32a98a3f3b5b3ef96660fa0471b079a18b619a8317f3e7f03ab2b930c45282a8b69ed9a16
   languageName: node
   linkType: hard
 
@@ -2211,13 +2202,13 @@ __metadata:
     classnames: 2.3.2
     daisyui: latest
     eslint: ^8.56.0
-    i18next: ^23.7.11
+    i18next: ^22.5.0
     next: 13.5.6
-    next-i18next: ^15.1.1
+    next-i18next: ^13.2.2
     react: 18.2.0
     react-dom: 18.2.0
     react-hot-toast: ^2.4.1
-    react-i18next: ^14.0.0
+    react-i18next: ^12.3.1
     react-intersection-observer: 9.5.3
     react-use: 17.4.0
     rebound: ^0.1.0
@@ -2304,11 +2295,13 @@ __metadata:
     "@types/react-dom": ^18.2.4
     clsx: ^1.2.1
     eslint: ^8.56.0
+    i18next: ^22.5.0
     next: ^13.4.4
+    next-i18next: ^13.2.2
     overlayscrollbars: ^2.4.5
     overlayscrollbars-react: ^0.5.3
     react: ^18.2.0
-    react-i18next: ^14.0.0
+    react-i18next: ^12.3.1
     react-resize-detector: ^9.1.0
     sass: ^1.62.1
     stylelint: ^15.6.2
@@ -3687,16 +3680,6 @@ __metadata:
     "@types/react": "*"
     hoist-non-react-statics: ^3.3.0
   checksum: 2c0778570d9a01d05afabc781b32163f28409bb98f7245c38d5eaf082416fdb73034003f5825eb5e21313044e8d2d9e1f3fe2831e345d3d1b1d20bcd12270719
-  languageName: node
-  linkType: hard
-
-"@types/hoist-non-react-statics@npm:^3.3.4":
-  version: 3.3.5
-  resolution: "@types/hoist-non-react-statics@npm:3.3.5"
-  dependencies:
-    "@types/react": "*"
-    hoist-non-react-statics: ^3.3.0
-  checksum: b645b062a20cce6ab1245ada8274051d8e2e0b2ee5c6bd58215281d0ec6dae2f26631af4e2e7c8abe238cdcee73fcaededc429eef569e70908f82d0cc0ea31d7
   languageName: node
   linkType: hard
 
@@ -7934,13 +7917,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next-fs-backend@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "i18next-fs-backend@npm:2.3.1"
-  checksum: 86273eecdebfb055c171d466e41e4e3d50b9d8184eed3a88dde4fca2cd30cc7bd92e3ae3d69a6aa51f74bad2f429384388b61b121c3a09596870670bbb833bdb
-  languageName: node
-  linkType: hard
-
 "i18next-parser@npm:^8.7.0":
   version: 8.7.0
   resolution: "i18next-parser@npm:8.7.0"
@@ -7974,15 +7950,6 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.20.6
   checksum: 175f8ab7fac2abcee147b00cc2d8e7d4fa9b05cdc227f02cac841fc2fd9545ed4a6d88774f594f8ad12dc944e4d34cc8e88aa00c8b9947baef9e859d93abd305
-  languageName: node
-  linkType: hard
-
-"i18next@npm:^23.7.11":
-  version: 23.7.11
-  resolution: "i18next@npm:23.7.11"
-  dependencies:
-    "@babel/runtime": ^7.23.2
-  checksum: 50aeaa279f95d27ea9a6a0bf58e28ef883c0056b89e17fd21e252287269e9a8debbdbcb753047c03ceabbb2b240a9cf668f820c9306cedbe54957e2e64ea1c87
   languageName: node
   linkType: hard
 
@@ -10339,24 +10306,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-i18next@npm:^15.1.1":
-  version: 15.1.1
-  resolution: "next-i18next@npm:15.1.1"
-  dependencies:
-    "@babel/runtime": ^7.23.2
-    "@types/hoist-non-react-statics": ^3.3.4
-    core-js: ^3
-    hoist-non-react-statics: ^3.3.2
-    i18next-fs-backend: ^2.3.1
-  peerDependencies:
-    i18next: ^23.7.7
-    next: ">= 12.0.0"
-    react: ">= 17.0.2"
-    react-i18next: ^13.5.0
-  checksum: 26001fc1b972e981115f1b2b9cc5787d4287ce0c42d984ad7fb372dfbcb3cd456eb7f956b969cb0854c718c88cd8dbf901b157389b9e3d544e6ecff131d12da8
-  languageName: node
-  linkType: hard
-
 "next@npm:13.5.6":
   version: 13.5.6
   resolution: "next@npm:13.5.6"
@@ -11666,24 +11615,6 @@ __metadata:
     react-native:
       optional: true
   checksum: fe3f360e5184bc63861734e94bf625a09b9ec0d28fab41779a68758af258fd1737dde25ff7a88ddb66c1571a3e3de5b3403825a91b4949bf9832a00615acb87a
-  languageName: node
-  linkType: hard
-
-"react-i18next@npm:^14.0.0":
-  version: 14.0.0
-  resolution: "react-i18next@npm:14.0.0"
-  dependencies:
-    "@babel/runtime": ^7.22.5
-    html-parse-stringify: ^3.0.1
-  peerDependencies:
-    i18next: ">= 23.2.3"
-    react: ">= 16.8.0"
-  peerDependenciesMeta:
-    react-dom:
-      optional: true
-    react-native:
-      optional: true
-  checksum: ab41bc1db8f0d127d608087444906c0b5ae8decbd442f8d64dffdb05cc8112f024f705818d347cbc5f9cb9cbb9bca137a171ee810494130da917f7befb5669b2
   languageName: node
   linkType: hard
 
