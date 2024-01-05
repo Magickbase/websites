@@ -5,14 +5,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
+import { LinkWithEffect, UpsideDownEffect, useIsMobile } from '@magickbase-website/shared'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import { APPID, Menu, SEARCH_KEY, getMenusWithPosts, getPostURL, removeURLOrigin } from '../../utils'
 import ImgNeuronLogo from './neuron-logo.png'
 import ImgHelp from './help.png'
 import IconMore from './more.svg'
-import { LinkWithEffect, UpsideDownEffect } from '../../components/UpsideDownEffect'
-import { useIsMobile } from '../../hooks'
 
 interface PageProps {
   menusWithPosts: Menu[]

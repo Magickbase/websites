@@ -29,6 +29,8 @@ const config = {
     ],
   },
 
+  transpilePackages: ['@magickbase-website/shared'],
+
   sassOptions: {
     logger: {
       warn: function (message) {

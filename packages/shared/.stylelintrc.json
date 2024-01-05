@@ -1,0 +1,52 @@
+{
+  "overrides": [
+    {
+      "files": ["**/*.scss"],
+      "customSyntax": "postcss-scss"
+    }
+  ],
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-rational-order",
+    "stylelint-config-css-modules",
+    "stylelint-config-prettier-scss"
+  ],
+  "rules": {
+    "selector-class-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Expected class selector to be lowerCamelCase"
+      }
+    ],
+    "custom-property-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Expected custom property name to be lowerCamelCase"
+      }
+    ],
+    "keyframes-name-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Expected class selector to be lowerCamelCase"
+      }
+    ],
+    "scss/dollar-variable-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Expected variable to be lowerCamelCase"
+      }
+    ],
+    "scss/percent-placeholder-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Expected placeholder to be lowerCamelCase"
+      }
+    ],
+    "scss/at-mixin-pattern": [
+      "^[a-z][a-zA-Z0-9]*$",
+      {
+        "message": "Expected mixin name to be lowerCamelCase"
+      }
+    ]
+  }
+}

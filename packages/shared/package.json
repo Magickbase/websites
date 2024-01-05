@@ -1,0 +1,41 @@
+{
+  "name": "@magickbase-website/shared",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "typesVersions//": "This configuration is used to address the issue where projects depending on this package cannot correctly resolve the package path when using the Node moduleResolution mode. If the parent package uses the Bundler mode, this configuration may not be necessary. Refs: https://github.com/vercel/turbo/issues/4771#issuecomment-1587351163",
+  "typesVersions": {
+    "*": {
+      "index": [
+        "./src/index.ts"
+      ]
+    }
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.4",
+    "clsx": "^1.2.1",
+    "i18next": "^22.5.0",
+    "next": "^13.4.4",
+    "next-i18next": "^13.2.2",
+    "overlayscrollbars": "^2.4.5",
+    "overlayscrollbars-react": "^0.5.3",
+    "react": "^18.2.0",
+    "react-i18next": "^12.3.1",
+    "react-resize-detector": "^9.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.4",
+    "eslint": "^8.56.0",
+    "sass": "^1.62.1",
+    "stylelint": "^15.6.2",
+    "stylelint-config-css-modules": "^4.2.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard-scss": "^9.0.0",
+    "stylelint-order": "^6.0.3",
+    "typescript": "^5.1.3"
+  }
+}

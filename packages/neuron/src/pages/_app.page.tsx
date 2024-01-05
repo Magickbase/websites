@@ -5,11 +5,11 @@ import { appWithTranslation, useTranslation } from 'next-i18next'
 import localFont from 'next/font/local'
 import { useOverlayScrollbars } from 'overlayscrollbars-react'
 import { OverlayScrollbars } from 'overlayscrollbars'
+import { useHighPrecisionScrollbarWidth } from '@magickbase-website/shared'
 import { api } from '../utils/api'
 import 'overlayscrollbars/overlayscrollbars.css'
 import '../styles/globals.scss'
 import { TooltipProvider } from '../components/Tooltip'
-import { useHighPrecisionScrollbarWidth } from '../hooks'
 
 const fontProximaNova = localFont({
   src: [

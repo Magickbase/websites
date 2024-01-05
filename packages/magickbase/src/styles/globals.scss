@@ -1,0 +1,10 @@
+@import 'src/styles/variables.module';
+
+body {
+  --contentAreaWidth: 1320px;
+  --contentWrapperPadding: 32px;
+
+  @media (max-width: $mobileBreakPoint) {
+    --contentWrapperPadding: 24px;
+  }
+}

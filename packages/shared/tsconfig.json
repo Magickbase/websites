@@ -1,0 +1,19 @@
+{
+  "extends": "@magickbase-website/config/tsconfig-nextjs.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    // If manual configuration of various toolchain types (such as Sass, SVG) is required, it can be complex.
+    // Considering that this package is primarily intended for Next.js projects, it is recommended to directly
+    // depend on the `next-env.d.ts` definitions that include these packages.
+    // If the shared package needs to serve packages other than nextjs in the future,
+    // we can consider splitting it into shared and nextjs-shared.
+    "../*/next-env.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,10 +1,10 @@
-import { ComponentProps, forwardRef, ReactNode } from 'react'
+import { ComponentProps, forwardRef, ReactNode, useMemo } from 'react'
 import { clsx } from 'clsx'
-import { Footer, FooterProps } from '../Footer'
-import { Header, HeaderProps } from '../Header'
+import { Footer, FooterProps, Header, HeaderProps, useBodyClass } from '@magickbase-website/shared'
+import { useTranslation } from 'react-i18next'
 import styles from './index.module.scss'
-import { useBodyClass } from '../../hooks'
 import presets from '../../styles/presets.module.scss'
+import { api } from '../../utils'
 
 type PageProps = Omit<ComponentProps<'div'>, 'children'> & {
   children?:
@@ -19,6 +19,7 @@ type PageProps = Omit<ComponentProps<'div'>, 'children'> & {
 export const Page = forwardRef<HTMLDivElement, PageProps>(function Page(props, ref) {
   const { children, contentWrapper = true, className, ...divProps } = props
   const contentWrapperProps = typeof contentWrapper === 'object' ? contentWrapper : {}
+  const { t } = useTranslation('common')
 
   // _document.page.tsx adds a theme class name to the HTML element during initialization, but this class name remains fixed and does not change.
   // In order to switch themes correctly when navigating between routes, it is necessary to add a theme class name to the body element.
@@ -27,15 +28,37 @@ export const Page = forwardRef<HTMLDivElement, PageProps>(function Page(props, r
   // TODO: This may not be a good code implementation, but we should consider refactoring it after having multiple pages with switchable color modes.
   useBodyClass([presets.themeDark ?? ''])
 
+  const aggregateStateQuery = api.uptime.aggregateState.useQuery()
+
+  const navMenus = useMemo<HeaderProps['navMenus']>(
+    () => [
+      { name: t('Changelog'), link: '/changelog' },
+      { name: t('Help Center'), link: '/help-center' },
+      { name: t('Download Neuron'), link: '/download' },
+    ],
+    [t],
+  )
+
   const finalChildren =
     typeof children === 'function' ? (
       children({
-        renderHeader: props => <Header {...props} />,
-        renderFooter: props => <Footer {...props} />,
+        renderHeader: props => (
+          <Header
+            navMenuGroupName={t('Neuron')}
+            navMenus={navMenus}
+            githubLink="https://github.com/nervosnetwork/neuron"
+            {...props}
+          />
+        ),
+        renderFooter: props => <Footer serviceState={aggregateStateQuery.data} {...props} />,
       })
     ) : (
       <>
-        <Header />
+        <Header
+          navMenuGroupName={t('Neuron')}
+          navMenus={navMenus}
+          githubLink="https://github.com/nervosnetwork/neuron"
+        />
         {contentWrapper ? (
           <div {...contentWrapperProps} className={clsx(styles.contentWrapper, contentWrapperProps.className)}>
             {children}
@@ -43,7 +66,7 @@ export const Page = forwardRef<HTMLDivElement, PageProps>(function Page(props, r
         ) : (
           children
         )}
-        <Footer />
+        <Footer serviceState={aggregateStateQuery.data} />
       </>
     )
 

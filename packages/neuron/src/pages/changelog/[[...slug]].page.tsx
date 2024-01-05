@@ -6,14 +6,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Fragment, useCallback } from 'react'
-import { Release, getReleases, range } from '../../utils'
+import { LinkWithEffect, range } from '@magickbase-website/shared'
+import { Release, getReleases } from '../../utils'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import ImgNeuronLogo from './neuron-logo.png'
-import { LinkComponentProps, useMarkdownProps } from '../../hooks'
 import IconTop from './top.svg'
 import IconMore from './more.svg'
-import { LinkWithEffect } from '../../components/UpsideDownEffect'
+import { LinkComponentProps, useMarkdownProps } from '../../hooks'
 
 const RELEASES_PER_PAGE = 2
 

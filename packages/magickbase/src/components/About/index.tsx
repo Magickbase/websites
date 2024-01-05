@@ -83,7 +83,7 @@ export const TimelineItem: FC<PropsWithChildren<TimelineItemProps>> = ({
     <div
       ref={ref}
       className={classnames(styles.item, className, 'snap-always', {
-        [styles.active]: inView,
+        [styles.active ?? '']: inView,
       })}
       {...props}
     >
