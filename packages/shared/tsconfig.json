@@ -1,5 +1,10 @@
 {
   "extends": "@magickbase-website/config/tsconfig-nextjs.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true
+  },
   "include": [
     "**/*.ts",
     "**/*.tsx",
