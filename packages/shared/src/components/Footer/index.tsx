@@ -10,9 +10,14 @@ import { LinkWithEffect } from '../UpsideDownEffect'
 
 export type FooterProps = ComponentProps<'div'> & {
   serviceState?: 'operational' | 'downtime' | 'degraded' | 'unknown'
+  serviceLink?: string
 }
 
-export const Footer: FC<FooterProps> = ({ serviceState, ...elProps }) => {
+export const Footer: FC<FooterProps> = ({
+  serviceState,
+  serviceLink = 'https://status.magickbase.com/',
+  ...elProps
+}) => {
   const { t } = useTranslation('common')
   const isMobile = useIsMobile()
 
@@ -36,7 +41,7 @@ export const Footer: FC<FooterProps> = ({ serviceState, ...elProps }) => {
           >
             <span className={styles.title}>{t('Status')}</span>
             <div className={styles.dot} />
-            <Link href="https://status.magickbase.com/" target="_blank">
+            <Link href={serviceLink} target="_blank">
               {serviceStateText}
             </Link>
           </div>
