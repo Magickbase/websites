@@ -21,6 +21,7 @@
     "@trpc/server": "^10.28.2",
     "@uidotdev/usehooks": "^2.4.1",
     "classnames": "2.3.2",
+    "dayjs": "^1.11.10",
     "i18next": "^22.5.0",
     "next": "13.5.6",
     "next-i18next": "^13.2.2",
