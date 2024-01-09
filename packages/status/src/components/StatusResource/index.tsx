@@ -43,9 +43,8 @@ export const StatusResource: React.FC<StatusResourceProps> = ({ link, resource, 
         <span className="flex-1 pr-2 mr-2 border-r border-solid border-[#333333]">{link}</span>
         <CopyIcon
           className="cursor-pointer fill-white hover:fill-[#00CC9B] transition-all"
-          onClick={() => {
-            console.log('onclick')
-            copyToClipboard(link).catch(() => {})
+          onClick={async () => {
+            await copyToClipboard(link)
             toast.success('copied!')
           }}
         />

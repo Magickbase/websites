@@ -1,7 +1,7 @@
-import { Footer, Header } from '@magickbase-website/shared'
 import { api } from '@/utils/api'
 import { TailwindToaster } from '@/components/Toaster'
 import { StatusResource } from '@/components/StatusResource'
+import { Layout } from '@/components/Layout'
 import classNames from 'classnames'
 
 const LinkMap: Record<string, string> = {
@@ -15,19 +15,11 @@ const LinkMap: Record<string, string> = {
 }
 
 export default function Home() {
-  const aggregateStateQuery = api.uptime.aggregateState.useQuery()
   const resourceQuery = api.uptime.listStatusPageResources.useQuery()
   const sectionQuery = api.uptime.listStatusPageSections.useQuery()
 
   return (
-    <>
-      <Header
-        githubLink=''
-        navMenus={[
-          { name: 'Home', link: '/' },
-          { name: 'Index', link: '/stat' },
-        ]}
-      />
+    <Layout>
       <div className="container mx-auto mb-20">
         <div className="flex flex-col md:flex-row md:items-center mb-12">
           <span className="mr-4 text-4xl font-bold">Service Monitor</span>
@@ -40,6 +32,16 @@ export default function Home() {
           />
         </div>
         <div className="flex flex-col gap-12">
+          {resourceQuery.isLoading && [
+            <div key='1'>
+              <div className="text-xl mb-6 skeleton w-40 h-[28px]" />
+              <div className="w-full h-80 skeleton rounded-3xl" />
+            </div>,
+            <div key='2'>
+              <div className="text-xl mb-6 skeleton w-40 h-[28px]" />
+              <div className="w-full h-80 skeleton rounded-3xl" />
+            </div>,
+          ]}
           {sectionQuery.data?.map(section => (
             <div key={section.attributes.status_page_id}>
               <div className="text-xl mb-6">{section.attributes.name}</div>
@@ -47,7 +49,7 @@ export default function Home() {
               <div
                 className={classNames(
                   'border border-[#FFFFFF33] border-solid rounded-3xl p-6 flex flex-col gap-8',
-                  'bg-gradient-to-b from-[#36363666] to-[#1D1D1D33]',
+                  'bg-gradient-to-b from-[#36363666] to-[rgba(29,29,29,0.2)]',
                 )}
               >
                 {resourceQuery.data
@@ -65,7 +67,6 @@ export default function Home() {
         </div>
       </div>
       <TailwindToaster />
-      <Footer className="snap-always snap-center" serviceState={aggregateStateQuery.data} serviceLink="/status" />
-    </>
+    </Layout>
   )
 }
