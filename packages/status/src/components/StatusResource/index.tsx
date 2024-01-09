@@ -1,10 +1,11 @@
 import classnames from 'classnames'
-import { ComponentProps, PropsWithChildren } from 'react'
+import { ComponentProps } from 'react'
 import { StatusResourceResponse } from '@/types'
 import toast from 'react-hot-toast'
-import CopyIcon from './copy.svg'
 import { Tooltip } from '@/components/Tooltip'
 import { useCopyToClipboard } from '@uidotdev/usehooks'
+import { useIsMobile } from '@magickbase-website/shared'
+import CopyIcon from './copy.svg'
 
 export interface StatusResourceProps extends Omit<ComponentProps<'div'>, 'resource'> {
   link?: string
@@ -25,8 +26,35 @@ function parseDuration(duration: number) {
 }
 
 export const StatusResource: React.FC<StatusResourceProps> = ({ link, resource, ...props }) => {
+  const isMobile = useIsMobile();
   const [_, copyToClipboard] = useCopyToClipboard()
   const currentStatus = resource.attributes.status_history[resource.attributes.status_history.length - 1]
+
+  const StatusLink = ({ className, ...props }: ComponentProps<'div'>) => {
+    if (!link) return null
+    return (
+      <div
+        className={classnames(
+          'p-2 shadow-inner border border-solid rounded-md border-[#333333] items-center',
+          className,
+        )}
+        {...props}
+      >
+        <span className="flex-1 pr-2 mr-2 border-r border-solid border-[#333333]">{link}</span>
+        <CopyIcon
+          className="cursor-pointer fill-white hover:fill-[#00CC9B] transition-all"
+          onClick={() => {
+            console.log('onclick')
+            copyToClipboard(link).catch(() => {})
+            toast.success('copied!')
+          }}
+        />
+      </div>
+    )
+  }
+
+  const length = isMobile ? 30 : 90
+
   return (
     <div {...props}>
       <div className="flex items-center mb-4">
@@ -39,27 +67,17 @@ export const StatusResource: React.FC<StatusResourceProps> = ({ link, resource, 
         />
         <span className="text-xl font-[600] mr-4">{resource.attributes.public_name}</span>
 
-        {link && (
-          <div className="p-2 shadow-inner border border-solid rounded-md border-[#333333] flex items-center">
-            <span className="pr-2 mr-2 border-r border-solid border-[#333333]">{link}</span>
-            <CopyIcon
-              className="cursor-pointer fill-white hover:fill-[#00CC9B] transition-all"
-              onClick={() => {
-                console.log('onclick')
-                copyToClipboard(link)
-                toast.success('copied!')
-              }}
-            />
-          </div>
-        )}
+        <StatusLink className='hidden md:flex'/>
 
         <span className="text-[#00CC9B] ml-auto">
           {(resource.attributes.availability * 100).toPrecision(5)}% Normal
         </span>
       </div>
 
+      <StatusLink className='flex md:hidden mb-4'/>
+
       <div className="h-12 w-full flex gap-[2px] rounded-tl-xl mb-2">
-        {resource.attributes.status_history.map(history => (
+        {resource.attributes.status_history.slice(-length).map(history => (
           <Tooltip
             key={history.day}
             className="flex-1 first:rounded-tl-md first:rounded-bl-md last:rounded-tr-md last:rounded-br-md overflow-hidden"
@@ -97,7 +115,7 @@ export const StatusResource: React.FC<StatusResourceProps> = ({ link, resource, 
       </div>
 
       <div className="flex text-[#999999] text-sm">
-        <span>{resource.attributes.status_history.length} days ago</span>
+        <span>{Math.min(resource.attributes.status_history.length, length)} days ago</span>
         <span className="ml-auto">Today</span>
       </div>
     </div>
