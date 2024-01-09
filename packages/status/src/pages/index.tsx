@@ -1,7 +1,5 @@
 import { Footer, Header } from '@magickbase-website/shared'
-import styles from './page.module.css'
-import { api } from '../utils/api'
-import type { StatusResourceResponse, StatusSection } from '@/types'
+import { api } from '@/utils/api'
 import { TailwindToaster } from '@/components/Toaster'
 import { StatusResource } from '@/components/StatusResource'
 import classNames from 'classnames'
@@ -31,7 +29,7 @@ export default function Home() {
         ]}
       />
       <div className="container mx-auto mb-20">
-        <div className="flex items-center mb-12">
+        <div className="flex flex-col md:flex-row md:items-center mb-12">
           <span className="mr-4 text-4xl font-bold">Service Monitor</span>
           <iframe
             src="https://status.magickbase.com/badge?theme=dark"
