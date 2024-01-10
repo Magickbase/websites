@@ -41,9 +41,9 @@ export default function Event() {
 
   return (
     <Layout>
-      <div className="container mx-auto mb-20 flex flex-col">
-        <div className="text-xl mb-4 text-[600]">History Events</div>
-        <div className="border border-[#FFFFFF33] border-solid rounded-3xl p-4 bg-gradient-to-b from-[#36363666] to-[#1D1D1D33]">
+      <div className="container pt-10 pb-[88px] flex flex-col">
+        <div className="text-xl mb-6 text-[600]">History Events</div>
+        <div className="border border-[#FFFFFF33] border-solid rounded-3xl p-6 bg-gradient-to-b from-[#36363666] to-[#1D1D1D33]">
           <div className='flex flex-col gap-4 mb-8'>
             <EventPage key={page} page={page} />
           </div>
