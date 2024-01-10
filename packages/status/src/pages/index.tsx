@@ -43,7 +43,7 @@ export default function Home() {
             </div>,
           ]}
           {sectionQuery.data?.map(section => (
-            <div key={section.attributes.status_page_id}>
+            <div key={section.id}>
               <div className="text-xl mb-6">{section.attributes.name}</div>
 
               <div
