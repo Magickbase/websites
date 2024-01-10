@@ -15,7 +15,9 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
           { name: 'History Events', link: '/events' },
         ]}
       />
-      {children}
+      <div className='px-6'>
+        {children}
+      </div>
       <Footer className="snap-always snap-center" serviceState={aggregateStateQuery.data} serviceLink="/status" />
     </>
   )
