@@ -20,8 +20,8 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="container mx-auto mb-20">
-        <div className="flex flex-col md:flex-row md:items-center mb-12">
+      <div className="container pt-10 pb-[88px]">
+        <div className="flex flex-col md:flex-row md:items-center mb-14">
           <span className="mr-4 text-4xl font-bold">Service Monitor</span>
           <iframe
             src="https://status.magickbase.com/badge?theme=dark"

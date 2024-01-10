@@ -4,9 +4,9 @@ import { StatCard } from '@/components/StatCard'
 export default function Stat() {
   return (
     <Layout>
-      <div className="container mx-auto mb-20 flex flex-col gap-8">
+      <div className="container pt-10 pb-[88px] flex flex-col gap-8">
         <div>
-          <div className="mb-8 text-xl text-[600]">CKB Explorer · Mainnet</div>
+          <div className="mb-6 text-xl text-[600]">CKB Explorer · Mainnet</div>
           <div className="gap-4 grid grid-cols-1 md:grid-cols-3">
             <StatCard title="Tip Block Time">
               <iframe
@@ -30,7 +30,7 @@ export default function Stat() {
         </div>
 
         <div>
-          <div className="mb-8 text-xl text-[600]">CKB Explorer · Testnet</div>
+          <div className="mb-6 text-xl text-[600]">CKB Explorer · Testnet</div>
           <div className="gap-4 grid grid-cols-1 md:grid-cols-3">
             <StatCard title="Tip Block Time">
               <iframe
@@ -54,7 +54,7 @@ export default function Stat() {
         </div>
 
         <div>
-          <div className="mb-8 text-xl text-[600]">Godwoken Explorer</div>
+          <div className="mb-6 text-xl text-[600]">Godwoken Explorer</div>
           <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
             <StatCard title="Mainnet Block Height">
               <iframe

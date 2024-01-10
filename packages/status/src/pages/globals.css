@@ -119,3 +119,10 @@ a {
     color-scheme: dark;
   }
 }
+
+.container {
+  max-width: var(--contentAreaWidth);
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
