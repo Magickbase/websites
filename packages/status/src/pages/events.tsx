@@ -48,6 +48,8 @@ export default function Event() {
 
   const incidentPages = api.uptime.countIncidentPages.useQuery()
 
+  const btnClass = 'btn btn-outline hover:border-primary hover:bg-transparent hover:text-primary'
+
   return (
     <Layout>
       <div className="container pt-10 pb-[88px] flex flex-col">
@@ -59,7 +61,7 @@ export default function Event() {
           {incidentPages.data && incidentPages.data > 1 && (
             <div className="relative flex gap-2 justify-center">
               <button
-                className={classnames('btn btn-outline hidden md:block')}
+                className={classnames(btnClass, 'hidden md:block')}
                 onClick={() => setPage(1)}
                 disabled={page === 1}
               >
@@ -67,7 +69,7 @@ export default function Event() {
               </button>
 
               <button
-                className={classnames('btn btn-outline')}
+                className={classnames(btnClass)}
                 onClick={() => setPage(prev => prev - 1)}
                 disabled={page === 1}
               >
@@ -83,7 +85,7 @@ export default function Event() {
               </div>
 
               <button
-                className={classnames('btn btn-outline')}
+                className={classnames(btnClass)}
                 onClick={() => setPage(prev => prev + 1)}
                 disabled={page === incidentPages.data}
               >
@@ -91,7 +93,7 @@ export default function Event() {
               </button>
 
               <button
-                className={classnames('btn btn-outline hidden md:block')}
+                className={classnames(btnClass, 'hidden md:block')}
                 onClick={() => setPage(incidentPages.data)}
                 disabled={page === incidentPages.data}
               >
@@ -106,7 +108,7 @@ export default function Event() {
                   onChange={e => setGoto(Number.isNaN(parseInt(e.target.value)) ? '' : parseInt(e.target.value).toString())}
                 />
                 <button
-                  className={classnames('btn btn-outline hidden md:block')}
+                  className={classnames(btnClass)}
                   onClick={() => {
                     setPage(Math.max(Math.min(parseInt(goto), incidentPages.data), 1))
                   }}

@@ -17,6 +17,7 @@ const config: Config = {
     themes: [
       {
         magickbase: {
+          "primary": "#00CC9B",
           "base-100": "#111",
           "base-200": "#222",
           "neutral": '#111',
