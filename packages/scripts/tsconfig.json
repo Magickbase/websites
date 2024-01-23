@@ -1,0 +1,13 @@
+{
+  "extends": "@magickbase-website/config/tsconfig-base.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node"
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "include": ["**/*.ts", "**/*.cjs"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,58 @@
+name: Update Report Snapshot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1'
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    permissions:
+      # peter-evans/create-pull-request requires the following permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      - name: report:update
+        id: report_update
+        env:
+          # The script requires public_repo, read:org, read:project permissions, and needs a personal access token (classic) to obtain these permissions.
+          GITHUB_TOKEN: ${{ secrets.REPORT_GITHUB_TOKEN }}
+        run: |
+          yarn install
+          {
+            echo 'DEVLOG<<EOF'
+            yarn workspace @magickbase-website/scripts report:update | sed '0,/^generateDevlogFromSnapshotsDiff():$/d'
+            echo EOF
+          } >> $GITHUB_OUTPUT
+          git add packages/scripts/snapshots
+
+      - name: Set GPG
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Open PR to repo
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: Update Report Snapshot
+          commit-message: 'feat: update report snapshot'
+          body: '
+          After this PR is merged, a corresponding devlog discussion will be automatically created, with the content preview as follows
+
+
+          ---
+
+
+          ${{ steps.report_update.outputs.DEVLOG }}
+          '
+          committer: ${{ vars.COMMITTER }}
+          branch: update-report-snapshot
