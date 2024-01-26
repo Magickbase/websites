@@ -1,0 +1,26 @@
+name: Create Report Discussion
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - packages/scripts/snapshots/**
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      - name: report:discussion
+        env:
+          # The script requires public_repo permission.
+          GITHUB_TOKEN: ${{ secrets.REPORT_GITHUB_TOKEN }}
+        run: |
+          yarn install
+          yarn workspace @magickbase-website/scripts report:discussion
