@@ -3,7 +3,8 @@ name: Update Report Snapshot
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 1'
+    # Every Friday at 18:00 Beijing time.
+    - cron: '0 10 * * 5'
 
 jobs:
   default:
