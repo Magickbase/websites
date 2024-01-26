@@ -4,7 +4,7 @@ import { ProjectItem, createDiscussion, getOrganizationProjects, getProjectItems
 import { assert } from './error'
 import { ensureFileFolderExists } from './file'
 
-const projectNames = ['CKB Explorer']
+const projectNames = ['CKB Explorer', 'Neuron']
 const sortedStatusValues = [
   '🆕 New',
   '📫Hold On',
