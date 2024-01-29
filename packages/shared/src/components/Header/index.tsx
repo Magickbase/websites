@@ -127,17 +127,15 @@ const MenuDialog: FC<Pick<HeaderProps, 'navMenuGroupName' | 'navMenus'>> = ({ na
               <div className={styles.title}>{t('Services')}</div>
               <div className={styles.links}>
                 <LinkWithEffect href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</LinkWithEffect>
-                <span title="Coming soon">{t('CKB Explorer')}</span>
-                <span title="Coming soon">{t('Godwoke Explorer')}</span>
-                <span title="Coming soon">{t('Axon Explorer')}</span>
-                <span title="Coming soon">{t('Kuai')}</span>
+                <LinkWithEffect href="https://explorer.nervos.org/">{t('CKB Explorer')}</LinkWithEffect>
+                <LinkWithEffect href="https://v1.gwscan.com/">{t('Godwoke Explorer')}</LinkWithEffect>
+                <LinkWithEffect href="https://github.com/Magickbase/blockscan">{t('Axon Explorer')}</LinkWithEffect>
+                <LinkWithEffect href="https://lumos-website.vercel.app/">{t('Lumos')}</LinkWithEffect>
+                <LinkWithEffect href="https://github.com/ckb-js/kuai">{t('Kuai')}</LinkWithEffect>
               </div>
 
-              <LinkWithEffect
-                className={styles.title}
-                href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes"
-              >
-                {t('Public Node')}
+              <LinkWithEffect className={styles.title} href="https://status-website-delta.vercel.app">
+                {t('Service Monitor')}
               </LinkWithEffect>
 
               <div className={styles.title}>{t('Language')}</div>

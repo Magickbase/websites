@@ -46,7 +46,9 @@ export const Footer: FC<FooterProps> = ({
             </Link>
           </div>
 
-          <div className={styles.serviceMonitor}>{t('Service Monitor')}</div>
+          <Link href="https://status-website-delta.vercel.app" target="_blank">
+            <div className={styles.serviceMonitor}>{t('Service Monitor')}</div>
+          </Link>
 
           <Contacts className={styles.contacts} />
 

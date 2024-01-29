@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <Header className='z-10' />
       <Branding id="branding" className="snap-always snap-center" />
       <div className={styles.separate} />
       <AboutUs />
