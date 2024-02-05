@@ -111,6 +111,11 @@ export function generateDevlogFromSnapshotsDiff() {
 
     devLog += `# ${title}\n\n`
 
+    if ([newItems, update, done].every(items => items.length === 0)) {
+      devLog += `## No updates\n\n`
+      continue
+    }
+
     if (newItems.length > 0) {
       devLog += '## [NEW]\n\n'
       newItems.forEach((item, idx) => {
