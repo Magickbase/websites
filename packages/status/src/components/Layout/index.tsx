@@ -8,7 +8,7 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <Header
-        navMenuGroupName='Status'
+        navMenuGroupName='Service Monitor'
         navMenus={[
           { name: 'Home', link: '/' },
           { name: 'Index', link: '/stat' },

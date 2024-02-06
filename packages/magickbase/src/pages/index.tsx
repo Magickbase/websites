@@ -13,13 +13,13 @@ export default function Home() {
   return (
     <>
       <Header className='z-10' />
-      <Branding id="branding" className="snap-always snap-center" />
+      <Branding id="branding" className="snap-always snap-center z-0" />
       <div className={styles.separate} />
       <AboutUs />
       <div className={styles.separate} />
       <Services className="min-h-screen snap-always snap-center" />
       <div className={styles.separate} />
-      <ContactUs className="min-h-screen snap-always snap-center" />
+      <ContactUs className="min-h-screen snap-always snap-center z-0" />
       <Footer className="snap-always snap-center" serviceState={aggregateStateQuery.data} />
       <TailwindToaster />
     </>

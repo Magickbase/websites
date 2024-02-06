@@ -120,13 +120,13 @@ const MenuDialog: FC<Pick<HeaderProps, 'navMenuGroupName' | 'navMenus'>> = ({ na
                 </>
               )}
 
-              <LinkWithEffect className={styles.title} href="/">
+              <LinkWithEffect className={styles.title} href="https://magickbase.com/">
                 {t('Home')}
               </LinkWithEffect>
 
               <div className={styles.title}>{t('Services')}</div>
               <div className={styles.links}>
-                <LinkWithEffect href="https://neuron.magickbase.com/">{t('Neuron Wallet')}</LinkWithEffect>
+                <LinkWithEffect href="https://neuron.magickbase.com/en">{t('Neuron Wallet')}</LinkWithEffect>
                 <LinkWithEffect href="https://explorer.nervos.org/">{t('CKB Explorer')}</LinkWithEffect>
                 <LinkWithEffect href="https://v1.gwscan.com/">{t('Godwoke Explorer')}</LinkWithEffect>
                 <LinkWithEffect href="https://github.com/Magickbase/blockscan">{t('Axon Explorer')}</LinkWithEffect>

@@ -74,8 +74,8 @@ export const Footer: FC<FooterProps> = ({
               <LinkWithEffect href="https://github.com/ckb-js/kuai" target="_blank">
                 {t('Kuai')}
               </LinkWithEffect>
-              <LinkWithEffect href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes" target="_blank">
-                {t('Public Node')}
+              <LinkWithEffect href="https://lumos-website.vercel.app/" target="_blank">
+                {t('Lumos')}
               </LinkWithEffect>
             </div>
           </div>

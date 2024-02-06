@@ -3,12 +3,15 @@ import classnames from 'classnames'
 import Spline from '@splinetool/react-spline'
 import { useCopyToClipboard } from '@uidotdev/usehooks'
 import { Modal, ModalProps } from '@/components/Modal'
+import { Tooltip } from '@/components/Tooltip'
 import toast from 'react-hot-toast'
 import { useIsMobile } from '@magickbase-website/shared'
 import styles from './styles.module.scss'
 import leftElement from './leftElement.png'
 import rightElement from './rightElement.png'
 import CopySvg from './copy.svg'
+import CopySimpleSvg from './copySimple.svg'
+import DoneSvg from './done.svg'
 import MoreSvg from './more.svg'
 import bgImage from './bg.png'
 
@@ -18,8 +21,7 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
   const isMobile = useIsMobile()
 
   const copy = () => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    copyToClipboard('neuron@magickbase.com')
+    void copyToClipboard('neuron@magickbase.com')
     toast.success('copied!')
   }
 
@@ -61,17 +63,22 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
                 Contact Now
               </button>
             ) : (
-              <div
-                className={classnames(
-                  'tooltip after:top-[-14px] after:z-[2] after:border-t-[#333] after:border-[8px]',
-                  'before:bottom-[72px] before:text-base before:p-4 before:shadow-md before:shadow-[#ffffff4d]',
-                )}
-                data-tip="neuron@magickbase.com"
+              <Tooltip
+                content={
+                  <div className='flex items-center'>
+                    neuron@magickbase.com{' '}
+                    {copiedText === 'neuron@magickbase.com' ? (
+                      <DoneSvg className="ml-2"/>
+                    ) : (
+                      <CopySimpleSvg className="ml-2 cursor-pointer" onClick={() => copy()} />
+                    )}
+                  </div>
+                }
               >
-                <button className="border-[1px] border-solid border-white rounded-xl py-4 px-6" onClick={() => copy()}>
+                <div className="border-[1px] border-solid border-white rounded-xl py-4 px-6">
                   Contact Now
-                </button>
-              </div>
+                </div>
+              </Tooltip>
             )}
           </div>
         </div>
