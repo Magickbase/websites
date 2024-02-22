@@ -66,7 +66,7 @@ export function generateDevlogFromSnapshotsDiff() {
       const hasStatusChange = !prevItem || getField(currentItem, 'Status')?.name !== getField(prevItem, 'Status')?.name
       if (!hasAnyChange) continue
 
-      const currentStatus = getField(currentItem, 'Status')?.name ?? ''
+      const currentStatus = getField(currentItem, 'Status')?.name ?? '🆕 New'
       switch (currentStatus) {
         case '🆕 New':
           newItems.push(currentItem)
@@ -87,8 +87,8 @@ export function generateDevlogFromSnapshotsDiff() {
 
     ;[newItems, update, done].forEach(items =>
       items.sort((a, b) => {
-        const aStatus = getField(a, 'Status')?.name ?? ''
-        const bStatus = getField(b, 'Status')?.name ?? ''
+        const aStatus = getField(a, 'Status')?.name ?? '🆕 New'
+        const bStatus = getField(b, 'Status')?.name ?? '🆕 New'
         return sortedStatusValues.indexOf(aStatus) - sortedStatusValues.indexOf(bStatus)
       }),
     )
@@ -110,6 +110,11 @@ export function generateDevlogFromSnapshotsDiff() {
     }
 
     devLog += `# ${title}\n\n`
+
+    if ([newItems, update, done].every(items => items.length === 0)) {
+      devLog += `## No updates\n\n`
+      continue
+    }
 
     if (newItems.length > 0) {
       devLog += '## [NEW]\n\n'
