@@ -46,7 +46,9 @@ export const Footer: FC<FooterProps> = ({
             </Link>
           </div>
 
-          <div className={styles.serviceMonitor}>{t('Service Monitor')}</div>
+          <Link href="https://status-website-delta.vercel.app" target="_blank">
+            <div className={styles.serviceMonitor}>{t('Service Monitor')}</div>
+          </Link>
 
           <Contacts className={styles.contacts} />
 
@@ -72,8 +74,8 @@ export const Footer: FC<FooterProps> = ({
               <LinkWithEffect href="https://github.com/ckb-js/kuai" target="_blank">
                 {t('Kuai')}
               </LinkWithEffect>
-              <LinkWithEffect href="https://github.com/nervosnetwork/ckb/wiki/Public-JSON-RPC-nodes" target="_blank">
-                {t('Public Node')}
+              <LinkWithEffect href="https://lumos-website.vercel.app/" target="_blank">
+                {t('Lumos')}
               </LinkWithEffect>
             </div>
           </div>

@@ -1,0 +1,25 @@
+@import '../../styles/variables.module';
+
+.content {
+  max-width: 596px;
+  margin-bottom: 7px;
+  padding: 12px 16px;
+  color: var(--colorPrimary);
+  font-size: 16px;
+  line-height: 200%;
+  background: #111;
+  border: 1px solid #333;
+  box-shadow: 0 6px 16px #333;
+  border-radius: 8px;
+  backdrop-filter: blur(38px);
+
+  @media (max-width: $mobileBreakPoint) {
+    max-width: 256px;
+  }
+}
+
+.arrow {
+  fill: #111;
+  stroke: #333;
+  stroke-width: 0.4px;
+}
