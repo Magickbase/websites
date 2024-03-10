@@ -10,8 +10,6 @@
     "update:locales": "i18next"
   },
   "dependencies": {
-    "@docsearch/css": "3",
-    "@docsearch/react": "3",
     "@magickbase-website/shared": "workspace:^",
     "@octokit/graphql-schema": "^14.12.0",
     "@octokit/openapi-types": "^17.2.0",
@@ -32,7 +30,6 @@
     "i18next": "^22.5.0",
     "next": "^13.4.4",
     "next-i18next": "^13.2.2",
-    "observable-hooks": "^4.2.2",
     "overlayscrollbars": "^2.4.5",
     "overlayscrollbars-react": "^0.5.3",
     "react": "^18.2.0",
