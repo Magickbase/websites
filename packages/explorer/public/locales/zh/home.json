@@ -1,0 +1,12 @@
+{
+  "Unlocking the Potential of the <tag1>Nervos Blockchain</tag1>": "释放 <tag1>Nervos 区块链</tag1> 的潜力",
+  "CKB Explorer is a blockchain explorer that provides users with a real-time view of the Nervos CKB blockchain. It allows users to search for specific transactions, blocks, and addresses, and provides detailed information on each transaction and block, including the status, timestamp, and fees.": "CKB Explorer 是一个区块链浏览器，为用户提供 Nervos CKB 区块链的实时视图。它允许用户搜索特定的交易、区块和地址，并提供每笔交易和每个区块的详细信息，包括状态、时间戳和费用。",
+  "Real-time parsing of data on the chain": "实时解析链上数据",
+  "Main chain information, block information, transaction information, contract information and address information all in one place to help you keep track of what's happening on the chain.": "主链信息、区块信息、交易信息、合约信息和地址信息都在一个地方，帮助您跟踪链上发生的事情。",
+  "Chain assets summary display": "链上资产汇总显示",
+  "Nervos DAO, Tokens, and NFT collection assets at a glance to help you understand the status of your on-chain projects right away.": "Nervos DAO、代币和 NFT 集合资产一目了然，帮助您立即了解链上项目的状态。",
+  "Multidimensional analysis of data charts": "数据图表的多维分析",
+  "Provide multi-dimensional, multi-type data chart display, is a good helper for you to analyze data and make decisions.": "提供多维度、多类型的数据图表显示，是您分析数据、做出决策的好帮手。",
+  "Experience CKB Explorer Now": "立即体验 CKB 浏览器",
+  "Easy to grasp information on the chain to help you start your journey to the world of CKB": "简单易懂的链上信息，帮助您开启 CKB 世界之旅"
+}

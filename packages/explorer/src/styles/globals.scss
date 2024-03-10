@@ -1,0 +1,67 @@
+/* stylelint-disable custom-property-pattern */
+/* stylelint-disable selector-class-pattern */
+@import 'src/styles/presets.module';
+@import 'src/styles/variables.module';
+
+html,
+body {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--colorPrimaryBg);
+}
+
+body {
+  --contentAreaWidth: 1320px;
+  --contentWrapperPadding: 32px;
+
+  @media (max-width: $mobileBreakPoint) {
+    --contentWrapperPadding: 24px;
+  }
+}
+
+main {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// This is provided to `prepareColorSchemaClasses` in `_document.page.tsx`.
+.themeLight {
+  @include themeLight;
+}
+
+// This is provided to `prepareColorSchemaClasses` in `_document.page.tsx`.
+.themeDark {
+  @include themeDark;
+}
+
+// Modify the default theme of overlayscrollbars.
+// https://github.com/KingSora/OverlayScrollbars/blob/060cf1cd9c677482a3a04274cb237da894f0d4b8/README.md#css-custom-properties
+.os-scrollbar {
+  // handle height = --os-size - padding - border = 6px
+  --os-size: 11px;
+  --os-handle-border: 0.5px solid rgb(153 153 153 / 50%);
+  --os-handle-border-radius: 32px;
+  --os-handle-bg: rgb(0 0 0 / 10%);
+  --os-handle-border-hover: var(--os-handle-border);
+  --os-handle-bg-hover: var(--os-handle-bg);
+  --os-handle-border-active: var(--os-handle-border);
+  --os-handle-bg-active: var(--os-handle-bg);
+
+  transition: opacity 0.2s;
+}
+
+.os-scrollbar-auto-hide.os-scrollbar-auto-hide-hidden {
+  // This is to ensure that the transition of os-scrollbar takes effect correctly.
+  visibility: unset;
+}

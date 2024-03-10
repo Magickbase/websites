@@ -1,0 +1,188 @@
+@import '../../styles/variables.module';
+
+.contentWrapper {
+  position: relative;
+
+  @media (max-width: $mobileBreakPoint) {
+    padding: 0 16px;
+  }
+}
+
+.topShadow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  max-width: 100%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.text1 {
+  margin-top: 146px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 72px;
+  text-align: center;
+
+  .emphasis {
+    position: relative;
+    color: #aa41f8;
+    white-space: nowrap;
+
+    & > svg {
+      position: absolute;
+      top: 50%;
+      left: calc(-1 * (199px - 50%));
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    margin: 48px auto 0;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  // This particular breakpoint value is set manually. This is to allow the `emphasis` to have a good presentation effect.
+  @media (width <= 548px) {
+    max-width: 320px;
+  }
+}
+
+.text2 {
+  max-width: 1058px;
+  margin: 20px auto 0;
+  font-size: 20px;
+  line-height: 40px;
+  text-align: center;
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 32px;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+
+  @media (max-width: $mobileBreakPoint) {
+    flex-direction: column;
+  }
+}
+
+.card {
+  padding: 24px;
+  background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 33px;
+  backdrop-filter: blur(39.5px);
+
+  .cardTitle {
+    color: #f5f5f5;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .cardText {
+    color: #999;
+    font-size: 16px;
+    line-height: 32px;
+  }
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.verticalContentCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.overview {
+  margin-top: 32px;
+  background: linear-gradient(180deg, rgb(54 54 54 / 40%) 0%, rgb(29 29 29 / 20%) 100%);
+  border-radius: 33px;
+  backdrop-filter: blur(39.5px);
+
+  & > img {
+    width: 100%;
+    height: auto;
+    border-radius: 32px;
+    backdrop-filter: blur(39.5px);
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    padding: 6px;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.centering {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:not([_='The :not selector to increase specificity']) {
+  box-sizing: border-box;
+  min-width: 232px;
+  min-height: 72px;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 12px;
+
+  &.btnPrimary {
+    flex-direction: column;
+    gap: 6px;
+    color: white;
+    background: #aa41f8;
+
+    .secondary {
+      font-weight: 400;
+      font-size: 14px;
+    }
+  }
+
+  &.btnGithub {
+    gap: 8px;
+    background: black;
+    border: 1px solid #373737;
+
+    &:hover,
+    &:active {
+      border: 1px solid #373737;
+    }
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    min-width: 224px;
+    min-height: 56px;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  margin-top: -196px;
+
+  @media (max-width: $mobileBreakPoint) {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-self: end;
+    margin-top: 42px;
+  }
+}

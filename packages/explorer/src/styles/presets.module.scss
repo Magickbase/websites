@@ -1,0 +1,55 @@
+@use 'sass:color';
+
+@mixin themeLight {
+  --colorPrimary: #333;
+  --colorPrimaryBg: #fff;
+  --colorSecondBg: #eaf5f0;
+  --colorItemBg: #eefbf1;
+  --color1: #999;
+  --color2: #222;
+  --color3: #666;
+  --colorBg1: #fff;
+  --colorBg2: #eaf5f0;
+  --colorShadow1: rgb(0 0 0 / 8%);
+  --headerShadow1: 0 1px 1px 0 var(--colorShadow1);
+  --menuShadow1: 0 8px 40px 0 #e5e5e5;
+  --menuBorder1: #e5e5e5;
+  --tocBorder: #e5e5e5;
+  --btnForeground: #fff;
+  --btnForegroundDisabled: #{rgba(#fff, 0.5)};
+  --btnBackground: #aa41f8;
+  --btnBackgroundDisabled: #{color.mix(#fff, #aa41f8, $weight: 50%)};
+  --btnBackgroundHover: #{color.mix(#000, #aa41f8, $weight: 20%)};
+  --btnBackgroundActive: #{color.mix(#000, #aa41f8, $weight: 40%)};
+}
+
+.themeLight {
+  @include themeLight;
+}
+
+@mixin themeDark {
+  --colorPrimary: #f5f5f5;
+  --colorPrimaryBg: #000;
+  --colorSecondBg: #111;
+  --colorItemBg: #222;
+  --color1: #777;
+  --color2: #999;
+  --color3: #999;
+  --colorBg1: #111;
+  --colorBg2: #333;
+  --colorShadow1: rgb(255 255 255 / 8%);
+  --headerShadow1: unset;
+  --menuShadow1: unset;
+  --menuBorder1: rgb(255 255 255 / 20%);
+  --tocBorder: #343e3c;
+  --btnForeground: #333;
+  --btnForegroundDisabled: #{rgba(#333, 0.5)};
+  --btnBackground: #aa41f8;
+  --btnBackgroundDisabled: #{color.mix(#000, #aa41f8, $weight: 50%)};
+  --btnBackgroundHover: #{color.mix(#000, #aa41f8, $weight: 20%)};
+  --btnBackgroundActive: #{color.mix(#000, #aa41f8, $weight: 40%)};
+}
+
+.themeDark {
+  @include themeDark;
+}
