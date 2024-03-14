@@ -1,0 +1,76 @@
+@use 'sass:color';
+
+.button {
+  all: unset;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.contained {
+  color: var(--btnForeground);
+  background: var(--btnBackground);
+
+  &:disabled {
+    color: var(--btnForegroundDisabled);
+    background: var(--btnBackgroundDisabled);
+  }
+
+  &:not(:disabled):hover {
+    background: var(--btnBackgroundHover);
+  }
+
+  &:not(:disabled):active {
+    background: var(--btnBackgroundActive);
+  }
+}
+
+.outlined {
+  color: var(--btnBackground);
+  border: 2px solid var(--btnBackground);
+
+  &:disabled {
+    color: var(--btnBackgroundDisabled);
+    border-color: var(--btnBackgroundDisabled);
+  }
+
+  &:not(:disabled):hover {
+    color: var(--btnBackgroundHover);
+    border-color: var(--btnBackgroundHover);
+  }
+
+  &:not(:disabled):active {
+    color: var(--btnBackgroundActive);
+    border-color: var(--btnBackgroundActive);
+  }
+}
+
+.text {
+  padding: 6px 24px;
+  color: var(--btnBackground);
+
+  &:disabled {
+    color: var(--btnBackgroundDisabled);
+  }
+
+  &:not(:disabled):hover {
+    color: var(--btnBackgroundHover);
+  }
+
+  &:not(:disabled):active {
+    color: var(--btnBackgroundActive);
+  }
+}
+
+.themeBlackWhite {
+  --btnForeground: #000;
+  --btnForegroundDisabled: #{rgba(#000, 0.5)};
+  --btnBackground: #f5f5f5;
+  --btnBackgroundDisabled: #{color.mix(#fff, #f5f5f5, $weight: 50%)};
+  --btnBackgroundHover: #{color.mix(#000, #f5f5f5, $weight: 20%)};
+  --btnBackgroundActive: #{color.mix(#000, #f5f5f5, $weight: 40%)};
+}

@@ -1,0 +1,19 @@
+@import '../../styles/variables.module';
+
+.page {
+  width: min-content;
+  min-width: 100%;
+  color: var(--colorPrimary);
+  background-color: var(--colorPrimaryBg);
+}
+
+.contentWrapper {
+  box-sizing: content-box;
+  max-width: calc(var(--contentAreaWidth) + var(--contentWrapperPadding));
+  margin: 0 auto;
+  padding: 0 var(--contentWrapperPadding);
+
+  @media (max-width: $mobileBreakPoint) {
+    max-width: 100%;
+  }
+}

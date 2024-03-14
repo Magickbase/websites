@@ -1,0 +1,258 @@
+@import '../../styles/variables.module';
+
+.page {
+  width: 100%;
+}
+
+.contentWrapper {
+  padding-bottom: 88px;
+
+  @media (max-width: $mobileBreakPoint) {
+    padding-bottom: 160px;
+  }
+}
+
+.branding {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 26px;
+
+  .name {
+    margin-top: 6px;
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    font-size: 18px;
+
+    > img {
+      max-width: 32px;
+      height: auto;
+    }
+
+    .name {
+      margin-top: 4px;
+    }
+  }
+}
+
+.text1 {
+  margin-top: 24px;
+  font-weight: 700;
+  font-size: 40px;
+
+  @media (max-width: $mobileBreakPoint) {
+    font-weight: 600;
+    font-size: 22px;
+  }
+}
+
+.text2 {
+  margin-top: 24px;
+  font-size: 20px;
+
+  & > a {
+    color: #00c891;
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 32px;
+  }
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 32px 0;
+  margin-top: 64px;
+
+  --lineHeight: 38px;
+
+  .top {
+    grid-column: 2;
+    padding-bottom: 24px;
+  }
+
+  .releaseVersion {
+    padding-top: 48px;
+    padding-right: 40px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: var(--lineHeight);
+    border-top: 1px solid #333;
+  }
+
+  .releaseDescription {
+    min-width: 0;
+    padding-top: 48px;
+    word-break: break-word;
+    border-top: 1px solid #333;
+
+    & > :first-child {
+      margin-top: 0;
+    }
+
+    p,
+    li,
+    h2,
+    h3,
+    h4 {
+      line-height: var(--lineHeight);
+    }
+
+    p,
+    ul {
+      margin: 0;
+    }
+
+    ul {
+      padding: 0;
+      list-style-type: none;
+    }
+
+    h2,
+    h3,
+    h4 {
+      margin: 24px 0 8px;
+      font-weight: 400;
+      font-size: 24px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    hr {
+      margin: 24px 0;
+      border: 0;
+      border-bottom: 1px solid #333;
+    }
+
+    hr + * {
+      margin-top: 0;
+    }
+
+    table {
+      word-break: initial;
+
+      th,
+      td {
+        padding: 4px 16px 4px 0;
+      }
+
+      th {
+        padding-bottom: 12px;
+      }
+
+      th:not(:last-child) {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: $mobileBreakPoint) {
+      h2,
+      h3,
+      h4 {
+        margin: 32px 0 16px;
+        font-size: 22px;
+      }
+
+      // Writing it again here is to address the issue of insufficient specificity caused by the media selector.
+      hr + * {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .img {
+    max-width: 100%;
+  }
+
+  .link {
+    color: #00c891;
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 16px;
+
+    --lineHeight: 32px;
+
+    .top {
+      grid-column: 1;
+      padding-bottom: 0;
+    }
+
+    .releaseVersion {
+      padding-top: 32px;
+      padding-right: 0;
+      color: #999;
+      font-weight: 400;
+      font-size: 16px;
+    }
+
+    .releaseDescription {
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 72px;
+
+  .gotoTop {
+    cursor: pointer;
+
+    &:hover {
+      color: #00c891;
+    }
+  }
+
+  .pagingActions {
+    display: flex;
+    align-items: center;
+    border: 1px solid #f5f5f5;
+    border-radius: 12px;
+
+    .pagingAction {
+      display: flex;
+      box-sizing: content-box;
+      padding: 16px 40px;
+      color: #f5f5f5;
+
+      &.disabled {
+        color: #7a7a7a;
+      }
+
+      &:not(.disabled):hover {
+        color: #00c891;
+      }
+
+      .next {
+        transform: rotate(180deg);
+      }
+
+      @media (max-width: $mobileBreakPoint) {
+        padding: 16px 24px;
+      }
+    }
+
+    .dividing {
+      width: 1px;
+      height: 24px;
+      background: #e8e2fa;
+    }
+  }
+
+  @media (max-width: $mobileBreakPoint) {
+    margin-top: 40px;
+  }
+}
