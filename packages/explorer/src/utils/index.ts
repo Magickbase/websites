@@ -4,5 +4,4 @@ export function isClient() {
 
 export * from './api'
 export * from './github'
-export * from './route'
 export * from './env'
