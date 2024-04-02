@@ -12,21 +12,32 @@ import TopShadow from './top-shadow.svg'
 import BottomShadow from './bottom-shadow.svg'
 import IconOval from './oval.svg'
 import IconGithub from './github.svg'
+import IconClose from './close.svg'
 import ImgNeuronOverviewEN from './neuron-overview-en.png'
 import ImgNeuronOverviewZH from './neuron-overview-zh.png'
 import ImgEasy from './easy.png'
 import ImgPrivate from './private.png'
 import ImgReliable from './reliable.png'
 import ImgNeuronLogo from './neuron-logo.png'
-import { ParsedAsset, Release, getAssetsFromNeuronRelease, getLatestRelease } from '../../utils'
+import { ParsedAsset, Release, NodeInfo, getAssetsFromNeuronRelease, getLatestRelease, getNodeInfo } from '../../utils'
 import { Button } from '../../components/Button'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../../components/Dialog'
 
 interface PageProps {
   locale: string
   release: Release | null
+  nodeInfo: NodeInfo | null
 }
 
-const Home: NextPage<PageProps> = ({ locale, release }) => {
+const Home: NextPage<PageProps> = ({ locale, release, nodeInfo }) => {
   const { t } = useTranslation('home')
 
   const ImgNeuronOverview = getNeuronOverviewImg(locale)
@@ -56,7 +67,7 @@ const Home: NextPage<PageProps> = ({ locale, release }) => {
       </div>
 
       <div className={styles.actions}>
-        <DownloadButton release={release} />
+        <DownloadButton release={release} nodeInfo={nodeInfo} />
 
         <Link href="https://github.com/nervosnetwork/neuron" target="_blank" rel="noopener noreferrer">
           <Button variant="outlined" theme="blackwhite" className={clsx(styles.btn, styles.btnGithub)}>
@@ -109,7 +120,7 @@ const Home: NextPage<PageProps> = ({ locale, release }) => {
         <Image src={ImgNeuronLogo} alt="Neuron Logo" width={88} height={88} />
         <div className={styles.text3}>{t('Get Neuron Now')}</div>
         <div className={styles.text4}>{t('Secure and reliable, you can navigate the world of Nervos CKB')}</div>
-        <DownloadButton className={styles.download} release={release} />
+        <DownloadButton className={styles.download} release={release} nodeInfo={nodeInfo} />
       </div>
     </Page>
   )
@@ -122,11 +133,13 @@ const Emphasis: FC<PropsWithChildren> = ({ children }) => (
   </span>
 )
 
-const DownloadButton: FC<Partial<ComponentProps<typeof Link>> & { release: Release | null }> = ({
-  release,
-  ...linkProps
-}) => {
-  const { t } = useTranslation('home')
+const DownloadButton: FC<
+  Partial<ComponentProps<typeof Link>> & {
+    release: Release | null
+    nodeInfo: NodeInfo | null
+  }
+> = ({ release, nodeInfo, ...linkProps }) => {
+  const { t } = useTranslation(['download', 'home'])
   const assets = useMemo(() => (release ? getAssetsFromNeuronRelease(release) : []), [release])
   const [asset, setAsset] = useState<ParsedAsset>()
 
@@ -156,16 +169,53 @@ const DownloadButton: FC<Partial<ComponentProps<typeof Link>> & { release: Relea
   }, [assets])
 
   return (
-    <Link href={asset?.packageLink ?? '/download'} {...linkProps}>
-      <Button className={clsx(styles.btn, styles.btnDownload)}>
-        <span>{t('Download Neuron')}</span>
-        {asset && (
-          <span className={styles.secondary}>
-            ({asset.os} {asset.arch}-{asset.packageType})
-          </span>
-        )}
-      </Button>
-    </Link>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className={clsx(styles.btn, styles.btnDownload)}>
+          <span>{t('Download Neuron')}</span>
+          {asset && (
+            <span className={styles.secondary}>
+              ({asset.os} {asset.arch}-{asset.packageType})
+            </span>
+          )}
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle className={styles.dialogTitle}>
+            {t('Download Note')}
+
+            <DialogClose asChild>
+              <IconClose className={styles.dialogClose} />
+            </DialogClose>
+          </DialogTitle>
+        </DialogHeader>
+        <div style={{ lineHeight: '36px' }}>
+          <Trans
+            t={t}
+            i18nKey="node_info_alert"
+            values={{
+              size: nodeInfo?.data_size_g.toFixed(2),
+            }}
+            components={{
+              tag1: <strong />,
+            }}
+          />
+        </div>
+        <DialogFooter style={{ gap: 24 }}>
+          <a style={{ flex: 1, display: 'flex' }}>
+            <DialogClose asChild>
+              <Button className={styles.cancelBtn} style={{ width: '100%' }} variant="outlined" theme="blackwhite">
+                {t('Cancel')}
+              </Button>
+            </DialogClose>
+          </a>
+          <Link href={asset?.packageLink ?? '/download'} {...linkProps} style={{ flex: 1, display: 'flex' }}>
+            <Button style={{ width: '100%' }}>{t('Continue')}</Button>
+          </Link>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }
 
@@ -180,11 +230,13 @@ function getNeuronOverviewImg(locale: PageProps['locale']): StaticImageData {
 
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   const release = await getLatestRelease()
-  const lng = await serverSideTranslations(locale, ['common', 'home'])
+  const nodeInfo = await getNodeInfo()
+  const lng = await serverSideTranslations(locale, ['common', 'home', 'download'])
 
   const props: PageProps = {
     locale,
     release,
+    nodeInfo,
     ...lng,
   }
 
