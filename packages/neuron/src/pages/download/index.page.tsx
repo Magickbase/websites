@@ -57,8 +57,10 @@ const Download: NextPage<PageProps> = ({ release, compatibleData, nodeInfo }) =>
         </div>
       </div>
 
+      {isMobile && versionComp}
+
       {nodeInfo && (
-        <div className={styles.alert} style={{ marginTop: 32 }}>
+        <div className={styles.alert} style={{ marginTop: isMobile ? 24 : 32 }}>
           {t('Download Note')}:{' '}
           <Trans
             t={t}
@@ -72,8 +74,6 @@ const Download: NextPage<PageProps> = ({ release, compatibleData, nodeInfo }) =>
           />
         </div>
       )}
-
-      {isMobile && versionComp}
 
       <Assets className={styles.assets} assets={assets} />
 

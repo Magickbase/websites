@@ -210,9 +210,11 @@ const DownloadButton: FC<
               </Button>
             </DialogClose>
           </a>
-          <Link href={asset?.packageLink ?? '/download'} {...linkProps} style={{ flex: 1, display: 'flex' }}>
-            <Button style={{ width: '100%' }}>{t('Continue')}</Button>
-          </Link>
+          <DialogClose asChild>
+            <Link href={asset?.packageLink ?? '/download'} {...linkProps} style={{ flex: 1, display: 'flex' }}>
+              <Button style={{ width: '100%' }}>{t('Continue')}</Button>
+            </Link>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
