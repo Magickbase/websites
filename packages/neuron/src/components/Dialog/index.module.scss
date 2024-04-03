@@ -1,0 +1,74 @@
+.dialogOverlay {
+  position: fixed;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  background-color: rgb(0 0 0 / 80%);
+  inset: 0;
+}
+
+.dialogContent {
+  position: relative;
+  z-index: 50;
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 32rem;
+  padding: 1.5rem;
+  color: #f5f5f5;
+  background-color: #111;
+  border: 1px solid #fff3;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+  transition-duration: 200ms;
+}
+
+.dialogClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 0.125rem;
+  opacity: 0.7;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-property: opacity;
+
+  :hover {
+    opacity: 1;
+  }
+}
+
+.dialogHeader {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+
+  @media (width >= 640px) {
+    text-align: left;
+  }
+}
+
+.dialogFooter {
+  display: flex;
+  flex-direction: column-reverse;
+
+  @media (width >= 640px) {
+    flex-direction: row;
+  }
+}
+
+.dialogTitle {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.dialogDescription {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}

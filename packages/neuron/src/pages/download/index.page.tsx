@@ -1,5 +1,5 @@
 import { GetStaticProps, type NextPage } from 'next'
-import { useTranslation } from 'next-i18next'
+import { useTranslation, Trans } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { useMemo } from 'react'
@@ -7,9 +7,11 @@ import { useIsMobile } from '@magickbase-website/shared'
 import {
   CompatibleData,
   Release,
+  NodeInfo,
   getAssetsFromNeuronRelease,
   getLatestRelease,
   getNeuronCompatibleData,
+  getNodeInfo,
 } from '../../utils'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
@@ -21,9 +23,10 @@ import { CompatibleTable } from './CompatibleTable'
 interface PageProps {
   release: Release | null
   compatibleData: CompatibleData | null
+  nodeInfo: NodeInfo | null
 }
 
-const Download: NextPage<PageProps> = ({ release, compatibleData }) => {
+const Download: NextPage<PageProps> = ({ release, compatibleData, nodeInfo }) => {
   const { t } = useTranslation('download')
   const isMobile = useIsMobile()
 
@@ -56,6 +59,22 @@ const Download: NextPage<PageProps> = ({ release, compatibleData }) => {
 
       {isMobile && versionComp}
 
+      {nodeInfo && (
+        <div className={styles.alert} style={{ marginTop: isMobile ? 24 : 32 }}>
+          {t('Download Note')}:{' '}
+          <Trans
+            t={t}
+            i18nKey="node_info_alert"
+            values={{
+              size: nodeInfo.data_size_g.toFixed(2),
+            }}
+            components={{
+              tag1: <strong />,
+            }}
+          />
+        </div>
+      )}
+
       <Assets className={styles.assets} assets={assets} />
 
       {compatibleData && (
@@ -71,11 +90,13 @@ const Download: NextPage<PageProps> = ({ release, compatibleData }) => {
 export const getStaticProps: GetStaticProps = async ({ locale = 'en' }) => {
   const release = await getLatestRelease()
   const compatibleData = await getNeuronCompatibleData()
+  const nodeInfo = await getNodeInfo()
   const lng = await serverSideTranslations(locale, ['common', 'download'])
 
   const props: PageProps = {
     release,
     compatibleData,
+    nodeInfo,
     ...lng,
   }
 

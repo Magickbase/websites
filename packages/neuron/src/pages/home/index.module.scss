@@ -241,3 +241,19 @@
     }
   }
 }
+
+.cancelBtn {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-width: 1px;
+}
+
+.dialogTitle {
+  display: flex;
+  align-items: center;
+}
+
+.dialogClose {
+  margin-left: auto;
+  cursor: pointer;
+}
