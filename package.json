@@ -1,6 +1,6 @@
 {
   "name": "magickbase-website",
-  "packageManager": "yarn@3.5.1",
+  "packageManager": "yarn@3.8.2",
   "private": true,
   "workspaces": [
     "packages/*"
