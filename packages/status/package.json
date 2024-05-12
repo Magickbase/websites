@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@magickbase-website/shared": "workspace:^",
-    "@radix-ui/react-dialog": "1.0.4",
+    "@radix-ui/react-dialog": "1.0.5",
     "@radix-ui/react-tooltip": "1.0.7",
     "@splinetool/react-spline": "2.2.6",
     "@splinetool/runtime": "0.9.526",
