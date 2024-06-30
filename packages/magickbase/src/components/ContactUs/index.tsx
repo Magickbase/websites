@@ -2,7 +2,8 @@ import { useState, type ComponentProps, type FC } from 'react'
 import classnames from 'classnames'
 import Spline from '@splinetool/react-spline'
 import { useCopyToClipboard } from '@uidotdev/usehooks'
-import { Modal, ModalProps } from '@/components/Modal'
+import { useTranslation } from 'next-i18next'
+import { Modal } from '@/components/Modal'
 import { Tooltip } from '@/components/Tooltip'
 import toast from 'react-hot-toast'
 import { useIsMobile } from '@magickbase-website/shared'
@@ -16,6 +17,7 @@ import MoreSvg from './more.svg'
 import bgImage from './bg.png'
 
 export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) => {
+  const { t } = useTranslation('common')
   const [copiedText, copyToClipboard] = useCopyToClipboard()
   const [copiedModalOpen, setCopiedModalOpen] = useState(false)
   const isMobile = useIsMobile()
@@ -50,17 +52,16 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
           </div>
 
           <div className="flex flex-col flex-1 z-[2] items-center md:items-start md:max-w-[50%]">
-            <h1 className="text-3xl mb-6 md:mb-8">Contact us</h1>
+            <h1 className="text-3xl mb-6 md:mb-8">{t('contact_us')}</h1>
             <p className="text-xl mb-8 text-[#999999] leading-8 text-center md:text-start">
-              Magickbase consistently adheres to the spirit of open source mutual benefit, and welcomes users to
-              participate in the construction of the product and learn from each other to grow together.
+             {t('contact_des')}
             </p>
             {isMobile ? (
               <button
                 className="border-[1px] border-solid border-white rounded-xl py-4 px-6"
                 onClick={() => setCopiedModalOpen(true)}
               >
-                Contact Now
+              {t('contact_now')}
               </button>
             ) : (
               <Tooltip
@@ -76,7 +77,7 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
                 }
               >
                 <div className="border-[1px] border-solid border-white rounded-xl py-4 px-6">
-                  Contact Now
+                {t('contact_now')}
                 </div>
               </Tooltip>
             )}
@@ -85,7 +86,7 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
       </div>
       <Modal open={copiedModalOpen} dismiss={() => setCopiedModalOpen(false)}>
         <div className="modal-box sm:w-full md:!max-w-[520px]">
-          <h1 className="text-xl font-bold mb-4">Create an email using the following application:</h1>
+          <h1 className="text-xl font-bold mb-4">{t('create_email')}</h1>
           <div
             className="flex items-center rounded-lg p-4 bg-[#222]"
             onClick={() => {
@@ -95,7 +96,7 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
           >
             <CopySvg className="mr-4" />
             <div>
-              <div className="text-[#f5f5f5]">Copy Email</div>
+              <div className="text-[#f5f5f5]">{t('copy_email')}</div>
               <div className="text-[#999]">neuron@magickbase.com</div>
             </div>
             <MoreSvg className="ml-auto" />

@@ -9,6 +9,7 @@ import {
   useEffect,
 } from 'react'
 import classnames from 'classnames'
+import { useTranslation } from 'next-i18next'
 import type { SPEObject } from '@splinetool/runtime'
 import Spline from '@splinetool/react-spline'
 import useSpring from 'react-use/lib/useSpring'
@@ -18,54 +19,6 @@ import placeHolder from './placeholder.png'
 import vision from './vision.png'
 import mission from './mission.png'
 import future from './future.png'
-
-const timelineItms = [
-  {
-    title: 'Vision',
-    description: (
-      <p>
-        Support the permissionless blockchains and to express the importance of non-permission to the community. From
-        the beginning, we knew that the success of the decentralized revolution depended on making it accessible to
-        everyone, and we set out to build the tools and infrastructure needed to make this a reality.
-      </p>
-    ),
-    img: vision,
-  },
-  {
-    title: 'Mission',
-    description: (
-      <>
-        <p>
-          Build a robust set of products that make it easier than ever for developers to build on the Nervos network.
-        </p>
-        <p>Our desktop wallet, Neuron, has become the solution of choice for experienced investors and developers.</p>
-        <p>
-          Our development frameworks, including CKB Explorer, Godwoken Explorer, Axon Explorer, Lumos and Kuai, provide
-          developers with the tools they need to build high-performance decentralized applications.
-        </p>
-      </>
-    ),
-    img: mission,
-  },
-  {
-    title: 'Future',
-    description: (
-      <>
-        <p>
-          We know that the decentralized revolution is just beginning, and we&apos;re committed to playing a key role in
-          shaping its direction. With a focus on openness, transparency, and innovation, we believe that we can build a
-          brighter, more decentralized future for everyone.
-        </p>
-        <p>
-          At Magickbase, we believe in the power of community, collaboration, and inclusivity. We&apos;re a team of
-          passionate developers who are committed to making a difference in the world, and we&apos;re always looking for
-          ways to learn from each other and grow together.
-        </p>
-      </>
-    ),
-    img: future,
-  },
-]
 
 interface TimelineItemProps extends ComponentProps<'div'> {
   intersectionOptions?: IntersectionOptions
@@ -129,6 +82,37 @@ const AboutUsAnimation: FC<AnimationProps> = ({ rotationX }) => {
 }
 
 export const AboutUs: FC<ComponentProps<'div'>> = () => {
+  const { t } = useTranslation('common')
+
+  const timelineItms = [
+    {
+      title: t('vision'),
+      description: <p>{t('vision_des')}</p>,
+      img: vision,
+    },
+    {
+      title: t('mission'),
+      description: (
+        <>
+          <p>{t('mission_des1')}</p>
+          <p>{t('mission_des2')}</p>
+          <p>{t('mission_des3')}</p>
+        </>
+      ),
+      img: mission,
+    },
+    {
+      title: t('future'),
+      description: (
+        <>
+          <p>{t('future_des1')}</p>
+          <p>{t('future_des2')}</p>
+        </>
+      ),
+      img: future,
+    },
+  ]
+
   const [rotationX, setRotationValue] = useState(-Math.PI)
 
   return (
