@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
-import { Footer, Header } from '@magickbase-website/shared'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
 import { api } from '@/utils/api'
 import { PropsWithChildren } from 'react'
 

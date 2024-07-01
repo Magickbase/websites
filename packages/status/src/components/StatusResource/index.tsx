@@ -1,5 +1,6 @@
 import classnames from 'classnames'
 import { ComponentProps } from 'react'
+import { useTranslation } from 'react-i18next'
 import { StatusResourceResponse } from '@/types'
 import toast from 'react-hot-toast'
 import { Tooltip } from '@/components/Tooltip'
@@ -26,6 +27,7 @@ function parseDuration(duration: number) {
 }
 
 export const StatusResource: React.FC<StatusResourceProps> = ({ link, resource, ...props }) => {
+  const { t } = useTranslation('common')
   const isMobile = useIsMobile();
   const [_, copyToClipboard] = useCopyToClipboard()
   const currentStatus = resource.attributes.status_history[resource.attributes.status_history.length - 1]
@@ -69,7 +71,7 @@ export const StatusResource: React.FC<StatusResourceProps> = ({ link, resource, 
         <StatusLink className='hidden md:flex'/>
 
         <span className="text-[#00CC9B] ml-auto">
-          {(resource.attributes.availability * 100).toPrecision(5)}% Normal
+          {(resource.attributes.availability * 100).toPrecision(5)}% {t('normal')}
         </span>
       </div>
 
@@ -114,8 +116,8 @@ export const StatusResource: React.FC<StatusResourceProps> = ({ link, resource, 
       </div>
 
       <div className="flex text-[#999999] text-sm">
-        <span>{Math.min(resource.attributes.status_history.length, length)} days ago</span>
-        <span className="ml-auto">Today</span>
+        <span>{Math.min(resource.attributes.status_history.length, length)} {t('days_ago')}</span>
+        <span className="ml-auto">{t('today')}</span>
       </div>
     </div>
   )

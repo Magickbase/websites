@@ -1,0 +1,229 @@
+/* stylelint-disable custom-property-pattern */
+/* stylelint-disable no-descending-specificity */
+@import '../../styles/variables.module';
+
+.header,
+.headerMobile {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0 var(--contentWrapperPadding);
+
+  // TODO: The design has not been fully implemented here, and there are some bugs in Chrome/Firefox.
+  background: rgb(255 255 255 / 1%) linear-gradient(180deg, rgb(0 0 0 / 40%) 0%, rgb(0 0 0 / 20%) 100%);
+  backdrop-filter: blur(30px);
+}
+
+$desktopHeaderContentHeight: 88px;
+
+.header {
+  .content {
+    display: flex;
+    justify-content: space-between;
+    max-width: var(--contentAreaWidth);
+    height: $desktopHeaderContentHeight;
+    margin: 0 auto;
+
+    .left {
+      display: flex;
+      gap: 64px;
+      align-items: center;
+      height: 100%;
+      font-weight: 600;
+      font-size: 16px;
+
+      > a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        &:hover {
+          color: #00cc9b;
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+  }
+}
+
+.headerMobile {
+  .top {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+
+    .left {
+      display: flex;
+      gap: 64px;
+      align-items: center;
+      height: 100%;
+
+      > a {
+        display: flex;
+
+        &:hover {
+          color: #00cc9b;
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+  }
+}
+
+.menuDialog {
+  &Trigger {
+    display: flex;
+    cursor: pointer;
+
+    @media (max-width: $mobileBreakPoint) {
+      & > svg {
+        width: 56px;
+        height: auto;
+      }
+    }
+  }
+
+  &Overlay {
+    position: fixed;
+    z-index: 1;
+    background: rgba(#000, 0.8);
+    inset: 0;
+
+    @media (max-width: $mobileBreakPoint) {
+      background: #000;
+    }
+  }
+
+  &Content {
+    // This approach may not be conducive to understanding and maintenance, but development is quite convenient for now.
+    // If maintenance becomes difficult later, it can be changed to control based on JS + CSS variables.
+    --menuIconRightOffset: calc(max(calc((100vw - var(--contentAreaWidth)) / 2), var(--contentWrapperPadding)));
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--menuIconRightOffset) 96px 96px;
+    color: #f5f5f5;
+    background: #111;
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    .top {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: right;
+      height: $desktopHeaderContentHeight;
+
+      .left {
+        > a {
+          display: flex;
+        }
+      }
+    }
+
+    .content {
+      margin: 64px 0;
+    }
+
+    .close {
+      cursor: pointer;
+    }
+
+    .title {
+      display: flex;
+      margin-top: 64px;
+      font-weight: 600;
+      font-size: 32px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 72px;
+      margin-top: 48px;
+      color: #999;
+      font-size: 26px;
+
+      & > a {
+        &:hover {
+          color: #f5f5f5;
+        }
+
+        &.selected {
+          color: #f5f5f5;
+        }
+      }
+    }
+
+    .contacts {
+      gap: 48px;
+      margin-top: auto;
+    }
+
+    @media (max-width: $mobileBreakPoint) {
+      left: 0;
+      padding: 0 var(--contentWrapperPadding);
+      border-radius: 40px 40px 0 0;
+
+      .top {
+        justify-content: space-between;
+        height: 64px;
+      }
+
+      .close {
+        width: 56px;
+        height: auto;
+      }
+
+      .content {
+        margin: 0;
+      }
+
+      .title {
+        margin-top: 40px;
+        font-size: 16px;
+
+        &:first-child {
+          margin-top: 32px;
+        }
+      }
+
+      .links {
+        gap: 24px 64px;
+        margin-top: 32px;
+        font-size: 14px;
+      }
+
+      .languages {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .contacts {
+        margin-top: 64px;
+      }
+    }
+  }
+}
