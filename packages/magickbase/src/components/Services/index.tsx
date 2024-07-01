@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import CkbExplorerLogo from './ckbExplorerLogo.png'
 import GodwokenLogo from './godwokenLogo.svg'
 import KuaiLogo from './kuaiLogo.svg'
@@ -36,42 +37,44 @@ const ServiceItem: FC<ServiceItemProps> = ({ title, description, className, ...p
 
 export const Services: FC<ComponentProps<'div'>> = ({ className, ...props }) => {
   const { locale = 'en' } = useRouter()
+  const { t } = useTranslation('common')
+
   return (
     <div className={classnames('relative container mx-auto pt-24 pb-40', className)} {...props}>
-      <div className="text-center text-3xl mb-16">Services</div>
+      <div className="text-center text-3xl mb-16">{t('service')}</div>
       <div className="grid md:grid-cols-3 gap-12">
         <Link href={`https://neuron.magickbase.com/${locale}`}>
-          <ServiceItem title="Neuron" description="CKB desktop wallet">
+          <ServiceItem title="Neuron" description={t('neuron_des')}>
             <NeuronLogo />
           </ServiceItem>
         </Link>
 
         <Link href="https://explorer.nervos.org">
-          <ServiceItem title="CKB Explorer" description="CKB on-chain data query">
+          <ServiceItem title="CKB Explorer" description={t('explorer_des')}>
             <Image src={CkbExplorerLogo} alt="CKB Explorer" width={132} height={44} />
           </ServiceItem>
         </Link>
 
         <Link href="https://v1.gwscan.com/">
-          <ServiceItem title="Godwoken Explorer" description="Godwoken on-chain data query">
+          <ServiceItem title="Godwoken Explorer" description={t('godwoken_des')}>
             <GodwokenLogo />
           </ServiceItem>
         </Link>
 
         <Link href="https://github.com/Magickbase/blockscan">
-          <ServiceItem title="Axon Explorer" description="Axon on-chain data query">
+          <ServiceItem title="Axon Explorer" description={t('axon_des')}>
             <UnknownLogo />
           </ServiceItem>
         </Link>
 
         <Link href="https://lumos-website.vercel.app/">
-          <ServiceItem title="Lumos" description="Developer tools to help build Nervos DAPPs">
+          <ServiceItem title="Lumos" description={t('lumos_des')}>
             <LumosLogo className="mt-4"/>
           </ServiceItem>
         </Link>
 
         <Link href="https://github.com/ckb-js/kuai">
-          <ServiceItem title="Kuai" description="Developer tools to help build Nervos DAPPs">
+          <ServiceItem title="Kuai" description={t('kuai_des')}>
             <KuaiLogo />
           </ServiceItem>
         </Link>

@@ -1,4 +1,8 @@
-import { Footer, Header } from '@magickbase-website/shared'
+import { GetServerSideProps } from 'next';
+import { useTranslation } from 'react-i18next';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { Footer } from '../components/Footer'
+import { Header } from '../components/Header'
 import { TailwindToaster } from '../components/Toaster'
 import { Branding } from '../components/Branding'
 import { AboutUs } from '../components/About'
@@ -7,12 +11,24 @@ import { Services } from '../components/Services'
 import styles from './page.module.css'
 import { api } from '../utils/api'
 
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+}) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? "en", ["common"])),
+  },
+});
+
+
 export default function Home() {
   const aggregateStateQuery = api.uptime.aggregateState.useQuery()
+  const { ready } = useTranslation('common')
+  console.log('home page ready', ready)
+
 
   return (
     <>
-      <Header className='z-10' />
+      <Header className="z-10" />
       <Branding id="branding" className="snap-always snap-center z-0" />
       <div className={styles.separate} />
       <AboutUs />
