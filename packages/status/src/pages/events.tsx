@@ -1,13 +1,22 @@
 import dayjs from 'dayjs'
 import { FC, useState } from 'react'
+import { Trans, useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import classnames from 'classnames'
 import { api } from '@/utils/api'
 import { Layout } from '@/components/Layout'
 import NextIcon from './next.svg'
 import PreviousIcon from './previous.svg'
 
+export const getServerSideProps = async ({ locale }: { locale: string }) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+  },
+})
+
 const EventPage: FC<{ page?: number }> = ({ page = 1 }) => {
   const incidentsQuery = api.uptime.listStatusIncidents.useQuery({ page })
+  const { t } = useTranslation('common')
 
   if (!incidentsQuery.data) {
     return new Array(10)
@@ -30,12 +39,19 @@ const EventPage: FC<{ page?: number }> = ({ page = 1 }) => {
           {dayjs(incident.attributes.resolved_at).format(intraday ? 'hh:mm' : 'YYYY-MM-DD hh:mm')}
         </div>
         <div className="md:text-nowrap md:truncate mb-2 md:mb-0 text-[#999999]">
-          {incident.attributes.name} is down due to {incident.attributes.cause}
+          <Trans
+            i18nKey="due_to"
+            t={t}
+            values={{
+              service: incident.attributes.name,
+              cause: incident.attributes.cause,
+            }}
+          />
         </div>
 
         <div className="flex">
           <div className="mr-2 md:hidden">{incident.attributes.name}</div>
-          <div className="py-[2px] px-4 rounded-md bg-[#F62A2A] text-sm">Downtime</div>
+          <div className="py-[2px] px-4 rounded-md bg-[#F62A2A] text-sm">{t('downtime')}</div>
         </div>
       </div>
     )
@@ -45,6 +61,7 @@ const EventPage: FC<{ page?: number }> = ({ page = 1 }) => {
 export default function Event() {
   const [page, setPage] = useState(1)
   const [goto, setGoto] = useState('')
+  const { t } = useTranslation('common')
 
   const incidentPages = api.uptime.countIncidentPages.useQuery()
 
@@ -53,7 +70,7 @@ export default function Event() {
   return (
     <Layout>
       <div className="container pt-10 pb-[88px] flex flex-col">
-        <div className="text-xl mb-6 text-[600]">History Events</div>
+        <div className="text-xl mb-6 text-[600]">{t('history_events')}</div>
         <div className="border border-[#FFFFFF33] border-solid rounded-3xl p-6 bg-gradient-to-b from-[#36363666] to-[#1D1D1D33]">
           <div className="flex flex-col gap-4 mb-8">
             <EventPage key={page} page={page} />
@@ -68,11 +85,7 @@ export default function Event() {
                 First
               </button>
 
-              <button
-                className={classnames(btnClass)}
-                onClick={() => setPage(prev => prev - 1)}
-                disabled={page === 1}
-              >
+              <button className={classnames(btnClass)} onClick={() => setPage(prev => prev - 1)} disabled={page === 1}>
                 <PreviousIcon />
               </button>
 
@@ -105,7 +118,9 @@ export default function Event() {
                 <input
                   className="input text-base-content border-[currentColor] focus:outline-none focus:border-[currentColor] mr-2 w-16"
                   value={goto}
-                  onChange={e => setGoto(Number.isNaN(parseInt(e.target.value)) ? '' : parseInt(e.target.value).toString())}
+                  onChange={e =>
+                    setGoto(Number.isNaN(parseInt(e.target.value)) ? '' : parseInt(e.target.value).toString())
+                  }
                 />
                 <button
                   className={classnames(btnClass)}
