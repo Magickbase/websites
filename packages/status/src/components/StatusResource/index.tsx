@@ -47,7 +47,7 @@ export const StatusResource: React.FC<StatusResourceProps> = ({ link, resource, 
           className="cursor-pointer fill-white hover:fill-[#00CC9B] transition-all"
           onClick={async () => {
             await copyToClipboard(link)
-            toast.success('Copied')
+            toast.success(t('copied'))
           }}
         />
       </div>
