@@ -24,7 +24,7 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
 
   const copy = () => {
     void copyToClipboard('neuron@magickbase.com')
-    toast.success('copied!')
+    toast.success(`${t('copied')}!`)
   }
 
   return (
