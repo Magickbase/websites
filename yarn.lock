@@ -11175,12 +11175,12 @@ __metadata:
   linkType: hard
 
 "overlayscrollbars-react@npm:^0.5.3":
-  version: 0.5.6
-  resolution: "overlayscrollbars-react@npm:0.5.6"
+  version: 0.5.3
+  resolution: "overlayscrollbars-react@npm:0.5.3"
   peerDependencies:
     overlayscrollbars: ^2.0.0
     react: ">=16.8.0"
-  checksum: 4a07dda99543522763c5182b1a1344b35a13534ea3213fb8638604e813ec92ff8f9e63d72e11ded596ab5dbe5829d4f50f6b2d0ffc76ce18e6e67a662c7bdb6a
+  checksum: 56e0150ffe972f9c360d581d4c51e6bd3e7b52098624c1493c1d6d71c1878f2c1e6f92914fe7b769f8a7373dabbdc775ad89e834dd260854d63e5204d0771e7d
   languageName: node
   linkType: hard
 
