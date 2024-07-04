@@ -25,10 +25,10 @@ jobs:
           # The script requires public_repo, read:org, read:project permissions, and needs a personal access token (classic) to obtain these permissions.
           GITHUB_TOKEN: ${{ secrets.REPORT_GITHUB_TOKEN }}
         run: |
-          yarn install
+          pnpm install
           {
             echo 'DEVLOG<<EOF'
-            yarn workspace @magickbase-website/scripts report:update | sed '0,/^generateDevlogFromSnapshotsDiff():$/d'
+            pnpm --filter @magickbase-website/scripts report:update | sed '0,/^generateDevlogFromSnapshotsDiff():$/d'
             echo EOF
           } >> $GITHUB_OUTPUT
           git add packages/scripts/snapshots

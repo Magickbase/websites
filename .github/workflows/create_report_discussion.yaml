@@ -22,5 +22,5 @@ jobs:
           # The script requires public_repo permission.
           GITHUB_TOKEN: ${{ secrets.REPORT_GITHUB_TOKEN }}
         run: |
-          yarn install
-          yarn workspace @magickbase-website/scripts report:discussion
+          pnpm install
+          pnpm --filter @magickbase-website/scripts report:discussion
