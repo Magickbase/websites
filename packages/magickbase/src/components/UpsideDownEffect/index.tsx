@@ -1,7 +1,7 @@
 import { ComponentProps, FC, ReactNode } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { useIsMobile } from '@magickbase-website/shared'
+import { useIsMobile } from '@/hooks/useIsMobile'
 import styles from './index.module.scss'
 
 interface UpsideDownEffectProps {
