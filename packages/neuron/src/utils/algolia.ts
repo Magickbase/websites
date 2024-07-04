@@ -18,7 +18,8 @@ export interface PostIndexRecord {
   content: string
 }
 
-export async function syncPostsIndex(posts: Post[]) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function syncPostsIndex(posts: Post[]): Promise<any> {
   if (!ADMINKEY) {
     console.warn('ALGOLIA_ADMIN_KEY is not set, skip syncPostsIndex')
     return []
