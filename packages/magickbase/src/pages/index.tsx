@@ -1,5 +1,4 @@
 import { GetServerSideProps } from 'next';
-import { useTranslation } from 'react-i18next';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
@@ -22,9 +21,6 @@ export const getServerSideProps: GetServerSideProps = async ({
 
 export default function Home() {
   const aggregateStateQuery = api.uptime.aggregateState.useQuery()
-  const { ready } = useTranslation('common')
-  console.log('home page ready', ready)
-
 
   return (
     <>

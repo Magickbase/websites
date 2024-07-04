@@ -1,7 +1,7 @@
 import { ComponentProps, FC, ReactNode } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { useIsMobile } from '@magickbase-website/shared'
+import { isMobile } from 'react-device-detect'
 import styles from './index.module.scss'
 
 interface UpsideDownEffectProps {
@@ -70,8 +70,6 @@ export const LinkWithEffect: FC<ComponentProps<typeof Link> & UpsideDownEffectPr
   nodeClass,
   ...linkProps
 }) => {
-  const isMobile = useIsMobile()
-
   if (isMobile) return <Link {...linkProps}>{children}</Link>
 
   if (typeof children === 'function') throw new Error('LinkWithEffect not support children as function')
