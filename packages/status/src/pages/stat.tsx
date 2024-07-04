@@ -1,13 +1,17 @@
+import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Layout } from '@/components/Layout'
 import { StatCard } from '@/components/StatCard'
 import { useTranslation } from 'next-i18next'
 
-export const getServerSideProps = async ({ locale }: { locale: string }) => ({
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+}) => ({
   props: {
-    ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+    ...(await serverSideTranslations(locale ?? "en", ["common"])),
   },
-})
+});
+
 
 export default function Stat() {
   const { t } = useTranslation()

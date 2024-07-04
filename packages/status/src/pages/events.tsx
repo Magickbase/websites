@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import dayjs from 'dayjs'
 import { FC, useState } from 'react'
 import { Trans, useTranslation } from 'next-i18next'
@@ -8,11 +9,14 @@ import { Layout } from '@/components/Layout'
 import NextIcon from './next.svg'
 import PreviousIcon from './previous.svg'
 
-export const getServerSideProps = async ({ locale }: { locale: string }) => ({
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+}) => ({
   props: {
-    ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+    ...(await serverSideTranslations(locale ?? "en", ["common"])),
   },
-})
+});
+
 
 const EventPage: FC<{ page?: number }> = ({ page = 1 }) => {
   const incidentsQuery = api.uptime.listStatusIncidents.useQuery({ page })

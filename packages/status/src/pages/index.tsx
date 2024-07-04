@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import { api } from '@/utils/api'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -16,11 +17,14 @@ const LinkMap: Record<string, string> = {
   ['Faucet:Faucet']: 'https://faucet.nervos.org',
 }
 
-export const getServerSideProps = async ({ locale }: { locale: string }) => ({
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+}) => ({
   props: {
-    ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+    ...(await serverSideTranslations(locale ?? "en", ["common"])),
   },
-})
+});
+
 
 export default function Home() {
   const { t } = useTranslation('common')
