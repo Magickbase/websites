@@ -5,7 +5,7 @@ import { StatusResourceResponse } from '@/types'
 import toast from 'react-hot-toast'
 import { Tooltip } from '@/components/Tooltip'
 import { useCopyToClipboard } from '@uidotdev/usehooks'
-import { useIsMobile } from '@magickbase-website/shared'
+import { isMobile } from 'react-device-detect'
 import CopyIcon from './copy.svg'
 
 export interface StatusResourceProps extends Omit<ComponentProps<'div'>, 'resource'> {
@@ -28,7 +28,6 @@ function parseDuration(duration: number) {
 
 export const StatusResource: React.FC<StatusResourceProps> = ({ link, resource, ...props }) => {
   const { t } = useTranslation('common')
-  const isMobile = useIsMobile();
   const [_, copyToClipboard] = useCopyToClipboard()
   const currentStatus = resource.attributes.status_history[resource.attributes.status_history.length - 1]
 

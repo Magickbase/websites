@@ -6,7 +6,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import { isMobile } from 'react-device-detect'
 import styles from './index.module.scss'
 import IconLogo from './logo.svg'
 import IconGithub from './github.svg'
@@ -22,7 +22,6 @@ export type HeaderProps = ComponentProps<'div'> & {
 }
 
 export const Header: FC<HeaderProps> = props => {
-  const isMobile = useIsMobile()
   return isMobile ? <Header$Mobile {...props} /> : <Header$Desktop {...props} />
 }
 
@@ -75,7 +74,6 @@ export const Header$Mobile: FC<HeaderProps> = ({ navMenuGroupName, navMenus, ...
 
 const MenuDialog: FC<Pick<HeaderProps, 'navMenuGroupName' | 'navMenus'>> = ({ navMenuGroupName, navMenus }) => {
   const { t } = useTranslation('common')
-  const isMobile = useIsMobile()
   const router = useRouter()
   const { pathname, query } = router
 

@@ -2,7 +2,7 @@ import { ComponentProps, FC } from 'react'
 import clsx from 'clsx'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import { isMobile } from 'react-device-detect'
 import styles from './index.module.scss'
 import IconFullLogo from './full-logo.svg'
 import { Contacts } from '../Contacts'
@@ -19,7 +19,6 @@ export const Footer: FC<FooterProps> = ({
   ...elProps
 }) => {
   const { t } = useTranslation('common')
-  const isMobile = useIsMobile()
 
   const serviceStateText =
     serviceState === 'operational'

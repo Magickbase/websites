@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next'
 import { Modal } from '@/components/Modal'
 import { Tooltip } from '@/components/Tooltip'
 import toast from 'react-hot-toast'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import { isMobile } from 'react-device-detect'
 import styles from './styles.module.scss'
 import leftElement from './leftElement.png'
 import rightElement from './rightElement.png'
@@ -20,7 +20,6 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
   const { t } = useTranslation('common')
   const [copiedText, copyToClipboard] = useCopyToClipboard()
   const [copiedModalOpen, setCopiedModalOpen] = useState(false)
-  const isMobile = useIsMobile()
 
   const copy = () => {
     void copyToClipboard('neuron@magickbase.com')
@@ -53,32 +52,28 @@ export const ContactUs: FC<ComponentProps<'div'>> = ({ className, ...props }) =>
 
           <div className="flex flex-col flex-1 z-[2] items-center md:items-start md:max-w-[50%]">
             <h1 className="text-3xl mb-6 md:mb-8">{t('contact_us')}</h1>
-            <p className="text-xl mb-8 text-[#999999] leading-8 text-center md:text-start">
-             {t('contact_des')}
-            </p>
+            <p className="text-xl mb-8 text-[#999999] leading-8 text-center md:text-start">{t('contact_des')}</p>
             {isMobile ? (
               <button
                 className="border-[1px] border-solid border-white rounded-xl py-4 px-6"
                 onClick={() => setCopiedModalOpen(true)}
               >
-              {t('contact_now')}
+                {t('contact_now')}
               </button>
             ) : (
               <Tooltip
                 content={
-                  <div className='flex items-center'>
+                  <div className="flex items-center">
                     neuron@magickbase.com{' '}
                     {copiedText === 'neuron@magickbase.com' ? (
-                      <DoneSvg className="ml-2"/>
+                      <DoneSvg className="ml-2" />
                     ) : (
                       <CopySimpleSvg className="ml-2 cursor-pointer" onClick={() => copy()} />
                     )}
                   </div>
                 }
               >
-                <div className="border-[1px] border-solid border-white rounded-xl py-4 px-6">
-                {t('contact_now')}
-                </div>
+                <div className="border-[1px] border-solid border-white rounded-xl py-4 px-6">{t('contact_now')}</div>
               </Tooltip>
             )}
           </div>

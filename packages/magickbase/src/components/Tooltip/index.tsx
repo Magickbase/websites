@@ -2,11 +2,10 @@ import { FC, PropsWithChildren, ReactNode } from 'react'
 import * as RadixTooltip from '@radix-ui/react-tooltip'
 import * as RadixPopover from '@radix-ui/react-popover'
 import clsx from 'clsx'
-import { useIsMobile } from '@/hooks/useIsMobile'
+import { isMobile } from 'react-device-detect'
 import styles from './index.module.scss'
 
 export const Tooltip: FC<PropsWithChildren<{ content?: ReactNode; className?: string }>> = props => {
-  const isMobile = useIsMobile()
 
   return isMobile ? (
     // RadixTooltip does not support mobile, so use RadixPopover instead.
