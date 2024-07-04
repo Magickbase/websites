@@ -78,7 +78,7 @@ importers:
         version: 10.28.2(@trpc/server@10.28.2)
       '@trpc/next':
         specifier: ^10.28.2
-        version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@trpc/react-query':
         specifier: ^10.28.2
         version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -99,7 +99,7 @@ importers:
         version: 13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6)
       next-i18next:
         specifier: ^13.2.2
-        version: 13.2.2(i18next@22.5.0)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        version: 13.2.2(i18next@22.5.0)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       overlayscrollbars:
         specifier: ^2.4.5
         version: 2.9.2
@@ -223,7 +223,7 @@ importers:
         version: 10.28.2(@trpc/server@10.28.2)
       '@trpc/next':
         specifier: 10.28.2
-        version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@trpc/react-query':
         specifier: 10.28.2
         version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -244,13 +244,13 @@ importers:
         version: 13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6)
       next-i18next:
         specifier: 13.2.2
-        version: 13.2.2(i18next@22.5.0)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        version: 13.2.2(i18next@22.5.0)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       overlayscrollbars:
-        specifier: ^2.4.5
-        version: 2.9.2
+        specifier: 2.4.5
+        version: 2.4.5
       overlayscrollbars-react:
-        specifier: ^0.5.3
-        version: 0.5.6(overlayscrollbars@2.9.2)(react@18.2.0)
+        specifier: 0.5.3
+        version: 0.5.3(overlayscrollbars@2.4.5)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -359,7 +359,7 @@ importers:
         version: 10.28.2(@trpc/server@10.28.2)
       '@trpc/next':
         specifier: ^10.28.2
-        version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@trpc/react-query':
         specifier: ^10.28.2
         version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -386,7 +386,7 @@ importers:
         version: 13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6)
       next-i18next:
         specifier: ^13.2.2
-        version: 13.2.2(i18next@22.5.0)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        version: 13.2.2(i18next@22.5.0)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       observable-hooks:
         specifier: ^4.2.2
         version: 4.2.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(rxjs@7.8.1)
@@ -541,7 +541,7 @@ importers:
         version: 13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6)
       next-i18next:
         specifier: ^13.2.2
-        version: 13.2.2(i18next@22.5.0)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        version: 13.2.2(i18next@22.5.0)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       overlayscrollbars:
         specifier: ^2.4.5
         version: 2.9.2
@@ -617,7 +617,7 @@ importers:
         version: 10.28.2(@trpc/server@10.28.2)
       '@trpc/next':
         specifier: 10.28.2
-        version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@trpc/react-query':
         specifier: 10.28.2
         version: 10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -641,13 +641,13 @@ importers:
         version: 13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6)
       next-i18next:
         specifier: 13.2.2
-        version: 13.2.2(i18next@22.5.0)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
+        version: 13.2.2(i18next@22.5.0)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       overlayscrollbars:
-        specifier: ^2.4.5
-        version: 2.9.2
+        specifier: 2.4.5
+        version: 2.4.5
       overlayscrollbars-react:
-        specifier: ^0.5.3
-        version: 0.5.6(overlayscrollbars@2.9.2)(react@18.2.0)
+        specifier: 0.5.3
+        version: 0.5.3(overlayscrollbars@2.4.5)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -5020,11 +5020,20 @@ packages:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
 
+  overlayscrollbars-react@0.5.3:
+    resolution: {integrity: sha512-mq9D9tbfSeq0cti1kKMf3B3AzsEGwHcRIDX/K49CvYkHz/tKeU38GiahDkIPKTMEAp6lzKCo4x1eJZA6ZFYOxQ==}
+    peerDependencies:
+      overlayscrollbars: ^2.0.0
+      react: '>=16.8.0'
+
   overlayscrollbars-react@0.5.6:
     resolution: {integrity: sha512-E5To04bL5brn9GVCZ36SnfGanxa2I2MDkWoa4Cjo5wol7l+diAgi4DBc983V7l2nOk/OLJ6Feg4kySspQEGDBw==}
     peerDependencies:
       overlayscrollbars: ^2.0.0
       react: '>=16.8.0'
+
+  overlayscrollbars@2.4.5:
+    resolution: {integrity: sha512-4OLCPuZPVdd1HnDLYS4o+kAsOCZwVz6dDA212m8ki/u3isltKyWGVjIv2aqpVHkDRf/P2K98m9Su8pdhihtAIQ==}
 
   overlayscrollbars@2.9.2:
     resolution: {integrity: sha512-iDT84r39i7oWP72diZN2mbJUsn/taCq568aQaIrc84S87PunBT7qtsVltAF2esk7ORTRjQDnfjVYoqqTzgs8QA==}
@@ -8536,7 +8545,7 @@ snapshots:
     dependencies:
       '@trpc/server': 10.28.2
 
-  '@trpc/next@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@trpc/next@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/react-query@10.28.2(@tanstack/react-query@4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/client@10.28.2(@trpc/server@10.28.2))(@trpc/server@10.28.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@trpc/server@10.28.2)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@tanstack/react-query': 4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@trpc/client': 10.28.2(@trpc/server@10.28.2)
@@ -11435,7 +11444,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-i18next@13.2.2(i18next@22.5.0)(next@13.5.6(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
+  next-i18next@13.2.2(i18next@22.5.0)(next@13.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sass@1.77.6))(react-i18next@12.3.1(i18next@22.5.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.24.7
       '@types/hoist-non-react-statics': 3.3.5
@@ -11612,10 +11621,17 @@ snapshots:
       type-check: 0.4.0
       word-wrap: 1.2.5
 
+  overlayscrollbars-react@0.5.3(overlayscrollbars@2.4.5)(react@18.2.0):
+    dependencies:
+      overlayscrollbars: 2.4.5
+      react: 18.2.0
+
   overlayscrollbars-react@0.5.6(overlayscrollbars@2.9.2)(react@18.2.0):
     dependencies:
       overlayscrollbars: 2.9.2
       react: 18.2.0
+
+  overlayscrollbars@2.4.5: {}
 
   overlayscrollbars@2.9.2: {}
 
