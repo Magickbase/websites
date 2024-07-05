@@ -130,6 +130,7 @@ const MenuDialog: FC<Pick<HeaderProps, 'navMenuGroupName' | 'navMenus'>> = ({ na
                 <LinkWithEffect href="https://github.com/Magickbase/blockscan">{t('Axon Explorer')}</LinkWithEffect>
                 <LinkWithEffect href="https://lumos-website.vercel.app/">{t('Lumos')}</LinkWithEffect>
                 <LinkWithEffect href="https://github.com/ckb-js/kuai">{t('Kuai')}</LinkWithEffect>
+                <LinkWithEffect href="https://portfolio.magickbase.com/">{t('Portfolio')}</LinkWithEffect>
               </div>
 
               <LinkWithEffect className={styles.title} href="https://status-website-delta.vercel.app">

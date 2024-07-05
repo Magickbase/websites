@@ -76,6 +76,9 @@ export const Footer: FC<FooterProps> = ({
               <LinkWithEffect href="https://lumos-website.vercel.app/" target="_blank">
                 {t('Lumos')}
               </LinkWithEffect>
+              <LinkWithEffect href="https://portfolio.magickbase.com/" target="_blank">
+                {t('Portfolio')}
+              </LinkWithEffect>
             </div>
           </div>
 
