@@ -2287,11 +2287,14 @@ __metadata:
     "@types/react-dom": 18.2.13
     "@uidotdev/usehooks": ^2.4.1
     classnames: 2.3.2
+    clsx: ^2.1.1
     daisyui: latest
     eslint: ^8.56.0
     i18next: ^22.5.0
     next: 13.5.6
     next-i18next: ^13.2.2
+    overlayscrollbars: ^2.9.2
+    overlayscrollbars-react: ^0.5.6
     react: 18.2.0
     react-device-detect: ^2.2.3
     react-dom: 18.2.0
@@ -2446,6 +2449,7 @@ __metadata:
     i18next: 22.5.0
     next: 13.5.6
     next-i18next: 13.2.2
+    overlayscrollbars-react: ^0.5.6
     react: 18.2.0
     react-device-detect: ^2.2.3
     react-dom: 18.2.0
@@ -5514,6 +5518,13 @@ __metadata:
   version: 1.2.1
   resolution: "clsx@npm:1.2.1"
   checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
   languageName: node
   linkType: hard
 
@@ -11203,7 +11214,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"overlayscrollbars-react@npm:^0.5.3":
+"overlayscrollbars-react@npm:^0.5.3, overlayscrollbars-react@npm:^0.5.6":
   version: 0.5.6
   resolution: "overlayscrollbars-react@npm:0.5.6"
   peerDependencies:
@@ -11217,6 +11228,13 @@ __metadata:
   version: 2.4.5
   resolution: "overlayscrollbars@npm:2.4.5"
   checksum: e245f07c23555c2b3a81c40f4ab0c946d8785596569e9e3aad5205dce91241e289b6073a0c80da94c79ca4fa2ee5c82c85d802497fda4408c4993baf3218305c
+  languageName: node
+  linkType: hard
+
+"overlayscrollbars@npm:^2.9.2":
+  version: 2.9.2
+  resolution: "overlayscrollbars@npm:2.9.2"
+  checksum: eddaa3a316bcc05f8592ce7c8d361836666c1e89b44554a29ab68a626c15c964c5c64b094b50d4915fc24d4c8b84b1ec5987fefab32d8edcb97df89fd57cc253
   languageName: node
   linkType: hard
 
