@@ -4,5 +4,6 @@
   "Download Note": "下载须知",
   "Cancel": "取消",
   "Continue": "继续",
-  "node_info_alert": "当前CKB全节点数据大小约为 <tag1>{{size}} G</tag1> 并随着时间持续增长，虽然 Neuron 内置的轻节点可以大大减少同步所需数据，但是为了您可以正常使用 Neuron 钱包，请确保您有足够的磁盘空间。"
+  "node_info_alert": "当前CKB全节点数据大小约为 <tag1>{{size}} G</tag1> 并随着时间持续增长，虽然 Neuron 内置的轻节点可以大大减少同步所需数据，但是为了您可以正常使用 Neuron 钱包，请确保您有足够的磁盘空间。",
+  "c_plus_plus_redistributable": "<0>Visual C++ Redistributable</0> 是 CKB 节点所需的，请确保您已安装它，以避免同步失败。"
 }

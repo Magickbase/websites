@@ -4,5 +4,6 @@
   "Download Note": "Download Note",
   "Cancel": "Cancel",
   "Continue": "Continue",
-  "node_info_alert": "The current CKB full node data size is approximately <tag1>{{size}}G</tag1> and continues to grow over time. While Neuron's built-in light client node can greatly reduce the data required for synchronization, please make sure you have enough disk space for you to use the Neuron wallet properly."
+  "node_info_alert": "The current CKB full node data size is approximately <tag1>{{size}}G</tag1> and continues to grow over time. While Neuron's built-in light client node can greatly reduce the data required for synchronization, please make sure you have enough disk space for you to use the Neuron wallet properly.",
+  "c_plus_plus_redistributable": "<0>Visual C++ Redistributable</0> is required by CKB node, please make sure you have it installed to avoid synchronization failure."
 }

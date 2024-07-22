@@ -118,9 +118,19 @@
 
 .alert {
   padding: 16px 24px;
-  color: #e3a952;
+  color: #f5f5f5;
+  font-weight: 400;
   line-height: 24px;
   background-color: #2f281880;
   border: 1px solid #ffb90433;
   border-radius: 24px;
+
+  & > ol {
+    margin: 12px 0 0;
+    padding: 0 24px 16px;
+  }
+
+  a {
+    color: #00c891;
+  }
 }
