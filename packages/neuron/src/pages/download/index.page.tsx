@@ -61,17 +61,35 @@ const Download: NextPage<PageProps> = ({ release, compatibleData, nodeInfo }) =>
 
       {nodeInfo && (
         <div className={styles.alert} style={{ marginTop: isMobile ? 24 : 32 }}>
-          {t('Download Note')}:{' '}
-          <Trans
-            t={t}
-            i18nKey="node_info_alert"
-            values={{
-              size: nodeInfo.data_size_g.toFixed(2),
-            }}
-            components={{
-              tag1: <strong />,
-            }}
-          />
+          {t('Download Note')}:
+          <br />
+          <ol>
+            <li>
+              <Trans
+                t={t}
+                i18nKey="node_info_alert"
+                values={{
+                  size: nodeInfo.data_size_g.toFixed(2),
+                }}
+                components={{
+                  tag1: <strong />,
+                }}
+              />
+            </li>
+            <li>
+              <Trans
+                t={t}
+                i18nKey="c_plus_plus_redistributable"
+                components={[
+                  <a
+                    target="_blank"
+                    href={'https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist?view=msvc-170'}
+                    key="c++"
+                  />,
+                ]}
+              />
+            </li>
+          </ol>
         </div>
       )}
 
