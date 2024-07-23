@@ -35,6 +35,7 @@ export const Page = forwardRef<HTMLDivElement, PageProps>(function Page(props, r
       { name: t('Changelog'), link: '/changelog' },
       { name: t('Help Center'), link: '/help-center' },
       { name: t('Download Neuron'), link: '/download' },
+      { name: t('Tools'), link: '/tools' },
     ],
     [t],
   )
