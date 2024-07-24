@@ -296,12 +296,21 @@ export async function getRepoFileWithTextFormat(path: string): Promise<string | 
   return Buffer.from(info.content, 'base64').toString('utf-8')
 }
 
+const compareVersion = (a: string, b: string) => {
+  const [aMajor, aMinor, aPatch] = a.split('.')
+  const [bMajor, bMinor, bPatch] = b.split('.')
+  if (aMajor !== bMajor) return +(bMajor ?? 0) - +(aMajor ?? 0)
+  if (aMinor !== bMinor) return +(bMinor ?? 0) - +(aMinor ?? 0)
+  if (aPatch !== bPatch) return +(bPatch ?? 0) - +(aPatch ?? 0)
+  return 0
+}
+
 export async function getNeuronCompatibleData(): Promise<CompatibleData | null> {
   const compatibleFile = await getRepoFileWithTextFormat('compatible.json')
   if (compatibleFile == null) return null
 
   const data = JSON.parse(compatibleFile) as Omit<CompatibleData, 'neuronVersions'>
-  const neuronVersions = Object.keys(data.compatible)
+  const neuronVersions = Object.keys(data.compatible).sort(compareVersion)
 
   return { ...data, neuronVersions }
 }

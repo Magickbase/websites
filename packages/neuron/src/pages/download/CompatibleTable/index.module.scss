@@ -28,8 +28,21 @@
 
     .cell {
       padding: 0 54px;
+    }
 
-      &:not(:first-child) {
+    .versions {
+      display: flex;
+      flex-direction: row;
+
+      .name {
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        border-top: 1px solid #333;
+        border-right: 1px solid #333;
+      }
+
+      .cell {
         border-top: 1px solid #333;
       }
     }
@@ -38,6 +51,7 @@
   .nodeVerions {
     flex: 1;
     min-width: 0;
+    border-left: 1px solid #333;
   }
 }
 
@@ -49,10 +63,6 @@
       margin-top: 24px;
     }
   }
-}
-
-.nodeCompatibleTableWrapper {
-  border-left: 1px solid #333;
 }
 
 .nodeCompatibleTable {

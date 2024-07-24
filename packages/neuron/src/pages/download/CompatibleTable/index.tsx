@@ -40,12 +40,17 @@ const CompatibleTable$Desktop: FC<
     <div {...elProps} className={clsx(styles.compatibleTable, elProps.className)}>
       <div className={styles.neuronVersions}>
         <div className={styles.cell} />
-        <div className={styles.cell}>Neuron</div>
-        {neuronVersions.map(ver => (
-          <div key={ver} className={styles.cell}>
-            {ver}
+        <div className={styles.cell} />
+        <div className={styles.versions}>
+          <div className={styles.name}>Neuron</div>
+          <div>
+            {neuronVersions.map(ver => (
+              <div key={ver} className={styles.cell}>
+                {ver}
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
       {!hideFullNodeColumn && (
