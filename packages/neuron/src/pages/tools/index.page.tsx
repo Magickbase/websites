@@ -2,13 +2,14 @@ import { GetStaticProps, type NextPage } from 'next'
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { ChangeEventHandler, DragEventHandler, useCallback, useState } from 'react'
+import { ChangeEventHandler, DragEventHandler, useCallback, useRef, useState } from 'react'
 import ImgNeuronLogo from './neuron-logo.png'
 import ToolsIcon from './tools.png'
 import UploadSvg from './upload.svg'
 import FileSvg from './file.svg'
 import RefreshSvg from './refresh.svg'
 import DownloadSvg from './download.svg'
+import CloseSvg from './close.svg'
 import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import { Button } from '../../components/Button'
@@ -23,6 +24,17 @@ const Download: NextPage<PageProps> = () => {
   const [processFile, setProcessFile] = useState<File | undefined>()
   const [processedJSON, setProcessedJSON] = useState<object | undefined>()
   const [err, setErr] = useState<string | undefined>()
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  const onClearFile = useCallback((e: Event) => {
+    e.stopPropagation()
+    e.preventDefault()
+    setProcessFile(undefined)
+    setProcessedJSON(undefined)
+    setErr(undefined)
+    if (inputRef.current) {
+      inputRef.current.value = ''
+    }
+  }, [])
   const onDrag: DragEventHandler<HTMLLabelElement> = useCallback(
     e => {
       e.preventDefault()
@@ -119,12 +131,15 @@ const Download: NextPage<PageProps> = () => {
         <div>{t('Raw_Transaction_Conversion')}</div>
         <div>{t('Raw_Transaction_Conversion_Tip')}</div>
         <label className={styles.upload} onDrop={onDrag} onDragOver={onDrag}>
-          <input type="file" accept=".json" onChange={onChooseFile} />
+          <input type="file" accept=".json" onChange={onChooseFile} ref={inputRef} />
           {processFile ? (
-            <div className={styles.file}>
-              <FileSvg />
-              {processFile.name}
-            </div>
+            <>
+              <CloseSvg className={styles.clear} onClick={onClearFile} />
+              <div className={styles.file}>
+                <FileSvg />
+                {processFile.name}
+              </div>
+            </>
           ) : (
             <>
               <UploadSvg />
