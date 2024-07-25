@@ -2284,7 +2284,7 @@ __metadata:
     "@trpc/server": ^10.28.2
     "@types/node": 20.8.6
     "@types/react": ^18.2.46
-    "@types/react-dom": 18.2.13
+    "@types/react-dom": 18.3.0
     "@uidotdev/usehooks": ^2.4.1
     classnames: 2.3.2
     clsx: ^2.1.1
@@ -2295,9 +2295,9 @@ __metadata:
     next-i18next: ^13.2.2
     overlayscrollbars: ^2.9.2
     overlayscrollbars-react: ^0.5.6
-    react: 18.2.0
+    react: 18.3.1
     react-device-detect: ^2.2.3
-    react-dom: 18.2.0
+    react-dom: 18.3.1
     react-hot-toast: ^2.4.1
     react-i18next: ^12.3.1
     react-intersection-observer: 9.5.3
@@ -2440,7 +2440,7 @@ __metadata:
     "@trpc/server": ^10.28.2
     "@types/node": 20.8.6
     "@types/react": ^18.2.46
-    "@types/react-dom": 18.2.13
+    "@types/react-dom": 18.3.0
     "@uidotdev/usehooks": ^2.4.1
     classnames: 2.3.2
     daisyui: latest
@@ -2450,9 +2450,9 @@ __metadata:
     next: 13.5.6
     next-i18next: 13.2.2
     overlayscrollbars-react: ^0.5.6
-    react: 18.2.0
+    react: 18.3.1
     react-device-detect: ^2.2.3
-    react-dom: 18.2.0
+    react-dom: 18.3.1
     react-hot-toast: ^2.4.1
     react-i18next: 12.3.1
     react-intersection-observer: 9.5.3
@@ -4103,16 +4103,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.13":
-  version: 18.2.13
-  resolution: "@types/react-dom@npm:18.2.13"
-  dependencies:
-    "@types/react": "*"
-  checksum: 22ba066b141dca5a5a9227fae0afc7c94b470fff8e8a38ade72649da57a8ea04d0cb2ba3e22005e7d8e772d49bddd28855b1dd98e6defd033bba6afb6edff883
-  languageName: node
-  linkType: hard
-
-"@types/react-dom@npm:^18.2.4":
+"@types/react-dom@npm:18.3.0, @types/react-dom@npm:^18.2.4":
   version: 18.3.0
   resolution: "@types/react-dom@npm:18.3.0"
   dependencies:
@@ -11951,19 +11942,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.2.0":
-  version: 18.2.0
-  resolution: "react-dom@npm:18.2.0"
-  dependencies:
-    loose-envify: ^1.1.0
-    scheduler: ^0.23.0
-  peerDependencies:
-    react: ^18.2.0
-  checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
-  languageName: node
-  linkType: hard
-
-"react-dom@npm:^18.2.0":
+"react-dom@npm:18.3.1, react-dom@npm:^18.2.0":
   version: 18.3.1
   resolution: "react-dom@npm:18.3.1"
   dependencies:
@@ -12169,16 +12148,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0":
-  version: 18.2.0
-  resolution: "react@npm:18.2.0"
-  dependencies:
-    loose-envify: ^1.1.0
-  checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
-  languageName: node
-  linkType: hard
-
-"react@npm:^18.2.0":
+"react@npm:18.3.1, react@npm:^18.2.0":
   version: 18.3.1
   resolution: "react@npm:18.3.1"
   dependencies:
@@ -12924,15 +12894,6 @@ __metadata:
   bin:
     sass: sass.js
   checksum: c66f4f02882e7aa7aa49703824dadbb5a174dcd05e3cd96f17f73687889aab6027d078b518e2c04b594dfd89b2f574824bf935c7aee46c770aa6be9aafcc49f2
-  languageName: node
-  linkType: hard
-
-"scheduler@npm:^0.23.0":
-  version: 0.23.0
-  resolution: "scheduler@npm:0.23.0"
-  dependencies:
-    loose-envify: ^1.1.0
-  checksum: d79192eeaa12abef860c195ea45d37cbf2bbf5f66e3c4dcd16f54a7da53b17788a70d109ee3d3dde1a0fd50e6a8fc171f4300356c5aee4fc0171de526bf35f8a
   languageName: node
   linkType: hard
 
