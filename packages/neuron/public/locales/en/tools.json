@@ -1,0 +1,13 @@
+{
+  "Tools": "Tools",
+  "Raw_Transaction_Conversion": "Raw Transaction Conversion",
+  "Raw_Transaction_Conversion_Tip": "Since Neuron may run offline, the raw transaction requires extra information to meet Neuron signature requirements. This tool will help you process raw transactions into transactions that Neuron can sign.",
+  "Click_Or_Drag_To_Upload": "Please click or drag in to upload the raw transaction JSON file",
+  "Mainnet": "Mainnet",
+  "Testnet": "Testnet",
+  "Process": "Process",
+  "Processing": "Processing",
+  "Transaction_Complete": "Transaction complete",
+  "Download": "Download",
+  "Incorrect_JSON": "JSON format is incorrect, Please check the upload file"
+}

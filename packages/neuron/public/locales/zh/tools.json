@@ -1,0 +1,13 @@
+{
+  "Tools": "工具",
+  "Raw_Transaction_Conversion": "原始交易转换",
+  "Raw_Transaction_Conversion_Tip": "由于 Neuron 可能离线运行，原始交易需要额外信息以满足 Neuron 签名要求。此工具将帮助您将原始交易处理为 Neuron 可以签名的交易。",
+  "Click_Or_Drag_To_Upload": "请点击或拖动以上传原始交易 JSON 文件",
+  "Mainnet": "主网",
+  "Testnet": "测试网",
+  "Process": "转换",
+  "Processing": "处理中",
+  "Transaction_Complete": "转换完成",
+  "Download": "下载",
+  "Incorrect_JSON": "JSON 格式不正确，请检查上传的文件"
+}
