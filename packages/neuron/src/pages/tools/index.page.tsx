@@ -81,7 +81,7 @@ const Download: NextPage<PageProps> = () => {
         .text()
         .then(res =>
           exportTxToSign({
-            tx: JSON.parse(res),
+            json: JSON.parse(res),
             nodeType: selectedNodeType,
           }),
         )

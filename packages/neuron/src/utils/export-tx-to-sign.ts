@@ -16,6 +16,13 @@ interface Transaction {
 }
 
 interface JSONTx {
+  cellDeps: {
+    outPoint: {
+      txHash: string
+      index: string
+    }
+    depType: string
+  }[]
   inputs: {
     since: string
     previousOutput: {
@@ -33,6 +40,31 @@ interface JSONTx {
   }[]
 }
 
+interface JSONTxFromCli {
+  cell_deps: {
+    out_point: {
+      tx_hash: string
+      index: string
+    }
+    dep_type: string
+  }[]
+  inputs: {
+    since: string
+    previous_output: {
+      tx_hash: string
+      index: string
+    }
+  }[]
+  outputs: {
+    capacity: string
+    lock: {
+      code_hash: string
+      hash_type: string
+      args: string
+    }
+  }[]
+}
+
 function checkIsObject(obj: unknown): obj is object {
   return typeof obj === 'object' && obj !== null
 }
@@ -42,7 +74,7 @@ export class JSONFormatError extends Error {
   type = JSON_FORMAT_ERROR_TYPE
 }
 
-function checkIsTx(json: unknown): json is JSONTx {
+function checkIsTx(json: unknown): json is JSONTx | JSONTxFromCli {
   if (!checkIsObject(json)) throw new JSONFormatError('JSON format is incorrect')
   if (!('inputs' in json)) throw new JSONFormatError(`Tx doesn't have inputs field`)
   if (!('outputs' in json)) throw new JSONFormatError(`Tx doesn't have outputs field`)
@@ -51,9 +83,36 @@ function checkIsTx(json: unknown): json is JSONTx {
   return true
 }
 
-export default async function exportTxToSign({ tx, nodeType }: { tx: unknown; nodeType: string }) {
+const deepCamelizeKeys = (item: unknown): unknown => {
+  if (Array.isArray(item)) {
+    return item.map((el: unknown) => deepCamelizeKeys(el))
+  } else if (typeof item === 'function' || item !== Object(item)) {
+    return item
+  }
+  return Object.fromEntries(
+    Object.entries(item as Record<string, unknown>).map(([key, value]: [string, unknown]) => [
+      key.replace(/([-_][a-z])/gi, c => c.toUpperCase().replace(/[-_]/g, '')),
+      deepCamelizeKeys(value),
+    ]),
+  )
+}
+
+function isJSONTxFromCli(tx: JSONTxFromCli | JSONTx): tx is JSONTxFromCli {
+  return !!tx.inputs[0] && 'previous_output' in tx.inputs[0]
+}
+
+export default async function exportTxToSign({ json, nodeType }: { json: unknown; nodeType: string }) {
   const ckbNodeUrl: string = nodeType === 'mainnet' ? CKB_MAINNET_NODE_URL : CKB_TESTNET_NODE_URL
+  let tx
+  if (checkIsObject(json) && 'transaction' in json) {
+    tx = json.transaction
+  } else {
+    tx = json
+  }
   if (!checkIsTx(tx)) return
+  if (isJSONTxFromCli(tx)) {
+    tx = deepCamelizeKeys(tx) as JSONTx
+  }
   const context = await fetch(ckbNodeUrl, {
     method: 'POST',
     headers: {
@@ -85,6 +144,7 @@ export default async function exportTxToSign({ tx, nodeType }: { tx: unknown; no
       args: output.lock.args,
     }
     return {
+      ...input,
       capacity: output.capacity,
       lock: lockScript,
       lockHash: utils.computeScriptHash(lockScript as Script),
@@ -100,6 +160,10 @@ export default async function exportTxToSign({ tx, nodeType }: { tx: unknown; no
       fee: (outputCapacity - inputsCapacity).toString(),
       ...tx,
       inputs,
+      cellDeps: tx.cellDeps.map(v => ({
+        ...v,
+        depType: v.depType === 'dep_group' ? 'depGroup' : v.depType,
+      })),
     },
     context,
     type: 'Regular',
