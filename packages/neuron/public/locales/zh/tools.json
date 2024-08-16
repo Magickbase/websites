@@ -9,5 +9,12 @@
   "Processing": "处理中",
   "Transaction_Complete": "转换完成",
   "Download": "下载",
-  "Incorrect_JSON": "JSON 格式不正确，请检查上传的文件"
+  "Incorrect_JSON": "JSON 格式不正确，请检查上传的文件",
+  "Holder_Address": "待回收地址",
+  "Args_of_SUDT": "sUDT 的 Args",
+  "Receiver_Address": "接收 CKB 地址",
+  "Recycle_SUDT_Cells": "回收 sUDT Cells",
+  "Generate": "生成",
+  "Recycle_SUDT_Cells_Tip": "构建将清除并合并指定 sUDT Cells 的交易, 交易可以通过 Neuron 的 菜单 => 工具 => 离线签名 / 广播交易 功能签名及提交",
+  "Generate_TX_to_recycle_sudt_cells": "已构建交易从 {{cellCount}} Cells 回收 {{total}} CKB"
 }

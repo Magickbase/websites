@@ -14,6 +14,7 @@ import { Page } from '../../components/Page'
 import styles from './index.module.scss'
 import { Button } from '../../components/Button'
 import exportTxToSign, { JSONFormatError } from '../../utils/export-tx-to-sign'
+import RecycleCells from './RecycleCells'
 
 interface PageProps {}
 
@@ -174,6 +175,9 @@ const Download: NextPage<PageProps> = () => {
           )}
           {isProcess ? <RefreshSvg /> : null}
         </Button>
+      </div>
+      <div className={styles.body}>
+        <RecycleCells />
       </div>
     </Page>
   )

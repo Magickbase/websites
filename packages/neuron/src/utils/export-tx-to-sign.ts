@@ -1,7 +1,5 @@
 import { type Script, utils } from '@ckb-lumos/base'
-
-const CKB_MAINNET_NODE_URL = 'https://mainnet.ckb.dev/rpc'
-const CKB_TESTNET_NODE_URL = 'https://testnet.ckb.dev/rpc'
+import { CKB_MAINNET_NODE_URL, CKB_TESTNET_NODE_URL } from './constants'
 
 interface Transaction {
   hash: string

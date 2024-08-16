@@ -9,5 +9,12 @@
   "Processing": "Processing",
   "Transaction_Complete": "Transaction complete",
   "Download": "Download",
-  "Incorrect_JSON": "JSON format is incorrect, Please check the upload file"
+  "Incorrect_JSON": "JSON format is incorrect, Please check the upload file",
+  "Holder_Address": "Address to recycle",
+  "Args_of_SUDT": "Args of sUDT",
+  "Receiver_Address": "Address to receive CKB",
+  "Recycle_SUDT_Cells": "Recycle sUDT Cells",
+  "Generate": "Generate",
+  "Recycle_SUDT_Cells_Tip": "Generate a transaction to wipe and merge specific sUDT cells, the transaction can be signed and submitted by Neuron => Menu => Tools => Offline Sign / Broadcast Transaction",
+  "Generate_TX_to_recycle_sudt_cells": "Generated a transaction to recycle {{total}} CKB from {{cellCount}} Cells"
 }
