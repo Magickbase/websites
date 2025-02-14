@@ -2376,7 +2376,7 @@ __metadata:
     "@magickbase-website/shared": "workspace:^"
     "@octokit/graphql-schema": ^14.12.0
     "@octokit/openapi-types": ^17.2.0
-    "@octokit/plugin-paginate-rest": ^6.1.2
+    "@octokit/plugin-paginate-rest": ^11.0.0
     "@octokit/rest": ^19.0.11
     "@radix-ui/react-accordion": ^1.1.2
     "@radix-ui/react-dialog": ^1.0.4
@@ -2501,7 +2501,7 @@ __metadata:
     "@magickbase-website/shared": "workspace:^"
     "@octokit/graphql-schema": ^14.12.0
     "@octokit/openapi-types": ^17.2.0
-    "@octokit/plugin-paginate-rest": ^6.1.2
+    "@octokit/plugin-paginate-rest": ^11.0.0
     "@octokit/rest": ^19.0.11
     "@radix-ui/react-accordion": ^1.1.2
     "@radix-ui/react-dialog": ^1.0.4
@@ -2564,7 +2564,7 @@ __metadata:
     "@magickbase-website/config": "workspace:^"
     "@magickbase-website/eslint-config": "workspace:^"
     "@octokit/plugin-paginate-graphql": ^4.0.0
-    "@octokit/plugin-paginate-rest": ^6.1.2
+    "@octokit/plugin-paginate-rest": ^11.0.0
     "@octokit/rest": ^19.0.11
     "@types/eslint": ^8.56.0
     "@types/node": ^20.2.5
@@ -2921,12 +2921,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@octokit/openapi-types@npm:^23.0.1":
+  version: 23.0.1
+  resolution: "@octokit/openapi-types@npm:23.0.1"
+  checksum: 1e6766c60375375d85ecabded67d9ee313cf9401c18a44534b942717cf840d41b5a9d42035522efffe6b811ee2204d4615f72c333e984e81b25545926eb77989
+  languageName: node
+  linkType: hard
+
 "@octokit/plugin-paginate-graphql@npm:^4.0.0":
   version: 4.0.0
   resolution: "@octokit/plugin-paginate-graphql@npm:4.0.0"
   peerDependencies:
     "@octokit/core": ">=5"
   checksum: 368121d74fc40a4cee96f2febc29ae43abd8f6b7d0b06d3520847827675128028c4fa10d0534c5f0466658e81257d103092154778625c886a9fcdd01c302e50e
+  languageName: node
+  linkType: hard
+
+"@octokit/plugin-paginate-rest@npm:^11.0.0":
+  version: 11.4.2
+  resolution: "@octokit/plugin-paginate-rest@npm:11.4.2"
+  dependencies:
+    "@octokit/types": ^13.7.0
+  peerDependencies:
+    "@octokit/core": ">=6"
+  checksum: 9833efae2323a1743997ad094d025c26cccb7a3be4f9eddf13662c1c202a60c1b3d51fdc1dcc8eeadc5a530d1a83750b778e167f60293910b1f3e44805463279
   languageName: node
   linkType: hard
 
@@ -3004,6 +3022,15 @@ __metadata:
   version: 1.0.2
   resolution: "@octokit/tsconfig@npm:1.0.2"
   checksum: 74d56f3e9f326a8dd63700e9a51a7c75487180629c7a68bbafee97c612fbf57af8347369bfa6610b9268a3e8b833c19c1e4beb03f26db9a9dce31f6f7a19b5b1
+  languageName: node
+  linkType: hard
+
+"@octokit/types@npm:^13.7.0":
+  version: 13.8.0
+  resolution: "@octokit/types@npm:13.8.0"
+  dependencies:
+    "@octokit/openapi-types": ^23.0.1
+  checksum: be5fb327d0e39765e06f5a314556a273ff2bfb9ce4fd5a6e52c237d2f20a4c329493a8bde2c595cb82a5022f07ee6495dfff07ce24e3de4660c9ead913e3db0d
   languageName: node
   linkType: hard
 
