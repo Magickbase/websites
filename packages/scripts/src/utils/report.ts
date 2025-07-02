@@ -18,6 +18,19 @@ const sortedStatusValues = [
   '✅ Done',
 ]
 
+const statusDisplayMap = {
+  '🆕 New': '🆕 **New**',
+  '📫Hold On': '⏸️ **On Hold**',
+  '📋 Backlog': '📋 **Backlog**',
+  '📌Planning': '📌 **Planning**',
+  '🎨 Designing': '🎨 **Designing**',
+  '🏗 In Progress': '🏗 **In Progress**',
+  '🔎 Code Review': '🔍 **Code Review**',
+  '👀 Testing': '🧪 **Testing**',
+  '🚩Pre Release': '🚀 **Pre-Release**',
+  '✅ Done': '✅ **Done**',
+}
+
 const folder = join(process.cwd(), 'snapshots')
 const currentFilepath = join(folder, 'current.json')
 const prevFilepath = join(folder, 'prev.json')
@@ -45,6 +58,16 @@ export function generateDevlogFromSnapshotsDiff() {
   const prevProjectItemsMap = JSON.parse(readFileSync(prevFilepath).toString()) as Record<string, ProjectItem[]>
 
   let devLog = ''
+
+  const reportDate = new Date().toISOString().slice(0, 10)
+  devLog += `# 📊 Development Progress Report\n\n`
+  devLog += `**Date:** ${reportDate}\n`
+  devLog += `**Generated:** ${new Date().toLocaleString()}\n\n`
+
+  // 计算总体统计
+  let totalNew = 0
+  let totalUpdates = 0
+  let totalCompleted = 0
 
   for (const [title, currentItems] of Object.entries(currentProjectItemsMap)) {
     const prevItems = prevProjectItemsMap[title]
@@ -85,6 +108,9 @@ export function generateDevlogFromSnapshotsDiff() {
       }
     }
 
+    totalNew += newItems.length
+    totalUpdates += update.length
+    totalCompleted += done.length
     ;[newItems, update, done].forEach(items =>
       items.sort((a, b) => {
         const aStatus = getField(a, 'Status')?.name ?? '🆕 New'
@@ -97,56 +123,109 @@ export function generateDevlogFromSnapshotsDiff() {
       const currentStatus = getField(item, 'Status')?.name
       const prevItem = prevMap[item.id]
       const prevStatus = prevItem == null ? undefined : getField(prevItem, 'Status')?.name
-      if (prevStatus == null || currentStatus === prevStatus) return ` [${currentStatus}]`
-      return ` [${prevStatus} -> ${currentStatus}]`
+
+      if (prevStatus == null || currentStatus === prevStatus) {
+        return `**${statusDisplayMap[currentStatus as keyof typeof statusDisplayMap] || currentStatus}**`
+      }
+      return `**${statusDisplayMap[prevStatus as keyof typeof statusDisplayMap] || prevStatus}** → **${
+        statusDisplayMap[currentStatus as keyof typeof statusDisplayMap] || currentStatus
+      }**`
     }
 
     const getContentURL = (item: ProjectItem) =>
       item.content.url != null ? ` [#${item.content.number}](${item.content.url})` : ''
 
-    const getDescription = (item: ProjectItem) => {
-      const desc = getField(item, 'Description')?.text
-      return desc != null ? ` [${desc}]` : ''
+    const getPriority = (item: ProjectItem) => {
+      const priority = getField(item, 'Priority')?.name
+      if (!priority) return ''
+
+      const priorityMap = {
+        High: '🟥',
+        Medium: '🟨',
+        Low: '🟩',
+        Urgent: '🚨',
+      }
+      return ` ${priorityMap[priority as keyof typeof priorityMap] || ''}`
     }
 
-    devLog += `# ${title}\n\n`
+    const getLabels = (item: ProjectItem) => {
+      const labels = getField(item, 'Labels')?.name
+      if (!labels) return ''
+      return ` \`${labels}\``
+    }
+
+    devLog += `### ${title}\n\n`
 
     if ([newItems, update, done].every(items => items.length === 0)) {
-      devLog += `## No updates\n\n`
+      devLog += `#### 📊 No Updates\n\n*No changes detected in this project since the last snapshot.*\n\n`
       continue
     }
 
     if (newItems.length > 0) {
-      devLog += '## [NEW]\n\n'
-      newItems.forEach((item, idx) => {
-        devLog += `${idx + 1}. ${item.content.title}${getContentURL(item)}${getDescription(item)}\n`
+      devLog += '#### 🆕 New Items\n\n'
+      devLog += '| Status | Title | Issue |\n'
+      devLog += '|--------|-------|-------|\n'
+      newItems.forEach(item => {
+        const status = getStatusChangeLog(item)
+        const title = item.content.title
+        const issue = getContentURL(item)
+        const priority = getPriority(item)
+        const labels = getLabels(item)
+        devLog += `| ${status} | ${title}${priority}${labels} | ${issue} |\n`
       })
       devLog += '\n'
     }
 
     if (update.length > 0) {
-      devLog += '## [UPDATE]\n\n'
-      update.forEach((item, idx) => {
-        devLog += `${idx + 1}.${getStatusChangeLog(item)} ${item.content.title}${getContentURL(item)}${getDescription(
-          item,
-        )}\n`
+      devLog += '#### 🔄 Updates\n\n'
+      devLog += '| Status Change | Title | Issue |\n'
+      devLog += '|---------------|-------|-------|\n'
+      update.forEach(item => {
+        const statusChange = getStatusChangeLog(item)
+        const title = item.content.title
+        const issue = getContentURL(item)
+        const priority = getPriority(item)
+        const labels = getLabels(item)
+        devLog += `| ${statusChange} | ${title}${priority}${labels} | ${issue} |\n`
       })
       devLog += '\n'
     }
 
     if (done.length > 0) {
-      devLog += '## [DONE]\n\n'
-      done.forEach((item, idx) => {
-        devLog += `${idx + 1}. [${getField(item, 'Status')?.name}] ${item.content.title}${getContentURL(
-          item,
-        )}${getDescription(item)}\n`
+      devLog += '#### ✅ Completed\n\n'
+      devLog += '| Final Status | Title | Issue |\n'
+      devLog += '|--------------|-------|-------|\n'
+      done.forEach(item => {
+        const finalStatus = `**${
+          statusDisplayMap[getField(item, 'Status')?.name as keyof typeof statusDisplayMap] ||
+          getField(item, 'Status')?.name
+        }**`
+        const title = item.content.title
+        const issue = getContentURL(item)
+        const priority = getPriority(item)
+        const labels = getLabels(item)
+        devLog += `| ${finalStatus} | ${title}${priority}${labels} | ${issue} |\n`
       })
     }
 
-    devLog += '\n'
+    devLog += '\n---\n\n'
   }
 
-  return devLog
+  const summary = `## 📈 Summary\n\n`
+  const summaryTable = `| Metric | Count |\n|--------|-------|\n`
+  const summaryRows = [
+    `| 🆕 New Items | ${totalNew} |`,
+    `| 🔄 Updates | ${totalUpdates} |`,
+    `| ✅ Completed | ${totalCompleted} |`,
+    `| 📊 Total Changes | ${totalNew + totalUpdates + totalCompleted} |`,
+  ].join('\n')
+
+  const finalDevLog = devLog.replace(
+    '# 📊 Development Progress Report',
+    `# 📊 Development Progress Report\n\n${summary}${summaryTable}${summaryRows}\n\n---\n\n## 📋 Project Details`,
+  )
+
+  return finalDevLog
 }
 
 export async function createDevlogDiscussion() {
