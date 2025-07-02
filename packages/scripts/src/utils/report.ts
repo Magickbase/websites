@@ -4,7 +4,7 @@ import { ProjectItem, createDiscussion, getOrganizationProjects, getProjectItems
 import { assert } from './error'
 import { ensureFileFolderExists } from './file'
 
-const projectNames = ['CKB Explorer', 'Neuron', 'Lumos']
+const projectNames = ['CKB Explorer', 'Neuron', 'Fiber Explorer', 'P | Magickbase']
 const sortedStatusValues = [
   '🆕 New',
   '📫Hold On',
@@ -23,7 +23,7 @@ const currentFilepath = join(folder, 'current.json')
 const prevFilepath = join(folder, 'prev.json')
 
 export async function updateSnapshots() {
-  const projects = [...(await getOrganizationProjects('Magickbase')), ...(await getOrganizationProjects('ckb-js'))]
+  const projects = [...(await getOrganizationProjects('Magickbase'))]
   const filteredProjects = projects.filter(p => projectNames.includes(p.title))
   assert(filteredProjects.length === projectNames.length)
 
