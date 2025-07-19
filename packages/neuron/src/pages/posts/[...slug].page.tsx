@@ -141,7 +141,7 @@ export const PostPage$Mobile: FC<PageProps> = ({ post, menuWithPosts }) => {
 
         <div className={styles.footer}>
           <Contacts className={styles.contacts} />
-          <div className={styles.copyright}>{t('© 2023 by Magickbase.')}</div>
+          <div className={styles.copyright}>{t('© 2025 by Magickbase.')}</div>
         </div>
       </div>
     </div>

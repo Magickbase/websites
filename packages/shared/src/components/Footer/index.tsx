@@ -52,7 +52,7 @@ export const Footer: FC<FooterProps> = ({
 
           <Contacts className={styles.contacts} />
 
-          {!isMobile && <div className={styles.copyright}>{t('Copyright © 2023 Magickbase All Rights Reserved.')}</div>}
+          {!isMobile && <div className={styles.copyright}>{t('Copyright © 2025 Magickbase All Rights Reserved.')}</div>}
         </div>
 
         <div className={styles.right}>
@@ -90,7 +90,7 @@ export const Footer: FC<FooterProps> = ({
             </div>
           </div>
 
-          {isMobile && <div className={styles.copyright}>{t('Copyright © 2023 Magickbase All Rights Reserved.')}</div>}
+          {isMobile && <div className={styles.copyright}>{t('Copyright © 2025 Magickbase All Rights Reserved.')}</div>}
         </div>
       </div>
     </div>

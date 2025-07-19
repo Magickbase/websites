@@ -21,7 +21,7 @@ export const Sidebar: FC<ComponentProps<'div'> & { menuWithPosts: TopLevelMenu; 
       <div className={styles.bottom}>
         <Contacts />
 
-        <div className={styles.copyright}>{t('© 2023 by Magickbase.')}</div>
+        <div className={styles.copyright}>{t('© 2025 by Magickbase.')}</div>
       </div>
     </div>
   )
