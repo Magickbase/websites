@@ -183,7 +183,7 @@ export default function ForceBridgeForm() {
           </div>
         </div>
       </div>
-      <Footer className="snap-always snap-center" serviceState={aggregateStateQuery.data} />
+      <Footer serviceState={aggregateStateQuery.data} />
       <TailwindToaster />
     </>
   )
