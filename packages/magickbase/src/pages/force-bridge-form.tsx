@@ -78,7 +78,7 @@ export default function ForceBridgeForm() {
   return (
     <>
       <Header className="z-10" />
-      <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-slate-100 px-4 pt-4 pb-0 md:px-8 md:pt-8 md:pb-0">
+      <div className="min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-88px)] flex flex-col bg-gradient-to-br from-slate-50 to-slate-100 px-4 pt-4 pb-0 md:px-8 md:pt-8 md:pb-0">
         <div className="max-w-2xl mx-auto pt-24 pb-8 flex-1">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl md:text-3xl font-bold text-slate-900">{t('form.title')}</h1>
