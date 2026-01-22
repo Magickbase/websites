@@ -58,8 +58,8 @@
   "Transaction": "交易",
   "Usage Tutorial": "使用教程",
   "form": {
-    "title": "提交请求",
-    "subtitle": "填写下方表单提交您的请求",
+    "title": "提交提款请求",
+    "subtitle": "请提供以下信息，我们将定期统计提款请求总量，以决定合适的开放时间。",
     "service": {
       "label": "服务",
       "placeholder": "选择服务",
@@ -79,8 +79,8 @@
     "submit": {
       "button": "提交",
       "submitting": "提交中...",
-      "successTitle": "提交成功！",
-      "successMessage": "您的请求已成功提交。我们将尽快审核并处理。",
+      "successTitle": "感谢提交！",
+      "successMessage": "我们已记录在册，将在官方渠道定期公布统计情况。",
       "error": "提交失败，请重试。"
     }
   }
