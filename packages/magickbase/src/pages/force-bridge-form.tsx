@@ -182,7 +182,7 @@ export default function ForceBridgeForm() {
             </div>
           </div>
         </div>
-        <Footer className="mt-8" serviceState={aggregateStateQuery.data} />
+        <Footer className="mt-8 bg-black text-white rounded-2xl" serviceState={aggregateStateQuery.data} />
       </div>
       <TailwindToaster />
     </>
