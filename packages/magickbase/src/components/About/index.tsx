@@ -1,13 +1,4 @@
-import {
-  type PropsWithChildren,
-  type ComponentProps,
-  type FC,
-  useRef,
-  Suspense,
-  lazy,
-  useState,
-  useEffect,
-} from 'react'
+import { type PropsWithChildren, type ComponentProps, type FC, useRef, Suspense, useState, useEffect } from 'react'
 import classnames from 'classnames'
 import { useTranslation } from 'next-i18next'
 import type { SPEObject } from '@splinetool/runtime'

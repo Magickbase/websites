@@ -104,7 +104,12 @@ export default function ForceBridgeForm() {
                   <p className="text-slate-600">{t('form.submit.successMessage')}</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form
+                  onSubmit={event => {
+                    void handleSubmit(event)
+                  }}
+                  className="space-y-6"
+                >
                   <div className="space-y-2">
                     <label htmlFor="service" className="block text-sm font-medium text-slate-800">
                       {t('form.service.label')} <span className="text-red-500">*</span>
