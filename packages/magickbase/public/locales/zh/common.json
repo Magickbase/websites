@@ -56,5 +56,32 @@
   "Status": "状态",
   "Sync": "同步",
   "Transaction": "交易",
-  "Usage Tutorial": "使用教程"
+  "Usage Tutorial": "使用教程",
+  "form": {
+    "title": "提交提款请求",
+    "subtitle": "请提供以下信息，我们将定期统计提款请求总量，以决定合适的开放时间。",
+    "service": {
+      "label": "服务",
+      "placeholder": "选择服务",
+      "forceBridge": "Force Bridge",
+      "godwoken": "Godwoken",
+      "required": "请选择服务"
+    },
+    "walletAddress": {
+      "label": "钱包地址",
+      "placeholder": "输入您的钱包地址",
+      "required": "钱包地址为必填项"
+    },
+    "additionalNotes": {
+      "label": "备注",
+      "placeholder": "任何额外信息（可选）"
+    },
+    "submit": {
+      "button": "提交",
+      "submitting": "提交中...",
+      "successTitle": "感谢提交！",
+      "successMessage": "我们已记录在册，将在官方渠道定期公布统计情况。",
+      "error": "提交失败，请重试。"
+    }
+  }
 }

@@ -56,5 +56,32 @@
   "Status": "Status",
   "Sync": "Sync",
   "Transaction": "Transaction",
-  "Usage Tutorial": "Usage Tutorial"
+  "Usage Tutorial": "Usage Tutorial",
+  "form": {
+    "title": "Submit your Withdrawal Request",
+    "subtitle": "Please provide the information below. We aggregate withdrawal requests regularly to determine when to open the service.",
+    "service": {
+      "label": "Service",
+      "placeholder": "Select a service",
+      "forceBridge": "Force Bridge",
+      "godwoken": "Godwoken",
+      "required": "Please select a service"
+    },
+    "walletAddress": {
+      "label": "Wallet Address",
+      "placeholder": "Enter your wallet address",
+      "required": "Wallet address is required"
+    },
+    "additionalNotes": {
+      "label": "Additional Notes",
+      "placeholder": "Any additional information (optional)"
+    },
+    "submit": {
+      "button": "Submit",
+      "submitting": "Submitting...",
+      "successTitle": "Thanks for submitting!",
+      "successMessage": "Your request has been recorded. We will publish aggregate statistics regularly via our official channels.",
+      "error": "Failed to submit form. Please try again."
+    }
+  }
 }
