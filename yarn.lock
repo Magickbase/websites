@@ -4083,9 +4083,9 @@ __metadata:
   linkType: hard
 
 "@trpc/server@npm:^10.28.2":
-  version: 10.28.2
-  resolution: "@trpc/server@npm:10.28.2"
-  checksum: a9b69ba7e4a73d277743b42c27c5be6d320d5d6656462d69c1b1a5a7fd1fbd2d8740d34b49248508744bd9f52e881f5b5601024321ef030b4a64d024ba8be326
+  version: 10.45.4
+  resolution: "@trpc/server@npm:10.45.4"
+  checksum: d206c127ea5bf60b8ab4a310083ed38364d7834f9597f5bf02c237d47d263037e9768904eaa1c0f9d1c2a53fa3750a618bcc16f3ad7ee657f6da9e9643c76a5a
   languageName: node
   linkType: hard
 
