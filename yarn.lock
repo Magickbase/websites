@@ -2422,7 +2422,7 @@ __metadata:
     stylelint-order: ^6.0.3
     superjson: ^1.12.3
     typescript: ^5.1.3
-    zod: ^3.21.4
+    zod: ^4.0.0
   peerDependencies:
     "@octokit/request-error": "*"
   languageName: unknown
@@ -2485,7 +2485,7 @@ __metadata:
     superjson: ^1.12.3
     tailwindcss: 3.3.5
     typescript: 5.2.2
-    zod: ^3.21.4
+    zod: ^4.0.0
   languageName: unknown
   linkType: soft
 
@@ -2551,7 +2551,7 @@ __metadata:
     superjson: ^1.12.3
     typescript: ^5.1.3
     ua-parser-js: ^2.0.0-beta.1
-    zod: ^3.21.4
+    zod: ^4.0.0
   peerDependencies:
     "@octokit/request-error": "*"
   languageName: unknown
@@ -2641,7 +2641,7 @@ __metadata:
     superjson: ^1.12.3
     tailwindcss: 3.3.5
     typescript: 5.2.2
-    zod: ^3.21.4
+    zod: ^4.0.0
   languageName: unknown
   linkType: soft
 
@@ -15924,10 +15924,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.21.4":
-  version: 3.23.8
-  resolution: "zod@npm:3.23.8"
-  checksum: 15949ff82118f59c893dacd9d3c766d02b6fa2e71cf474d5aa888570c469dbf5446ac5ad562bb035bf7ac9650da94f290655c194f4a6de3e766f43febd432c5c
+"zod@npm:^4.0.0":
+  version: 4.6.7
+  resolution: "zod@npm:4.6.7"
+  checksum: 6801f5067dd43204d5ed2b4f2f0d09f891365ecfdd385877901e42f6f6ebf67e8943b385c71eaba53081029dd21f4740f16c91497a06f95195e209bffef92056
   languageName: node
   linkType: hard
 
