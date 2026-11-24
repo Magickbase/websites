@@ -27,7 +27,7 @@
     "@trpc/server": "^10.28.2",
     "chunk-text": "^2.0.1",
     "clsx": "^1.2.1",
-    "i18next": "^22.5.0",
+    "i18next": "^26.0.0",
     "next": "^13.4.4",
     "next-i18next": "^13.2.2",
     "overlayscrollbars": "^2.4.5",
